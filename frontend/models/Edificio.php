@@ -9,6 +9,9 @@ use Yii;
  *
  * @property string $ID_EDIFICIO
  * @property string $NOMBRE_EDIFICIO
+ *
+ * @property Facultad[] $facultads
+ * @property Sala[] $salas
  */
 class Edificio extends \yii\db\ActiveRecord
 {
@@ -27,7 +30,7 @@ class Edificio extends \yii\db\ActiveRecord
     {
         return [
             [['ID_EDIFICIO', 'NOMBRE_EDIFICIO'], 'required'],
-            [['ID_EDIFICIO', 'NOMBRE_EDIFICIO'], 'string', 'max' => 255],
+            [['ID_EDIFICIO', 'NOMBRE_EDIFICIO'], 'string', 'max' => 255]
         ];
     }
 
@@ -40,5 +43,21 @@ class Edificio extends \yii\db\ActiveRecord
             'ID_EDIFICIO' => 'Id  Edificio',
             'NOMBRE_EDIFICIO' => 'Nombre  Edificio',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getFacultads()
+    {
+        return $this->hasMany(Facultad::className(), ['ID_EDIFICIO' => 'ID_EDIFICIO']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSalas()
+    {
+        return $this->hasMany(Sala::className(), ['ID_EDIFICIO' => 'ID_EDIFICIO']);
     }
 }
