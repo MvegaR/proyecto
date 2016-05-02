@@ -7,7 +7,20 @@ $this->title = 'My Yii Application';
 <div class="site-index">
 
     <div class="jumbotron">
-        <h1>Congratulations!</h1>
+        <?php 
+            if(!Yii::$app->user->isGuest){
+                echo "<h1>Iniciado como rol de : ";
+                if(Yii::$app->user-> identity-> ID_ROL == 1){
+                    echo "Administrador";
+                }else{
+                    echo "Docente";
+                }
+                echo "</h1>";
+            }else {
+                echo "<h1>Congratulations!</h1>";
+            }
+        ?>
+        
 
         <p class="lead">You have successfully created your Yii-powered application.</p>
 
