@@ -121,4 +121,17 @@ class SalaController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+    //id es el id del edificio (select dependientes)
+    public function actionLists($id){
+        $contadorSalas = Sala::find()->where(['ID_EDIFICIO' => $id])->count();
+        $salas = Sala::find()->where(['ID_EDIFICIO' => $id])->all();
+
+        if($contadorSalas > 0){
+            foreach ($salas as $sala) {
+                echo "<option value='".$sala->ID_SALA."'> ".$sala->ID_SALA."</option>";
+            }
+        }else{
+           echo "<option>Sin salas</option>";
+       }
+   }
 }

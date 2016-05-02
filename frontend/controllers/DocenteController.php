@@ -61,8 +61,10 @@ class DocenteController extends Controller
     public function actionCreate()
     {
         $model = new Docente();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if($model->load(Yii::$app->request->post()) && $model -> PASSWORD != null){
+            $model -> PASSWORD = sha1($model -> PASSWORD);
+        }
+        if ($model->save()) {
             return $this->redirect(['view', 'id' => $model->ID_DOCENTE]);
         } else {
             return $this->render('create', [

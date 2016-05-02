@@ -15,6 +15,7 @@ use yii\helpers\ArrayHelper;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
+
 <div class="post-de-denuncia-form">
 
     <?php $form = ActiveForm::begin();?>
@@ -32,16 +33,27 @@ use yii\helpers\ArrayHelper;
 
     <?= $form->field($model, 'FACULTAD_DENUNCIA')->dropDownList(
         ArrayHelper::map(Facultad::find()->all(),'ID_FACULTAD','NOMBRE_FACULTAD'),
-        ['prompt'=>'Seleccione Facultad'] )->label('Facultad') ?>
+        ['prompt'=>'Seleccione Facultad', 
+        'onchange' => '$.post("index.php?edificio/lists&id='.'"+$(this).val(), function(data){
+                             $("select#postdedenuncia-edificio_denuncia").html(data);
+                        });'
+        ])->label('Facultad') ?>
 
     <?= $form->field($model, 'EDIFICIO_DENUNCIA')->dropDownList(
         ArrayHelper::map(Edificio::find()->all(),'ID_EDIFICIO','NOMBRE_EDIFICIO'),
-        ['prompt'=>'Seleccionar Edificio']
+        ['prompt'=>'Seleccionar Edificio',
+        'onchange' => '$.post("index.php?sala/lists&id='.'"+$(this).val(), function(data){
+                             $("select#postdedenuncia-sala_denuncia").html(data);
+                        });']
     )->label('Nombre de Edificio') ?>
 
     <?= $form->field($model, 'SALA_DENUNCIA')->dropDownList(
         ArrayHelper::map(Sala::find()->all(),'ID_SALA','ID_SALA'),
-        ['prompt'=>'Seleccione sala'] )->label('Sala') ?>
+        ['prompt'=>'Seleccione sala',
+        'onchange' => '$.post("index.php?bloque/lists&id='.'"+$(this).val(), function(data){
+                             $("select#postdedenuncia-bloque_denuncia").html(data);
+                        });'
+        ] )->label('Sala') ?>
 
     <?= $form->field($model, 'BLOQUE_DENUNCIA')->dropDownList(
         ArrayHelper::map(Bloque::find()->all(),'ID_BLOQUE','ID_BLOQUE'),

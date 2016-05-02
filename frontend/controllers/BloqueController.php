@@ -118,4 +118,18 @@ class BloqueController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
+    //id es el id de la sala (select dependientes)
+    public function actionLists($id){
+        $contadorbloques = Bloque::find()->where(['ID_SALA' => $id])->count();
+        $bloques = Bloque::find()->where(['ID_SALA' => $id])->all();
+
+        if($contadorbloques > 0){
+            foreach ($bloques as $bloque) {
+                echo "<option value='".$bloque->ID_BLOQUE."'> ".$bloque->ID_BLOQUE."</option>";
+            }
+        }else{
+           echo "<option>Sin bloques</option>";
+       }
+   }
 }
