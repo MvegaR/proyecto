@@ -8,7 +8,7 @@ use yii\helpers\Html;
 $this->title = 'Modificar Carrera: ' . ' ' . $model->ID_CARRERA;
 $this->params['breadcrumbs'][] = ['label' => 'Carreras', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->ID_CARRERA, 'url' => ['view', 'id' => $model->ID_CARRERA]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = 'Modificar';
 ?>
 <div class="carrera-update">
 
