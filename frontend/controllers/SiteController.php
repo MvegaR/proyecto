@@ -18,6 +18,12 @@ use frontend\models\ContactForm;
  */
 class SiteController extends Controller
 {
+
+    public function actionEntrega(){
+        return $this -> render("entrega");
+    }
+
+
     /**
      * @inheritdoc
      */
@@ -140,6 +146,8 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+
+
 
     /**
      * Signs user up.
