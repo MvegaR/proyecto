@@ -7,7 +7,7 @@ use yii\helpers\Html;
 /* @var $model frontend\models\Facultad */
 
 $this->title = 'Crear Facultad';
-$this->params['breadcrumbs'][] = ['label' => 'Facultads', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Facultad', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="facultad-create">
