@@ -8,9 +8,9 @@ $this->title = 'My Yii Application';
 
     <div class="jumbotron">
         <?php 
-            if(!Yii::$app->user->isGuest){
+            if(!Yii::$app -> user -> isGuest){
                 echo "<h1>Iniciado como rol de : ";
-                if(Yii::$app->user-> identity-> ID_ROL == 1){
+                if(Yii::$app -> user -> identity -> ID_ROL == 1){
                     echo "Administrador";
                 }else{
                     echo "Docente";

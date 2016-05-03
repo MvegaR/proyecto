@@ -1,7 +1,11 @@
 <?php
-
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use frontend\models\TipoSolicitudAsignacion;
+use frontend\models\TipoSala;
+use frontend\models\Asignatura;
+use frontend\models\Seccion;
+use yii\helpers\Arrayhelper;
 
 /* @var $this yii\web\View */
 /* @var $model frontend\models\SolicitudAsignacion */
@@ -12,17 +16,33 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'ID_ESTADO_SOLICITUD')->textInput() ?>
+    <?php 
+    if(!$model->isNewRecord)
+        echo $form->field($model, 'ID_ESTADO_SOLICITUD')->dropDownList(
+        ArrayHelper::map(TipoSolicitudAsignacion::find()->all(),'ID_ESTADO_SOLICITUD','NOMBRE_ESTADO'),
+        ['prompt'=>'Seleccione estado'] )->label('Estado'); ?>
+   
 
-    <?= $form->field($model, 'DOCENTE_ASIGNACION')->textInput(['maxlength' => true]) //roles?> 
+    <?php 
+    $idDocente = null;
+    if(!Yii::$app -> user -> isGuest){
+        $idDocente = Yii::$app -> user -> identity -> ID_DOCENTE;
+    }
+    Html::activeHiddenInput($model, 'DOCENTE_ASIGNACION', ['value' => $idDocente ]); ?>
+    
+    <?= $form->field($model, 'ASIGNATURA_ASIGNACION')->dropDownList(
+        ArrayHelper::map(Asignatura::find()->all(),'ID_ASIGNATURA','Nombre_Asignatura'),
+        ['prompt'=>'Seleccione asignatura'] )->label('Asignatura') //falta filtar?> 
 
-    <?= $form->field($model, 'ASIGNATURA_ASIGNACION')->textInput(['maxlength' => true]) // asignatura del user?>
+    <?= $form->field($model, 'SECCION_ASIGNACION')->dropDownList(
+        ArrayHelper::map(Seccion::find()->all(),'ID_SECCION','ID_SECCION'),
+        ['prompt'=>'Seleccione seccion'] )->label('Seccion') //falta filtar ?> 
 
-    <?= $form->field($model, 'SECCION_ASIGNACION')->textInput(['maxlength' => true]) // seccion del user ?>
+    <?= $form->field($model, 'CAPACIDAD_ASIGNACION')->textInput(['type' => 'number', 'min' => 1]) ?>
 
-    <?= $form->field($model, 'CAPACIDAD_ASIGNACION')->textInput() ?>
-
-    <?= $form->field($model, 'TIPO_SALA_ASIGNACION')->textInput() ?>
+     <?= $form->field($model, 'TIPO_SALA_ASIGNACION')->dropDownList(
+        ArrayHelper::map(TipoSala::find()->all(),'ID_TIPO_SALA','NOMBRE_TIPO'),
+        ['prompt'=>'Seleccione tipo sala'] )->label('Tipo sala') //falta filtar ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
