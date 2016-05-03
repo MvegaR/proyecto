@@ -19,6 +19,7 @@ class EdificioSearch extends Edificio
     {
         return [
             [['ID_EDIFICIO', 'NOMBRE_EDIFICIO'], 'safe'],
+            [['ID_FACULTAD'], 'integer'],
         ];
     }
 
@@ -53,6 +54,10 @@ class EdificioSearch extends Edificio
             // $query->where('0=1');
             return $dataProvider;
         }
+
+        $query->andFilterWhere([
+            'ID_FACULTAD' => $this->ID_FACULTAD,
+        ]);
 
         $query->andFilterWhere(['like', 'ID_EDIFICIO', $this->ID_EDIFICIO])
             ->andFilterWhere(['like', 'NOMBRE_EDIFICIO', $this->NOMBRE_EDIFICIO]);
