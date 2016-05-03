@@ -27,7 +27,7 @@ use frontend\models\Edificio;
         ['prompt'=>'Seleccionar Edificio']
     )->label('Nombre de Edificio') ?>
 
-    <?= $form->field($model, 'CAPACIDAD_SALA')->textInput() ?>
+    <?= $form->field($model, 'CAPACIDAD_SALA')->textInput(['type' => 'number', 'min' => 1]) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

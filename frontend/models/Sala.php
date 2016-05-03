@@ -11,6 +11,10 @@ use Yii;
  * @property integer $ID_TIPO_SALA
  * @property string $ID_EDIFICIO
  * @property integer $CAPACIDAD_SALA
+ *
+ * @property Bloque[] $bloques
+ * @property TipoSala $iDTIPOSALA
+ * @property Edificio $iDEDIFICIO
  */
 class Sala extends \yii\db\ActiveRecord
 {
@@ -28,9 +32,9 @@ class Sala extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['ID_SALA', 'ID_TIPO_SALA', 'ID_EDIFICIO', 'CAPACIDAD_SALA'], 'required'],
-            [['ID_SALA', 'ID_TIPO_SALA', 'CAPACIDAD_SALA'], 'integer', 'min'=>1],
-            [['ID_SALA', 'ID_EDIFICIO'], 'string', 'max' => 255],
+            [['ID_SALA', 'CAPACIDAD_SALA'], 'required'],
+            [['ID_TIPO_SALA', 'CAPACIDAD_SALA'], 'integer'],
+            [['ID_SALA', 'ID_EDIFICIO'], 'string', 'max' => 255]
         ];
     }
 
@@ -45,5 +49,29 @@ class Sala extends \yii\db\ActiveRecord
             'ID_EDIFICIO' => 'Id  Edificio',
             'CAPACIDAD_SALA' => 'Capacidad  Sala',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getBloques()
+    {
+        return $this->hasMany(Bloque::className(), ['ID_SALA' => 'ID_SALA']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getIDTIPOSALA()
+    {
+        return $this->hasOne(TipoSala::className(), ['ID_TIPO_SALA' => 'ID_TIPO_SALA']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getIDEDIFICIO()
+    {
+        return $this->hasOne(Edificio::className(), ['ID_EDIFICIO' => 'ID_EDIFICIO']);
     }
 }
