@@ -18,7 +18,8 @@ class EstadoSolicitudDenunciaSearch extends EstadoSolicitudDenuncia
     public function rules()
     {
         return [
-            [['ID_ESTADO_DENUNCIA', 'NOMBRE_DENUNCIA'], 'safe'],
+            [['ID_ESTADO_DENUNCIA'], 'integer'],
+            [['NOMBRE_DENUNCIA'], 'safe'],
         ];
     }
 
@@ -54,8 +55,11 @@ class EstadoSolicitudDenunciaSearch extends EstadoSolicitudDenuncia
             return $dataProvider;
         }
 
-        $query->andFilterWhere(['like', 'ID_ESTADO_DENUNCIA', $this->ID_ESTADO_DENUNCIA])
-            ->andFilterWhere(['like', 'NOMBRE_DENUNCIA', $this->NOMBRE_DENUNCIA]);
+        $query->andFilterWhere([
+            'ID_ESTADO_DENUNCIA' => $this->ID_ESTADO_DENUNCIA,
+        ]);
+
+        $query->andFilterWhere(['like', 'NOMBRE_DENUNCIA', $this->NOMBRE_DENUNCIA]);
 
         return $dataProvider;
     }

@@ -8,12 +8,11 @@ use Yii;
  * This is the model class for table "facultad".
  *
  * @property integer $ID_FACULTAD
- * @property string $ID_EDIFICIO
  * @property string $NOMBRE_FACULTAD
  *
  * @property Carrera[] $carreras
  * @property Docente[] $docentes
- * @property Edificio $iDEDIFICIO
+ * @property Edificio[] $edificios
  */
 class Facultad extends \yii\db\ActiveRecord
 {
@@ -32,7 +31,7 @@ class Facultad extends \yii\db\ActiveRecord
     {
         return [
             [['NOMBRE_FACULTAD'], 'required'],
-            [['ID_EDIFICIO', 'NOMBRE_FACULTAD'], 'string', 'max' => 255]
+            [['NOMBRE_FACULTAD'], 'string', 'max' => 255]
         ];
     }
 
@@ -43,7 +42,6 @@ class Facultad extends \yii\db\ActiveRecord
     {
         return [
             'ID_FACULTAD' => 'Id  Facultad',
-            'ID_EDIFICIO' => 'Id  Edificio',
             'NOMBRE_FACULTAD' => 'Nombre  Facultad',
         ];
     }
@@ -67,8 +65,8 @@ class Facultad extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getIDEDIFICIO()
+    public function getEdificios()
     {
-        return $this->hasOne(Edificio::className(), ['ID_EDIFICIO' => 'ID_EDIFICIO']);
+        return $this->hasMany(Edificio::className(), ['ID_FACULTAD' => 'ID_FACULTAD']);
     }
 }

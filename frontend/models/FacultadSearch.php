@@ -19,7 +19,7 @@ class FacultadSearch extends Facultad
     {
         return [
             [['ID_FACULTAD'], 'integer'],
-            [['ID_EDIFICIO', 'NOMBRE_FACULTAD'], 'safe'],
+            [['NOMBRE_FACULTAD'], 'safe'],
         ];
     }
 
@@ -59,8 +59,7 @@ class FacultadSearch extends Facultad
             'ID_FACULTAD' => $this->ID_FACULTAD,
         ]);
 
-        $query->andFilterWhere(['like', 'ID_EDIFICIO', $this->ID_EDIFICIO])
-            ->andFilterWhere(['like', 'NOMBRE_FACULTAD', $this->NOMBRE_FACULTAD]);
+        $query->andFilterWhere(['like', 'NOMBRE_FACULTAD', $this->NOMBRE_FACULTAD]);
 
         return $dataProvider;
     }

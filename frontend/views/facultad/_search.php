@@ -17,13 +17,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'ID_FACULTAD') ?>
 
-    <?= $form->field($model, 'ID_EDIFICIO') ?>
-
     <?= $form->field($model, 'NOMBRE_FACULTAD') ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Buscar', ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton('Borrar', ['class' => 'btn btn-default']) ?>
+        <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
+        <?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

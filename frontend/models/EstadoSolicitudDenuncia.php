@@ -7,7 +7,7 @@ use Yii;
 /**
  * This is the model class for table "estado_solicitud_denuncia".
  *
- * @property string $ID_ESTADO_DENUNCIA
+ * @property integer $ID_ESTADO_DENUNCIA
  * @property string $NOMBRE_DENUNCIA
  *
  * @property PostDeDenuncia[] $postDeDenuncias
@@ -28,8 +28,8 @@ class EstadoSolicitudDenuncia extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['ID_ESTADO_DENUNCIA', 'NOMBRE_DENUNCIA'], 'required'],
-            [['ID_ESTADO_DENUNCIA', 'NOMBRE_DENUNCIA'], 'string', 'max' => 255]
+            [['NOMBRE_DENUNCIA'], 'required'],
+            [['NOMBRE_DENUNCIA'], 'string', 'max' => 255]
         ];
     }
 

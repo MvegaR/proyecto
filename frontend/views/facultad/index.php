@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel frontend\models\FacultadSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Facultad';
+$this->title = 'Facultads';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="facultad-index">
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Crear Facultad', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Facultad', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -26,7 +26,6 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'ID_FACULTAD',
-            'ID_EDIFICIO',
             'NOMBRE_FACULTAD',
 
             ['class' => 'yii\grid\ActionColumn'],
