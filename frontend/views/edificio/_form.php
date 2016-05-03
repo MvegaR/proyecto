@@ -16,9 +16,9 @@ use yii\helpers\ArrayHelper;
 
     <?= $form->field($model, 'ID_EDIFICIO')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'ID_FACULTAD')->textInput() ?>
+  
 
-    <? $form->field($model, 'ID_FACULTAD')->dropDownList(
+    <?= $form->field($model, 'ID_FACULTAD')->dropDownList(
         ArrayHelper::map(Facultad::find()->all(),'ID_FACULTAD','NOMBRE_FACULTAD'),
         ['prompt'=>'Seleccione facultad'] )->label('Facultad')
      ?>
