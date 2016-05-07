@@ -34,7 +34,8 @@ class Asignatura extends \yii\db\ActiveRecord
         return [
             [['ID_ASIGNATURA', 'NOMBRE_ASIGNATURA', 'ANIO', 'SEMESTRE'], 'required'],
             [['ANIO', 'SEMESTRE'], 'integer'],
-            [['ID_ASIGNATURA', 'ID_CARRERA', 'NOMBRE_ASIGNATURA'], 'string', 'max' => 255]
+            [['ID_ASIGNATURA', 'ID_CARRERA', 'NOMBRE_ASIGNATURA'], 'string', 'max' => 255],
+            [['ID_ASIGNATURA'],'unique']
         ];
     }
 

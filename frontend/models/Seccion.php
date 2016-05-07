@@ -37,7 +37,9 @@ class Seccion extends \yii\db\ActiveRecord
         return [
             [['ID_SECCION', 'CUPO'], 'required'],
             [['CUPO', 'HORAS_TEO', 'HORAS_LAB', 'HORAS_AYUDANTIA'], 'integer'],
-            [['ID_SECCION', 'ID_DOCENTE', 'ID_ASIGNATURA'], 'string', 'max' => 255]
+            [['ID_SECCION', 'ID_DOCENTE', 'ID_ASIGNATURA'], 'string', 'max' => 255],
+            [['ID_SECCION'],'unique']
+            
         ];
     }
 

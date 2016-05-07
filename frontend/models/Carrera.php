@@ -32,7 +32,8 @@ class Carrera extends \yii\db\ActiveRecord
         return [
             [['ID_CARRERA', 'NOMBRE_CARRERA'], 'required'],
             [['ID_FACULTAD'], 'integer'],
-            [['ID_CARRERA', 'NOMBRE_CARRERA'], 'string', 'max' => 255]
+            [['ID_CARRERA', 'NOMBRE_CARRERA'], 'string', 'max' => 255],
+            [['ID_CARRERA'],'unique']
         ];
     }
 
