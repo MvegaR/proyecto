@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use himiklab\yii2\recaptcha\ReCaptcha;
 
 /* @var $this yii\web\View */
 /* @var $model frontend\models\EstadoSolicitudAsignacion */
