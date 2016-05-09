@@ -17,6 +17,6 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= $this->render('_form', [
         'model' => $model,
     ]) ?>
-	<?= $form->field($model, 'reCaptcha')->widget(ReCaptcha::className()) ?>
+
 
 </div>
