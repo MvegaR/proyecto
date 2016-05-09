@@ -32,7 +32,8 @@ class Edificio extends \yii\db\ActiveRecord
         return [
             [['ID_EDIFICIO', 'NOMBRE_EDIFICIO'], 'required'],
             [['ID_FACULTAD'], 'integer'],
-            [['ID_EDIFICIO', 'NOMBRE_EDIFICIO'], 'string', 'max' => 255]
+            [['ID_EDIFICIO', 'NOMBRE_EDIFICIO'], 'string', 'max' => 255],
+            [['ID_EDIFICIO'],'unique']
         ];
     }
 
