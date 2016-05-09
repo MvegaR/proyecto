@@ -9,6 +9,8 @@ use frontend\models\Facultad;
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Docente */
 /* @var $form yii\widgets\ActiveForm */
+
+
 ?>
 
 <div class="docente-form">
@@ -29,9 +31,9 @@ use frontend\models\Facultad;
 
     <?= $form->field($model, 'EMAIL')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'USER')->textInput(['maxlength' => true]) ?>
+   
 
-    <?= $form->field($model, 'PASSWORD')->passwordInput(['maxlength' => true]) ?>
+    
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Ingresar' : 'Actualizar', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

@@ -131,10 +131,10 @@ class Docente extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
         $this->COOKIE = Yii::$app->security->generateRandomString();
     }
 
- /*       public function generateAccessToken()
+       public function generateAccessToken()
     {
         $this->PASSWORD = sha1(Yii::$app->security->generateRandomString());
-    }*/
+    }
 
     /**
      * @param string $authKey
@@ -178,6 +178,8 @@ class Docente extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             if (parent::beforeSave($insert)) {
                 if ($this->isNewRecord) {
                     $this->COOKIE = \Yii::$app->security->generateRandomString();
+                    $this->PASSWORD = sha1($this->ID_DOCENTE);
+                    $this->USER = $this->NOMBRE_DOCENTE. $this->ID_DOCENTE;
                 }
                 return true;
             }
