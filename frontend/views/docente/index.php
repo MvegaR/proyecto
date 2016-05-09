@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Docente', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Ingresar Docente', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -30,8 +30,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'ID_FACULTAD',
             'NOMBRE_DOCENTE',
             'EMAIL:email',
-            // 'USER',
-            // 'PASSWORD',
+            'USER',
+            'PASSWORD',
             // 'COOKIE',
 
             ['class' => 'yii\grid\ActionColumn'],
