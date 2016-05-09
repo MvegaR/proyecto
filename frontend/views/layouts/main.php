@@ -67,19 +67,22 @@ AppAsset::register($this);
 <main class="panel-primary" id="panelPrimario" 
 style="background-color:#0064AC; background-image:url(img/bg.png);color:#fff;  position:relative; top:-4px; height:200px">
   <div class="container">
-   <h1><strong>Proyecto DCI</strong></h1>
-   <span style="float:right; position:relative; top: -70px;"> <img src="img/Working-Schedule.png" alt="Placeholder image" width="200" height="200" class="img-responsive visible-md visible-lg"></span> 
-   <h3 class="col-lg-8" style=" text-align:justify;">Sistema de información dedicado a la asignación de horarios y salas de clases para la Universidad del Bío-Bío.</h3>  
+  <span class= 'pull-right col-xs-0 col-md-2 col-lg-2' style="position:relative; margin:0px;"> <img src="img/Working-Schedule.png" alt="Placeholder image" width="200" height="200" class="img-responsive visible-md visible-lg"></span> 
+   <h1><strong>Proyecto DCI</strong> </h1>
+      <h3 class="col-xs-12 col-md-10 col-lg-10" style=" text-align:justify;">Sistema de información dedicado a la asignación de horarios y salas de clases para la Universidad del Bío-Bío.</h3>  
+
+
  </div>
 </main>
-<section class="container" id="Contenido">
-  <div class="col-lg-9 col-xs-12 panel-default" style="padding-left:0px;">
+ <section class="container" id="Contenido" class="col-xs-12">
+ 
+  <div class="col-lg-9 col-md-9 col-xs-12 pull-left" style="padding:0px;">
     <div class="panel-title hidden" style="background-color:#0064AC; color:#FFFFFF; border-radius: 0px 30px 30px 0px; font-weight:bold; font-size:19px">Texto</div>
     <?= $content?>
   </div>
-  <div class="col-lg-3 col-xs-12 pull-right"  style=" top:-15px; margin-top: 0px;  padding: 0px 0px 0px 0px;" >
-    <div class="list-group panel-body">
-        <div class="panel-title text-center" style="background-color:#0064AC; color:#FFFFFF; border-radius: 30px 30px 0px 0px; font-weight: bold; font-size:19px;">Módulos</div>
+  <div class="col-lg-3 col-md-3 col-xs-12 pull-right" style="position:relative; top:0 px; margin: 0px; padding: 0px 0px 0px 10px;" >
+    <div class="list-group">
+        <div class=" text-center" style="background-color:#0064AC; color:#FFFFFF; border-radius: 30px 30px 0px 0px; font-weight: bold; font-size:19px;">Módulos</div>
       <a href="#" class="list-group-item">Módulo de administración</a>
       <a href="#" class="list-group-item">Formulario de asignación</a>
       <a href="#" class="list-group-item">Solicitud cancelación</a>
@@ -89,6 +92,9 @@ style="background-color:#0064AC; background-image:url(img/bg.png);color:#fff;  p
       <a href="#" class="list-group-item">Cambiar contraseña</a>
     </div>
   </div>
+
+
+
   
   <div class="col-lg-8 col-xs-12 panel-default hidden" style="float:left; padding-left:0px;">
     <div class="panel-title" style="background-color:#0064AC; color:#FFFFFF; border-radius: 0px 30px 30px 0px; font-weight:bold; font-size:19px">Descripción-Contenido-Titulo2</div>
