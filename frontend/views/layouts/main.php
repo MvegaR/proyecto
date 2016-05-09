@@ -23,11 +23,10 @@ AppAsset::register($this);
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
+    <link href="css/bootstrap.css" rel="stylesheet">
 </head>
 <body>
 <?php $this->beginBody() ?>
-  <script src="js/jquery-1.11.2.min.js"></script>
-  <script src="js/bootstrap.js"></script>
 
   <header id="header" style="height:55px">
     <nav class="navbar navbar-inverse navbar-fixed-top">
