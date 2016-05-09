@@ -3,6 +3,7 @@
 namespace frontend\models;
 
 use Yii;
+use himiklab\yii2\recaptcha\ReCaptchaValidator;
 
 /**
  * This is the model class for table "estado_solicitud_asignacion".
