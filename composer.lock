@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "9225f9c644b0e1cafd2296e13a76689f",
-    "content-hash": "7fdae7953cd7b8a4ba996199ad15e82b",
+    "hash": "cd5ed40da938b3d4fab6575cf6ec5a17",
+    "content-hash": "3750bafa6b28cdd9ebe969a2c6848330",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -343,16 +343,16 @@
         },
         {
             "name": "kartik-v/yii2-export",
-            "version": "dev-master",
+            "version": "v1.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-export.git",
-                "reference": "c7ccdbbc32fa00247399c3cf82cd914af8c80683"
+                "reference": "2a77907a7eb6885573ca3871241e3394b33e39ea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-export/zipball/c7ccdbbc32fa00247399c3cf82cd914af8c80683",
-                "reference": "c7ccdbbc32fa00247399c3cf82cd914af8c80683",
+                "url": "https://api.github.com/repos/kartik-v/yii2-export/zipball/2a77907a7eb6885573ca3871241e3394b33e39ea",
+                "reference": "2a77907a7eb6885573ca3871241e3394b33e39ea",
                 "shasum": ""
             },
             "require": {
@@ -398,7 +398,7 @@
                 "xlsx",
                 "yii2"
             ],
-            "time": "2016-05-02 11:50:47"
+            "time": "2016-04-18 16:54:14"
         },
         {
             "name": "kartik-v/yii2-grid",
@@ -1359,8 +1359,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "kartik-v/yii2-mpdf": 20,
-        "kartik-v/yii2-export": 20
+        "kartik-v/yii2-mpdf": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

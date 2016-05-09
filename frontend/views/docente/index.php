@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use kartik\export\ExportMenu;
 
 /* @var $this yii\web\View */
 /* @var $searchModel frontend\models\DocenteSearch */
@@ -17,6 +18,29 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a('Create Docente', ['create'], ['class' => 'btn btn-success']) ?>
+
+        <?php
+
+$gridColumns = [
+    ['class' => 'yii\grid\SerialColumn'],
+    'ID_DOCENTE',
+    'ID_ROL',
+    'ID_FACULTAD',
+    'EMAIL',
+    'USER',
+    'PASSWORD',
+    'COOKIE',
+    ['class' => 'yii\grid\ActionColumn'],
+];
+
+// Renders a export dropdown menu
+echo ExportMenu::widget([
+    'dataProvider' => $dataProvider,
+    'columns' => $gridColumns
+]);
+
+
+         ?>
     </p>
 
     <?= GridView::widget([
@@ -30,7 +54,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'ID_FACULTAD',
             'NOMBRE_DOCENTE',
             'EMAIL:email',
-            // 'USER',
+            'USER',
             // 'PASSWORD',
             // 'COOKIE',
 

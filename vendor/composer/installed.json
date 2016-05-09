@@ -1342,24 +1342,24 @@
     },
     {
         "name": "kartik-v/yii2-export",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
+        "version": "v1.2.5",
+        "version_normalized": "1.2.5.0",
         "source": {
             "type": "git",
             "url": "https://github.com/kartik-v/yii2-export.git",
-            "reference": "c7ccdbbc32fa00247399c3cf82cd914af8c80683"
+            "reference": "2a77907a7eb6885573ca3871241e3394b33e39ea"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/kartik-v/yii2-export/zipball/c7ccdbbc32fa00247399c3cf82cd914af8c80683",
-            "reference": "c7ccdbbc32fa00247399c3cf82cd914af8c80683",
+            "url": "https://api.github.com/repos/kartik-v/yii2-export/zipball/2a77907a7eb6885573ca3871241e3394b33e39ea",
+            "reference": "2a77907a7eb6885573ca3871241e3394b33e39ea",
             "shasum": ""
         },
         "require": {
             "kartik-v/yii2-grid": "~3.0",
             "phpoffice/phpexcel": "~1.8.0"
         },
-        "time": "2016-05-02 11:50:47",
+        "time": "2016-04-18 16:54:14",
         "type": "yii2-extension",
         "extra": {
             "branch-alias": {
