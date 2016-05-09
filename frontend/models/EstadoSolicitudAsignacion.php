@@ -30,7 +30,7 @@ class EstadoSolicitudAsignacion extends \yii\db\ActiveRecord
     {
         return [
             [['NOMBRE_ESTADO'], 'required'],
-            [['NOMBRE_ESTADO'], 'string', 'max' => 255]
+            [['NOMBRE_ESTADO'], 'string', 'max' => 255],
 			[['reCaptcha'], ReCaptchaValidator::className(), 'secret' => '6LfD6hITAAAAAEdV6MQ8zDX3emwQY4bVYyw-L3nz' ],
         ];
     }
