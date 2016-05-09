@@ -68,14 +68,14 @@ AppAsset::register($this);
 style="background-color:#0064AC; background-image:url(img/bg.png);color:#fff;  position:relative; top:-4px; height:200px">
   <div class="container">
   <span class= 'pull-right col-xs-0 col-md-2 col-lg-2' style="position:relative; margin:0px;"> <img src="img/Working-Schedule.png" alt="Placeholder image" width="200" height="200" class="img-responsive visible-md visible-lg"></span> 
-   <h1><strong>Proyecto DCI</strong> </h1>
+   <h1><strong>Proyecto DSI</strong> </h1>
       <h3 class="col-xs-12 col-md-10 col-lg-10" style=" text-align:justify;">Sistema de información dedicado a la asignación de horarios y salas de clases para la Universidad del Bío-Bío.</h3>  
 
 
  </div>
 </main>
  <section class="container" id="Contenido" class="col-xs-12">
- 
+
   <div class="col-lg-9 col-md-9 col-xs-12 pull-left" style="padding:0px;">
     <div class="panel-title hidden" style="background-color:#0064AC; color:#FFFFFF; border-radius: 0px 30px 30px 0px; font-weight:bold; font-size:19px">Texto</div>
     <?= $content?>
