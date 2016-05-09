@@ -9,6 +9,7 @@ use frontend\models\Sala;
 use frontend\models\Bloque;
 use frontend\models\Edificio;
 use yii\helpers\ArrayHelper;
+use himiklab\yii2\recaptcha\ReCaptcha;
 
 /* @var $this yii\web\View */
 /* @var $model frontend\models\PostDeDenuncia */
@@ -61,6 +62,8 @@ use yii\helpers\ArrayHelper;
 
     <?php date_default_timezone_set('America/Argentina/Buenos_Aires'); 
     Html::activeHiddenInput($model, 'FECHA_DENUNCIA', ['value' => date('Y-m-d H:i:s')]) ?>
+
+    <?= $form->field($model, 'reCaptcha')->widget(ReCaptcha::className()) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
