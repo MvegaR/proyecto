@@ -23,6 +23,7 @@ use yii\widgets\ActiveForm;
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
         <?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>
     </div>
+	<?= $form->field($model, 'reCaptcha')->widget(ReCaptcha::className()) ?>
 
     <?php ActiveForm::end(); ?>
 
