@@ -13,7 +13,7 @@ use himiklab\yii2\recaptcha\ReCaptcha;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'NOMBRE_ESTADO')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'NOMBRE_ESTADO')->textInput(['maxlength' => true])->input('nombre', ['placeholder' => "Ingrese nombre de estado de solicitud"]) ?>
 
 	<?= $form->field($model, 'reCaptcha')->widget(ReCaptcha::className()) ?>
 	
