@@ -25,7 +25,7 @@ use frontend\models\Carrera;
 
     <?= $form->field($model, 'ANIO')->textInput()->input('anio', ['placeholder' => "Ingrese el año en que se dicta la asignatura"]) ?>
 
-    <?= $form->field($model, 'SEMESTRE')->textInput() ?>
+    <?= $form->field($model, 'SEMESTRE')->textInput()->input('semestre', ['placeholder' => "Ingrese el semestre en que se dicta la asignatura"]) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
