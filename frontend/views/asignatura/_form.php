@@ -15,7 +15,7 @@ use frontend\models\Carrera;
     <?php $form = ActiveForm::begin(); ?>
 
 
-    <?= $form->field($model, 'ID_ASIGNATURA')->textInput(['maxlength' => true])->input('codigo', ['placeholder' => "Ingrese el codigo de la asignatura"])->label(false); ?>
+    <?= $form->field($model, 'ID_ASIGNATURA')->textInput(['maxlength' => true])->input('codigo', ['placeholder' => "Ingrese el codigo de la asignatura"]) ?>
 
     <?= $form->field($model, 'ID_CARRERA')->dropDownList(
         ArrayHelper::map(Carrera::find()->all(),'ID_CARRERA','NOMBRE_CARRERA'),
