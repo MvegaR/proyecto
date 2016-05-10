@@ -23,7 +23,7 @@ use himiklab\yii2\recaptcha\ReCaptcha;
 
     <?= $form->field($model, 'ID_TIPO_DENUNCIA')->dropDownList(
         ArrayHelper::map(TipoDenuncia::find()->all(),'ID_TIPO_DENUNCIA','NOMBRE_TIPO_DENUNCIA'),
-       /* ['prompt'=>'Seleccione tipo de denuncia']*/['placeholder' => "Ingrese el tipo de denuncia"] )->label('Tipo de Denuncia') ?>
+       ['prompt'=>'Seleccione tipo de denuncia'] )->label('Tipo de Denuncia') ?>
 
     <?php if(!($model->isNewRecord))
 
