@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use himiklab\yii2\recaptcha\ReCaptcha;
 
 /* @var $this yii\web\View */
 /* @var $model frontend\models\SolicitudCancelacion */
@@ -23,6 +24,8 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'BLOQUE_CANCELACION')->textInput() ?>
 
     <?= $form->field($model, 'MOTIVO')->textarea(['rows' => 6]) ?>
+	
+	<?= $form->field($model, 'reCaptcha')->widget(ReCaptcha::className()) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
