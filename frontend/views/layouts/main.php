@@ -24,9 +24,14 @@ AppAsset::register($this);
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
     <link href="css/bootstrap.css" rel="stylesheet">
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
 </head>
 <body>
 <?php $this->beginBody() ?>
+<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+
 
   <header id="header" style="height:55px">
     <nav class="navbar navbar-inverse navbar-fixed-top">

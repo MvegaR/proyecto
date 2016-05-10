@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use kartik\export\ExportMenu;
 
 /* @var $this yii\web\View */
 /* @var $searchModel frontend\models\AsignaturaSearch */
@@ -34,5 +35,25 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
+
+    <?php
+echo "Exportar, seleccione columnas y formato: ";
+$gridColumns = [
+    ['class' => 'yii\grid\SerialColumn'],
+    'ID_ASIGNATURA',
+    'ID_CARRERA',
+    'NOMBRE_ASIGNATURA',
+    'SEMESTRE',
+    ['class' => 'yii\grid\ActionColumn'],
+];
+
+// Renders a export dropdown menu
+echo ExportMenu::widget([
+    'dataProvider' => $dataProvider,
+    'columns' => $gridColumns,
+    'target' => '_self'
+]);
+
+?>
 
 </div>
