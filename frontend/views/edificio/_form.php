@@ -14,7 +14,7 @@ use yii\helpers\ArrayHelper;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'ID_EDIFICIO')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'ID_EDIFICIO')->textInput(['maxlength' => true])->input('codigo', ['placeholder' => "Ingrese codigo del edificio"]) ?>
 
   
 
@@ -23,7 +23,7 @@ use yii\helpers\ArrayHelper;
         ['prompt'=>'Seleccione facultad'] )->label('Facultad')
      ?>
 
-    <?= $form->field($model, 'NOMBRE_EDIFICIO')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'NOMBRE_EDIFICIO')->textInput(['maxlength' => true])->input('nombre', ['placeholder' => "Ingrese nombre del edificio"]) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
