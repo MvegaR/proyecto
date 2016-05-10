@@ -27,7 +27,7 @@ AppAsset::register($this);
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
 </head>
-<body>
+<body style="min-height: 125%">
 <?php $this->beginBody() ?>
 <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
