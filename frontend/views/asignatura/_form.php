@@ -21,9 +21,9 @@ use frontend\models\Carrera;
         ArrayHelper::map(Carrera::find()->all(),'ID_CARRERA','NOMBRE_CARRERA'),
         ['prompt'=>'Seleccione carrera'] )->label('Carrera') ?>
 
-    <?= $form->field($model, 'NOMBRE_ASIGNATURA')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'NOMBRE_ASIGNATURA')->textInput(['maxlength' => true])->input('nombre', ['placeholder' => "Ingrese el nombre de la asignatura"]) ?>
 
-    <?= $form->field($model, 'ANIO')->textInput() ?>
+    <?= $form->field($model, 'ANIO')->textInput()->input('anio', ['placeholder' => "Ingrese el anio en que se dicta la asignatura"]) ?>
 
     <?= $form->field($model, 'SEMESTRE')->textInput() ?>
 
