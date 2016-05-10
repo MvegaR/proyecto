@@ -12,7 +12,7 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'NOMBRE_FACULTAD')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'NOMBRE_FACULTAD')->textInput(['maxlength' => true])->input('nombre', ['placeholder' => "Ingrese nombre de la facultad"]) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

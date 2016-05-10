@@ -39,7 +39,7 @@ use himiklab\yii2\recaptcha\ReCaptcha;
         ArrayHelper::map(Seccion::find()->all(),'ID_SECCION','ID_SECCION'),
         ['prompt'=>'Seleccione seccion'] )->label('Seccion') //falta filtar ?> 
 
-    <?= $form->field($model, 'CAPACIDAD_ASIGNACION')->textInput(['type' => 'number', 'min' => 1]) ?>
+    <?= $form->field($model, 'CAPACIDAD_ASIGNACION')->textInput(['type' => 'number', 'min' => 1])->input('capacidad', ['placeholder' => "Ingrese capacidad"]) ?>
 
      <?= $form->field($model, 'TIPO_SALA_ASIGNACION')->dropDownList(
         ArrayHelper::map(TipoSala::find()->all(),'ID_TIPO_SALA','NOMBRE_TIPO'),

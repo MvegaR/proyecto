@@ -15,7 +15,7 @@ use frontend\models\Edificio;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'ID_SALA')->textInput(['maxlength' => true])->label('ID Sala') ?>
+    <?= $form->field($model, 'ID_SALA')->textInput(['maxlength' => true])->label('ID Sala')->input('codigo', ['placeholder' => "Ingrese codigo de sala"]) ?>
     
     <?= $form->field($model, 'ID_TIPO_SALA')->dropDownList(
         ArrayHelper::map(TipoSala::find()->all(),'ID_TIPO_SALA','NOMBRE_TIPO'),
@@ -27,7 +27,7 @@ use frontend\models\Edificio;
         ['prompt'=>'Seleccionar Edificio']
     )->label('Nombre de Edificio') ?>
 
-    <?= $form->field($model, 'CAPACIDAD_SALA')->textInput(['type' => 'number', 'min' => 1]) ?>
+    <?= $form->field($model, 'CAPACIDAD_SALA')->textInput(['type' => 'number', 'min' => 1])->input('capacidad', ['placeholder' => "Ingrese capacidad de personas en sala"]) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

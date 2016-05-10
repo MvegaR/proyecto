@@ -13,13 +13,13 @@ use himiklab\yii2\recaptcha\ReCaptcha;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'ID_ESTADO_CAMBIO')->textInput() ?>
+    <?= $form->field($model, 'ID_ESTADO_CAMBIO')->textInput()?>
 
     <?= $form->field($model, 'ASIGNATURA_CAMBIO')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'SECCION_CAMBIO')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'DOCENTE_CAMBIO')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'DOCENTE_CAMBIO')->textInput(['maxlength' => true])?>
 
     <?= $form->field($model, 'CAPACIDAD_CAMBIO')->textInput() ?>
 	
