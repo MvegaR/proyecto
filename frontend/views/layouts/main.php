@@ -46,6 +46,7 @@ AppAsset::register($this);
         <ul class="nav navbar-nav navbar-right">
           <li><a href=<?php echo "'".Url::to(['site/index'])."'";?>>Portada</a></li>
           <li><a href=<?php echo "'".Url::to(['site/entrega'])."'";?>>Primera entrega</a></li>
+          <li><a href=<?php echo "'".Url::to(['site/entrega2'])."'";?>>Segunda entrega</a></li>
           <?php
              if (Yii::$app->user->isGuest) {
                 echo "<li>  <a href='".Url::to(['site/login'])."'> <span class='glyphicon glyphicon-lock'> </span> Iniciar sesión </a></li>";

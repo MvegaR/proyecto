@@ -23,6 +23,10 @@ class SiteController extends Controller
         return $this -> render("entrega");
     }
 
+     public function actionEntrega2(){
+        return $this -> render("entrega2");
+    }
+
 
     /**
      * @inheritdoc
