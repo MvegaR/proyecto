@@ -28,11 +28,11 @@ use yii\helpers\ArrayHelper;
         ArrayHelper::map(Seccion::find()->all(),'ID_SECCION','ID_SECCION'),
         ['prompt'=>'Seleccione Seccion'] )->label('Sección') ?>
     
-    <?= $form->field($model, 'INICIO')->textInput() ?>
+    <?= $form->field($model, 'INICIO')->textInput()->input('inicio', ['placeholder' => "Ingrese hora de inicio del bloque"]) ?>
 
-    <?= $form->field($model, 'TERMINO')->textInput() ?>
+    <?= $form->field($model, 'TERMINO')->textInput()->input('termino', ['placeholder' => "Ingrese hora de termino del bloque"]) ?>
 
-    <?= $form->field($model, 'BLOQUE_SIGUIENTE')->textInput() ?>
+    <?= $form->field($model, 'BLOQUE_SIGUIENTE')->textInput()->input('siguiente', ['placeholder' => "Ingrese el bloque que viene a continuacion"]) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

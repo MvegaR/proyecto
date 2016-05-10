@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use kartik\export\ExportMenu;
 
 /* @var $this yii\web\View */
 /* @var $searchModel frontend\models\DocenteSearch */
@@ -16,7 +17,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
+
         <?= Html::a('Ingresar Docente', ['create'], ['class' => 'btn btn-success']) ?>
+
     </p>
 
     <?= GridView::widget([
@@ -32,10 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'EMAIL:email',
             'USER',
             'PASSWORD',
-            // 'COOKIE',
-
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
-
 </div>

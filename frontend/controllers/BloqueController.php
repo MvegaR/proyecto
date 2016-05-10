@@ -14,6 +14,41 @@ use yii\filters\VerbFilter;
  */
 class BloqueController extends Controller
 {
+    public function actionPostDeBloque(){
+
+        $model = new Bloque();
+        $msg = null;
+
+        if ($model->load(Yii::$app->request->post())) {
+
+            if ($model->validate()) {
+
+                // form inputs are valid, do something here
+                
+                $msg = '<div class="alert alert-success" role="alert">
+                            <strong>Enviada</strong> - La peticion fue enviada con exito!
+                        </div>';
+
+                return $this->render('post-de-bloque', [
+
+                    'model' => $model,
+                    'msg' => $msg,
+
+                ]);
+
+            }
+
+        }
+        
+        return $this->render('post-de-bloque', [
+
+            'model' => $model,
+            'msg' => $msg,
+
+        ]);
+
+    }
+    
     public function behaviors()
     {
         return [

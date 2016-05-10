@@ -3,6 +3,7 @@
 namespace frontend\models;
 
 use Yii;
+use himiklab\yii2\recaptcha\ReCaptchaValidator;
 
 /**
  * This is the model class for table "solicitud_cancelacion".
@@ -22,6 +23,7 @@ class SolicitudCancelacion extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+	public $reCaptcha;
     public static function tableName()
     {
         return 'solicitud_cancelacion';
@@ -36,7 +38,8 @@ class SolicitudCancelacion extends \yii\db\ActiveRecord
             [['ID_ESTADO_CANCELACION', 'BLOQUE_CANCELACION'], 'integer'],
             [['DOCENTE_CANCELACION', 'ASIGNATURA_CANCELACION'], 'required'],
             [['MOTIVO'], 'string'],
-            [['DOCENTE_CANCELACION', 'ASIGNATURA_CANCELACION', 'SECCION_CANCELACION'], 'string', 'max' => 255]
+            [['DOCENTE_CANCELACION', 'ASIGNATURA_CANCELACION', 'SECCION_CANCELACION'], 'string', 'max' => 255],
+			[['reCaptcha'], ReCaptchaValidator::className(), 'secret' => '6LfD6hITAAAAAEdV6MQ8zDX3emwQY4bVYyw-L3nz' ],
         ];
     }
 

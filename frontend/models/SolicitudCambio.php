@@ -3,6 +3,7 @@
 namespace frontend\models;
 
 use Yii;
+use himiklab\yii2\recaptcha\ReCaptchaValidator;
 
 /**
  * This is the model class for table "solicitud_cambio".
@@ -21,6 +22,7 @@ class SolicitudCambio extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+	public $reCaptcha;
     public static function tableName()
     {
         return 'solicitud_cambio';
@@ -34,7 +36,8 @@ class SolicitudCambio extends \yii\db\ActiveRecord
         return [
             [['ID_ESTADO_CAMBIO', 'CAPACIDAD_CAMBIO'], 'integer'],
             [['ASIGNATURA_CAMBIO', 'SECCION_CAMBIO', 'DOCENTE_CAMBIO', 'CAPACIDAD_CAMBIO'], 'required'],
-            [['ASIGNATURA_CAMBIO', 'SECCION_CAMBIO', 'DOCENTE_CAMBIO'], 'string', 'max' => 255]
+            [['ASIGNATURA_CAMBIO', 'SECCION_CAMBIO', 'DOCENTE_CAMBIO'], 'string', 'max' => 255],
+			[['reCaptcha'], ReCaptchaValidator::className(), 'secret' => '6LfD6hITAAAAAEdV6MQ8zDX3emwQY4bVYyw-L3nz' ],
         ];
     }
 

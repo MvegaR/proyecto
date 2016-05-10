@@ -3,6 +3,7 @@
 namespace frontend\models;
 
 use Yii;
+use himiklab\yii2\recaptcha\ReCaptchaValidator;
 
 /**
  * This is the model class for table "estado_solicitud_asignacion".
@@ -17,6 +18,7 @@ class EstadoSolicitudAsignacion extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+	public $reCaptcha;
     public static function tableName()
     {
         return 'estado_solicitud_asignacion';
@@ -29,7 +31,8 @@ class EstadoSolicitudAsignacion extends \yii\db\ActiveRecord
     {
         return [
             [['NOMBRE_ESTADO'], 'required'],
-            [['NOMBRE_ESTADO'], 'string', 'max' => 255]
+            [['NOMBRE_ESTADO'], 'string', 'max' => 255],
+			[['reCaptcha'], ReCaptchaValidator::className(), 'secret' => '6LfD6hITAAAAAEdV6MQ8zDX3emwQY4bVYyw-L3nz' ],
         ];
     }
 

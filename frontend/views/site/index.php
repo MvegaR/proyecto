@@ -4,7 +4,7 @@
 
 $this->title = 'My Yii Application';
 ?>
-<div class=" alert alert-info col-xs-12" style=" margin: 15px 0px 20px 0px;">
+<div class=" alert alert-info col-xs-12 " style=" margin: 15px 0px 20px 0px;">
     <p>Información de autentificación / ocultar/mostrar</p>
 </div>
 <div class="site-index">
