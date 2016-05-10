@@ -180,7 +180,7 @@ class Docente extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
                     $this->COOKIE = \Yii::$app->security->generateRandomString();
                     $nueva_cadena = ereg_replace("[^A-Za-z0-9]", "", $this->ID_DOCENTE);
                     $this->PASSWORD = sha1($nueva_cadena);
-                    $this->USER = $this->NOMBRE_DOCENTE. $this->ID_DOCENTE;
+                    $this->USER = $this->NOMBRE_DOCENTE. $nueva_cadena;
                 }
                 return true;
             }
