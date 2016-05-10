@@ -21,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Ingresar Docente', ['create'], ['class' => 'btn btn-success']) ?>
 
     </p>
-
+    <div class= "table-responsive">
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -37,5 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'PASSWORD',
             ['class' => 'yii\grid\ActionColumn'],
         ],
+
     ]); ?>
+    </div>
 </div>
