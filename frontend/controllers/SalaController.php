@@ -16,6 +16,11 @@ use frontend\models\Dia;
  */
 class SalaController extends Controller
 {
+
+    public function actionLista()
+    {
+        return $this -> render("lista");
+    }
     /**
      * @inheritdoc
      */
