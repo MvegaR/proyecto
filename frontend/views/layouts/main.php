@@ -26,6 +26,47 @@ AppAsset::register($this);
     <link href="css/bootstrap.css" rel="stylesheet">
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+    <style type="text/css">
+
+    @-webkit-keyframes pulso {
+  25% {
+    -webkit-transform: scale(1.07);
+    transform: scale(1.07);
+  }
+
+  75% {
+    -webkit-transform: scale(0.9);
+    transform: scale(1);
+  }
+}
+
+@keyframes pulso {
+  25% {
+    -webkit-transform: scale(1.07);
+    transform: scale(1.07);
+  }
+
+  75% {
+    -webkit-transform: scale(0.9);
+    transform: scale(1);
+  }
+}
+    .pulso{
+      margin-top: 10px; font-weight: bold;
+
+    }
+    .pulso:hover, .pulso:active, .pulso:focus{
+        -webkit-animation-name: pulso;
+        animation-name: pulso;
+        -webkit-animation-duration: 1s;
+        animation-duration: 1s;
+        -webkit-animation-timing-function: linear;
+        animation-timing-function: linear;
+        -webkit-animation-iteration-count: infinite;
+        animation-iteration-count: infinite;
+    }
+
+    </style>
 </head>
 <body style="min-height: 125%">
 <?php $this->beginBody() ?>
@@ -88,16 +129,16 @@ style="background-color:#0064AC; background-image:url(img/bg.png);color:#fff;  p
   </div>
   <div class="col-lg-3 col-md-3 col-xs-12 pull-right" style="position:relative; top:0 px; margin: 0px; padding: 0px 0px 0px 10px;" >
     <div class="list-group">
-        <div class=" text-center" style="background-color:#0064AC; color:#FFFFFF; border-radius: 30px 30px 0px 0px; font-weight: bold; font-size:19px;">Módulos</div>
+        <div class=" text-center" style="background-color:#0064AC; color:#FFFFFF; border-radius: 15px 15px 0px 0px; font-weight: bold; font-size:19px;">Link rápidos</div>
 
-      <a href="#" class="list-group-item">Módulo de administración</a>
-      <a href="#" class="list-group-item">Ver Horario</a>
-      <a href="#" class="list-group-item">Formulario de asignación</a>
-      <a href="#" class="list-group-item">Solicitud cancelación</a>
-      <a href="#" class="list-group-item">Formulario denuncia mal uso</a>
-      <a href="#" class="list-group-item">Listado de salas</a>
-      <a href="#" class="list-group-item">Estadísticas</a>
-      <a href="#" class="list-group-item">Cambiar contraseña</a>
+      <a href="#" class="list-group-item pulso">Módulo de administración</a>
+      <a href="#" class="list-group-item pulso">Ver Horario</a>
+      <a href="#" class="list-group-item pulso">Formulario de asignación</a>
+      <a href="#" class="list-group-item pulso">Solicitud cancelación</a>
+      <a href="#" class="list-group-item pulso">Formulario denuncia mal uso</a>
+      <a href="#" class="list-group-item pulso">Listado de salas</a>
+      <a href="#" class="list-group-item pulso">Estadísticas</a>
+      <a href="#" class="list-group-item pulso">Cambiar contraseña</a>
     </div>
   </div>
 
