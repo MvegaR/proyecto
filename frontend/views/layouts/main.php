@@ -129,7 +129,7 @@ style="background-color:#0064AC; background-image:url(img/bg.png);color:#fff;  p
   </div>
   <div class="col-lg-3 col-md-3 col-xs-12 pull-right" style="position:relative; top:0 px; margin: 0px; padding: 0px 0px 0px 10px;" >
     <div class="list-group">
-        <div class=" text-center" style="background-color:#0064AC; color:#FFFFFF; border-radius: 15px 15px 0px 0px; font-weight: bold; font-size:19px;">Link rápidos</div>
+        <div class=" text-center" style="background-color:#222; color:#FFFFFF; border-radius: 30px 30px 30px 30px; font-weight: bold; font-size:19px;">Link rápidos</div>
 
       <a href="#" class="list-group-item pulso">Módulo de administración</a>
       <a href="#" class="list-group-item pulso">Ver Horario</a>
