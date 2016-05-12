@@ -118,4 +118,17 @@ class EdificioController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+        //Para listas dependientes, $id es el id de la facultad que se envia como parametro.
+    public function actionLists($id){
+        $contadorEdificios = Edificio::find()->where(['ID_FACULTAD' => $id])->count();
+        $edificios = Edificio::find()->where(['ID_FACULTAD' => $id])->all();
+
+        if($contadorEdificios > 0){
+            foreach ($edificios as $edificio) {
+                echo "<option value='".$edificio->ID_EDIFICIO."'> ".$edificio->NOMBRE_EDIFICIO."</option>";
+            }
+        }else{
+             echo "<option>Sin edificios</option>";
+        }
+    }
 }

@@ -71,7 +71,6 @@ class SalaController extends Controller
     public function actionCreate()
     {
         $model = new Sala();
-
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $dias = new dia;
             $tiempoInicio = new tiempoInicio;
