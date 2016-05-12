@@ -57,7 +57,7 @@ use himiklab\yii2\recaptcha\ReCaptcha;
         ] )->label('Sala') ?>
 
     <?= $form->field($model, 'BLOQUE_DENUNCIA')->dropDownList(
-        ArrayHelper::map(Bloque::find()->all(),'ID_BLOQUE','ID_BLOQUE'),
+        [],
         ['prompt'=>'Seleccione bloque'] )->label('Bloque') ?>
 
     <?php date_default_timezone_set('America/Argentina/Buenos_Aires'); 
