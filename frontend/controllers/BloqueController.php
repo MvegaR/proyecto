@@ -163,7 +163,7 @@ class BloqueController extends Controller
             foreach ($bloques as $bloque) {
                 $dia = (Dia::find()-> where(['ID_DIA' => $bloque -> ID_DIA])-> one());
                 $dia = $dia -> NOMBRE;
-                echo "<option value='".$bloque->ID_BLOQUE."'> ".$bloque->ID_BLOQUE." - $dia - Periodo: ".$bloque->INICIO."- ".$bloque->TERMINO."</option>";
+                echo "<option value='ID: ".$bloque->ID_BLOQUE."'> ".$bloque->ID_BLOQUE." - $dia - Periodo: ".$bloque->INICIO." - ".$bloque->TERMINO."</option>";
             }
         }else{
            echo "<option>Sin bloques</option>";
