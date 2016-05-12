@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
         
     <p><?= Html::a('RFW13 Cambio de sala (Raul)', ['solicitud-cambio/create'], ['class'=>'']) ?></p>
         -Campos de selección<br><br>
-        -MODIFACAR BASE DE DATOS Y AGREGAR CAMPO SALA ACTUAL Y CAMPO DE TIPO DE SALA REQUERIDO.
+        -MODIFICAR BASE DE DATOS Y AGREGAR CAMPO SALA ACTUAL Y CAMPO DE TIPO DE SALA REQUERIDO.
     <p><?= Html::a('RFW14 Anulación de sala (María)', ['solicitud-cambio/create'], ['class'=>'']) ?></p>
         -Campos de selección<br><br>
         
