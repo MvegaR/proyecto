@@ -65,6 +65,8 @@ class PostDeDenunciaController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->ID_DENUNCIA]);
         } else {
+            echo var_dump(Yii::$app->request->post());
+            echo "error";
             return $this->render('create', [
                 'model' => $model,
             ]);

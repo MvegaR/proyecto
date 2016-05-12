@@ -37,10 +37,10 @@ class PostDeDenuncia extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['ID_TIPO_DENUNCIA'], 'integer'],
-            [['SALA_DENUNCIA', 'BLOQUE_DENUNCIA', 'FECHA_DENUNCIA','ID_TIPO_DENUNCIA'], 'required'],
+            [['ID_TIPO_DENUNCIA','BLOQUE_DENUNCIA','ID_ESTADO_DENUNCIA','FACULTAD_DENUNCIA',], 'integer'],
+            [['SALA_DENUNCIA', 'FECHA_DENUNCIA','ID_TIPO_DENUNCIA'], 'required'],
             [['FECHA_DENUNCIA'], 'safe'],
-            [['ID_ESTADO_DENUNCIA', 'FACULTAD_DENUNCIA', 'EDIFICIO_DENUNCIA', 'SALA_DENUNCIA', 'BLOQUE_DENUNCIA'], 'string', 'max' => 255],
+            [['SALA_DENUNCIA'], 'string', 'max' => 255],
             [['reCaptcha'], ReCaptchaValidator::className(), 'secret' => '6LfD6hITAAAAAEdV6MQ8zDX3emwQY4bVYyw-L3nz' ],
         ];
     }

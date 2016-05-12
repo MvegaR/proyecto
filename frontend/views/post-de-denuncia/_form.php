@@ -59,9 +59,9 @@ use himiklab\yii2\recaptcha\ReCaptcha;
     <?= $form->field($model, 'BLOQUE_DENUNCIA')->dropDownList(
         [],
         ['prompt'=>'Seleccione bloque'] )->label('Bloque') ?>
-
+    <!-- inicio fecha -->
     <?php date_default_timezone_set('America/Argentina/Buenos_Aires'); 
-    Html::activeHiddenInput($model, 'FECHA_DENUNCIA', ['value' => date('Y-m-d H:i:s')]) ?>
+     echo $form->field($model, 'FECHA_DENUNCIA')->hiddenInput(['value'=> date('Y-m-d H:i:s')])->label(false);?>
 
     <?= $form->field($model, 'reCaptcha')->widget(ReCaptcha::className()) ?>
 
