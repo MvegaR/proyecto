@@ -41,7 +41,7 @@ use himiklab\yii2\recaptcha\ReCaptcha;
         ])->label('Facultad') ?>
 
     <?= $form->field($model, 'EDIFICIO_DENUNCIA')->dropDownList(
-        [],
+        ArrayHelper::map(Edificio::find()->all(),'ID_EDIFICIO','NOMBRE_EDIFICIO'),
         ['prompt'=>'Seleccionar Edificio',
         'onchange' => '$.post("index.php?r=sala/lists&id='.'"+$(this).val(), function(data){
                              $("select#postdedenuncia-sala_denuncia").html(data);
@@ -49,7 +49,7 @@ use himiklab\yii2\recaptcha\ReCaptcha;
     )->label('Nombre de Edificio') ?>
 
     <?= $form->field($model, 'SALA_DENUNCIA')->dropDownList(
-        [],
+        ArrayHelper::map(Sala::find()->all(),'ID_SALA','ID_SALA'),
         ['prompt'=>'Seleccione sala',
         'onchange' => '$.post("index.php?r=bloque/lists&id='.'"+$(this).val(), function(data){
                              $("select#postdedenuncia-bloque_denuncia").html(data);
@@ -57,7 +57,7 @@ use himiklab\yii2\recaptcha\ReCaptcha;
         ] )->label('Sala') ?>
 
     <?= $form->field($model, 'BLOQUE_DENUNCIA')->dropDownList(
-        [],
+        ArrayHelper::map(Bloque::find()->all(),'ID_BLOQUE','ID_BLOQUE'),
         ['prompt'=>'Seleccione bloque'] )->label('Bloque') ?>
 
     <?php date_default_timezone_set('America/Argentina/Buenos_Aires'); 
