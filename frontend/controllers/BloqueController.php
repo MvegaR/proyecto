@@ -4,6 +4,7 @@ namespace frontend\controllers;
 
 use Yii;
 use frontend\models\Bloque;
+use frontend\models\Dia;
 use frontend\models\BloqueSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -158,10 +159,11 @@ class BloqueController extends Controller
     public function actionLists($id){
         $contadorbloques = Bloque::find()->where(['ID_SALA' => $id])->count();
         $bloques = Bloque::find()->where(['ID_SALA' => $id])->all();
-
         if($contadorbloques > 0){
             foreach ($bloques as $bloque) {
-                echo "<option value='".$bloque->ID_BLOQUE."'> ".$bloque->ID_BLOQUE."</option>";
+                $dia = (Dia::find()-> where(['ID_DIA' => $bloque -> ID_DIA])-> one());
+                $dia = $dia -> NOMBRE;
+                echo "<option value='".$bloque->ID_BLOQUE."'> ".$bloque->ID_BLOQUE." - $dia - Periodo: ".$bloque->INICIO."- ".$bloque->TERMINO."</option>";
             }
         }else{
            echo "<option>Sin bloques</option>";
