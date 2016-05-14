@@ -19,13 +19,13 @@ use frontend\models\Carrera;
 
     <?= $form->field($model, 'ID_CARRERA')->dropDownList(
         ArrayHelper::map(Carrera::find()->all(),'ID_CARRERA','NOMBRE_CARRERA'),
-        ['prompt'=>'Seleccione carrera'] )->label('Carrera') ?>
+        ['prompt'=>'Seleccione carrera','value = '] )->label('Carrera') ?>
 
     <?= $form->field($model, 'NOMBRE_ASIGNATURA')->textInput(['maxlength' => true])->input('nombre', ['placeholder' => "Ingrese el nombre de la asignatura"]) ?>
 
-    <?= $form->field($model, 'ANIO')->textInput()->input('anio', ['placeholder' => "Ingrese el año en que se dicta la asignatura"]) ?>
+    <?= $form->field($model, 'ANIO')->textInput(['type' => 'number', 'min' => 0, 'placeholder' => "Ingrese el año en que se dicta la asignatura"]); ?>
 
-    <?= $form->field($model, 'SEMESTRE')->textInput()->input('semestre', ['placeholder' => "Ingrese el semestre en que se dicta la asignatura"]) ?>
+    <?= $form->field($model, 'SEMESTRE')->textInput(['type' => 'number', 'min' => 1])->input('semestre', ['placeholder' => "Ingrese el semestre en que se dicta la asignatura"]) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

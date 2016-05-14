@@ -17,12 +17,12 @@ class AsignaturaController extends Controller
     public function behaviors()
     {
         return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['post'],
-                ],
-            ],
+        'verbs' => [
+        'class' => VerbFilter::className(),
+        'actions' => [
+        'delete' => ['post'],
+        ],
+        ],
         ];
     }
 
@@ -38,7 +38,7 @@ class AsignaturaController extends Controller
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-        ]);
+            ]);
     }
 
     /**
@@ -50,7 +50,7 @@ class AsignaturaController extends Controller
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
-        ]);
+            ]);
     }
 
     /**
@@ -61,15 +61,20 @@ class AsignaturaController extends Controller
     public function actionCreate()
     {
         $model = new Asignatura();
+        
+        if($model->load(Yii::$app->request->post())){
+            if($model -> ID_CARRERA == ''){
+                $model -> ID_CARRERA = NULL;
+            }
+            if ($model->save()) {
+               return $this->redirect(['view', 'id' => $model->ID_ASIGNATURA]);
+           } 
+       }
+       return $this->render('create', [
+        'model' => $model,
+        ]);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->ID_ASIGNATURA]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
-        }
-    }
+   }
 
     /**
      * Updates an existing Asignatura model.
@@ -81,13 +86,19 @@ class AsignaturaController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->ID_ASIGNATURA]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
+        if($model->load(Yii::$app->request->post())){
+            if($model -> ID_CARRERA == ''){
+                $model -> ID_CARRERA = NULL;
+            }
+            if ($model->save()) {
+                return $this->redirect(['view', 'id' => $model->ID_ASIGNATURA]);
+            }
         }
+
+        return $this->render('update', [
+            'model' => $model,
+            ]);
+        
     }
 
     /**

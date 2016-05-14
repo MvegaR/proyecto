@@ -30,8 +30,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'ID_SALA',
             'ID_SECCION',
             'INICIO',
-            // 'TERMINO',
-            // 'BLOQUE_SIGUIENTE',
+            'TERMINO',
+            'BLOQUE_SIGUIENTE',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

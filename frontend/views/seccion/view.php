@@ -35,6 +35,14 @@ $this->params['breadcrumbs'][] = $this->title;
             'HORAS_TEO',
             'HORAS_LAB',
             'HORAS_AYUDANTIA',
+            'HORA_LAB_FISICA',
+            'HORA_LAB_QUIMICA',
+            'HORA_LAB_ROBOTICA',
+            'HORA_LAB_MECANICA',
+            'HORA_TALLER_ARQUITECTURA',
+            'HORA_TALLER_MADERA',
+            'HORAS_GYM',
+            'HORAS_AUDITORIO',
         ],
     ]) ?>
 

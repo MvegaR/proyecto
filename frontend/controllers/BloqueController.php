@@ -25,42 +25,42 @@ class BloqueController extends Controller
             if ($model->validate()) {
 
                 // form inputs are valid, do something here
-                
+
                 $msg = '<div class="alert alert-success" role="alert">
-                            <strong>Enviada</strong> - La peticion fue enviada con exito!
-                        </div>';
+                <strong>Enviada</strong> - La peticion fue enviada con exito!
+            </div>';
 
-                return $this->render('post-de-bloque', [
+            return $this->render('post-de-bloque', [
 
-                    'model' => $model,
-                    'msg' => $msg,
+                'model' => $model,
+                'msg' => $msg,
 
                 ]);
 
-            }
-
         }
-        
-        return $this->render('post-de-bloque', [
 
-            'model' => $model,
-            'msg' => $msg,
+    }
+
+    return $this->render('post-de-bloque', [
+
+        'model' => $model,
+        'msg' => $msg,
 
         ]);
 
-    }
-    
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['post'],
-                ],
-            ],
-        ];
-    }
+}
+
+public function behaviors()
+{
+    return [
+    'verbs' => [
+    'class' => VerbFilter::className(),
+    'actions' => [
+    'delete' => ['post'],
+    ],
+    ],
+    ];
+}
 
     /**
      * Lists all Bloque models.
@@ -74,7 +74,7 @@ class BloqueController extends Controller
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-        ]);
+            ]);
     }
 
     /**
@@ -86,7 +86,7 @@ class BloqueController extends Controller
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
-        ]);
+            ]);
     }
 
     /**
@@ -98,14 +98,28 @@ class BloqueController extends Controller
     {
         $model = new Bloque();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->ID_BLOQUE]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
-        }
-    }
+        if ($model->load(Yii::$app->request->post())) {
+            if($model -> ID_DIA == ''){
+                $model -> ID_DIA = null;
+            }
+            if($model -> ID_SALA == ''){
+                $model -> ID_SALA = null;
+            }
+            if($model -> ID_SECCION == ''){
+                $model -> ID_SECCION = null;
+            }
+            if($model -> BLOQUE_SIGUIENTE == ''){
+                $model -> BLOQUE_SIGUIENTE = null;
+            }
+            if($model->save()){
+               return $this->redirect(['view', 'id' => $model->ID_BLOQUE]);
+           }
+       } 
+
+       return $this->render('create', [
+        'model' => $model,
+        ]);
+   }
 
     /**
      * Updates an existing Bloque model.
@@ -117,13 +131,27 @@ class BloqueController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->ID_BLOQUE]);
-        } else {
+        if ($model->load(Yii::$app->request->post())) {
+            if($model -> ID_DIA == ''){
+                $model -> ID_DIA = null;
+            }
+            if($model -> ID_SALA == ''){
+                $model -> ID_SALA = null;
+            }
+            if($model -> ID_SECCION == ''){
+                $model -> ID_SECCION = null;
+            }
+            if($model -> BLOQUE_SIGUIENTE == ''){
+                $model -> BLOQUE_SIGUIENTE = null;
+            }
+            if($model->save()){
+               return $this->redirect(['view', 'id' => $model->ID_BLOQUE]);
+           }
+       } 
             return $this->render('update', [
                 'model' => $model,
-            ]);
-        }
+                ]);
+        
     }
 
     /**
@@ -166,7 +194,7 @@ class BloqueController extends Controller
                 echo "<option value='".$bloque->ID_BLOQUE."'> $dia - Tiempo: ".$bloque->INICIO." a ".$bloque->TERMINO."</option>";
             }
         }else{
-           echo "<option>Sin bloques</option>";
-       }
-   }
+         echo "<option>Sin bloques</option>";
+     }
+ }
 }

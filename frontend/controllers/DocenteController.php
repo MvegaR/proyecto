@@ -17,12 +17,12 @@ class DocenteController extends Controller
     public function behaviors()
     {
         return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['post'],
-                ],
-            ],
+        'verbs' => [
+        'class' => VerbFilter::className(),
+        'actions' => [
+        'delete' => ['post'],
+        ],
+        ],
         ];
     }
 
@@ -38,7 +38,7 @@ class DocenteController extends Controller
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-        ]);
+            ]);
     }
 
     /**
@@ -50,7 +50,7 @@ class DocenteController extends Controller
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
-        ]);
+            ]);
     }
 
     /**
@@ -61,16 +61,26 @@ class DocenteController extends Controller
     public function actionCreate()
     {
         $model = new Docente();
-        if($model->load(Yii::$app->request->post()) && $model -> PASSWORD != null){
-            $model -> PASSWORD = sha1($model -> PASSWORD);
+        if($model->load(Yii::$app->request->post()) ){
+            if($model -> PASSWORD != null || $model -> PASSWORD != '') {$model -> PASSWORD = sha1($model -> PASSWORD);}
+            if($model -> ID_ROL == ''){
+                $model -> ID_ROL = null;
+            }
+            if($model -> ID_FACULTAD == ''){
+                $model -> ID_FACULTAD = null;
+            }
+            if($model -> EMAIL == ''){
+                $model -> EMAIL = null;
+            }
+            if ($model->save()) {
+                return $this->redirect(['view', 'id' => $model->ID_DOCENTE]);
+            } 
         }
-        if ($model->save()) {
-            return $this->redirect(['view', 'id' => $model->ID_DOCENTE]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
+        
+        return $this->render('create', [
+            'model' => $model,
             ]);
-        }
+        
     }
 
     /**
@@ -83,13 +93,25 @@ class DocenteController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->ID_DOCENTE]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
+        if($model->load(Yii::$app->request->post()) ){
+            if($model -> PASSWORD != null || $model -> PASSWORD != '') {$model -> PASSWORD = sha1($model -> PASSWORD);}
+            if($model -> ID_ROL == ''){
+                $model -> ID_ROL = null;
+            }
+            if($model -> ID_FACULTAD == ''){
+                $model -> ID_FACULTAD = null;
+            }
+            if($model -> EMAIL == ''){
+                $model -> EMAIL = null;
+            }
+            if ($model->save()) {
+                return $this->redirect(['view', 'id' => $model->ID_DOCENTE]);
+            } 
         }
+        return $this->render('update', [
+            'model' => $model,
+            ]);
+        
     }
 
     /**

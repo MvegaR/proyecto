@@ -32,14 +32,14 @@ use himiklab\yii2\recaptcha\ReCaptcha;
     Html::activeHiddenInput($model, 'DOCENTE_ASIGNACION', ['value' => $idDocente ]); ?>
     
     <?= $form->field($model, 'ASIGNATURA_ASIGNACION')->dropDownList(
-        ArrayHelper::map(Asignatura::find()->all(),'ID_ASIGNATURA','Nombre_Asignatura'),
+        ArrayHelper::map(Asignatura::find()->all(),'ID_ASIGNATURA','NOMBRE_ASIGNATURA'),
         ['prompt'=>'Seleccione asignatura'] )->label('Asignatura') //falta filtar?> 
 
     <?= $form->field($model, 'SECCION_ASIGNACION')->dropDownList(
         ArrayHelper::map(Seccion::find()->all(),'ID_SECCION','ID_SECCION'),
         ['prompt'=>'Seleccione seccion'] )->label('Seccion') //falta filtar ?> 
 
-    <?= $form->field($model, 'CAPACIDAD_ASIGNACION')->textInput(['type' => 'number', 'min' => 1])->input('capacidad', ['placeholder' => "Ingrese capacidad"]) ?>
+    <?= $form->field($model, 'CAPACIDAD_ASIGNACION')->textInput(['type' => 'number', 'min' => 1, 'placeholder' => "Ingrese capacidad"]); ?>
 
      <?= $form->field($model, 'TIPO_SALA_ASIGNACION')->dropDownList(
         ArrayHelper::map(TipoSala::find()->all(),'ID_TIPO_SALA','NOMBRE_TIPO'),

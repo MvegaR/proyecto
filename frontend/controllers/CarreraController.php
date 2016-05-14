@@ -17,12 +17,12 @@ class CarreraController extends Controller
     public function behaviors()
     {
         return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['post'],
-                ],
-            ],
+        'verbs' => [
+        'class' => VerbFilter::className(),
+        'actions' => [
+        'delete' => ['post'],
+        ],
+        ],
         ];
     }
 
@@ -38,7 +38,7 @@ class CarreraController extends Controller
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-        ]);
+            ]);
     }
 
     /**
@@ -50,7 +50,7 @@ class CarreraController extends Controller
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
-        ]);
+            ]);
     }
 
     /**
@@ -62,13 +62,18 @@ class CarreraController extends Controller
     {
         $model = new Carrera();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->ID_CARRERA]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
+        if ($model->load(Yii::$app->request->post())) {
+            if($model -> ID_FACULTAD = ''){
+                $model -> ID_FACULTAD = null;
+            }
+            if($model->save())
+                return $this->redirect(['view', 'id' => $model->ID_CARRERA]);
         }
+
+        return $this->render('create', [
+            'model' => $model,
+            ]);
+        
     }
 
     /**
@@ -81,13 +86,17 @@ class CarreraController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->ID_CARRERA]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
+        if ($model->load(Yii::$app->request->post())) {
+            if($model -> ID_FACULTAD = ''){
+                $model -> ID_FACULTAD = null;
+            }
+            if($model->save())
+                return $this->redirect(['view', 'id' => $model->ID_CARRERA]);
         }
+        return $this->render('update', [
+            'model' => $model,
+            ]);
+        
     }
 
     /**

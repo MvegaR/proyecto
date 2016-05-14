@@ -17,12 +17,12 @@ class EdificioController extends Controller
     public function behaviors()
     {
         return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['post'],
-                ],
-            ],
+        'verbs' => [
+        'class' => VerbFilter::className(),
+        'actions' => [
+        'delete' => ['post'],
+        ],
+        ],
         ];
     }
 
@@ -38,7 +38,7 @@ class EdificioController extends Controller
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-        ]);
+            ]);
     }
 
     /**
@@ -50,7 +50,7 @@ class EdificioController extends Controller
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
-        ]);
+            ]);
     }
 
     /**
@@ -62,14 +62,19 @@ class EdificioController extends Controller
     {
         $model = new Edificio();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->ID_EDIFICIO]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
+        if ($model->load(Yii::$app->request->post())) {
+            if($model -> ID_EDIFICIO == ''){
+                $model -> ID_EDIFICIO = null;
+            }
+            if($model->save()){
+               return $this->redirect(['view', 'id' => $model->ID_EDIFICIO]);
+           }
+       }
+           return $this->render('create', [
+            'model' => $model,
             ]);
-        }
-    }
+
+       }
 
     /**
      * Updates an existing Edificio model.
@@ -81,14 +86,20 @@ class EdificioController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->ID_EDIFICIO]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
+        
+        if ($model->load(Yii::$app->request->post())) {
+            if($model -> ID_EDIFICIO == ''){
+                $model -> ID_EDIFICIO = null;
+            }
+            if($model->save()){
+               return $this->redirect(['view', 'id' => $model->ID_EDIFICIO]);
+           }
         }
-    }
+           return $this->render('update', [
+            'model' => $model,
+            ]);
+
+       }
 
     /**
      * Deletes an existing Edificio model.
@@ -128,7 +139,7 @@ class EdificioController extends Controller
                 echo "<option value='".$edificio->ID_EDIFICIO."'> ".$edificio->NOMBRE_EDIFICIO."</option>";
             }
         }else{
-             echo "<option>Sin edificios</option>";
-        }
-    }
+           echo "<option>Sin edificios</option>";
+       }
+   }
 }

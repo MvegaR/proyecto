@@ -27,12 +27,12 @@ class SalaController extends Controller
     public function behaviors()
     {
         return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
+        'verbs' => [
+        'class' => VerbFilter::className(),
+        'actions' => [
+        'delete' => ['POST'],
+        ],
+        ],
         ];
     }
 
@@ -48,7 +48,7 @@ class SalaController extends Controller
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-        ]);
+            ]);
     }
 
     /**
@@ -60,7 +60,7 @@ class SalaController extends Controller
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
-        ]);
+            ]);
     }
 
     /**
@@ -71,27 +71,36 @@ class SalaController extends Controller
     public function actionCreate()
     {
         $model = new Sala();
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $dias = new dia;
-            $tiempoInicio = new tiempoInicio;
-            foreach($dias -> find() -> all() as $dia){
-                foreach($tiempoInicio -> find() -> all() as $tiempo){
-                    $bloques = new bloque;
-                    $bloques -> ID_SALA = $model -> ID_SALA;
-                    $bloques -> ID_SECCION = null;
-                    $bloques -> BLOQUE_SIGUIENTE = null;
-                    $bloques -> ID_DIA = $dia -> ID_DIA;
-                    $bloques -> INICIO = $tiempo -> TIEMPO;
-                    $bloques -> TERMINO = date("H:i:s", strtotime($tiempo -> TIEMPO) + 40*60);
-                    $bloques -> save();
-                }
+        if($model->load(Yii::$app->request->post())){
+            if($model -> ID_TIPO_SALA == ''){
+                $model -> ID_TIPO_SALA = null;
             }
-            return $this->redirect(['view', 'id' => $model->ID_SALA]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
+            if($model -> ID_EDIFICIO == ''){
+                $model -> ID_EDIFICIO = null;
+            }
+            if ($model->save()) {
+                $dias = new dia;
+                $tiempoInicio = new tiempoInicio;
+                foreach($dias -> find() -> all() as $dia){
+                    foreach($tiempoInicio -> find() -> all() as $tiempo){
+                        $bloques = new bloque;
+                        $bloques -> ID_SALA = $model -> ID_SALA;
+                        $bloques -> ID_SECCION = null;
+                        $bloques -> BLOQUE_SIGUIENTE = null;
+                        $bloques -> ID_DIA = $dia -> ID_DIA;
+                        $bloques -> INICIO = $tiempo -> TIEMPO;
+                        $bloques -> TERMINO = date("H:i:s", strtotime($tiempo -> TIEMPO) + 40*60);
+                        $bloques -> save();
+                    }
+                }
+                return $this->redirect(['view', 'id' => $model->ID_SALA]);
+            } 
         }
+
+        return $this->render('create', [
+            'model' => $model,
+            ]);
+        
     }
 
     /**
@@ -104,13 +113,22 @@ class SalaController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->ID_SALA]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
+        if($model->load(Yii::$app->request->post())){
+            if($model -> ID_TIPO_SALA == ''){
+                $model -> ID_TIPO_SALA = null;
+            }
+            if($model -> ID_EDIFICIO == ''){
+                $model -> ID_EDIFICIO = null;
+            }
+
+            if ($model->save()) {
+                return $this->redirect(['view', 'id' => $model->ID_SALA]);
+            } 
         }
+        return $this->render('update', [
+            'model' => $model,
+            ]);
+        
     }
 
     /**
@@ -154,7 +172,7 @@ class SalaController extends Controller
                 echo "<option value='".$sala->ID_SALA."'> ".$sala->ID_SALA."</option>";
             }
         }else{
-           echo "<option>Sin salas</option>";
-       }
-   }
+         echo "<option>Sin salas</option>";
+     }
+ }
 }
