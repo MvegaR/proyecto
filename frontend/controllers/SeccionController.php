@@ -17,12 +17,12 @@ class SeccionController extends Controller
     public function behaviors()
     {
         return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['post'],
-                ],
-            ],
+        'verbs' => [
+        'class' => VerbFilter::className(),
+        'actions' => [
+        'delete' => ['post'],
+        ],
+        ],
         ];
     }
 
@@ -38,7 +38,7 @@ class SeccionController extends Controller
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-        ]);
+            ]);
     }
 
     /**
@@ -50,7 +50,7 @@ class SeccionController extends Controller
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
-        ]);
+            ]);
     }
 
     /**
@@ -62,13 +62,21 @@ class SeccionController extends Controller
     {
         $model = new Seccion();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->ID_SECCION]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
+        if ($model->load(Yii::$app->request->post())) {
+            if($model->ID_DOCENTE == ''){
+                $model->ID_DOCENTE = null;
+            }
+            if($model->ID_ASIGNATURA == ''){
+                $model->ID_ASIGNATURA = null;
+            }
+            if($model->save()){
+                return $this->redirect(['view', 'id' => $model->ID_SECCION]);
+            }
+        } 
+        return $this->render('create', [
+            'model' => $model,
             ]);
-        }
+        
     }
 
     /**
@@ -81,13 +89,21 @@ class SeccionController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->ID_SECCION]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
+        if ($model->load(Yii::$app->request->post())) {
+            if($model->ID_DOCENTE == ''){
+                $model->ID_DOCENTE = null;
+            }
+            if($model->ID_ASIGNATURA == ''){
+                $model->ID_ASIGNATURA = null;
+            }
+            if($model->save()){
+                return $this->redirect(['view', 'id' => $model->ID_SECCION]);
+            }
+        } 
+        return $this->render('update', [
+            'model' => $model,
             ]);
-        }
+        
     }
 
     /**
