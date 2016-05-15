@@ -12,12 +12,12 @@ use frontend\models\Facultad;
 
 
 ?>
-
+<script type="text/javascript" src="js/validaRut.js"></script>
 <div class="docente-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'ID_DOCENTE')->textInput(['maxlength' => true])->label("RUT Docente")->input('rut', ['placeholder' => "Ingrese rut con puntos y guion"]) ?>
+    <?= $form->field($model, 'ID_DOCENTE')->textInput(['maxlength' => true])->label("RUT Docente")->input('rut', ['placeholder' => 'Ingrese rut con puntos y guion','onchange' => 'checkRutField();']) ?>
 
     <?= $form->field($model, 'ID_ROL')->dropDownList(
         ArrayHelper::map(Rol::find()->all(),'ID_ROL','NOMBRE_ROL'),
