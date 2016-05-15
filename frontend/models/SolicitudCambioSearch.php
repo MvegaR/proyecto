@@ -19,7 +19,7 @@ class SolicitudCambioSearch extends SolicitudCambio
     {
         return [
             [['ID_CAMBIO', 'ID_ESTADO_CAMBIO', 'CAPACIDAD_CAMBIO'], 'integer'],
-            [['ASIGNATURA_CAMBIO', 'SECCION_CAMBIO', 'DOCENTE_CAMBIO'], 'safe'],
+            [['ASIGNATURA_CAMBIO', 'SECCION_CAMBIO', 'SALA_CAMBIO', 'DOCENTE_CAMBIO'], 'safe'],
         ];
     }
 
@@ -63,6 +63,7 @@ class SolicitudCambioSearch extends SolicitudCambio
 
         $query->andFilterWhere(['like', 'ASIGNATURA_CAMBIO', $this->ASIGNATURA_CAMBIO])
             ->andFilterWhere(['like', 'SECCION_CAMBIO', $this->SECCION_CAMBIO])
+            ->andFilterWhere(['like', 'SALA_CAMBIO', $this->SALA_CAMBIO])
             ->andFilterWhere(['like', 'DOCENTE_CAMBIO', $this->DOCENTE_CAMBIO]);
 
         return $dataProvider;

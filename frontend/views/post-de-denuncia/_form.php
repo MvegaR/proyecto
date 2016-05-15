@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use frontend\models\TipoDenuncia;
-use frontend\models\EstadoDenuncia;
+use frontend\models\EstadoSolicitudDenuncia;
 use frontend\models\Facultad;
 use frontend\models\Sala;
 use frontend\models\Bloque;
@@ -25,11 +25,15 @@ use himiklab\yii2\recaptcha\ReCaptcha;
         ArrayHelper::map(TipoDenuncia::find()->all(),'ID_TIPO_DENUNCIA','NOMBRE_TIPO_DENUNCIA'),
        ['prompt'=>'Seleccione tipo de denuncia'] )->label('Tipo de Denuncia') ?>
 
-    <?php if(!($model->isNewRecord))
+    <?php 
+    if(!($model->isNewRecord)){
 
-    $form->field($model, 'ID_ESTADO_DENUNCIA')->dropDownList(
-        ArrayHelper::map(EstadoDenuncia::find()->all(),'ID_ESTADO_DENUNCIA','NOMBRE_ESTADO_DENUNCIA'),
-        ['prompt'=>'Seleccione estado de denuncia'] )->label('Estado de denuncia')
+            echo $form->field($model, 'ID_ESTADO_DENUNCIA')->dropDownList(
+                ArrayHelper::map(EstadoSolicitudDenuncia::find()->all(),'ID_ESTADO_DENUNCIA','NOMBRE_DENUNCIA'),
+                ['prompt'=>'Seleccione estado de denuncia'] )->label('Estado de denuncia');
+    }else{
+       echo $form->field($model, 'ID_ESTADO_DENUNCIA')->hiddenInput(['value' => 3])->label(false);
+    }
      ?>
 
     <?= $form->field($model, 'FACULTAD_DENUNCIA')->dropDownList(
@@ -60,7 +64,7 @@ use himiklab\yii2\recaptcha\ReCaptcha;
         [],
         ['prompt'=>'Seleccione bloque'] )->label('Bloque') ?>
     <!-- inicio fecha -->
-    <?php date_default_timezone_set('America/Argentina/Buenos_Aires'); 
+    <?php date_default_timezone_set('Chile/Continental'); 
      echo $form->field($model, 'FECHA_DENUNCIA')->hiddenInput(['value'=> date('Y-m-d H:i:s')])->label(false);?>
 
     <?= $form->field($model, 'reCaptcha')->widget(ReCaptcha::className()) ?>

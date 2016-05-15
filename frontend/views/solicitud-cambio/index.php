@@ -29,11 +29,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'ID_ESTADO_CAMBIO',
             'ASIGNATURA_CAMBIO',
             'SECCION_CAMBIO',
+            'SALA_CAMBIO',
             'DOCENTE_CAMBIO',
-            // 'CAPACIDAD_CAMBIO',
+            'CAPACIDAD_CAMBIO',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
-</div>
-</div>
+
+</div></div>

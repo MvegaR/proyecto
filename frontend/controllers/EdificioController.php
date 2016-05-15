@@ -142,4 +142,5 @@ class EdificioController extends Controller
            echo "<option>Sin edificios</option>";
        }
    }
+
 }
