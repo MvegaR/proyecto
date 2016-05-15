@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel frontend\models\SolicitudAsignacionSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Solicitud Asignacions';
+$this->title = 'Solicitud asignación de sala';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="solicitud-asignacion-index">

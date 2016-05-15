@@ -29,15 +29,23 @@ use himiklab\yii2\recaptcha\ReCaptcha;
     if(!Yii::$app -> user -> isGuest){
         $idDocente = Yii::$app -> user -> identity -> ID_DOCENTE;
     }
-    Html::activeHiddenInput($model, 'DOCENTE_ASIGNACION', ['value' => $idDocente ]); ?>
-    
+    echo Html::activeHiddenInput($model, 'DOCENTE_ASIGNACION', ['value' => $idDocente ]); ?>
+    <?php
+        $asignaturasDelUsuario = "Select A.* 
+        from ASIGNATURA A, SECCION S
+        where S.ID_DOCENTE = $idDocente and A.ID_ASIGNATURA = S.ID_ASIGNATURA";
+        $tablaDeAsignaturas = new Asignatura;
+        $tablaDeAsignaturas = $tablaDeAsignaturas -> findBySql($asignaturasDelUsuario) -> all();
+    ?>
     <?= $form->field($model, 'ASIGNATURA_ASIGNACION')->dropDownList(
-        ArrayHelper::map(Asignatura::find()->all(),'ID_ASIGNATURA','NOMBRE_ASIGNATURA'),
-        ['prompt'=>'Seleccione asignatura'] )->label('Asignatura') //falta filtar?> 
+        ArrayHelper::map($tablaDeAsignaturas,'ID_ASIGNATURA','NOMBRE_ASIGNATURA'),
+        ['prompt'=>'Seleccione asignatura', 'onchange' => '$.post("index.php?r=seccion/lists&id='.'"+$(this).val(), function(data){
+                             $("select#solicitudasignacion-seccion_asignacion").html(data);
+                        });'] )->label('Seleccione una de sus asignaturas')?> 
 
     <?= $form->field($model, 'SECCION_ASIGNACION')->dropDownList(
         ArrayHelper::map(Seccion::find()->all(),'ID_SECCION','ID_SECCION'),
-        ['prompt'=>'Seleccione seccion'] )->label('Seccion') //falta filtar ?> 
+        ['prompt'=>'Seleccione seccion'] )->label('Seccion') ?> 
 
     <?= $form->field($model, 'CAPACIDAD_ASIGNACION')->textInput(['type' => 'number', 'min' => 1, 'placeholder' => "Ingrese capacidad"]); ?>
 

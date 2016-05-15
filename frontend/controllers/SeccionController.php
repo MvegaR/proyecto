@@ -4,6 +4,7 @@ namespace frontend\controllers;
 
 use Yii;
 use frontend\models\Seccion;
+use frontend\models\Asignatura;
 use frontend\models\SeccionSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -132,6 +133,22 @@ class SeccionController extends Controller
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+
+    //entrega las secciones de una asignatura asociadas a un determinado docente (usuario conectado)
+    public function actionLists($id){
+        if(!Yii::$app -> user -> isGuest){
+            $totalSecciones = Seccion::find() -> 
+                where(['ID_ASIGNATURA' => $id, 'ID_DOCENTE' => Yii::$app -> user -> identity -> ID_DOCENTE]) -> count();
+            $secciones =  Seccion::find() -> 
+                where(['ID_ASIGNATURA' => $id, 'ID_DOCENTE' => Yii::$app -> user -> identity -> ID_DOCENTE]) -> all();
+            foreach($secciones as $seccion){
+                echo "<option value='".$seccion -> ID_SECCION."'> ".$seccion -> ID_SECCION."</option>";
+            }
+            if($totalSecciones == 0){
+                echo "<option>Ud. no tiene secciones de tal asignatura</option>";
+            }
         }
     }
 }
