@@ -19,7 +19,8 @@ $this->params['breadcrumbs'][] = $this->title;
     -Ver horario usuario autentificado (docente)<br>
     -Ver horarios de una sala determinada. (publico)<br>
     -Link en el menu lateral<br>
-    -<br>
+    -Horario general (estadisticas), para identificar por colores el estado de asignación en promedio de bloques<br>
+    <br>
 
     <p><?= Html::a('RFW02 Importación de datos (Marcos) (PENDIENTE)', [''], ['class'=>'']) ?></p>
     <p><?= Html::a('RFW09 Generación de usuario y contraseña docentes (Pablo)', ['docente/create'], ['class'=>'']) ?></p>
