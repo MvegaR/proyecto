@@ -139,7 +139,7 @@ class EdificioController extends Controller
                 echo "<option value='".$edificio->ID_EDIFICIO."'> ".$edificio->NOMBRE_EDIFICIO."</option>";
             }
         }else{
-           echo "<option>Sin edificios</option>";
+           echo "<option value=>Sin edificios</option>";
        }
    }
 

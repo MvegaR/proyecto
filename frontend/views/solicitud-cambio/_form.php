@@ -46,10 +46,12 @@ use frontend\models\Seccion;
                         });'] )->label('Seleccione una de sus asignaturas')?> 
 
     <?= $form->field($model, 'SECCION_CAMBIO')->dropDownList(
-        ArrayHelper::map(Seccion::find()->all(),'ID_SECCION','ID_SECCION'),
-        ['prompt'=>'Seleccione seccion'] )->label('Seccion') ?> 
+        [],
+        ['prompt'=>'Seleccione seccion', 'onchange' => '$.post("index.php?r=bloque/lists2&id='.'"+$(this).val(), function(data){
+                             $("select#solicitudcambio-sala_cambio").html(data);
+                        });'] )->label('Seccion') ?> 
 
-   <?= $form->field($model, 'SALA_CAMBIO')->textInput(['maxlength' => true]) ?>
+   <?= $form->field($model, 'SALA_CAMBIO')->dropDownList([], ['prompt' => 'Seleccione sala'])->label("Sala") ?>
 
    <?= $form->field($model, 'CAPACIDAD_CAMBIO')->textInput(['type' => 'number', 'min', 'min' => 0, 'value' => 0, 'placeholder' => "Alumnos de la sección"]) ?>
 

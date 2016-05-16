@@ -172,7 +172,7 @@ class SalaController extends Controller
                 echo "<option value='".$sala->ID_SALA."'> ".$sala->ID_SALA."</option>";
             }
         }else{
-         echo "<option>Sin salas</option>";
+         echo "<option value=>Sin salas</option>";
      }
  }
 }

@@ -5,6 +5,7 @@ namespace frontend\controllers;
 use Yii;
 use frontend\models\Bloque;
 use frontend\models\Dia;
+use frontend\models\Sala;
 use frontend\models\BloqueSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -194,7 +195,21 @@ public function behaviors()
                 echo "<option value='".$bloque->ID_BLOQUE."'> $dia - Tiempo: ".$bloque->INICIO." a ".$bloque->TERMINO."</option>";
             }
         }else{
-         echo "<option>Sin bloques</option>";
+         echo "<option value=>Sin bloques</option>";
      }
- }
+    }
+    //id es el id de la seccion para entregar las opciones de las salas.
+    public function actionLists2($id){
+        $contadorbloques = Bloque::find()->where(['ID_SECCION' => $id])->count();
+        $bloques = Bloque::find()->where(['ID_SECCION' => $id])->all();
+        if($contadorbloques > 0){
+            foreach ($bloques as $bloque) {
+                $Sala = (Sala::find()-> where(['ID_SALA' => $bloque -> ID_SALA])-> one());
+                $sala = $sala -> ID_SALA;
+                echo "<option value='".$sala."'>$sala</option>";
+            }
+        }else{
+         echo "<option value=>Sin salas para la seccion selecionada</option>";
+     }
+    }
 }

@@ -147,7 +147,7 @@ class SeccionController extends Controller
                 echo "<option value='".$seccion -> ID_SECCION."'> ".$seccion -> ID_SECCION."</option>";
             }
             if($totalSecciones == 0){
-                echo "<option>Ud. no tiene secciones de tal asignatura</option>";
+                echo "<option value=>Ud. no tiene secciones de tal asignatura</option>";
             }
         }
     }
