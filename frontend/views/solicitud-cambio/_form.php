@@ -7,6 +7,7 @@ use yii\helpers\ArrayHelper;
 use frontend\models\EstadoSolicitudCambio;
 use frontend\models\Asignatura;
 use frontend\models\Seccion;
+
 /* @var $this yii\web\View */
 /* @var $model frontend\models\SolicitudCambio */
 /* @var $form yii\widgets\ActiveForm */
@@ -23,33 +24,40 @@ use frontend\models\Seccion;
             ArrayHelper::map(EstadoSolicitudCambio::find()->all(),'ID_ESTADO_CAMBIO','NOMBRE_ESTADO_CAMBIO'),
             ['prompt'=>'Seleccione estado de cambio'] )->label('Estado de cambio');
     }else{
-     echo $form->field($model, 'ID_ESTADO_CAMBIO')->hiddenInput(['value' => 3])->label(false);
- }
- ?>
-    <?php 
-    $idDocente = null;
-    if(!Yii::$app -> user -> isGuest){
-        $idDocente = Yii::$app -> user -> identity -> ID_DOCENTE;
+       echo $form->field($model, 'ID_ESTADO_CAMBIO')->hiddenInput(['value' => 3])->label(false);
+   }
+   ?>
+
+   <?php 
+     $idDocente = null;
+     if(!Yii::$app -> user -> isGuest){
+          $idDocente = Yii::$app -> user -> identity -> ID_DOCENTE;
     }
-    echo Html::activeHiddenInput($model, 'DOCENTE_CAMBIO', ['value' => $idDocente ]); ?>
-    <?php
-        $asignaturasDelUsuario = "Select A.* 
-        from ASIGNATURA A, SECCION S
-        where S.ID_DOCENTE = $idDocente and A.ID_ASIGNATURA = S.ID_ASIGNATURA";
-        $tablaDeAsignaturas = new Asignatura;
-        $tablaDeAsignaturas = $tablaDeAsignaturas -> findBySql($asignaturasDelUsuario) -> all();
+    echo Html::activeHiddenInput($model, 'DOCENTE_CAMBIO', ['value' => $idDocente ]); 
     ?>
+
+    <?php
+    $asignaturasDelUsuario = "Select A.* 
+    from ASIGNATURA A, SECCION S
+    where S.ID_DOCENTE = $idDocente and A.ID_ASIGNATURA = S.ID_ASIGNATURA";
+    $tablaDeAsignaturas = new Asignatura;
+    $tablaDeAsignaturas = $tablaDeAsignaturas -> findBySql($asignaturasDelUsuario) -> all();
+    ?>
+
+
     <?= $form->field($model, 'ASIGNATURA_CAMBIO')->dropDownList(
         ArrayHelper::map($tablaDeAsignaturas,'ID_ASIGNATURA','NOMBRE_ASIGNATURA'),
         ['prompt'=>'Seleccione asignatura', 'onchange' => '$.post("index.php?r=seccion/lists&id='.'"+$(this).val(), function(data){
-                             $("select#solicitudcambio-seccion_cambio").html(data);
-                        });'] )->label('Seleccione una de sus asignaturas')?> 
+           $("select#solicitudcambio-seccion_cambio").html(data);
+       });'] )->label('Seleccione una de sus asignaturas')?> 
+
 
     <?= $form->field($model, 'SECCION_CAMBIO')->dropDownList(
         [],
         ['prompt'=>'Seleccione seccion', 'onchange' => '$.post("index.php?r=bloque/lists2&id='.'"+$(this).val(), function(data){
-                             $("select#solicitudcambio-sala_cambio").html(data);
-                        });'] )->label('Seccion') ?> 
+           $("select#solicitudcambio-sala_cambio").html(data);
+       });'] )->label('Seccion') 
+    ?> 
 
    <?= $form->field($model, 'SALA_CAMBIO')->dropDownList([], ['prompt' => 'Seleccione sala'])->label("Sala") ?>
 

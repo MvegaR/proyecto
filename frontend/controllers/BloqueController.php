@@ -195,7 +195,7 @@ public function behaviors()
                 echo "<option value='".$bloque->ID_BLOQUE."'> $dia - Tiempo: ".$bloque->INICIO." a ".$bloque->TERMINO."</option>";
             }
         }else{
-         echo "<option value=>Sin bloques</option>";
+         echo "<option value=>Sin bloques para la sala seleccionada</option>";
      }
     }
     //id es el id de la seccion para entregar las opciones de las salas.
@@ -204,12 +204,26 @@ public function behaviors()
         $bloques = Bloque::find()->where(['ID_SECCION' => $id])->all();
         if($contadorbloques > 0){
             foreach ($bloques as $bloque) {
-                $Sala = (Sala::find()-> where(['ID_SALA' => $bloque -> ID_SALA])-> one());
+                $sala = (Sala::find()-> where(['ID_SALA' => $bloque -> ID_SALA])-> one());
                 $sala = $sala -> ID_SALA;
                 echo "<option value='".$sala."'>$sala</option>";
             }
         }else{
          echo "<option value=>Sin salas para la seccion selecionada</option>";
+     }
+    }
+
+     //id es el id de la seccion para entregar las opciones de los bloques.
+    public function actionLists3($id){
+        $contadorbloques = Bloque::find()->where(['ID_SECCION' => $id])->count();
+        $bloques = Bloque::find()->where(['ID_SECCION' => $id])->all();
+        if($contadorbloques > 0){
+            foreach ($bloques as $bloque) {
+                $dia = (Dia::find()-> where(['ID_DIA' => $bloque -> ID_DIA])-> one());
+                echo "<option value='".$bloque->ID_BLOQUE."'> $dia - Tiempo: ".$bloque->INICIO." a ".$bloque->TERMINO."</option>";
+            }
+        }else{
+         echo "<option value=>Sin bloques para la seccion selecionada</option>";
      }
     }
 }

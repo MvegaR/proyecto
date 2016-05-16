@@ -36,7 +36,7 @@ class SolicitudCancelacion extends \yii\db\ActiveRecord
     {
         return [
             [['ID_ESTADO_CANCELACION', 'BLOQUE_CANCELACION'], 'integer'],
-            [['DOCENTE_CANCELACION', 'ASIGNATURA_CANCELACION'], 'required'],
+            [['DOCENTE_CANCELACION', 'ASIGNATURA_CANCELACION', 'BLOQUE_CANCELACION'], 'required'],
             [['MOTIVO'], 'string'],
             [['DOCENTE_CANCELACION', 'ASIGNATURA_CANCELACION', 'SECCION_CANCELACION'], 'string', 'max' => 255],
 			[['reCaptcha'], ReCaptchaValidator::className(), 'secret' => '6LfD6hITAAAAAEdV6MQ8zDX3emwQY4bVYyw-L3nz' ],
