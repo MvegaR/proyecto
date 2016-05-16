@@ -44,7 +44,7 @@ use himiklab\yii2\recaptcha\ReCaptcha;
                         });'] )->label('Seleccione una de sus asignaturas')?> 
 
     <?= $form->field($model, 'SECCION_ASIGNACION')->dropDownList(
-        ArrayHelper::map(Seccion::find()->all(),'ID_SECCION','ID_SECCION'),
+        [],
         ['prompt'=>'Seleccione seccion'] )->label('Seccion') ?> 
 
     <?= $form->field($model, 'CAPACIDAD_ASIGNACION')->textInput(['type' => 'number', 'min' => 1, 'placeholder' => "Ingrese capacidad"]); ?>
