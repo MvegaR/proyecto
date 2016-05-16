@@ -10,6 +10,17 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="site-about">
     <h1><?= Html::encode($this->title) ?></h1>
 
+        Falta: <br>
+    -Importar desde excel y respaldar BD a excel.<br>
+    -formularios de cambio de usuario y contraseña para el usuario autentificado<br>
+    -Cambiar valores de identificadores foraneos a valores si es que tienen en cada index.php y view.php. (ver ejemplo vista docente index.php, le falta el view.php)<br>
+    -Panel de administración (un menu para todos los crud del admin)<br>
+    -Migas de pan (breadcrumbs) (para conectar los index.php con los view.php, create.php, update.php con un link para regresar)<br>
+    -Ver horario usuario autentificado (docente)<br>
+    -Ver horarios de una sala determinada. (publico)<br>
+    -Link en el menu lateral<br>
+    -<br>
+
     <p><?= Html::a('RFW02 Importación de datos (Marcos) (PENDIENTE)', [''], ['class'=>'']) ?></p>
     <p><?= Html::a('RFW09 Generación de usuario y contraseña docentes (Pablo)', ['docente/create'], ['class'=>'']) ?></p>
         -Formulario de cambio de contraseña y nombre de usuario. <br><br>
@@ -30,7 +41,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <p><?= Html::a('RFW20 Ayuda al usuario (Jimena)', ['docente/create'], ['class'=>'']) ?></p>
         
     <p><?= Html::a('RFW22 Protección contra spam (Jimena)', ['post-de-denuncia/create'], ['class'=>''])?></p>
+    <p>
+        
 
+
+    </p>
     
 
    
