@@ -135,10 +135,11 @@ style="background-color:#0064AC; background-image:url(img/bg.png);color:#fff;  p
       <a href="#" class="list-group-item pulso">Ver Horario</a>
       <a href="#" class="list-group-item pulso">Formulario de asignación</a>
       <a href="#" class="list-group-item pulso">Solicitud cancelación</a>
+      <a href="#" class="list-group-item pulso">Solicitud cambio de sala</a>
       <a href="#" class="list-group-item pulso">Formulario denuncia mal uso</a>
       <a href="#" class="list-group-item pulso">Listado de salas</a>
       <a href="#" class="list-group-item pulso">Estadísticas</a>
-      <a href="#" class="list-group-item pulso">Cambiar contraseña</a>
+      <a href="#" class="list-group-item pulso">Cambiar usuario o contraseña</a>
     </div>
   </div>
 
