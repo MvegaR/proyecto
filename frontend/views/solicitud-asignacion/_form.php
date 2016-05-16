@@ -60,5 +60,5 @@ use himiklab\yii2\recaptcha\ReCaptcha;
     </div>
 
     <?php ActiveForm::end(); ?>
-
+ 
 </div>
