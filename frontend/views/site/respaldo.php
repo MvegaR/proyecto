@@ -1,0 +1,1 @@
+Yii::$app->db2->createCommand((new \yii\db\Query)->select('*')->from('tbl_name'))->queryAll();

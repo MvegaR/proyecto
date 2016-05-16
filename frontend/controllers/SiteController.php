@@ -27,6 +27,9 @@ class SiteController extends Controller
         return $this -> render("entrega2");
     }
 
+    public function actionMenuAdmin(){
+        return $this -> render("menuAdmin");
+    }
 
     /**
      * @inheritdoc

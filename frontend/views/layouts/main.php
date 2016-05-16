@@ -24,8 +24,9 @@ AppAsset::register($this);
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
     <link href="css/bootstrap.css" rel="stylesheet">
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  
     <style type="text/css">
 
     @-webkit-keyframes pulso {
@@ -131,13 +132,13 @@ style="background-color:#0064AC; background-image:url(img/bg.png);color:#fff;  p
     <div class="list-group">
         <div class=" text-center" style="background-color:#0064AC; color:#FFFFFF; border-radius: 30px 30px 0px 0px; font-weight: bold; font-size:19px;">Link rápidos</div>
 
-      <?php if(!Yii::$app -> user -> isGuest && Yii::$app -> user -> identity -> ID_ROL == 1){?><a href="#" class="list-group-item pulso">Módulo de administración</a><?php } ?>
+      <?php if(!Yii::$app -> user -> isGuest && Yii::$app -> user -> identity -> ID_ROL == 1){?><a href="index.php?r=site/menu-admin" class="list-group-item pulso">Módulo de administración</a><?php } ?>
       <?php if(!Yii::$app -> user -> isGuest && Yii::$app -> user -> identity -> ID_ROL == 2){?><a href="#" class="list-group-item pulso">Ver Horario</a><?php } ?>
-      <?php if(!Yii::$app -> user -> isGuest && Yii::$app -> user -> identity -> ID_ROL == 2){?><a href="#" class="list-group-item pulso">Formulario de asignación</a><?php } ?>
-      <?php if(!Yii::$app -> user -> isGuest && Yii::$app -> user -> identity -> ID_ROL == 2){?><a href="#" class="list-group-item pulso">Solicitud cancelación</a><?php } ?>
-      <?php if(!Yii::$app -> user -> isGuest && Yii::$app -> user -> identity -> ID_ROL == 2){?><a href="#" class="list-group-item pulso">Solicitud cambio de sala</a><?php } ?>
-      <a href="#" class="list-group-item pulso">Formulario denuncia mal uso</a>
-      <a href="#" class="list-group-item pulso">Listado de salas</a>
+      <?php if(!Yii::$app -> user -> isGuest && Yii::$app -> user -> identity -> ID_ROL == 2){?><a href="index.php?r=solicitud-asignacion/create" class="list-group-item pulso">Formulario de asignación</a><?php } ?>
+      <?php if(!Yii::$app -> user -> isGuest && Yii::$app -> user -> identity -> ID_ROL == 2){?><a href="index.php?r=solicitud-cancelacion/create" class="list-group-item pulso">Solicitud cancelación</a><?php } ?>
+      <?php if(!Yii::$app -> user -> isGuest && Yii::$app -> user -> identity -> ID_ROL == 2){?><a href="index.php?r=solicitud-cambio/create" class="list-group-item pulso">Solicitud cambio de sala</a><?php } ?>
+      <a href="index.php?r=post-de-denuncia/create" class="list-group-item pulso">Formulario denuncia mal uso</a>
+      <a href="index.php?r=sala/lista" class="list-group-item pulso">Listado de salas</a>
       <a href="#" class="list-group-item pulso">Estadísticas</a>
       <?php if(!Yii::$app -> user -> isGuest){?><a href="#" class="list-group-item pulso">Cambiar usuario o contraseña</a><?php } ?>
     </div>

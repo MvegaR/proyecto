@@ -14,11 +14,10 @@ $this->params['breadcrumbs'][] = $this->title;
     -Importar desde excel y respaldar BD a excel.<br>
     -formularios de cambio de usuario y contraseña para el usuario autentificado<br>
     -Cambiar valores de identificadores foraneos a valores si es que tienen en cada index.php y view.php. (ver ejemplo vista docente index.php, le falta el view.php) -> https://www.youtube.com/watch?v=OLfz7Iy_y84<br>
-    -Panel de administración (un menu para todos los crud del admin)<br>
     -Migas de pan (breadcrumbs) (para conectar los index.php con los view.php, create.php, update.php con un link para regresar)<br>
     -Ver horario usuario autentificado (docente)<br>
     -Ver horarios de una sala determinada. (publico)<br>
-    -Link en el menu lateral<br>
+    -Link en el menu lateral (solo cosas faltantes)<br>
     -Horario general (estadisticas), para identificar por colores el estado de asignación en promedio de bloques<br>
     <br>
 
