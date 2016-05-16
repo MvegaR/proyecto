@@ -54,7 +54,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			</div>
 
 			<div class="panel panel-default col-xs-12">
-				<h2 class="">Módulo de tipos</h2>
+				<h2 class="">Módulo de respaldo</h2>
 				<p><a class="btn btn-lg btn-default col-xs-4" href="#">Exportar base de datos</a></p>
 				<p><a class="btn btn-lg btn-default col-xs-4" href="#">Importar base de datos</a></p>
 			</div>
