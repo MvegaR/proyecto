@@ -58,7 +58,6 @@ class Docente extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
         'COOKIE' => 'Cookie',
         ];
     }
-
     /**
      * @return \yii\db\ActiveQuery
      */
