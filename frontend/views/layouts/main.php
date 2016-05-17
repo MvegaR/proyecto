@@ -142,7 +142,7 @@ style="background-color:#0064AC; background-image:url(img/bg.png);color:#fff;  p
                 <a href="index.php?r=post-de-denuncia/create" class="list-group-item pulso">Formulario denuncia mal uso</a>
                 <a href="index.php?r=sala/lista" class="list-group-item pulso">Listado de salas</a>
                 <a href="#" class="list-group-item pulso">Estadísticas</a>
-                <?php if(!Yii::$app -> user -> isGuest){?><a href="#" class="list-group-item pulso">Cambiar usuario o contraseña</a><?php } ?>
+                <?php if(!Yii::$app -> user -> isGuest){?><a href="index.php?=cambios/update" class="list-group-item pulso">Cambiar usuario o contraseña</a><?php } ?>
                 </div>
               </div>
 
