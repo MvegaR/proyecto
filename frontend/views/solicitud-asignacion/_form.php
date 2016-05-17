@@ -32,7 +32,7 @@ use himiklab\yii2\recaptcha\ReCaptcha;
     echo Html::activeHiddenInput($model, 'DOCENTE_ASIGNACION', ['value' => $idDocente ]); ?>
     <?php
         $asignaturasDelUsuario = "Select A.* 
-        from ASIGNATURA A, SECCION S
+        from asignatura A, seccion S
         where S.ID_DOCENTE = $idDocente and A.ID_ASIGNATURA = S.ID_ASIGNATURA";
         $tablaDeAsignaturas = new Asignatura;
         $tablaDeAsignaturas = $tablaDeAsignaturas -> findBySql($asignaturasDelUsuario) -> all();

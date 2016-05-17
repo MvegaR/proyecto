@@ -37,9 +37,7 @@ use frontend\models\Seccion;
     ?>
 
     <?php
-    $asignaturasDelUsuario = "Select A.* 
-    from ASIGNATURA A, SECCION S
-    where S.ID_DOCENTE = $idDocente and A.ID_ASIGNATURA = S.ID_ASIGNATURA";
+    $asignaturasDelUsuario = "Select A.* from asignatura A, seccion S where S.ID_DOCENTE = $idDocente and A.ID_ASIGNATURA = S.ID_ASIGNATURA";
     $tablaDeAsignaturas = new Asignatura;
     $tablaDeAsignaturas = $tablaDeAsignaturas -> findBySql($asignaturasDelUsuario) -> all();
     ?>

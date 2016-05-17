@@ -31,6 +31,10 @@ class SiteController extends Controller
         return $this -> render("menuAdmin");
     }
 
+    public function actionRespaldo(){
+        return $this -> render("respaldo");
+    }
+
     /**
      * @inheritdoc
      */

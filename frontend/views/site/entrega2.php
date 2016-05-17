@@ -11,7 +11,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
         Falta: <br>
-    -Importar desde excel y respaldar BD a excel.<br>
+    -Importar desde excel.<br>
     -formularios de cambio de usuario y contraseña para el usuario autentificado<br>
     -Cambiar valores de identificadores foraneos a valores si es que tienen en cada index.php y view.php. (ver ejemplo vista docente index.php, le falta el view.php) -> https://www.youtube.com/watch?v=OLfz7Iy_y84<br>
     -Migas de pan (breadcrumbs) (para conectar los index.php con los view.php, create.php, update.php con un link para regresar)<br>
@@ -36,7 +36,6 @@ $this->params['breadcrumbs'][] = $this->title;
         -Tabla de horarios de una sala (información publica)<br><br>
         
     <p><?= Html::a('RFW18 Exportar a Archivo Excel (Marcos)', ['sala/index'], ['class'=>'']) ?></p>
-        -Falta exportar toda la DB y no solo algunas tablas.<br><br>
         
     <p><?= Html::a('RFW20 Ayuda al usuario (Jimena)', ['docente/create'], ['class'=>'']) ?></p>
         

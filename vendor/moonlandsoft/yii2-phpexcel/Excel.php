@@ -533,11 +533,11 @@ class Excel extends \yii\base\Widget
 	 */
 	public function getFileName()
 	{
-		$fileName = 'exports.xls';
+		$fileName = 'DSI01.xlsx';
 		if (isset($this->fileName)) {
 			$fileName = $this->fileName;
-			if (strpos($fileName, '.xls') === false)
-				$fileName .= '.xls';
+			if (strpos($fileName, '.xlsx') === false)
+				$fileName .= '.xlsx';
 		}
 		return $fileName;
 	}
@@ -561,14 +561,18 @@ class Excel extends \yii\base\Widget
 	 */
 	public function writeFile($sheet)
 	{
+		 
 		if (!isset($this->format))
 			$this->format = 'Excel2007';
+		ob_end_clean();
 		$objectwriter = \PHPExcel_IOFactory::createWriter($sheet, $this->format);
 		$path = 'php://output';
 		if (isset($this->savePath) && $this->savePath != null) {
 			$path = $this->savePath . '/' . $this->getFileName();
 		}
+		ob_end_clean();
 		$objectwriter->save($path);
+
 		exit();
 	}
 	
