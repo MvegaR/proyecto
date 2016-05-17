@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
 	<div class="panel panel-default col-xs-12"> 
-		<div class="panel-heading">
+		<div class="">
 			<h1 class="">Administración</h1>
 		</div>
 		<div class="panel-body">
