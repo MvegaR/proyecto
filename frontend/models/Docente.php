@@ -25,6 +25,7 @@ class Docente extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     /**
      * @inheritdoc
      */
+    public $PASSWORD_REPEAT;
     public static function tableName()
     {
         return 'docente';
