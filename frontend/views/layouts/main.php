@@ -134,7 +134,7 @@ style="background-color:#0064AC; background-image:url(img/bg.png);color:#fff;  p
     <div class="list-group">
       <div class=" text-center" style="background-color:#0064AC; color:#FFFFFF; border-radius: 30px 30px 0px 0px; font-weight: bold; font-size:19px;">Link rápidos</div>
 
-      <?php if(!Yii::$app -> user -> isGuest && Yii::$app -> user -> identity -> ID_ROL == 1){?><a href="index.php?r=site/menu-admin" class="list-group-item pulso">Módulo de administración</a><?php } ?>
+      <?php if(!Yii::$app -> user -> isGuest && Yii::$app -> user -> identity -> ID_ROL == 1){?><a href="index.php?r=site/menu-admin" class="list-group-item pulso">Módulos de administración</a><?php } ?>
         <?php if(!Yii::$app -> user -> isGuest && Yii::$app -> user -> identity -> ID_ROL == 2){?><a href="#" class="list-group-item pulso">Ver Horario</a><?php } ?>
           <?php if(!Yii::$app -> user -> isGuest && Yii::$app -> user -> identity -> ID_ROL == 2){?><a href="index.php?r=solicitud-asignacion/create" class="list-group-item pulso">Formulario de asignación</a><?php } ?>
             <?php if(!Yii::$app -> user -> isGuest && Yii::$app -> user -> identity -> ID_ROL == 2){?><a href="index.php?r=solicitud-cancelacion/create" class="list-group-item pulso">Solicitud cancelación</a><?php } ?>
