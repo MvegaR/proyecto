@@ -81,7 +81,7 @@ class CambiosController extends Controller
     {
         $id = Yii::$app -> user -> identity -> ID_DOCENTE;
         $model = $this->findModel($id);
-
+        $model -> PASSWORD_REPEAT = $model -> PASSWORD;
         if ($model->load(Yii::$app->request->post())) {
             $model -> PASSWORD = sha1($model -> PASSWORD);
             //return $this->redirect(['view', 'id' => $model->ID_DOCENTE]);
