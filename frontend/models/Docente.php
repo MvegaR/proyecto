@@ -38,7 +38,10 @@ class Docente extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
         return [
         [['ID_DOCENTE', 'NOMBRE_DOCENTE'], 'required'],
         [['ID_ROL', 'ID_FACULTAD'], 'integer'],
-        [['ID_DOCENTE', 'NOMBRE_DOCENTE', 'EMAIL', 'USER', 'PASSWORD', 'COOKIE'], 'string', 'max' => 255]
+        [['ID_DOCENTE', 'NOMBRE_DOCENTE', 'EMAIL', 'USER', 'PASSWORD', 'COOKIE'], 'string', 'max' => 255],
+        ['USER', 'unique'],
+        ["PASSWORD_REPEAT", "required", "message" => "Campo requerido."],
+        ["PASSWORD_REPEAT", "compare", "compareAttribute" => "PASSWORD","message" => "No son iguales."],
         ];
     }
 

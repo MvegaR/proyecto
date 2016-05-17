@@ -16,6 +16,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'PASSWORD')->passwordInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'PASSWORD_REPEAT')->passwordInput(['maxlength' => true]) ?>
+
    
 
     <div class="form-group">
