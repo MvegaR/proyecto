@@ -92,9 +92,11 @@ class DocenteController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
         if($model->load(Yii::$app->request->post()) ){
-            if($model -> PASSWORD != null || $model -> PASSWORD != '') {$model -> PASSWORD = sha1($model -> PASSWORD);}
+            if($model -> PASSWORD != null || $model -> PASSWORD != '') {
+                $model -> PASSWORD = sha1($model -> PASSWORD);
+                $model -> PASSWORD_REPEAT = sha1($model -> PASSWORD_REPEAT);
+            }
             if($model -> ID_ROL == ''){
                 $model -> ID_ROL = null;
             }
@@ -103,6 +105,11 @@ class DocenteController extends Controller
             }
             if($model -> EMAIL == ''){
                 $model -> EMAIL = null;
+            }
+            if($model -> USER == ''){
+                 return $this->render('update', [
+                'model' => $model,'error' => "No puede cambiar su nombre de usuario a vacio"
+                ]);
             }
             if ($model->save()) {
                 return $this->redirect(['view', 'id' => $model->ID_DOCENTE]);

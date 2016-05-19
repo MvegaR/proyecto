@@ -52,9 +52,9 @@ class Docente extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     public function attributeLabels()
     {
         return [
-        'ID_DOCENTE' => 'Id  Docente',
-        'ID_ROL' => 'Id  Rol',
-        'ID_FACULTAD' => 'Id  Facultad',
+        'ID_DOCENTE' => 'Rut  Docente',
+        'ID_ROL' => 'Rol',
+        'ID_FACULTAD' => 'Facultad',
         'NOMBRE_DOCENTE' => 'Nombre  Docente',
         'EMAIL' => 'Email',
         'USER' => 'User',

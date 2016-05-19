@@ -10,6 +10,8 @@ use yii\widgets\ActiveForm;
 
 <div class="docente-form">
 
+
+
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'USER')->textInput(['maxlength' => true]) ?>

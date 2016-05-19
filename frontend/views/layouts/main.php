@@ -71,8 +71,7 @@ AppAsset::register($this);
 
 </head>
 <body style="min-height: 125%">
-  <script type="text/javascript" src="js/jquery-2.2.3"></script>
-  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
   <?php $this->beginBody() ?>
   <header id="header" style="height:55px">
     <nav class="navbar navbar-inverse navbar-fixed-top">

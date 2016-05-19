@@ -11,7 +11,8 @@ $this->params['breadcrumbs'][] = ['label' => $model->ID_DOCENTE, 'url' => ['view
 $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="docente-update">
-
+	<?php if(isset($error)) echo "<div class='alert alert-danger'>$error</div>";?>
+	
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?= $this->render('_form', [

@@ -83,7 +83,13 @@ class CambiosController extends Controller
         $model = $this->findModel($id);
         $model -> PASSWORD_REPEAT = $model -> PASSWORD;
         if ($model->load(Yii::$app->request->post())) {
+            if($model -> USER == ''){
+                 return $this->render('update', [
+                'model' => $model,'error' => "No puede cambiar su nombre de usuario a vacio"
+                ]);
+            }
             $model -> PASSWORD = sha1($model -> PASSWORD);
+            $model -> PASSWORD_REPEAT = sha1($model -> PASSWORD_REPEAT);
             //return $this->redirect(['view', 'id' => $model->ID_DOCENTE]);
         if ($model->save()) {
                 return $this->redirect(['view', 'id' => $model->ID_DOCENTE]);

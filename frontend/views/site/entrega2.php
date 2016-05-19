@@ -17,6 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
     -Ver horarios de una sala determinada. (publico)<br>
      -Horario general (estadisticas), para identificar por colores el estado de asignación en promedio de bloques<br>
     -Importar desde excel.<br>
+    - Consultas sql para selectores dependientes en formulario asignacion temporal<br>
 
     <br>
     Estetica:<br>

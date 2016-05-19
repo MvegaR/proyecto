@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
             //'NOMBRE_DOCENTE',
             //'EMAIL:email',
             'USER',
-            'PASSWORD',
+            //'PASSWORD',
             //'COOKIE',
         ],
     ]) ?>
