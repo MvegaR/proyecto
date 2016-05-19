@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model frontend\models\SolicitudCancelacion */
 
-$this->title = 'Create Solicitud Cancelacion';
+$this->title = 'Crear Solicitud Cancelacion';
 $this->params['breadcrumbs'][] = ['label' => 'Solicitud Cancelacions', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

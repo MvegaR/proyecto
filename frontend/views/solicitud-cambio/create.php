@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model frontend\models\SolicitudCambio */
 
-$this->title = 'Create Solicitud Cambio';
+$this->title = 'Crear Solicitud Cambio';
 $this->params['breadcrumbs'][] = ['label' => 'Solicitud Cambios', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

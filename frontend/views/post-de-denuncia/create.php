@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model frontend\models\PostDeDenuncia */
 
-$this->title = 'Create Post De Denuncia';
+$this->title = 'Crear Post De Denuncia';
 $this->params['breadcrumbs'][] = ['label' => 'Post De Denuncias', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel frontend\models\SolicitudCancelacionSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Solicitud Cancelacions';
+$this->title = 'Solicitudes de Cancelacion';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="solicitud-cancelacion-index">
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Solicitud Cancelacion', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Crear Solicitud Cancelacion', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 <div class= "table-responsive">
     <?= GridView::widget([

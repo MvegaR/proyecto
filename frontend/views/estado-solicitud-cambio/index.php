@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel frontend\models\EstadoSolicitudCambioSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Estado Solicitud Cambios';
+$this->title = 'Estado Solicitud de Cambios';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="estado-solicitud-cambio-index">
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Estado Solicitud Cambio', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Crear Estado Solicitud Cambio', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 <div class= "table-responsive">
     <?= GridView::widget([

@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model frontend\models\EstadoSolicitudCambio */
 
-$this->title = 'Create Estado Solicitud Cambio';
+$this->title = 'Crear Estado Solicitud Cambio';
 $this->params['breadcrumbs'][] = ['label' => 'Estado Solicitud Cambios', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

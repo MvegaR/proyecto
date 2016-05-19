@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Bloque */
 
-$this->title = 'Create Bloque';
+$this->title = 'Crear Bloque';
 $this->params['breadcrumbs'][] = ['label' => 'Bloques', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

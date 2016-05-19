@@ -21,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
 
-        <?= Html::a('Ingresar Docente', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Crear Docente', ['create'], ['class' => 'btn btn-success']) ?>
 
     </p>
     <div class= "table-responsive">

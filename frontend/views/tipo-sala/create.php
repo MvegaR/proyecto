@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model frontend\models\TipoSala */
 
-$this->title = 'Create Tipo Sala';
+$this->title = 'Crear Tipo Sala';
 $this->params['breadcrumbs'][] = ['label' => 'Tipo Salas', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

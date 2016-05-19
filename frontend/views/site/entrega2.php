@@ -25,8 +25,10 @@ $this->params['breadcrumbs'][] = $this->title;
     -Cambiar a español texto vistas: view.php, index.php, update.php y _form.php<br>
     -Migas de pan (breadcrumbs) y que diferencie admin de docente y invitado<br>
     -Link en el menu lateral (solo cosas faltantes)<br>
-
+ <div class="embed-responsive embed-responsive-16by9">
     <br>
+    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/OLfz7Iy_y84" frameborder="0" allowfullscreen></iframe>
+</div>
 
     <p><?= Html::a('RFW02 Importación de datos (Marcos) (PENDIENTE)', [''], ['class'=>'']) ?></p>
     <p><?= Html::a('RFW09 Generación de usuario y contraseña docentes (Pablo)', ['docente/create'], ['class'=>'']) ?></p>

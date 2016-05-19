@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model frontend\models\SolicitudAsignacionTemporal */
 
-$this->title = 'Create Solicitud Asignacion Temporal';
+$this->title = 'Crear Solicitud Asignacion Temporal';
 $this->params['breadcrumbs'][] = ['label' => 'Solicitud Asignacion Temporals', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel frontend\models\EstadoSolicitudCancelacionSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Estado Solicitud Cancelacions';
+$this->title = 'Estados Solicitud Cancelacion';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="estado-solicitud-cancelacion-index">

@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel frontend\models\SolicitudAsignacionTemporalSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Solicitud Asignacion Temporals';
+$this->title = 'Solicitudes de Asignacion Temporal';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="solicitud-asignacion-temporal-index">
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Solicitud Asignacion Temporal', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Crear Solicitud Asignacion Temporal', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([

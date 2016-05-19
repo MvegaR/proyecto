@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel frontend\models\TipoDenunciaSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Tipo Denuncias';
+$this->title = 'Tipos de Denuncia';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="tipo-denuncia-index">
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Tipo Denuncia', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Crear Tipo Denuncia', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 <div class= "table-responsive">
     <?= GridView::widget([

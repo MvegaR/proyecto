@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model frontend\models\TiempoInicio */
 
-$this->title = 'Create Tiempo Inicio';
-$this->params['breadcrumbs'][] = ['label' => 'Tiempo Inicios', 'url' => ['index']];
+$this->title = 'Crear Tiempo Inicio';
+$this->params['breadcrumbs'][] = ['label' => 'Tiempos Iniciales', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="tiempo-inicio-create">

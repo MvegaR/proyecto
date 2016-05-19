@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel frontend\models\TipoSalaSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Tipo Salas';
+$this->title = 'Tipos de Salas';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="tipo-sala-index">
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Tipo Sala', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Crear Tipo Sala', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 <div class= "table-responsive">
     <?= GridView::widget([

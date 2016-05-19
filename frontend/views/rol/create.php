@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Rol */
 
-$this->title = 'Create Rol';
+$this->title = 'Crear Rol';
 $this->params['breadcrumbs'][] = ['label' => 'Rols', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

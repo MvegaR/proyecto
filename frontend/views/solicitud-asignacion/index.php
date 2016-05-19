@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel frontend\models\SolicitudAsignacionSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Solicitud asignación de sala';
+$this->title = 'Solicitudes asignación de sala';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="solicitud-asignacion-index">
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Solicitud Asignacion', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Crear Solicitud Asignacion', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 <div class= "table-responsive">
     <?= GridView::widget([

@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model frontend\models\TipoDenuncia */
 
-$this->title = 'Create Tipo Denuncia';
+$this->title = 'Crear Tipo Denuncia';
 $this->params['breadcrumbs'][] = ['label' => 'Tipo Denuncias', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

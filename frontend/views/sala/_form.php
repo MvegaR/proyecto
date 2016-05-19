@@ -30,7 +30,7 @@ use frontend\models\Edificio;
     <?= $form->field($model, 'CAPACIDAD_SALA')->textInput(['type' => 'number', 'min' => 1,'placeholder' => "Ingrese capacidad de personas en sala"]) ;?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? 'Crear' : 'Modificar', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

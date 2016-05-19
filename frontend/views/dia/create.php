@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Dia */
 
-$this->title = 'Create Dia';
+$this->title = 'Crear Dia';
 $this->params['breadcrumbs'][] = ['label' => 'Dias', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
