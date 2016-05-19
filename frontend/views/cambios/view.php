@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model frontend\models\Docente */
 
 $this->title = $model->ID_DOCENTE;
-$this->params['breadcrumbs'][] = ['label' => 'Docentes', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Cambio de usuario o contraseña', 'url' => ['update']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="docente-view">
