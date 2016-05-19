@@ -6,7 +6,6 @@ use yii\helpers\Html;
 /* @var $model frontend\models\Docente */
 
 $this->title = 'Cambiar usuario o contraseña';
-$this->params['breadcrumbs'][] = ['label' => 'Docentes', 'url' => ['index']];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="docente-update">
