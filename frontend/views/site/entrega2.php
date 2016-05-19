@@ -10,25 +10,25 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="site-about">
     <h1><?= Html::encode($this->title) ?></h1>
 
-        Falta: <br>
-    -facutad -> Departamento -> carrera<br>
--Secciones no tiene horas asignaturas si.<br>
--Solicitud sala por una vez. (certamen, recuperación).<br>
-
-
-    -Importar desde excel.<br>
-    -formularios de cambio de usuario y contraseña para el usuario autentificado<br>
-    -Cambiar valores de identificadores foraneos a valores si es que tienen en cada index.php y view.php. (ver ejemplo vista docente index.php, le falta el view.php) -> https://www.youtube.com/watch?v=OLfz7Iy_y84<br>
-    -Migas de pan (breadcrumbs) (para conectar los index.php con los view.php, create.php, update.php con un link para regresar)<br>
-    -Ver horario usuario autentificado (docente)<br>
+    Falta: <br>
+    <br>
+    Funcionalidad: <br>
+     -Ver horario usuario autentificado (docente)<br>
     -Ver horarios de una sala determinada. (publico)<br>
+     -Horario general (estadisticas), para identificar por colores el estado de asignación en promedio de bloques<br>
+    -Importar desde excel.<br>
+
+    <br>
+    Estetica:<br>
+    -Cambiar numeros ID por su Nombre, en todos los index.php y view.php siguiento el video (ejemplo ya hecho index.php de docente) -> https://www.youtube.com/watch?v=OLfz7Iy_y84<br>
+    -Cambiar a español texto vistas: view.php, index.php, update.php y _form.php<br>
+    -Migas de pan (breadcrumbs) y que diferencie admin de docente y invitado<br>
     -Link en el menu lateral (solo cosas faltantes)<br>
-    -Horario general (estadisticas), para identificar por colores el estado de asignación en promedio de bloques<br>
+
     <br>
 
     <p><?= Html::a('RFW02 Importación de datos (Marcos) (PENDIENTE)', [''], ['class'=>'']) ?></p>
     <p><?= Html::a('RFW09 Generación de usuario y contraseña docentes (Pablo)', ['docente/create'], ['class'=>'']) ?></p>
-        -Formulario de cambio de contraseña y nombre de usuario. <br><br>
     <p><?= Html::a('RFW10 Administración de asignaturas (Raul)', ['asignatura/index'], ['class'=>'']) ?></p>
     <p><?= Html::a('RFW12 CTRL+Z (Raul)', ['solicitud-cancelacion/create'], ['class'=>'']) ?></p>
     <p><?= Html::a('RFW13 Cambio de sala (Raul)', ['solicitud-cambio/create'], ['class'=>'']) ?></p>

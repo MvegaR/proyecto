@@ -3,10 +3,12 @@
 use frontend\models\Asignatura; 
 use frontend\models\Bloque; 
 use frontend\models\Carrera;
+use frontend\models\Departamento;
 use frontend\models\Dia; 
 use frontend\models\Docente; 
 use frontend\models\Edificio;
 use frontend\models\EstadoSolicitudAsignacion; 
+use frontend\models\EstadoSolicitudAsignacionTemporal; 
 use frontend\models\EstadoSolicitudCambio; 
 use frontend\models\EstadoSolicitudCancelacion;
 use frontend\models\EstadoSolicitudDenuncia; 
@@ -15,7 +17,8 @@ use frontend\models\PostDeDenuncia;
 use frontend\models\Rol; 
 use frontend\models\Sala; 
 use frontend\models\Seccion;
-use frontend\models\SolicitudAsignacion; 
+use frontend\models\SolicitudAsignacion;
+use frontend\models\SolicitudAsignacionTemporal;  
 use frontend\models\SolicitudCambio; 
 use frontend\models\SolicitudCancelacion;
 use frontend\models\TiempoInicio; 
@@ -30,10 +33,12 @@ use frontend\models\TipoSala;
         'asignatura' => (new Asignatura) -> find() -> all(), 
         'bloque' => (new Bloque) -> find() -> all(), 
         'carrera' => (new Carrera) -> find() -> all(),
+        'departamento' => (new Departamento) -> find() -> all(),
         'dia' => (new Dia) -> find() -> all(), 
         'docente' => (new Docente) -> find() -> all(), 
         'edificio' => (new Edificio) -> find() -> all(),
         'estado_solicitud_asignacion' => (new EstadoSolicitudAsignacion) -> find() -> all(), 
+        'estado_solicitud_temporal' => (new EstadoSolicitudAsignacionTemporal) -> find() -> all(), 
         'estado_solicitud_cambio' => (new EstadoSolicitudCambio) -> find() -> all(), 
         'estado_solicitud_cancelacion' => (new EstadoSolicitudCancelacion) -> find() -> all(),
         'estado_solicitud_denuncia' => (new EstadoSolicitudDenuncia) -> find() -> all(), 
@@ -43,6 +48,7 @@ use frontend\models\TipoSala;
         'sala' => (new Sala) -> find() -> all(), 
         'seccion' => (new Seccion) -> find() -> all(),
         'solicitud_asignacion' => (new SolicitudAsignacion) -> find() -> all(), 
+        'solicitud_asignacion_temporal' => (new SolicitudAsignacionTemporal) -> find() -> all(), 
         'solicitud_cambio' => (new SolicitudCambio) -> find() -> all(), 
         'solicitud_cancelacion' => (new SolicitudCancelacion) -> find() -> all(),
         'tiempo_inicio' => (new TiempoInicio) -> find() -> all(), 
@@ -71,10 +77,12 @@ use frontend\models\TipoSala;
         'asignatura' => (new Asignatura) -> find() -> all(), 
         'bloque' => (new Bloque) -> find() -> all(), 
         'carrera' => (new Carrera) -> find() -> all(),
+        'departamento' => (new Departamento) -> find() -> all(),
         'dia' => (new Dia) -> find() -> all(), 
         'docente' => (new Docente) -> find() -> all(), 
         'edificio' => (new Edificio) -> find() -> all(),
         'estado_solicitud_asignacion' => (new EstadoSolicitudAsignacion) -> find() -> all(), 
+        'estado_solicitud_asignacion_temporal' => (new EstadoSolicitudAsignacionTemporal) -> find() -> all(), 
         'estado_solicitud_cambio' => (new EstadoSolicitudCambio) -> find() -> all(), 
         'estado_solicitud_cancelacion' => (new EstadoSolicitudCancelacion) -> find() -> all(),
         'estado_solicitud_denuncia' => (new EstadoSolicitudDenuncia) -> find() -> all(), 
@@ -84,6 +92,7 @@ use frontend\models\TipoSala;
         'sala' => (new Sala) -> find() -> all(), 
         'seccion' => (new Seccion) -> find() -> all(),
         'solicitud_asignacion' => (new SolicitudAsignacion) -> find() -> all(), 
+        'solicitud_asignacion_temporal' => (new SolicitudAsignacionTemporal) -> find() -> all(), 
         'solicitud_cambio' => (new SolicitudCambio) -> find() -> all(), 
         'solicitud_cancelacion' => (new SolicitudCancelacion) -> find() -> all(),
         'tiempo_inicio' => (new TiempoInicio) -> find() -> all(), 

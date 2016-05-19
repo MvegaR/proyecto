@@ -21,9 +21,9 @@ use himiklab\yii2\recaptcha\ReCaptcha;
     if(!$model->isNewRecord)
         echo $form->field($model, 'ID_ESTADO_SOLICITUD')->dropDownList(
         ArrayHelper::map(TipoSolicitudAsignacion::find()->all(),'ID_ESTADO_SOLICITUD','NOMBRE_ESTADO'),
-        ['prompt'=>'Seleccione estado'] )->label('Estado'); ?>
+        ['prompt'=>'Seleccione estado'] )->label('Estado'); 
+    ?>
    
-
     <?php 
     $idDocente = null;
     if(!Yii::$app -> user -> isGuest){

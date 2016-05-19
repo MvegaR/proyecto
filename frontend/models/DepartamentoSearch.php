@@ -5,12 +5,12 @@ namespace frontend\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use frontend\models\Seccion;
+use frontend\models\Departamento;
 
 /**
- * SeccionSearch represents the model behind the search form about `frontend\models\Seccion`.
+ * DepartamentoSearch represents the model behind the search form about `frontend\models\Departamento`.
  */
-class SeccionSearch extends Seccion
+class DepartamentoSearch extends Departamento
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ class SeccionSearch extends Seccion
     public function rules()
     {
         return [
-            [['ID_SECCION', 'ID_DOCENTE', 'ID_ASIGNATURA'], 'safe'],
-            [['CUPO'], 'integer'],
+            [['ID_DEPARTAMENTO'], 'integer'],
+            [['NOMBRE_DEPARTAMENTO'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class SeccionSearch extends Seccion
      */
     public function search($params)
     {
-        $query = Seccion::find();
+        $query = Departamento::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -56,12 +56,10 @@ class SeccionSearch extends Seccion
         }
 
         $query->andFilterWhere([
-            'CUPO' => $this->CUPO,
+            'ID_DEPARTAMENTO' => $this->ID_DEPARTAMENTO,
         ]);
 
-        $query->andFilterWhere(['like', 'ID_SECCION', $this->ID_SECCION])
-            ->andFilterWhere(['like', 'ID_DOCENTE', $this->ID_DOCENTE])
-            ->andFilterWhere(['like', 'ID_ASIGNATURA', $this->ID_ASIGNATURA]);
+        $query->andFilterWhere(['like', 'NOMBRE_DEPARTAMENTO', $this->NOMBRE_DEPARTAMENTO]);
 
         return $dataProvider;
     }

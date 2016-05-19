@@ -19,7 +19,7 @@ class AsignaturaSearch extends Asignatura
     {
         return [
             [['ID_ASIGNATURA', 'ID_CARRERA', 'NOMBRE_ASIGNATURA'], 'safe'],
-            [['ANIO', 'SEMESTRE'], 'integer'],
+            [['ANIO', 'SEMESTRE', 'HORAS_TEO', 'HORAS_LAB_COM', 'HORAS_AYUDANTIA', 'HORAS_LAB_FISICA', 'HORAS_LAB_QUIMICA', 'HORAS_LAB_ROBOTICA', 'HORAS_LAB_MECANICA', 'HORAS_TALLER_ARQUITECTURA', 'HORAS_TALLER_MADERA', 'HORAS_GYM', 'HORAS_AUDITORIO'], 'integer'],
         ];
     }
 
@@ -58,6 +58,17 @@ class AsignaturaSearch extends Asignatura
         $query->andFilterWhere([
             'ANIO' => $this->ANIO,
             'SEMESTRE' => $this->SEMESTRE,
+            'HORAS_TEO' => $this->HORAS_TEO,
+            'HORAS_LAB_COM' => $this->HORAS_LAB_COM,
+            'HORAS_AYUDANTIA' => $this->HORAS_AYUDANTIA,
+            'HORAS_LAB_FISICA' => $this->HORAS_LAB_FISICA,
+            'HORAS_LAB_QUIMICA' => $this->HORAS_LAB_QUIMICA,
+            'HORAS_LAB_ROBOTICA' => $this->HORAS_LAB_ROBOTICA,
+            'HORAS_LAB_MECANICA' => $this->HORAS_LAB_MECANICA,
+            'HORAS_TALLER_ARQUITECTURA' => $this->HORAS_TALLER_ARQUITECTURA,
+            'HORAS_TALLER_MADERA' => $this->HORAS_TALLER_MADERA,
+            'HORAS_GYM' => $this->HORAS_GYM,
+            'HORAS_AUDITORIO' => $this->HORAS_AUDITORIO,
         ]);
 
         $query->andFilterWhere(['like', 'ID_ASIGNATURA', $this->ID_ASIGNATURA])

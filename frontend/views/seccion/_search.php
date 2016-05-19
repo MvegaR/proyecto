@@ -23,12 +23,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'CUPO') ?>
 
-    <?= $form->field($model, 'HORAS_TEO') ?>
-
-    <?php // echo $form->field($model, 'HORAS_LAB') ?>
-
-    <?php // echo $form->field($model, 'HORAS_AYUDANTIA') ?>
-
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
         <?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>

@@ -5,12 +5,12 @@ namespace frontend\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use frontend\models\Seccion;
+use frontend\models\EstadoSolicitudAsignacionTemporal;
 
 /**
- * SeccionSearch represents the model behind the search form about `frontend\models\Seccion`.
+ * EstadoSolicitudAsignacionTemporalSearch represents the model behind the search form about `frontend\models\EstadoSolicitudAsignacionTemporal`.
  */
-class SeccionSearch extends Seccion
+class EstadoSolicitudAsignacionTemporalSearch extends EstadoSolicitudAsignacionTemporal
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ class SeccionSearch extends Seccion
     public function rules()
     {
         return [
-            [['ID_SECCION', 'ID_DOCENTE', 'ID_ASIGNATURA'], 'safe'],
-            [['CUPO'], 'integer'],
+            [['ID_ESTADO_ASIGNACION_TEMPORAL'], 'integer'],
+            [['NOMBRE_ESTADO_ASIGNACION_TEMPORAL'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class SeccionSearch extends Seccion
      */
     public function search($params)
     {
-        $query = Seccion::find();
+        $query = EstadoSolicitudAsignacionTemporal::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -56,12 +56,10 @@ class SeccionSearch extends Seccion
         }
 
         $query->andFilterWhere([
-            'CUPO' => $this->CUPO,
+            'ID_ESTADO_ASIGNACION_TEMPORAL' => $this->ID_ESTADO_ASIGNACION_TEMPORAL,
         ]);
 
-        $query->andFilterWhere(['like', 'ID_SECCION', $this->ID_SECCION])
-            ->andFilterWhere(['like', 'ID_DOCENTE', $this->ID_DOCENTE])
-            ->andFilterWhere(['like', 'ID_ASIGNATURA', $this->ID_ASIGNATURA]);
+        $query->andFilterWhere(['like', 'NOMBRE_ESTADO_ASIGNACION_TEMPORAL', $this->NOMBRE_ESTADO_ASIGNACION_TEMPORAL]);
 
         return $dataProvider;
     }
