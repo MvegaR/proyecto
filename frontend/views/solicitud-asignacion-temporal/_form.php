@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use frontend\models\Sala;
+use frontend\models\TipoSala;
 use yii\helpers\ArrayHelper;
 /* @var $this yii\web\View */
 /* @var $model frontend\models\SolicitudAsignacionTemporal */
@@ -16,11 +17,15 @@ use yii\helpers\ArrayHelper;
     <?php if($model->isNewRecord ) echo $form->field($model, 'ID_ESTADO_ASIGNACION_TEMPORAL')->hiddenInput(['value' => 3])->label(false); ?>
 
     <?php if($model->isNewRecord) echo $form->field($model, 'DOCENTE_ASIGNACION_TEMPORAL')->hiddenInput(['value' => Yii::$app->user->identity -> ID_DOCENTE])->label(false); ?>
-    <?= $form->field($model, 'CAPACIDAD_ASIGNACION_TEMPORAL')->textInput(['type' => 'number', 'min' => 1, 'onchange' => '$.post("index.php?r=sala/listscap&id='.'"+$(this).val(), function(data){
-           $("select#solicitudasignaciontemporal-sala_asignacion_temporal").html(data);
-       });']) ?>
+        
+    <?= $form->field($model, 'CAPACIDAD_ASIGNACION_TEMPORAL')->textInput(['type' => 'number', 'min' => 1]) ?>
 
-    <?= $form->field($model, 'TIPO_SALA_ASIGNACION_TEMPORAL')->textInput() ?>
+    <?= $form->field($model, 'TIPO_SALA_ASIGNACION_TEMPORAL')->dropDownList(ArrayHelper::map(TipoSala::find() -> all(),'ID_TIPO_SALA','NOMBRE_TIPO'),
+    ['prompt' => 'Seleccione tipo sala', 'onchange' => '$.post(
+        "index.php?r=sala/listscaptipo&tipo='.'"+$(this).val()+"&cap='.'"+$("input#solicitudasignaciontemporal-capacidad_asignacion_temporal").val()
+    , function(data){
+             $("select#solicitudasignaciontemporal-sala_asignacion_temporal").html(data);
+        });']) ?>
 
     <?= $form->field($model, 'SALA_ASIGNACION_TEMPORAL')->dropDownList(ArrayHelper::map(Sala:: find() -> all(), 'ID_SALA', 'ID_SALA'), ['prompt' => 'Seleccione una sala.']) ?>
 

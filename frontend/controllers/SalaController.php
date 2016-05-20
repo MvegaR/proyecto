@@ -175,4 +175,9 @@ class SalaController extends Controller
          echo "<option value=>Sin salas</option>";
      }
  }
+ //tipo es el id de tipo de sala y cap es la capacidad de la sala minima.
+ public function actionListscaptipo($tipo, $cap){
+    //aqui falta un codigo bonito... :3
+ }
+
 }
