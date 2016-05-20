@@ -3,16 +3,16 @@
 namespace frontend\controllers;
 
 use Yii;
-use frontend\models\EstadoSolicitudAsignacionTemporal;
-use frontend\models\EstadoSolicitudAsignacionTemporalSearch;
+use frontend\models\EstadoAsignacionTemporal;
+use frontend\models\EstadoAsignacionTemporalSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * EstadoSolicitudAsignacionTemporalController implements the CRUD actions for EstadoSolicitudAsignacionTemporal model.
+ * EstadoAsignacionTemporalController implements the CRUD actions for EstadoAsignacionTemporal model.
  */
-class EstadoSolicitudAsignacionTemporalController extends Controller
+class EstadoAsignacionTemporalController extends Controller
 {
     public function behaviors()
     {
@@ -27,12 +27,12 @@ class EstadoSolicitudAsignacionTemporalController extends Controller
     }
 
     /**
-     * Lists all EstadoSolicitudAsignacionTemporal models.
+     * Lists all EstadoAsignacionTemporal models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new EstadoSolicitudAsignacionTemporalSearch();
+        $searchModel = new EstadoAsignacionTemporalSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -42,7 +42,7 @@ class EstadoSolicitudAsignacionTemporalController extends Controller
     }
 
     /**
-     * Displays a single EstadoSolicitudAsignacionTemporal model.
+     * Displays a single EstadoAsignacionTemporal model.
      * @param integer $id
      * @return mixed
      */
@@ -54,13 +54,13 @@ class EstadoSolicitudAsignacionTemporalController extends Controller
     }
 
     /**
-     * Creates a new EstadoSolicitudAsignacionTemporal model.
+     * Creates a new EstadoAsignacionTemporal model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new EstadoSolicitudAsignacionTemporal();
+        $model = new EstadoAsignacionTemporal();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->ID_ESTADO_ASIGNACION_TEMPORAL]);
@@ -72,7 +72,7 @@ class EstadoSolicitudAsignacionTemporalController extends Controller
     }
 
     /**
-     * Updates an existing EstadoSolicitudAsignacionTemporal model.
+     * Updates an existing EstadoAsignacionTemporal model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -91,7 +91,7 @@ class EstadoSolicitudAsignacionTemporalController extends Controller
     }
 
     /**
-     * Deletes an existing EstadoSolicitudAsignacionTemporal model.
+     * Deletes an existing EstadoAsignacionTemporal model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -104,15 +104,15 @@ class EstadoSolicitudAsignacionTemporalController extends Controller
     }
 
     /**
-     * Finds the EstadoSolicitudAsignacionTemporal model based on its primary key value.
+     * Finds the EstadoAsignacionTemporal model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return EstadoSolicitudAsignacionTemporal the loaded model
+     * @return EstadoAsignacionTemporal the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = EstadoSolicitudAsignacionTemporal::findOne($id)) !== null) {
+        if (($model = EstadoAsignacionTemporal::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

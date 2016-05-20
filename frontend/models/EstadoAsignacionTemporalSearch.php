@@ -5,12 +5,12 @@ namespace frontend\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use frontend\models\EstadoSolicitudAsignacionTemporal;
+use frontend\models\EstadoAsignacionTemporal;
 
 /**
- * EstadoSolicitudAsignacionTemporalSearch represents the model behind the search form about `frontend\models\EstadoSolicitudAsignacionTemporal`.
+ * EstadoAsignacionTemporalSearch represents the model behind the search form about `frontend\models\EstadoAsignacionTemporal`.
  */
-class EstadoSolicitudAsignacionTemporalSearch extends EstadoSolicitudAsignacionTemporal
+class EstadoAsignacionTemporalSearch extends EstadoAsignacionTemporal
 {
     /**
      * @inheritdoc
@@ -41,7 +41,7 @@ class EstadoSolicitudAsignacionTemporalSearch extends EstadoSolicitudAsignacionT
      */
     public function search($params)
     {
-        $query = EstadoSolicitudAsignacionTemporal::find();
+        $query = EstadoAsignacionTemporal::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

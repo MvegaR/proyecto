@@ -8,7 +8,7 @@ use frontend\models\Dia;
 use frontend\models\Docente; 
 use frontend\models\Edificio;
 use frontend\models\EstadoSolicitudAsignacion; 
-use frontend\models\EstadoSolicitudAsignacionTemporal; 
+use frontend\models\EstadoAsignacionTemporal; 
 use frontend\models\EstadoSolicitudCambio; 
 use frontend\models\EstadoSolicitudCancelacion;
 use frontend\models\EstadoSolicitudDenuncia; 
@@ -38,7 +38,7 @@ use frontend\models\TipoSala;
         'docente' => (new Docente) -> find() -> all(), 
         'edificio' => (new Edificio) -> find() -> all(),
         'estado_solicitud_asignacion' => (new EstadoSolicitudAsignacion) -> find() -> all(), 
-        'estado_solicitud_temporal' => (new EstadoSolicitudAsignacionTemporal) -> find() -> all(), 
+        'estado_solicitud_temporal' => (new EstadoAsignacionTemporal) -> find() -> all(), 
         'estado_solicitud_cambio' => (new EstadoSolicitudCambio) -> find() -> all(), 
         'estado_solicitud_cancelacion' => (new EstadoSolicitudCancelacion) -> find() -> all(),
         'estado_solicitud_denuncia' => (new EstadoSolicitudDenuncia) -> find() -> all(), 

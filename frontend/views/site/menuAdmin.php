@@ -46,7 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			<div class="panel panel-default col-xs-12">
 				<h2 class="">Módulo de estados y tipos</h2>
 				<p><a class="btn btn-lg btn-default col-xs-6" href="index.php?r=estado-solicitud-asignacion/index">Estados asignaciones</a></p>
-				<p><a class="btn btn-lg btn-default col-xs-6" href="index.php?r=estado-solicitud-asignacion/index">Estados asignaciones temporales</a></p>
+				<p><a class="btn btn-lg btn-default col-xs-6" href="index.php?r=estado-asignacion-temporal/index">Estados asignaciones temporales</a></p>
 				<p><a class="btn btn-lg btn-default col-xs-6" href="index.php?r=estado-solicitud-cambio/index">Estados cambios</a></p>
 				<p><a class="btn btn-lg btn-default col-xs-6" href="index.php?r=estado-solicitud-cancelacion/index">Estado cancelación</a></p>
 				<p><a class="btn btn-lg btn-default col-xs-6" href="index.php?r=tipo-denuncia/index">Tipos de denuncia</a></p>
