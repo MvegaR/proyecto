@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model frontend\models\TipoDenuncia */
 
-$this->title = 'Update Tipo Denuncia: ' . ' ' . $model->ID_TIPO_DENUNCIA;
+$this->title = 'Modificar Tipo Denuncia: ' . ' ' . $model->ID_TIPO_DENUNCIA;
 $this->params['breadcrumbs'][] = ['label' => 'Tipo Denuncias', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->ID_TIPO_DENUNCIA, 'url' => ['view', 'id' => $model->ID_TIPO_DENUNCIA]];
 $this->params['breadcrumbs'][] = 'Update';

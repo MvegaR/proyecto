@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use frontend\models\Sala;
-
+use yii\helpers\ArrayHelper;
 /* @var $this yii\web\View */
 /* @var $model frontend\models\SolicitudAsignacionTemporal */
 /* @var $form yii\widgets\ActiveForm */
@@ -20,9 +20,9 @@ use frontend\models\Sala;
            $("select#solicitudasignaciontemporal-sala_asignacion_temporal").html(data);
        });']) ?>
 
-    <!--Tipo sala-->
+    <?= $form->field($model, 'TIPO_SALA_ASIGNACION_TEMPORAL')->textInput() ?>
 
-    <?= $form->field($model, 'SALA_ASIGNACION_TEMPORAL')->dropDownList(arrayHelper::map(Salas:: find() -> all(), 'ID_SALA', 'ID_SALA')), ['prompt' => 'Seleccione una sala.']) ?>
+    <?= $form->field($model, 'SALA_ASIGNACION_TEMPORAL')->dropDownList(ArrayHelper::map(Sala:: find() -> all(), 'ID_SALA', 'ID_SALA'), ['prompt' => 'Seleccione una sala.']) ?>
 
     <?= $form->field($model, 'FECHA_ASIGNACION_TEMPORAL')->textInput() ?>
 

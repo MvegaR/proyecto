@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model frontend\models\EstadoSolicitudAsignacion */
 
-$this->title = 'Update Estado Solicitud Asignacion: ' . ' ' . $model->ID_ESTADO_SOLICITUD;
+$this->title = 'Modificar Estado Solicitud Asignacion: ' . ' ' . $model->ID_ESTADO_SOLICITUD;
 $this->params['breadcrumbs'][] = ['label' => 'Estado Solicitud Asignacions', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->ID_ESTADO_SOLICITUD, 'url' => ['view', 'id' => $model->ID_ESTADO_SOLICITUD]];
 $this->params['breadcrumbs'][] = 'Update';

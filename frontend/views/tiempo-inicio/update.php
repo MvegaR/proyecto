@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model frontend\models\TiempoInicio */
 
-$this->title = 'Update Tiempo Inicio: ' . ' ' . $model->TIEMPO;
+$this->title = 'Modificar Tiempo Inicio: ' . ' ' . $model->TIEMPO;
 $this->params['breadcrumbs'][] = ['label' => 'Tiempo Inicios', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->TIEMPO, 'url' => ['view', 'id' => $model->TIEMPO]];
 $this->params['breadcrumbs'][] = 'Update';

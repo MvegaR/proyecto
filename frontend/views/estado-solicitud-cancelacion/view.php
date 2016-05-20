@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model frontend\models\EstadoSolicitudCancelacion */
 
 $this->title = $model->ID_ESTADO_CANCELACION;
-$this->params['breadcrumbs'][] = ['label' => 'Estado Solicitud Cancelacions', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Estado Solicitud Cancelación', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="estado-solicitud-cancelacion-view">

@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::a('Crear Solicitud Asignacion Temporal', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-
+<div class= "table-responsive">
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -28,14 +28,15 @@ $this->params['breadcrumbs'][] = $this->title;
             'ID_ASIGNACION_TEMPORAL',
             'ID_ESTADO_ASIGNACION_TEMPORAL',
             'DOCENTE_ASIGNACION_TEMPORAL',
+            'TIPO_SALA_ASIGNACION_TEMPORAL',
             'CAPACIDAD_ASIGNACION_TEMPORAL',
             'SALA_ASIGNACION_TEMPORAL',
-            // 'FECHA_ASIGNACION_TEMPORAL',
-            // 'CANTIDAD_BLOQUES_ASIGNACION_TEMPORAL',
-            // 'INICIO_BLOQUE_ASIGNACION_TEMPORAL',
+            'FECHA_ASIGNACION_TEMPORAL',
+            'CANTIDAD_BLOQUES_ASIGNACION_TEMPORAL',
+            'INICIO_BLOQUE_ASIGNACION_TEMPORAL',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
-
+</div>
 </div>

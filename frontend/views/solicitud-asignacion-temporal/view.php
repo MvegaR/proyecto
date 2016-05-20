@@ -32,6 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'ID_ESTADO_ASIGNACION_TEMPORAL',
             'DOCENTE_ASIGNACION_TEMPORAL',
             'CAPACIDAD_ASIGNACION_TEMPORAL',
+            'TIPO_SALA_ASIGNACION_TEMPORAL',
             'SALA_ASIGNACION_TEMPORAL',
             'FECHA_ASIGNACION_TEMPORAL',
             'CANTIDAD_BLOQUES_ASIGNACION_TEMPORAL',
