@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use kartik\export\ExportMenu;
+use yii\helpers\ArrayHelper;
+use frontend\models\Facultad;
 
 /* @var $this yii\web\View */
 /* @var $searchModel frontend\models\CarreraSearch */
@@ -27,7 +29,14 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'ID_CARRERA',
-            'ID_FACULTAD',
+            //'ID_FACULTAD'
+            [
+                'attribute' => 'ID_FACULTAD',
+                'value' => 'iDFACULTAD.NOMBRE_FACULTAD',
+                'filter' => //funcionalidad del buscador.
+                Html::activeDropDownList($searchModel, 'ID_FACULTAD', 
+                    ArrayHelper::map(Facultad::find()->asArray()->all(),'ID_FACULTAD', 'NOMBRE_FACULTAD'), ['class' => 'form-control','prompt' => 'Seleccione un facultad']),//atributos html del selector
+            ],
             'NOMBRE_CARRERA',
 
             ['class' => 'yii\grid\ActionColumn'],

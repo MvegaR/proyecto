@@ -3,6 +3,9 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use kartik\export\ExportMenu;
+use yii\helpers\ArrayHelper;
+use frontend\models\TipoSala;
+
 /* @var $this yii\web\View */
 /* @var $searchModel frontend\models\PostSalafrontend */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -26,7 +29,14 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'ID_SALA',
-            'ID_TIPO_SALA',
+            //'ID_TIPO_SALA'
+            [
+                'attribute' => 'ID_TIPO_SALA',
+                'value' => 'iDTIPOSALA.NOMBRE_TIPO',  
+                'filter' => //funcionalidad del buscador.
+                Html::activeDropDownList($searchModel, 'ID_TIPO_SALA', 
+                    ArrayHelper::map(TipoSala::find()->asArray()->all(),'ID_TIPO_SALA', 'NOMBRE_TIPO'), ['class' => 'form-control','prompt' => 'Seleccione un tipo de sala']),//atributos html del selector
+            ],
             'ID_EDIFICIO',
             'CAPACIDAD_SALA',
 

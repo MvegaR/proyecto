@@ -2,6 +2,10 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use kartik\export\ExportMenu;
+use yii\helpers\ArrayHelper;
+use frontend\models\Departamento;
+use frontend\models\Facultad;
 
 /* @var $this yii\web\View */
 /* @var $searchModel frontend\models\FacultadSearch */
@@ -26,7 +30,13 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'ID_FACULTAD',
-            'ID_DEPARTAMENTO',
+            [
+                'attribute' => 'ID_DEPARTAMENTO',
+                'value' => 'iDDEPARTAMENTO.NOMBRE_DEPARTAMENTO',  
+                'filter' => //funcionalidad del buscador.
+                Html::activeDropDownList($searchModel, 'ID_DEPARTAMENTO', 
+                    ArrayHelper::map(Departamento::find()->asArray()->all(),'ID_DEPARTAMENTO', 'NOMBRE_DEPARTAMENTO'), ['class' => 'form-control','prompt' => 'Seleccione un departamento']),//atributos html del selector
+            ],
             'NOMBRE_FACULTAD',
 
             ['class' => 'yii\grid\ActionColumn'],
