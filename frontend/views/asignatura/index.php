@@ -20,10 +20,10 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Crear Asignatura', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <div class= "table-responsive">
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
+        <?= GridView::widget([
+            'dataProvider' => $dataProvider,
+            'filterModel' => $searchModel,
+            'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
             'ID_ASIGNATURA',
@@ -44,27 +44,38 @@ $this->params['breadcrumbs'][] = $this->title;
             'HORAS_AUDITORIO', 
 
             ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
-</div>
-    <?php
-echo "Exportar, seleccione columnas y formato: ";
-$gridColumns = [
-    
-    'ID_ASIGNATURA',
-    'ID_CARRERA',
-    'NOMBRE_ASIGNATURA',
-    'SEMESTRE',
+            ],
+            ]); ?>
+        </div>
+        <?php
+        echo "Exportar, seleccione columnas y formato: ";
+        $gridColumns = [
+        
+        'ID_ASIGNATURA',
+        'ID_CARRERA',
+        'NOMBRE_ASIGNATURA',
+        'SEMESTRE',            
+        'HORAS_TEO', 
+        'HORAS_LAB_COM', 
+        'HORAS_AYUDANTIA', 
+        'HORAS_LAB_FISICA', 
+        'HORAS_LAB_QUIMICA', 
+        'HORAS_LAB_ROBOTICA', 
+        'HORAS_LAB_MECANICA', 
+        'HORAS_TALLER_ARQUITECTURA', 
+        'HORAS_TALLER_MADERA', 
+        'HORAS_GYM', 
+        'HORAS_AUDITORIO', 
 
-];
+        ];
 
 // Renders a export dropdown menu
-echo ExportMenu::widget([
-    'dataProvider' => $dataProvider,
-    'columns' => $gridColumns,
-    'target' => '_self'
-]);
+        echo ExportMenu::widget([
+            'dataProvider' => $dataProvider,
+            'columns' => $gridColumns,
+            'target' => '_self'
+            ]);
 
-?>
+            ?>
 
-</div>
+        </div>
