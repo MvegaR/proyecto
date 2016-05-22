@@ -57,5 +57,27 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
 
     ]); ?>
+
+     
     </div>
+     <?php
+echo "Exportar, seleccione columnas y formato: ";
+$gridColumns = [
+    'ID_DOCENTE',
+    'ID_ROL',
+    'ID_FACULTAD',
+    'NOMBRE_DOCENTE',
+    'EMAIL:email',
+    'USER',
+    'PASSWORD',
+];
+
+// Renders a export dropdown menu
+echo ExportMenu::widget([
+    'dataProvider' => $dataProvider,
+    'columns' => $gridColumns,
+    'target' => '_self'
+]);
+
+?>
 </div>

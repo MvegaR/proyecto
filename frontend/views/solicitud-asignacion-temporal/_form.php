@@ -27,9 +27,17 @@ use yii\helpers\ArrayHelper;
              $("select#solicitudasignaciontemporal-sala_asignacion_temporal").html(data);
         });']) ?>
 
-    <?= $form->field($model, 'SALA_ASIGNACION_TEMPORAL')->dropDownList(ArrayHelper::map(Sala:: find() -> all(), 'ID_SALA', 'ID_SALA'), ['prompt' => 'Seleccione una sala.']) ?>
+    <?php 
+    $fecha = (new DateTime()) -> format('Y-m-d');
+    $mesmax  = mktime(0, 0, 0, date("m")+1, date("d"), date("Y"));
+    $fechamax = date('Y-m-d', $mesmax);
+    ?>
 
-    <?= $form->field($model, 'FECHA_ASIGNACION_TEMPORAL')->textInput() ?>
+    <?= $form->field($model, 'SALA_ASIGNACION_TEMPORAL')->dropDownList([], ['prompt' => 'Seleccione una sala.']) ?>
+
+    <?= $form->field($model, 'FECHA_ASIGNACION_TEMPORAL')->textInput(['type' => 'date', 'min' => "$fecha", 'max' => "$fechamax"]) ?>
+
+    <p class="help-block">Solo puede solicitar salas temporales con un mes de anticipación, se impedirá envíar el formulario.</p>
 
     <?= $form->field($model, 'CANTIDAD_BLOQUES_ASIGNACION_TEMPORAL')->textInput() ?>
 

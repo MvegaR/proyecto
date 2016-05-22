@@ -20,6 +20,9 @@ AppAsset::register($this);
   <meta charset="<?= Yii::$app->charset ?>">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script type="text/javascript" src="js/jquery-2.2.4.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  
   <link rel="icon" 
   type="image/ico" 
   href="favicon.ico">
@@ -71,6 +74,8 @@ AppAsset::register($this);
 
 </head>
 <body style="min-height: 125%">
+  <script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
 
   <?php $this->beginBody() ?>
   <header id="header" style="height:55px">

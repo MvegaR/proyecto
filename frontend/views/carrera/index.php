@@ -46,11 +46,9 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php
 echo "Exportar, seleccione columnas y formato: ";
 $gridColumns = [
-    ['class' => 'yii\grid\SerialColumn'],
     'ID_CARRERA',
     'ID_FACULTAD',
     'NOMBRE_CARRERA',
-    ['class' => 'yii\grid\ActionColumn'],
 ];
 
 // Renders a export dropdown menu

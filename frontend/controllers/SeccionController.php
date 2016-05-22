@@ -143,6 +143,7 @@ class SeccionController extends Controller
                 where(['ID_ASIGNATURA' => $id, 'ID_DOCENTE' => Yii::$app -> user -> identity -> ID_DOCENTE]) -> count();
             $secciones =  Seccion::find() -> 
                 where(['ID_ASIGNATURA' => $id, 'ID_DOCENTE' => Yii::$app -> user -> identity -> ID_DOCENTE]) -> all();
+             echo "<option value=>Seleccione una seccion</option>";
             foreach($secciones as $seccion){
                 echo "<option value='".$seccion -> ID_SECCION."'> ".$seccion -> ID_SECCION."</option>";
             }

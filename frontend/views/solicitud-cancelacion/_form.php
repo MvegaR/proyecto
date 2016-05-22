@@ -58,7 +58,7 @@ use frontend\models\Asignatura;
     ?> 
 
     <?= $form->field($model, 'BLOQUE_CANCELACION')->dropDownList([], ['prompt' => 'Seleccione bloque a cancelar'])->label("Bloque a cancelar") ?>
-
+    <p class="help-block">Seleccione un bloque inicial de la clase, los posibles siguientes se encuentran anidados y se cancelaran sin problemas.</p>
     <?= $form->field($model, 'MOTIVO')->textarea(['rows' => 6]) ?>
 	
 	<?= $form->field($model, 'reCaptcha')->widget(ReCaptcha::className()) ?>
