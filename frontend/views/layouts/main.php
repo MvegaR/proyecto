@@ -108,7 +108,7 @@ AppAsset::register($this);
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
               'Cerrar sesión (' . Yii::$app->user->identity->USER . ')',
-              ['class' => 'btn btn-link']
+              ['class' => 'btn btn-link text-center', 'style' => 'margin-top:8px;']
               )
             . Html::endForm()
             . '</li>';
