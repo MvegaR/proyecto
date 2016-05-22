@@ -5,8 +5,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model frontend\models\PostDeDenuncia */
 
-$this->title = 'Modificar Post De Denuncia: ' . ' ' . $model->ID_DENUNCIA;
-$this->params['breadcrumbs'][] = ['label' => 'Post De Denuncias', 'url' => ['index']];
+$this->title = 'Modificar reporte de salas: ' . ' ' . $model->ID_DENUNCIA;
+$this->params['breadcrumbs'][] = ['label' => 'Reporte de salas', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->ID_DENUNCIA, 'url' => ['view', 'id' => $model->ID_DENUNCIA]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>

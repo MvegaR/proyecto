@@ -18,19 +18,15 @@ AppAsset::register($this);
   <meta charset="<?= Yii::$app->charset ?>">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" 
-  type="image/ico" 
-  href="favicon.ico">
+  <link rel="icon" type="image/ico"  href="favicon.ico">
 
-<link rel="stylesheet" type="text/css" href="css/site.css'">
+  <link rel="stylesheet" type="text/css" href="css/site.css">
 
-<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 
-<link rel="stylesheet" type="text/css" href="css/kv-export-data.css">
+  <link rel="stylesheet" type="text/css" href="css/kv-export-data.css">
 
-<link rel="stylesheet" type="text/css" href="css/kv-export-columns.css">
-
-
+  <link rel="stylesheet" type="text/css" href="css/kv-export-columns.css">
 
   <?= Html::csrfMetaTags() ?>
   <title><?= Html::encode($this->title) ?></title>
@@ -108,7 +104,7 @@ AppAsset::register($this);
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
               'Cerrar sesión (' . Yii::$app->user->identity->USER . ')',
-              ['class' => 'btn btn-link text-center', 'style' => 'margin-top:8px;']
+              ['class' => 'btn btn-link text-center', 'style' => '']
               )
             . Html::endForm()
             . '</li>';
@@ -173,13 +169,19 @@ style="background-color:#0064AC; background-image:url(img/bg.png);color:#fff;  p
 <div class="col-xs-3 text-center"> © Copyright 2016</div>
 <div class="col-xs-5 text-right"><a href="http://www.ubiobio.cl/">Universidad del Bío-Bío</a></div>
 </footer>
+
+ <?php  $this->endBody() ?>
 <script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript" src="js/bootstrap.js"></script>
+
 <script type="text/javascript" src="js/kv-export-data.js"></script>
 <script type="text/javascript" src="js/kv-export-columns.js"></script>
 <script type="text/javascript" src="js/toolbar.js"></script>
 <script type="text/javascript" src="js/yii.js"></script>
 <script type="text/javascript" src="js/yii.gridView.js"></script>
+<script type="text/javascript" src="js/yii.captcha.js"></script>
+<script type="text/javascript" src="js/yii.validation.js"></script>
+<script type="text/javascript" src="js/yii.activeForm.js"></script>
+<script type="text/javascript" src="js/npm.js"></script>
 
 
  <script type="text/javascript">jQuery(document).ready(function () {
@@ -194,7 +196,7 @@ jQuery('#w1-cols-list').exportcolumns({});
 
 jQuery('#w2').button();
 });</script>  
- <?php // $this->endBody() ?>
+
 
 
 </body>

@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model frontend\models\PostDeDenuncia */
 
-$this->title = 'Crear Post De Denuncia';
-$this->params['breadcrumbs'][] = ['label' => 'Post De Denuncias', 'url' => ['index']];
+$this->title = 'Crear reporte a una sala';
+$this->params['breadcrumbs'][] = ['label' => 'Reporte de salas', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="post-de-denuncia-create">

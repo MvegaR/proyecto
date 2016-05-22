@@ -18,7 +18,6 @@ return [
 'downloadAction' => 'gridview/export/download',
 ]
 
-
     ],
     'components' => [
         'user' => [

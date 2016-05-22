@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model frontend\models\PostDeDenuncia */
 
 $this->title = $model->ID_DENUNCIA;
-$this->params['breadcrumbs'][] = ['label' => 'Post De Denuncias', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Reporte de salas', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="post-de-denuncia-view">

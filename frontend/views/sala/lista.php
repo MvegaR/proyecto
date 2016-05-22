@@ -6,7 +6,7 @@ use yii\helpers\Html;
 $facultades = new Facultad; 
 $edificios = new Edificio; 
 $salas = new Sala; 
-$this->title = 'Listas de sala'; 
+$this->title = 'Lista de salas'; 
 $this->params['breadcrumbs'][] = $this->title; 
 ?>
 <div class="sala-lista">
