@@ -12,15 +12,18 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/site.css',
-        'css/bootstrap.css',
+     'css/site.css',
+     'css/bootstrap.css',
+     'css/kv-export-data.css', 
+     'kv-export-columns.css',
     ];
     public $js = [
-    //'js/jquery-2.2.4.min.js',
-    //'js/bootstrap.min.js',
+    'js/jquery.js',
+    'js/bootstrap.js',
+
     ];
     public $depends = [
-        'yii\web\YiiAsset',
-        'yii\bootstrap\BootstrapAsset',
+       'yii\web\YiiAsset',
+       'yii\bootstrap\BootstrapAsset',
     ];
 }

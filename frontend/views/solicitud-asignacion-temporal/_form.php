@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use frontend\models\Sala;
 use frontend\models\TipoSala;
+use frontend\models\EstadoAsignacionTemporal;
 use yii\helpers\ArrayHelper;
 /* @var $this yii\web\View */
 /* @var $model frontend\models\SolicitudAsignacionTemporal */
@@ -14,7 +15,12 @@ use yii\helpers\ArrayHelper;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?php if($model->isNewRecord ) echo $form->field($model, 'ID_ESTADO_ASIGNACION_TEMPORAL')->hiddenInput(['value' => 3])->label(false); ?>
+    <?php 
+    if($model->isNewRecord ) echo $form->field($model, 'ID_ESTADO_ASIGNACION_TEMPORAL')->hiddenInput(['value' => 3])->label(false);
+    else echo $form->field($model, 'ID_ESTADO_ASIGNACION_TEMPORAL')->dropDownList(
+            ArrayHelper::map(EstadoAsignacionTemporal::find()->all(),'ID_ESTADO_ASIGNACION_TEMPORAL','NOMBRE_ESTADO_ASIGNACION_TEMPORAL'),
+            ['prompt'=>'Seleccione estado de asignación'] )->label('Estado de asignación');
+     ?>
 
     <?php if($model->isNewRecord) echo $form->field($model, 'DOCENTE_ASIGNACION_TEMPORAL')->hiddenInput(['value' => Yii::$app->user->identity -> ID_DOCENTE])->label(false); ?>
         

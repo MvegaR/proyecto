@@ -5,8 +5,6 @@
 
 use yii\helpers\Html;
 use yii\helpers\Url;
-use yii\bootstrap\Nav;
-use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 use common\widgets\Alert;
@@ -20,16 +18,29 @@ AppAsset::register($this);
   <meta charset="<?= Yii::$app->charset ?>">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script type="text/javascript" src="js/jquery-2.2.4.min.js"></script>
-  <script type="text/javascript" src="js/bootstrap.min.js"></script>
-  
   <link rel="icon" 
   type="image/ico" 
   href="favicon.ico">
+
+<link rel="stylesheet" type="text/css" href="css/site.css'">
+
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+
+<link rel="stylesheet" type="text/css" href="css/kv-export-data.css">
+
+<link rel="stylesheet" type="text/css" href="css/kv-export-columns.css">
+
+
+
   <?= Html::csrfMetaTags() ?>
   <title><?= Html::encode($this->title) ?></title>
   <?php $this->head() ?>
-  <link href="css/bootstrap.css" rel="stylesheet">
+  
+  <script type="text/javascript">var kvexpmenu_e22a9b48 = {"formId":"w1-form","messages":{"allowPopups":"Desactive bloqueadores de ventanas emergentes para asegurar una descarga correcta.","confirmDownload":"¿Ok para continuar?","downloadProgress":"Generando el archivo de exportación. Por favor espere...","downloadComplete":"¡Solicitud enviada! Puede cerrar este diálogo después de guardar el archivo descargado."}};
+</script>  
+
+
+
   <style type="text/css">
 
     @-webkit-keyframes pulso {
@@ -73,18 +84,16 @@ AppAsset::register($this);
   </style>
 
 </head>
-<body style="min-height: 125%">
-  <script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
-  <script type="text/javascript" src="js/bootstrap.min.js"></script>
 
-  <?php $this->beginBody() ?>
+<body style="min-height: 110%">
+
   <header id="header" style="height:55px">
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
        <a class="navbar-brand" style="position:relative; top:-8px; padding-left:0px;" href= <?php echo "'".Url::to(['site/index'])."'"; ?>><span><img src="img/escudo.svg" alt="" width="60" height="40"/></span>Universidad del Bío-Bío</a>
        <!-- Brand and toggle get grouped for better mobile display -->
        <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#inverseNavbar1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>    
+        <button type="button" class="navbar-toggle collapsed " data-toggle="collapse" data-target="#inverseNavbar1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>    
       </div>
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="inverseNavbar1">
@@ -113,6 +122,7 @@ AppAsset::register($this);
     <!-- /.container-fluid -->
   </nav>
 </header>
+
 
 <main class="panel-primary" id="panelPrimario" 
 style="background-color:#0064AC; background-image:url(img/bg.png);color:#fff;  position:relative; top:-4px; height:200px">
@@ -160,7 +170,30 @@ style="background-color:#0064AC; background-image:url(img/bg.png);color:#fff;  p
 <div class="col-xs-3 text-center"> © Copyright 2016</div>
 <div class="col-xs-5 text-right"><a href="http://www.ubiobio.cl/">Universidad del Bío-Bío</a></div>
 </footer>
- <?php $this->endBody() ?>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
+<script type="text/javascript" src="js/kv-export-data.js"></script>
+<script type="text/javascript" src="js/kv-export-columns.js"></script>
+<script type="text/javascript" src="js/toolbar.js"></script>
+<script type="text/javascript" src="js/yii.js"></script>
+<script type="text/javascript" src="js/yii.gridView.js"></script>
+
+
+ <script type="text/javascript">jQuery(document).ready(function () {
+jQuery('#w0').yiiGridView({"filterUrl":"\/proyectoDSI\/proyecto\/frontend\/web\/index.php?r=docente","filterSelector":"#w0-filters input, #w0-filters select"});
+jQuery('#w1-html').exportdata({"settings":kvexpmenu_e22a9b48,"alertMsg":"El archivo HTML será generado para descargar","target":"_self","showConfirmAlert":true,"columnSelectorId":"w1-cols"});
+jQuery('#w1-csv').exportdata({"settings":kvexpmenu_e22a9b48,"alertMsg":"El archivo CSV será generado para descargar","target":"_self","showConfirmAlert":true,"columnSelectorId":"w1-cols"});
+jQuery('#w1-txt').exportdata({"settings":kvexpmenu_e22a9b48,"alertMsg":"El archivo TEXT será generado para descargar","target":"_self","showConfirmAlert":true,"columnSelectorId":"w1-cols"});
+jQuery('#w1-pdf').exportdata({"settings":kvexpmenu_e22a9b48,"alertMsg":"El archivo PDF será generado para descargar","target":"_self","showConfirmAlert":true,"columnSelectorId":"w1-cols"});
+jQuery('#w1-excel5').exportdata({"settings":kvexpmenu_e22a9b48,"alertMsg":"El archivo EXCEL 95+ (xls) será generado para descargar","target":"_self","showConfirmAlert":true,"columnSelectorId":"w1-cols"});
+jQuery('#w1-excel2007').exportdata({"settings":kvexpmenu_e22a9b48,"alertMsg":"El archivo EXCEL 2007+ (xlsx) será generado para descargar","target":"_self","showConfirmAlert":true,"columnSelectorId":"w1-cols"});
+jQuery('#w1-cols-list').exportcolumns({});
+
+jQuery('#w2').button();
+});</script>  
+ <?php // $this->endBody() ?>
+
+
 </body>
 </html>
 <?php $this->endPage() ?>
