@@ -2,13 +2,13 @@ package gui;
 
 import javax.swing.JPanel;
 
-public class PanelEnBlanco2 extends JPanel {
+public class PanelEnBlancoPablo extends JPanel {
 
     /**
      * Create the panel.
      * PANEL DE PABLO
      */
-    public PanelEnBlanco2() {
+    public PanelEnBlancoPablo() {
 
     }
 
