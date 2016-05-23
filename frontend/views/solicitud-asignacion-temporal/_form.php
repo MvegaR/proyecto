@@ -55,6 +55,7 @@ $.post(
     <p class="help-block">Solo puede solicitar salas temporales con un mes de anticipación.</p>
 
     <?= $form->field($model, 'CANTIDAD_BLOQUES_ASIGNACION_TEMPORAL')->textInput(['type' => 'number', 'min' => 1, 'max' => 20]) ?>
+     <p class="help-block">Cada bloque es de 40min y continuados.</p>
 
     <?= $form->field($model, 'INICIO_BLOQUE_ASIGNACION_TEMPORAL')->textInput() ?>
 
