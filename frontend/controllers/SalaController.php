@@ -177,6 +177,8 @@ class SalaController extends Controller
  }
  //tipo es el id de tipo de sala y cap es la capacidad de la sala minima.
  public function actionListscaptipo($tipo, $cap){
+        if($tipo == null) $tipo = 0;
+        if($cap == null) $cap = 0;
         $contadorSalasTipo = Sala::find()->where(['ID_TIPO_SALA' => $tipo])->count();
         $sqlCap = "Select S.* from SALA S where CAPACIDAD_SALA >= $cap";
         $contadorSalasCap = Sala::findBySql($sqlCap)->count();
@@ -185,7 +187,9 @@ class SalaController extends Controller
         $salas = Sala::findBySql($sql)->all();
         if($contadorSalasTipo == 0){
               echo "<option value=>Sin salas del tipo ingresado disponibles</option>";
-        }else if($contadorSalasCap == 0){
+        }
+
+        else if($contadorSalasCap == 0){
              echo "<option value=>Sin salas con la capacidad ingresada disponible</option>";
         }else if($contadorSalas > 0){
             foreach ($salas as $sala) {

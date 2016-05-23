@@ -25,7 +25,14 @@ use yii\helpers\ArrayHelper;
     <?php if($model->isNewRecord) echo $form->field($model, 'DOCENTE_ASIGNACION_TEMPORAL')->hiddenInput(['value' => Yii::$app->user->identity -> ID_DOCENTE])->label(false); ?>
         
     <?= $form->field($model, 'CAPACIDAD_ASIGNACION_TEMPORAL')->textInput(['type' => 'number', 'min' => 1, 
-    'onchange' => 'document.getElementById("solicitudasignaciontemporal-tipo_sala_asignacion_temporal").onchange();'
+    'onchange' => '
+$.post(
+        "index.php?r=sala/listscaptipo&tipo='.'"+$("select#solicitudasignaciontemporal-tipo_sala_asignacion_temporal").val()+"&cap='.'"+$(this).val()
+    , function(data){
+             $("select#solicitudasignaciontemporal-sala_asignacion_temporal").html(data);
+             document.getElementById("solicitudasignaciontemporal-sala_asignacion_temporal").onchange();
+        });
+   '
     ]) ?>
 
     <?= $form->field($model, 'TIPO_SALA_ASIGNACION_TEMPORAL')->dropDownList(ArrayHelper::map(TipoSala::find() -> all(),'ID_TIPO_SALA','NOMBRE_TIPO'),
@@ -47,7 +54,7 @@ use yii\helpers\ArrayHelper;
 
     <p class="help-block">Solo puede solicitar salas temporales con un mes de anticipación.</p>
 
-    <?= $form->field($model, 'CANTIDAD_BLOQUES_ASIGNACION_TEMPORAL')->textInput() ?>
+    <?= $form->field($model, 'CANTIDAD_BLOQUES_ASIGNACION_TEMPORAL')->textInput(['type' => 'number', 'min' => 1, 'max' => 20]) ?>
 
     <?= $form->field($model, 'INICIO_BLOQUE_ASIGNACION_TEMPORAL')->textInput() ?>
 
