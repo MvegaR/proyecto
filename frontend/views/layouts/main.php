@@ -171,17 +171,13 @@ style="background-color:#0064AC; background-image:url(img/bg.png);color:#fff;  p
 </footer>
 
  <?php  $this->endBody() ?>
-<script type="text/javascript" src="js/jquery.js"></script>
-
 <script type="text/javascript" src="js/kv-export-data.js"></script>
 <script type="text/javascript" src="js/kv-export-columns.js"></script>
-<script type="text/javascript" src="js/toolbar.js"></script>
-<script type="text/javascript" src="js/yii.js"></script>
 <script type="text/javascript" src="js/yii.gridView.js"></script>
 <script type="text/javascript" src="js/yii.captcha.js"></script>
 <script type="text/javascript" src="js/yii.validation.js"></script>
 <script type="text/javascript" src="js/yii.activeForm.js"></script>
-<script type="text/javascript" src="js/npm.js"></script>
+
 
 
  <script type="text/javascript">jQuery(document).ready(function () {

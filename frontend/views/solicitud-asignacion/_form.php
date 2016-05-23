@@ -41,6 +41,7 @@ use himiklab\yii2\recaptcha\ReCaptcha;
         ArrayHelper::map($tablaDeAsignaturas,'ID_ASIGNATURA','NOMBRE_ASIGNATURA'),
         ['prompt'=>'Seleccione asignatura', 'onchange' => '$.post("index.php?r=seccion/lists&id='.'"+$(this).val(), function(data){
                              $("select#solicitudasignacion-seccion_asignacion").html(data);
+                             document.getElementById("solicitudasignacion-seccion_asignacion").onchange();
                         });'] )->label('Seleccione una de sus asignaturas')?> 
 
     <?= $form->field($model, 'SECCION_ASIGNACION')->dropDownList(

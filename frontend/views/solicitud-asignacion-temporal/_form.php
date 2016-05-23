@@ -24,7 +24,9 @@ use yii\helpers\ArrayHelper;
 
     <?php if($model->isNewRecord) echo $form->field($model, 'DOCENTE_ASIGNACION_TEMPORAL')->hiddenInput(['value' => Yii::$app->user->identity -> ID_DOCENTE])->label(false); ?>
         
-    <?= $form->field($model, 'CAPACIDAD_ASIGNACION_TEMPORAL')->textInput(['type' => 'number', 'min' => 1]) ?>
+    <?= $form->field($model, 'CAPACIDAD_ASIGNACION_TEMPORAL')->textInput(['type' => 'number', 'min' => 1, 
+    'onchange' => 'document.getElementById("solicitudasignaciontemporal-tipo_sala_asignacion_temporal").onchange();'
+    ]) ?>
 
     <?= $form->field($model, 'TIPO_SALA_ASIGNACION_TEMPORAL')->dropDownList(ArrayHelper::map(TipoSala::find() -> all(),'ID_TIPO_SALA','NOMBRE_TIPO'),
     ['prompt' => 'Seleccione tipo sala', 'onchange' => '$.post(
@@ -34,16 +36,16 @@ use yii\helpers\ArrayHelper;
         });']) ?>
 
     <?php 
-    $fecha = (new DateTime()) -> format('Y-m-d');
-    $mesmax  = mktime(0, 0, 0, date("m")+1, date("d"), date("Y"));
-    $fechamax = date('Y-m-d', $mesmax);
+        $fecha = (new DateTime()) -> format('Y-m-d');
+        $mesmax  = mktime(0, 0, 0, date("m")+1, date("d"), date("Y"));
+        $fechamax = date('Y-m-d', $mesmax);
     ?>
 
     <?= $form->field($model, 'SALA_ASIGNACION_TEMPORAL')->dropDownList([], ['prompt' => 'Seleccione una sala.']) ?>
 
     <?= $form->field($model, 'FECHA_ASIGNACION_TEMPORAL')->textInput(['type' => 'date', 'min' => "$fecha", 'max' => "$fechamax"]) ?>
 
-    <p class="help-block">Solo puede solicitar salas temporales con un mes de anticipación, se impedirá envíar el formulario.</p>
+    <p class="help-block">Solo puede solicitar salas temporales con un mes de anticipación.</p>
 
     <?= $form->field($model, 'CANTIDAD_BLOQUES_ASIGNACION_TEMPORAL')->textInput() ?>
 

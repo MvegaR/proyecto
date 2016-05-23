@@ -47,6 +47,7 @@ use frontend\models\Seccion;
         ArrayHelper::map($tablaDeAsignaturas,'ID_ASIGNATURA','NOMBRE_ASIGNATURA'),
         ['prompt'=>'Seleccione asignatura', 'onchange' => '$.post("index.php?r=seccion/lists&id='.'"+$(this).val(), function(data){
            $("select#solicitudcambio-seccion_cambio").html(data);
+           document.getElementById("solicitudcambio-seccion_cambio").onchange();
        });'] )->label('Seleccione una de sus asignaturas')?> 
 
 

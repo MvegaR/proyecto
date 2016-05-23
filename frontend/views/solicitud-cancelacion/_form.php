@@ -46,6 +46,7 @@ use frontend\models\Asignatura;
         ArrayHelper::map($tablaDeAsignaturas,'ID_ASIGNATURA','NOMBRE_ASIGNATURA'),
         ['prompt'=>'Seleccione asignatura', 'onchange' => '$.post("index.php?r=seccion/lists&id='.'"+$(this).val(), function(data){
            $("select#solicitudcancelacion-seccion_cancelacion").html(data);
+           document.getElementById("solicitudcancelacion-seccion_cancelacion").onchange();
           });'] )->label('Seleccione una de sus asignaturas')
     ?>
 
