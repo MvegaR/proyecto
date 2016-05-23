@@ -75,4 +75,13 @@ class Sala extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Edificio::className(), ['ID_EDIFICIO' => 'ID_EDIFICIO']);
     }
+    
+    public static function getSalasDisponiblesSegunDiaHora($dia,$hora){
+        $sql = 'SELECT s.ID_SALA, s.ID_EDIFICIO, s.CAPACIDAD_SALA 
+                FROM sala s,  bloque b
+                WHERE b.ID_DIA ='.$dia.' AND b.ID_SECCION IS NULL AND b.INICIO = "'.$hora.'" AND  s.ID_SALA = b.ID_SALA';
+        $result = Sala::findBySql($sql)->all();
+        return $result;
+    }
+    
 }

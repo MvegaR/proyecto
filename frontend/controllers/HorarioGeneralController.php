@@ -16,6 +16,33 @@ use yii\filters\VerbFilter;
  */
 class HorarioGeneralController extends Controller
 {
+    
+    public function actionDisponibles($dia,$inicio){
+        $hora = '08:00:00';
+        if($inicio == 0) $hora = '08:10:00';
+        else if($inicio == 1) $hora = '08:50:00';
+        else if($inicio == 2) $hora = '09:40:00';
+        else if($inicio == 3) $hora = '10:20:00';
+        else if($inicio == 4) $hora = '11:10:00';
+        else if($inicio == 5) $hora = '11:50:00';
+        else if($inicio == 6) $hora = '12:40:00';
+        else if($inicio == 7) $hora = '13:20:00';
+        else if($inicio == 8) $hora = '14:10:00';
+        else if($inicio == 9) $hora = '14:50:00';
+        else if($inicio == 10) $hora = '15:40:00';
+        else if($inicio == 11) $hora = '16:20:00';
+        else if($inicio == 12) $hora = '17:10:00';
+        else if($inicio == 13) $hora = '17:50:00';
+        else if($inicio == 14) $hora = '18:40:00';
+        else if($inicio == 15) $hora = '19:20:00';
+        else if($inicio == 16) $hora = '20:10:00';
+        else if($inicio == 17) $hora = '20:50:00';
+        else if($inicio == 18) $hora = '21:40:00';
+        else if($inicio == 19) $hora = '22:20:00';
+        $result = Sala::getSalasDisponiblesSegunDiaHora($dia,$hora);
+        return $this->render("disponibles",["result" => $result, "dia" => $dia, "hora" => $hora]);
+    }
+    
     public function actionIndex(){
         $array = array();
         for($i = 1, $j = 1; $i < 6; $i++, $j++){

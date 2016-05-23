@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
@@ -51,8 +52,8 @@ $this->params['breadcrumbs'][] = $this->title;
             else if($j == 18) echo '<tr><th>21:40 - 22:20</th>';
             else if($j == 19) echo '<tr><th>22:20 - 23:00</th>';
             for($i = 0; $i < 5; $i++){
-                if($array[$j+(20*$i)] > 0) echo '<td><a href="'.Url::toRoute(["horario-general/salas", "INICIO" => $row->id_alumno]) ?>" class="list-group-item list-group-item-success">'.$array[$j+(20*$i)].' Disponibles</a></td>';
-                else echo '<td><a href="#" class="list-group-item list-group-item-danger">0 Disponible</a></td>';
+                if($array[$j+(20*$i)] > 0) echo '<td><a href="'.Url::toRoute(["horario-general/disponibles", "dia" => $i+1,"inicio" => $j]).'" class="list-group-item list-group-item-success"><span class="glyphicon glyphicon-ok-sign">'.$array[$j+(20*$i)].' Disponibles</spam></a></td>';
+                else echo '<td><a href="#" class="list-group-item list-group-item-danger"><span class="glyphicon glyphicon-remove-sign">0 Disponible</spam></a></td>';
             }
             echo '</tr>';
         }
