@@ -81,4 +81,28 @@ class Bloque extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Seccion::className(), ['ID_SECCION' => 'ID_SECCION']);
     }
+    
+    public function getHorariosOcupados(){
+        $query = Bloque::find()->filterWhere(array(
+                'condition'=>'postID IS NULL',
+            ));
+    }
+    
+    //Retorna los bloques que no han sido asignados a ninguna sala
+    public static function getBloquesNulos(){
+        $sql = 'SELECT * FROM bloque';
+        $model = Bloque::findBySql($sql)->all();
+        return $model;
+    }
+    
+    //Retorna la cantidad de salas libres que hay en un bloque
+    public static function getCantidadBloquesLibresSegunDiaHora($dia,$hora){
+        $sql = 'SELECT COUNT(*) AS ID_BLOQUE FROM bloque WHERE INICIO = "'.$hora.'" AND ID_DIA = '.$dia.' AND ID_SECCION IS NULL';
+        $result = Bloque::findBySql($sql)->all();
+        foreach($result as $row){
+            return $row->ID_BLOQUE;
+        }
+        return $result;
+    }
+    
 }
