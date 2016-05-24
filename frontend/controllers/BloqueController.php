@@ -238,6 +238,7 @@ public function behaviors()
          echo "<option value=>Sin bloques disponibles para la cantidad de periodos solicitados para la fecha solicitada</option>"; //culpa de las asignaciones temporales.
          echo "<option value=>No existen bloques iniciales que cumpla con la cantidad de periodos ingresado</option>"; //bloques permanentes
          echo "<option value=>No existen bloques iniciales que cumpla con la cantidad de periodos ingresado en la fecha seleccionada</option>"; //los temporales.
-         echo "<option value=> </option>" //opciones validas, debe cumplir que los siguientes X periodos esten libres, del mismo día.
+         echo "<option value=> </option>"; //opciones validas, debe cumplir que los siguientes X periodos esten libres, del mismo día.
+        }
     
 }
