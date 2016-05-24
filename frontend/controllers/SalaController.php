@@ -180,9 +180,9 @@ class SalaController extends Controller
         if($tipo == null) $tipo = 0;
         if($cap == null) $cap = 0;
         $contadorSalasTipo = Sala::find()->where(['ID_TIPO_SALA' => $tipo])->count();
-        $sqlCap = "Select S.* from SALA S where CAPACIDAD_SALA >= $cap";
+        $sqlCap = "Select S.* from sala S where CAPACIDAD_SALA >= $cap";
         $contadorSalasCap = Sala::findBySql($sqlCap)->count();
-        $sql = "Select S.* from SALA S where CAPACIDAD_SALA >= $cap AND ID_TIPO_SALA = $tipo";
+        $sql = "Select S.* from sala S where CAPACIDAD_SALA >= $cap AND ID_TIPO_SALA = $tipo";
         $contadorSalas = Sala::findBySql($sql)->count();
         $salas = Sala::findBySql($sql)->all();
         if($contadorSalasTipo == 0){
