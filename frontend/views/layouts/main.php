@@ -154,8 +154,8 @@ style="background-color:#0064AC; background-image:url(img/bg.png);color:#fff;  p
       <?php if(!Yii::$app -> user -> isGuest && Yii::$app -> user -> identity -> ID_ROL == 2){?><a href="index.php?r=solicitud-cancelacion/create" class="list-group-item pulso">Solicitud cancelación</a><?php } ?>
       <?php if(!Yii::$app -> user -> isGuest && Yii::$app -> user -> identity -> ID_ROL == 2){?><a href="index.php?r=solicitud-cambio/create" class="list-group-item pulso">Solicitud cambio de sala</a><?php } ?>
       <a href="index.php?r=post-de-denuncia/create" class="list-group-item pulso">Reportar sala</a>
-      <a href="index.php?r=sala/lista" class="list-group-item pulso">Listado de salas</a>
-      <a href="#" class="list-group-item pulso">Estadísticas</a>
+      <a href="index.php?r=sala/lista" class="list-group-item pulso">Horarios de salas</a>
+      <a href="index.php?r=horario-general" class="list-group-item pulso">Horario general</a>
       <?php if(!Yii::$app -> user -> isGuest){?><a href="index.php?r=cambios/update" class="list-group-item pulso">Cambiar usuario o contraseña</a><?php } ?>
       </div>
     </div>

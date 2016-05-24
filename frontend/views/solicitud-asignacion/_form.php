@@ -53,6 +53,8 @@ use himiklab\yii2\recaptcha\ReCaptcha;
      <?= $form->field($model, 'TIPO_SALA_ASIGNACION')->dropDownList(
         ArrayHelper::map(TipoSala::find()->all(),'ID_TIPO_SALA','NOMBRE_TIPO'),
         ['prompt'=>'Seleccione tipo sala'] )->label('Tipo sala') //falta filtar ?>
+
+        <!-- falta: sala, bloque inicial -->
 		
 	<?= $form->field($model, 'reCaptcha')->widget(ReCaptcha::className()) ?>
 

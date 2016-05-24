@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model frontend\models\SolicitudAsignacion */
 
 $this->title = $model->ID_ASIGNACION;
-$this->params['breadcrumbs'][] = ['label' => 'Solicitud Asignacions', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Solicitudes de asignación', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="solicitud-asignacion-view">

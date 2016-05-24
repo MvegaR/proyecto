@@ -57,7 +57,7 @@ $.post(
     <?= $form->field($model, 'CANTIDAD_BLOQUES_ASIGNACION_TEMPORAL')->textInput(['type' => 'number', 'min' => 1, 'max' => 20]) ?>
      <p class="help-block">Cada bloque es de 40min y continuados.</p>
 
-    <?= $form->field($model, 'INICIO_BLOQUE_ASIGNACION_TEMPORAL')->textInput() ?>
+    <?= $form->field($model, 'INICIO_BLOQUE_ASIGNACION_TEMPORAL')->textInput() //falta este ultimo ?> 
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Crear' : 'Modificar', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
