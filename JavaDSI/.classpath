@@ -5,19 +5,19 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="jgoodies-common-1.8.0.jar" sourcepath="jgoodies-common-1.8.0-sources.jar"/>
 	<classpathentry kind="lib" path="jgoodies-forms-1.8.0.jar" sourcepath="jgoodies-forms-1.8.0-sources.jar"/>
-	<classpathentry kind="lib" path="C:/Users/raopazo/Desktop/Ejemplos librerias Java/synthetica.zip"/>
-	<classpathentry kind="lib" path="C:/Users/raopazo/Desktop/Ejemplos librerias Java/syntheticaBlackEye.jar"/>
-	<classpathentry kind="lib" path="C:/Users/raopazo/Desktop/Ejemplos librerias Java/syntheticaBlackMoon.jar"/>
-	<classpathentry kind="lib" path="C:/Users/raopazo/Desktop/Ejemplos librerias Java/syntheticaBlueIce.jar"/>
-	<classpathentry kind="lib" path="C:/Users/raopazo/Desktop/Ejemplos librerias Java/syntheticaBlueMoon.jar"/>
-	<classpathentry kind="lib" path="C:/Users/raopazo/Desktop/Ejemplos librerias Java/syntheticaBlueSteel.jar"/>
-	<classpathentry kind="lib" path="C:/Users/raopazo/Desktop/Ejemplos librerias Java/syntheticaClassy.jar"/>
-	<classpathentry kind="lib" path="C:/Users/raopazo/Desktop/Ejemplos librerias Java/syntheticaGreenDream.jar"/>
-	<classpathentry kind="lib" path="C:/Users/raopazo/Desktop/Ejemplos librerias Java/syntheticaMauveMetallic.jar"/>
-	<classpathentry kind="lib" path="C:/Users/raopazo/Desktop/Ejemplos librerias Java/syntheticaOrangeMetallic.jar"/>
-	<classpathentry kind="lib" path="C:/Users/raopazo/Desktop/Ejemplos librerias Java/syntheticaSilverMoon.jar"/>
-	<classpathentry kind="lib" path="C:/Users/raopazo/Desktop/Ejemplos librerias Java/syntheticaSimple2D.jar"/>
-	<classpathentry kind="lib" path="C:/Users/raopazo/Desktop/Ejemplos librerias Java/syntheticaSkyMetallic.jar"/>
-	<classpathentry kind="lib" path="C:/Users/raopazo/Desktop/Ejemplos librerias Java/syntheticaWhiteVision.jar"/>
+	<classpathentry kind="lib" path="recursos/synthetica.zip"/>
+	<classpathentry kind="lib" path="recursos/syntheticaBlackEye.jar"/>
+	<classpathentry kind="lib" path="recursos/syntheticaBlackMoon.jar"/>
+	<classpathentry kind="lib" path="recursos/syntheticaBlueIce.jar"/>
+	<classpathentry kind="lib" path="recursos/syntheticaBlueMoon.jar"/>
+	<classpathentry kind="lib" path="recursos/syntheticaBlueSteel.jar"/>
+	<classpathentry kind="lib" path="recursos/syntheticaClassy.jar"/>
+	<classpathentry kind="lib" path="recursos/syntheticaGreenDream.jar"/>
+	<classpathentry kind="lib" path="recursos/syntheticaMauveMetallic.jar"/>
+	<classpathentry kind="lib" path="recursos/syntheticaOrangeMetallic.jar"/>
+	<classpathentry kind="lib" path="recursos/syntheticaSilverMoon.jar"/>
+	<classpathentry kind="lib" path="recursos/syntheticaSimple2D.jar"/>
+	<classpathentry kind="lib" path="recursos/syntheticaSkyMetallic.jar"/>
+	<classpathentry kind="lib" path="recursos/syntheticaWhiteVision.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
