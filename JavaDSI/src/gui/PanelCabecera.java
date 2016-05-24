@@ -14,7 +14,7 @@ public class PanelCabecera extends JPanel {
 	private Image imagen;
 	
 	public PanelCabecera() {
-		this.setBackground(Color.BLUE);      
+		this.setBackground(new Color(30, 144, 255));      
 		String texto = "<html><body><h1><strong>Proyecto DSI</strong></h1>Sistema de información dedicado a la asignación de horarios y salas de clases para la universidad del Bío-Bío.</body></html>";
 		JLabel lblNewLabel = new JLabel(texto);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
