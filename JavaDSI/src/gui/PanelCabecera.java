@@ -1,7 +1,6 @@
 package gui;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
@@ -11,6 +10,10 @@ import java.awt.Font;
 
 public class PanelCabecera extends JPanel {
 
+	/**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
 	private Image imagen;
 	
 	public PanelCabecera() {

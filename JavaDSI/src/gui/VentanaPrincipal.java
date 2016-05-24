@@ -8,6 +8,11 @@ import java.awt.BorderLayout;
 
 public class VentanaPrincipal extends JFrame {
 
+	/**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
 	public static void main(String[] args) throws Exception {
 		
 		UIManager.setLookAndFeel(new SyntheticaBlackEyeLookAndFeel()); // cambia el estilo

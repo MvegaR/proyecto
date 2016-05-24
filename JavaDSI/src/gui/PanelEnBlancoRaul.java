@@ -1,12 +1,13 @@
 package gui;
 
 import javax.swing.JPanel;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import java.awt.BorderLayout;
 
 public class PanelEnBlancoRaul extends JPanel {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
     private PanelEnBlancoConi coni;
     private PanelEnBlancoMarcos marcos;
     private PanelEnBlancoMari mari;

@@ -10,6 +10,10 @@ import java.awt.event.ActionEvent;
 
 
 public class PanelEnBlancoPablo extends JPanel {
+	/**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
 	private JTextField texto_user;
 	private JPasswordField password_texto;
 

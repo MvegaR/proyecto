@@ -2,16 +2,19 @@ package gui;
 
 import javax.swing.JPanel;
 import javax.swing.JButton;
-import java.awt.GridLayout;
 import java.awt.BorderLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
-import javax.swing.JTextField;
 import javax.swing.JLabel;
 import java.awt.Font;
 
 public class PanelEnBlancoMari extends JPanel {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
 
     /**
      * Create the panel.
