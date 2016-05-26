@@ -35,9 +35,9 @@ class SolicitudAsignacion extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['ID_ESTADO_SOLICITUD', 'CAPACIDAD_ASIGNACION', 'TIPO_SALA_ASIGNACION'], 'integer'],
-            [['DOCENTE_ASIGNACION', 'ASIGNATURA_ASIGNACION', 'SECCION_ASIGNACION', 'CAPACIDAD_ASIGNACION', 'TIPO_SALA_ASIGNACION'], 'required'],
-            [['DOCENTE_ASIGNACION', 'ASIGNATURA_ASIGNACION', 'SECCION_ASIGNACION'], 'string', 'max' => 255],
+            [['ID_ESTADO_SOLICITUD', 'CAPACIDAD_ASIGNACION', 'TIPO_SALA_ASIGNACION', 'CANTIDAD_BLOQUES_ASIGNACION', 'INICIO_BLOQUE_ASIGNACION'], 'integer'],
+            [['DOCENTE_ASIGNACION', 'ASIGNATURA_ASIGNACION', 'SECCION_ASIGNACION', 'CAPACIDAD_ASIGNACION', 'TIPO_SALA_ASIGNACION','CANTIDAD_BLOQUES_ASIGNACION', 'INICIO_BLOQUE_ASIGNACION', 'SALA_ASIGNACION'], 'required'],
+            [['DOCENTE_ASIGNACION', 'ASIGNATURA_ASIGNACION', 'SECCION_ASIGNACION', 'SALA_ASIGNACION'], 'string', 'max' => 255],
 			[['reCaptcha'], ReCaptchaValidator::className(), 'secret' => '6LfD6hITAAAAAEdV6MQ8zDX3emwQY4bVYyw-L3nz' ],
         ];
     }
@@ -48,13 +48,16 @@ class SolicitudAsignacion extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'ID_ASIGNACION' => 'Id  Asignacion',
-            'ID_ESTADO_SOLICITUD' => 'Id  Estado  Solicitud',
-            'DOCENTE_ASIGNACION' => 'Docente  Asignacion',
-            'ASIGNATURA_ASIGNACION' => 'Asignatura  Asignacion',
-            'SECCION_ASIGNACION' => 'Seccion  Asignacion',
-            'CAPACIDAD_ASIGNACION' => 'Capacidad  Asignacion',
-            'TIPO_SALA_ASIGNACION' => 'Tipo  Sala  Asignacion',
+            'ID_ASIGNACION' => 'Id Asignacion',
+            'ID_ESTADO_SOLICITUD' => 'Id Estado Solicitud',
+            'DOCENTE_ASIGNACION' => 'Docente Asignacion',
+            'ASIGNATURA_ASIGNACION' => 'Asignatura Asignacion',
+            'SECCION_ASIGNACION' => 'Seccion Asignacion',
+            'CAPACIDAD_ASIGNACION' => 'Capacidad Asignacion',
+            'TIPO_SALA_ASIGNACION' => 'Tipo Sala Asignacion',
+            'SALA_ASIGNACION' => 'Sala Asignacion',
+            'CANTIDAD_BLOQUES_ASIGNACION' => 'Cantidad de bloques asignacion', 
+            'INICIO_BLOQUE_ASIGNACION' => "Inicio bloque asignacion",
         ];
     }
 

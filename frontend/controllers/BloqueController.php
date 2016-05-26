@@ -230,15 +230,68 @@ public function behaviors()
     Hacer una funcion que escriba las opciones de bloques de una sala dada, que no tenga asignaciones, 
     que no tengan asignaciones temporales para la misma fecha y hora
     */
-    public function actionLists4($id){ //nececito, fecha, sala, cantidad de bloques.
+    public function actionLists4($fecha, $sala, $cantidad){ //nececito: fecha, sala, cantidad de bloques.
         
-         echo "<option value=>Sin bloques disponibles para la sala seleccionada</option>"; //culpa bloques permanentes
-         echo "<option value=>Sin bloques disponibles para la fecha seleccionada</option>"; //culpa bloques temporales
+        $nombreDia = date("l",$fecha);
+        if($nombreDia == "Monday"){
+            $nombreDia = "Lunes";
+        }else if($nombreDia == "Tuesday"){
+            $nombreDia = "Martes";
+        }else if($nombreDia == "Wednesday"){
+            $nombreDia = "Miércoles";
+        }else if($nombreDia == "Thursday"){
+            $nombreDia = "Jueves";
+        }else if($nombreDia == "Friday"){
+            $nombreDia = "Viernes";
+        }else if($nombreDia == "Saturday"){
+            $nombreDia = "Sábado";
+        }else if($nombreDia == "Sunday"){
+            $nombreDia = "Domingo";
+        }
+        $idDia = Dia::find(["NOMBRE" => $nombreDia]) -> one() -> ID_DIA;
+
+        $contadorBloquesDiponiblesPermanentes = Bloque::find()->where(["ID_SALA" => $sala, "ID_DIA" => $idDia, "ID_SECCION" => null])->count();
+        if($contadorBloquesDiponiblesPermanentes == 0){
+            echo "<option value=>Sin bloques disponibles para la sala seleccionada</option>"; //culpa bloques permanentes
+            return;
+        }else{
+            $bloques = Bloque::find()->where(["ID_SALA" => $sala, "ID_DIA" => $idDia, "ID_SECCION" => null])->all();
+            $idsBloquesDisponibles = [];
+            foreach ($bloques as $bloque) {
+                array_push($idsBloquesDisponibles, $bloque -> ID_BLOQUE);
+            }
+            $contadorBloquesNoDisponebesTemporales = SolicitudAsignacionTemporal::find() 
+            ->where(["FECHA_ASIGNACION_TEMPORAL" => $fecha, "SALA_ASIGNACION_TEMPORAL" => $sala]) ->count();
+            if($contadorBloquesNoDisponebesTemporales != 0){
+                $bloquesTemporales = SolicitudAsignacionTemporal::find() 
+                ->where(["FECHA_ASIGNACION_TEMPORAL" => $fecha, "SALA_ASIGNACION_TEMPORAL" => $sala]) ->all();
+                for($bloquesTemporales as $bloquetemporal){
+                    $posicionBloque = array_search($bloquetemporal -> INICIO_BLOQUE_ASIGNACION_TEMPORAL, $idsBloquesDisponibles)
+                    if($cantidadBloquestemporal = $bloquetemporal -> CANTIDAD_BLOQUES_ASIGNACION_TEMPORAL > 1){
+                        while( $cantidadBloquestemporal != 1 ){
+                            unset($idsBloquesDisponibles[$posicionBloque + ($cantidadBloquestemporal-1)]);
+                            $cantidadBloquestemporal--;
+                        }
+                        unset($idsBloquesDisponibles[$posicionBloque]);
+                    }
+                }
+            }
+
+            if(count($idsBloquesDisponibles) == 0){
+                 echo "<option value=>Sin bloques disponibles para la fecha seleccionada</option>"; //culpa bloques temporales
+             }else{
+                
+
+             }
+        }
+         
+        
          echo "<option value=>Sin bloques disponibles para la cantidad de periodos solicitados</option>"; //culpa de las asignaciones permantentes
          echo "<option value=>Sin bloques disponibles para la cantidad de periodos solicitados para la fecha solicitada</option>"; //culpa de las asignaciones temporales.
          echo "<option value=>No existen bloques iniciales que cumpla con la cantidad de periodos ingresado</option>"; //bloques permanentes
          echo "<option value=>No existen bloques iniciales que cumpla con la cantidad de periodos ingresado en la fecha seleccionada</option>"; //los temporales.
          echo "<option value=> </option>"; //opciones validas, debe cumplir que los siguientes X periodos esten libres, del mismo día.
-        }
+    
+    }
     
 }

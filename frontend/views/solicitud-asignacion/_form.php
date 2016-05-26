@@ -46,7 +46,7 @@ use himiklab\yii2\recaptcha\ReCaptcha;
 
     <?= $form->field($model, 'SECCION_ASIGNACION')->dropDownList(
         [],
-        ['prompt'=>'Seleccione seccion'] )->label('Seccion') ?> 
+        ['prompt'=>'Seleccione seccion'] )->label('Sección') ?> 
 
     <?= $form->field($model, 'CAPACIDAD_ASIGNACION')->textInput(['type' => 'number', 'min' => 1, 'placeholder' => "Ingrese capacidad"]); ?>
 
@@ -54,8 +54,14 @@ use himiklab\yii2\recaptcha\ReCaptcha;
         ArrayHelper::map(TipoSala::find()->all(),'ID_TIPO_SALA','NOMBRE_TIPO'),
         ['prompt'=>'Seleccione tipo sala'] )->label('Tipo sala') //falta filtar ?>
 
-        <!-- falta: sala, bloque inicial -->
-		
+        <!-- falta sin agregar en la bd: facultad, y edificio (para filtrar más). -->
+
+    <?= $form->field($model, 'SALA_ASIGNACION')->textInput(); ?>
+
+    <?= $form->field($model, 'CANTIDAD_BLOQUES_ASIGNACION')->textInput(['type' => 'number', 'min' => 1, 'max' => 20]); ?>
+    
+	<?= $form->field($model, 'INICIO_BLOQUE_ASIGNACION')->textInput(); ?>
+
 	<?= $form->field($model, 'reCaptcha')->widget(ReCaptcha::className()) ?>
 
     <div class="form-group">

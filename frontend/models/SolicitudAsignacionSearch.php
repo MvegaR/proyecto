@@ -18,8 +18,8 @@ class SolicitudAsignacionSearch extends SolicitudAsignacion
     public function rules()
     {
         return [
-            [['ID_ASIGNACION', 'ID_ESTADO_SOLICITUD', 'CAPACIDAD_ASIGNACION', 'TIPO_SALA_ASIGNACION'], 'integer'],
-            [['DOCENTE_ASIGNACION', 'ASIGNATURA_ASIGNACION', 'SECCION_ASIGNACION'], 'safe'],
+            [['ID_ASIGNACION', 'ID_ESTADO_SOLICITUD', 'CAPACIDAD_ASIGNACION', 'TIPO_SALA_ASIGNACION', 'CANTIDAD_BLOQUES_ASIGNACION', 'INICIO_BLOQUE_ASIGNACION'], 'integer'],
+            [['DOCENTE_ASIGNACION', 'ASIGNATURA_ASIGNACION', 'SECCION_ASIGNACION', 'SALA_ASIGNACION'], 'safe'],
         ];
     }
 
@@ -60,11 +60,14 @@ class SolicitudAsignacionSearch extends SolicitudAsignacion
             'ID_ESTADO_SOLICITUD' => $this->ID_ESTADO_SOLICITUD,
             'CAPACIDAD_ASIGNACION' => $this->CAPACIDAD_ASIGNACION,
             'TIPO_SALA_ASIGNACION' => $this->TIPO_SALA_ASIGNACION,
+            'CANTIDAD_BLOQUES_ASIGNACION' => $this->CANTIDAD_BLOQUES_ASIGNACION,
+            'INICIO_BLOQUE_ASIGNACION' => $this->INICIO_BLOQUE_ASIGNACION,
         ]);
 
         $query->andFilterWhere(['like', 'DOCENTE_ASIGNACION', $this->DOCENTE_ASIGNACION])
             ->andFilterWhere(['like', 'ASIGNATURA_ASIGNACION', $this->ASIGNATURA_ASIGNACION])
-            ->andFilterWhere(['like', 'SECCION_ASIGNACION', $this->SECCION_ASIGNACION]);
+            ->andFilterWhere(['like', 'SECCION_ASIGNACION', $this->SECCION_ASIGNACION])
+            ->andFilterWhere(['like', 'SALA_ASIGNACION', $this->SALA_ASIGNACION]);
 
         return $dataProvider;
     }

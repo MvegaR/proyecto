@@ -31,6 +31,8 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'INICIO_BLOQUE_ASIGNACION_TEMPORAL') ?>
 
+    <?php // echo $form->field($model, 'TIPO_SALA_ASIGNACION_TEMPORAL') ?>
+
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
         <?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>

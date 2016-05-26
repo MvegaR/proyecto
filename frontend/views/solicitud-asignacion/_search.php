@@ -25,9 +25,15 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'SECCION_ASIGNACION') ?>
 
-    <?php // echo $form->field($model, 'CAPACIDAD_ASIGNACION') ?>
+    <?= $form->field($model, 'CAPACIDAD_ASIGNACION') ?>
 
-    <?php // echo $form->field($model, 'TIPO_SALA_ASIGNACION') ?>
+    <?= $form->field($model, 'TIPO_SALA_ASIGNACION') ?>
+
+    <?= $form->field($model, 'SALA_ASIGNACION') ?>
+
+    <?= $form->field($model, 'CANTIDAD_BLOQUES_ASIGNACION') ?>
+
+    <?= $form->field($model, 'INICIO_BLOQUE_ASIGNACION') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

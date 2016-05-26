@@ -35,6 +35,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'SECCION_ASIGNACION',
             'CAPACIDAD_ASIGNACION',
             'TIPO_SALA_ASIGNACION',
+            'SALA_ASIGNACION',
+            'CANTIDAD_BLOQUES_ASIGNACION',
+            'INICIO_BLOQUE_ASIGNACION',
         ],
     ]) ?>
 

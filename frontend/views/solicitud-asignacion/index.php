@@ -30,8 +30,11 @@ $this->params['breadcrumbs'][] = $this->title;
             'DOCENTE_ASIGNACION',
             'ASIGNATURA_ASIGNACION',
             'SECCION_ASIGNACION',
-            // 'CAPACIDAD_ASIGNACION',
-            // 'TIPO_SALA_ASIGNACION',
+            'CAPACIDAD_ASIGNACION',
+            'TIPO_SALA_ASIGNACION',
+            'SALA_ASIGNACION',
+            'CANTIDAD_BLOQUES_ASIGNACION',
+            'INICIO_BLOQUE_ASIGNACION',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
