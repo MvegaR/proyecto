@@ -6,6 +6,7 @@ use Yii;
 use frontend\models\Bloque;
 use frontend\models\Dia;
 use frontend\models\Sala;
+use frontend\models\SolicitudAsignacionTemporal;
 use frontend\models\BloqueSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -161,8 +162,7 @@ use yii\filters\VerbFilter;
         * @param integer $id
         * @return mixed
         */
-        public function actionDelete($id)
-        {
+        public function actionDelete($id){
             $this->findModel($id)->delete();
 
             return $this->redirect(['index']);
@@ -175,8 +175,7 @@ use yii\filters\VerbFilter;
         * @return Bloque the loaded model
         * @throws NotFoundHttpException if the model cannot be found
         */
-        protected function findModel($id)
-        {
+        protected function findModel($id){
             if (($model = Bloque::findOne($id)) !== null) {
                 return $model;
             } else {
@@ -192,7 +191,7 @@ use yii\filters\VerbFilter;
                 foreach ($bloques as $bloque) {
                     $dia = (Dia::find()-> where(['ID_DIA' => $bloque -> ID_DIA])-> one());
                     $dia = $dia -> NOMBRE;
-                    echo "<option value='".$bloque->ID_BLOQUE."'> $dia - Tiempo: ".$bloque->INICIO." a ".$bloque->TERMINO."</option>";
+                    echo "<option value='".$bloque->ID_BLOQUE."'> $dia - De: ".$bloque->INICIO." a ".$bloque->TERMINO."</option>";
                 }
             }else{
                 echo "<option value=>Sin bloques para la sala seleccionada</option>";
@@ -220,7 +219,7 @@ use yii\filters\VerbFilter;
             if($contadorbloques > 0){
                 foreach ($bloques as $bloque) {
                     $dia = (Dia::find()-> where(['ID_DIA' => $bloque -> ID_DIA])-> one());
-                    echo "<option value='".$bloque->ID_BLOQUE."'> $dia - Tiempo: ".$bloque->INICIO." a ".$bloque->TERMINO."</option>";
+                    echo "<option value='".$bloque->ID_BLOQUE."'> $dia - De: ".$bloque->INICIO." a ".$bloque->TERMINO."</option>";
                 }
             }else{
                 echo "<option value=>Sin bloques para la seccion selecionada</option>";
@@ -230,8 +229,10 @@ use yii\filters\VerbFilter;
         Hacer una funcion que escriba las opciones de bloques de una sala dada, que no tenga asignaciones, 
         que no tengan asignaciones temporales para la misma fecha y hora
         */
+
+
         public function actionLists4($fecha, $sala, $cantidad){ //nececito: fecha, sala, cantidad de bloques.
-            $fechadividida = explode("-", $model -> FECHA_ASIGNACION_TEMPORAL);
+            $fechadividida = explode("-", $fecha);
             $nombreDia = date("l",mktime(0,0,0,intval($fechadividida[0]), intval($fechadividida[1]), intval($fechadividida[2]))); 
             if($nombreDia == "Monday"){
                 $nombreDia = "Lunes";
@@ -262,11 +263,6 @@ use yii\filters\VerbFilter;
                     echo "<option value=>Sin bloques disponibles para la sala en día '$nombreDia'</option>"; //culpa bloques permanentes
                     return;
                 }else{
-                    $bloques = Bloque::find()->where(["ID_SALA" => $sala, "ID_DIA" => $idDia, "ID_SECCION" => null]) -> orderBy("INICIO") ->all();
-                    $idsBloquesDisponibles = [];
-                    foreach ($bloques as $bloque) {
-                        array_push($idsBloquesDisponibles, $bloque -> ID_BLOQUE);
-                    }
 
                     $todosLosBloquesEnOrden = Bloque::find()->where(["ID_SALA" => $sala, "ID_DIA" => $idDia]) -> orderBy("INICIO")->all();
                     $todoslosIdsBloquesEnOrden = [];
@@ -274,57 +270,71 @@ use yii\filters\VerbFilter;
                         array_push($todoslosIdsBloquesEnOrden, $idbloque -> ID_BLOQUE);
                     }
 
+
+                    $bloques = Bloque::find()->where(["ID_SALA" => $sala, "ID_DIA" => $idDia, "ID_SECCION" => null]) -> orderBy("INICIO") ->all();
+                    $idsBloquesDisponibles = [];
+                    $idsBloquesDisponibles2 = [];
                     $contador = 0;
-                    foreach (array_slice($idsBloquesDisponibles, 0 ,count($idsBloquesDisponibles)-$cantidad) as $idbloque) {
-                        if(! (array_slice($idsBloquesDisponibles, $contador, $cantidad) ==
-                            array_slice($todoslosIdsBloquesEnOrden, array_search($idbloque, $todoslosIdsBloquesEnOrden), $cantidad))){
-                            unset($idsBloquesDisponibles[$contador]); //No cumple con la cantidad de periodos solicitados se quita.
-                    }
-                    $contador++;
-                }
-
-                if(count($idsBloquesDisponibles == 0)){
-                        echo "<option value=>Sin bloques disponibles para la CANTIDAD de periodos solicitados</option>"; //culpa de las asignaciones permanentes.
-                        return;
-                    }
-
-                    $contadorBloquesNoDisponebesTemporales = SolicitudAsignacionTemporal::find() 
-                    ->where(["FECHA_ASIGNACION_TEMPORAL" => $fecha, "SALA_ASIGNACION_TEMPORAL" => $sala]) ->orderBy("INICIO") ->count();
-                    if($contadorBloquesNoDisponebesTemporales != 0){
-                        $bloquesTemporales = SolicitudAsignacionTemporal::find() 
-                        ->where(["FECHA_ASIGNACION_TEMPORAL" => $fecha, "SALA_ASIGNACION_TEMPORAL" => $sala]) -> orderBy("INICIO") ->all();
-                        foreach($bloquesTemporales as $bloquetemporal){
-                            $posicionBloque = array_search($bloquetemporal -> INICIO_BLOQUE_ASIGNACION_TEMPORAL, $idsBloquesDisponibles);
-                            unset($idsBloquesDisponibles[$posicionBloque]);
+                    foreach ($bloques as $bloque){
+                        if($contador < (count($todosLosBloquesEnOrden) - $cantidad+1)){
+                            array_push($idsBloquesDisponibles, $bloque -> ID_BLOQUE);
                         }
+                        array_push($idsBloquesDisponibles2, $bloque -> ID_BLOQUE);
+                        $contador++;
                     }
+                    
+                    
                     if(count($idsBloquesDisponibles) == 0){
+                            echo "<option value=>Sin bloques disponibles para la CANTIDAD de periodos solicitados</option>"; //culpa de las asignaciones permanentes.
+                            return;
+                        }
+
+                        $contadorBloquesNoDisponebesTemporales = SolicitudAsignacionTemporal::find() 
+                        ->where(["FECHA_ASIGNACION_TEMPORAL" => $fecha, "SALA_ASIGNACION_TEMPORAL" => $sala])  ->count();
+                        if($contadorBloquesNoDisponebesTemporales != 0){
+                            $bloquesTemporales = SolicitudAsignacionTemporal::find() 
+                            ->where(["FECHA_ASIGNACION_TEMPORAL" => $fecha, "SALA_ASIGNACION_TEMPORAL" => $sala]) ->all();
+                            foreach($bloquesTemporales as $bloquetemporal){
+                                $posicionBloque = array_search($bloquetemporal -> INICIO_BLOQUE_ASIGNACION_TEMPORAL, $idsBloquesDisponibles);
+                                unset($idsBloquesDisponibles[$posicionBloque]);
+                            }
+                        }
+                        if(count($idsBloquesDisponibles) == 0){
                         echo "<option value=>Sin bloques para la FECHA seleccionada</option>"; //culpa bloques temporales
-                        return;
-                    }else if(count($idsBloquesDisponibles) < $cantidad){
-                        echo "<option value=>Cantidad de bloques insuficientes para la FECHA y CANTIDAD solicitados</option>";
                         return;
                     }else{
 
-                        $contador = 0;
-                        foreach (array_slice($idsBloquesDisponibles, 0 ,count($idsBloquesDisponibles)-$cantidad) as $idbloque) {
-                            if(! (array_slice($idsBloquesDisponibles, $contador, $cantidad) ==
-                                array_slice($todoslosIdsBloquesEnOrden, array_search($idbloque, $todoslosIdsBloquesEnOrden), $cantidad))){
-                                unset($idsBloquesDisponibles[$contador]); //No cumple con la cantidad de periodos solicitados se quita.
+                        foreach ($idsBloquesDisponibles2 as $idbloque){
+                            if(!$this -> equalsDosArray((array_slice($idsBloquesDisponibles2, array_search($idbloque, $idsBloquesDisponibles2), $cantidad)), 
+                               (array_slice($todoslosIdsBloquesEnOrden, array_search($idbloque, $todoslosIdsBloquesEnOrden), $cantidad)))){
+                                unset($idbloque);
                         }
-                        $contador++;
                     }
-                    if(count($idsBloquesDisponibles == 0)){
-                            echo "<option value=>Sin bloques disponibles para Cantidad requerida en la FECHA</option>"; //culpa de las asignaciones temporales.
+                    $idsBloquesDisponibles = array_intersect($idsBloquesDisponibles, $idsBloquesDisponibles2);
+                    if(count($idsBloquesDisponibles)  == 0){
+                            echo "<option value=>Sin bloques disponibles para la CANTIDAD de periodos en la FECHA ingresada</option>"; //culpa de las asignaciones temporales.
                             return;
                         }else{
                             foreach ($idsBloquesDisponibles as $idbloque) {
                                 $bl = Bloque::find() -> where(["ID_BLOQUE" => $idbloque]) -> one();
-                                echo "<option value='".$idbloque."'> $fecha - Tiempo: ".$bl->INICIO." a ".$bl->TERMINO."</option>";
+                                echo "<option value='".$idbloque."'> $nombreDia - De: ".$bl->INICIO." a ".$bl->TERMINO."</option>";
                             }
                         }
                     }
                 }
             }
         }
+        private function equalsDosArray($ar, $er){
+            if(count($ar) != count($er)){
+                return false;
+            }
+            foreach ($ar as $a) {
+                if($a != $er[array_search($a, $ar)]){
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        
     }
