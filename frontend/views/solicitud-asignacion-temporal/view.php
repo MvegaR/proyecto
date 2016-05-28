@@ -29,6 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'ID_ASIGNACION_TEMPORAL',
+            'SOLICITUD_TEMPORAL_PADRE',
             'ID_ESTADO_ASIGNACION_TEMPORAL',
             'DOCENTE_ASIGNACION_TEMPORAL',
             'CAPACIDAD_ASIGNACION_TEMPORAL',

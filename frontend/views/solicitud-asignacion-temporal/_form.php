@@ -22,6 +22,8 @@ use yii\helpers\ArrayHelper;
             ['prompt'=>'Seleccione estado de asignación'] )->label('Estado de asignación');
      ?>
 
+     
+
     <?php if($model->isNewRecord) echo $form->field($model, 'DOCENTE_ASIGNACION_TEMPORAL')->hiddenInput(['value' => Yii::$app->user->identity -> ID_DOCENTE])->label(false); ?>
         
     <?= $form->field($model, 'CAPACIDAD_ASIGNACION_TEMPORAL')->textInput(['type' => 'number', 'min' => 1, 

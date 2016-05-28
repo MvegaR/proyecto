@@ -15,16 +15,14 @@ $this->params['breadcrumbs'][] = $this->title;
     Funcionalidad: <br>
      -Ver horario usuario autentificado (docente)<br>
     -Ver horarios de una sala determinada. (publico)<br>
-     -Horario general (estadisticas), para identificar por colores el estado de asignación en promedio de bloques<br>
     -Importar desde excel.<br>
     - Consultas sql para selectores dependientes en formulario asignacion temporal<br>
 
     <br>
     Estetica:<br>
     -Cambiar numeros ID por su Nombre, en todos los index.php y view.php siguiento el video (ejemplo ya hecho index.php de docente) -> https://www.youtube.com/watch?v=OLfz7Iy_y84<br>
-    -Cambiar a español texto vistas: view.php, index.php, update.php y _form.php<br>
     -Migas de pan (breadcrumbs) y que diferencie admin de docente y invitado<br>
-    -Link en el menu lateral (solo cosas faltantes)<br>
+
  <div class="embed-responsive embed-responsive-16by9">
     <br>
     <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/OLfz7Iy_y84" frameborder="0" allowfullscreen></iframe>
