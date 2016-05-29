@@ -232,7 +232,8 @@ use yii\filters\VerbFilter;
         */
 
 
-        public function actionLists4($fecha, $sala, $cantidad){ //nececito: fecha, sala, cantidad de bloques.
+        public function actionLists4($fecha, $sala, $cantidad, $id = 0){ //nececito: fecha, sala, cantidad de bloques.
+            if($id == null || $id == '') $id = 0;
             $fechadividida = explode("-", $fecha);
             $nombreDia = date("l",mktime(0,0,0,intval($fechadividida[1]), intval($fechadividida[2]), intval($fechadividida[0]))); 
            
@@ -290,21 +291,26 @@ use yii\filters\VerbFilter;
                         array_push($idsBloquesDisponibles2, $bloque -> ID_BLOQUE);
                         $contador++;
                     }
-                    
-                    
+
                     if(count($idsBloquesDisponibles) == 0){
                             echo "<option value=>Sin bloques disponibles para la CANTIDAD de periodos solicitados</option>"; //culpa de las asignaciones permanentes.
                             return;
                         }
 
                         $contadorBloquesNoDisponebesTemporales = SolicitudAsignacionTemporal::find() 
-                        ->where(["FECHA_ASIGNACION_TEMPORAL" => $fecha, "SALA_ASIGNACION_TEMPORAL" => $sala])  ->count();
+                        ->where(["FECHA_ASIGNACION_TEMPORAL" => $fecha, "SALA_ASIGNACION_TEMPORAL" => $sala])->count();
                         if($contadorBloquesNoDisponebesTemporales != 0){
                             $bloquesTemporales = SolicitudAsignacionTemporal::find() 
-                            ->where(["FECHA_ASIGNACION_TEMPORAL" => $fecha, "SALA_ASIGNACION_TEMPORAL" => $sala]) ->all();
+                            ->where(["FECHA_ASIGNACION_TEMPORAL" => $fecha, "SALA_ASIGNACION_TEMPORAL" => $sala,]) -> andWhere(["<>", "SOLICITUD_TEMPORAL_PADRE", $id]) -> all();
                             foreach($bloquesTemporales as $bloquetemporal){
+                                 echo "<hr>";
+                                echo "id: ".$bloquetemporal -> INICIO_BLOQUE_ASIGNACION_TEMPORAL."<br>";
+                                echo "<br> ".var_dump($idsBloquesDisponibles)."<br>";
                                 $posicionBloque = array_search($bloquetemporal -> INICIO_BLOQUE_ASIGNACION_TEMPORAL, $idsBloquesDisponibles);
+                                echo "<br>".var_dump($posicionBloque);
+                                echo "<hr>";
                                 unset($idsBloquesDisponibles[$posicionBloque]);
+
                             }
                         }
                         if(count($idsBloquesDisponibles) == 0){
@@ -379,9 +385,6 @@ use yii\filters\VerbFilter;
                     array_push($todoslosIdsBloquesEnOrden, $bloque -> ID_BLOQUE);
                 }
                 unset($todosLosBloquesEnOrden); //ahorrar
-
-
-
                 foreach ($idsBloquesDisponibles2 as $idbloque){
                     if(!$this -> equalsDosArray((array_slice($idsBloquesDisponibles2, array_search($idbloque, $idsBloquesDisponibles2), $cantidad)), (array_slice($todoslosIdsBloquesEnOrden, array_search($idbloque, $todoslosIdsBloquesEnOrden), $cantidad)))){
 

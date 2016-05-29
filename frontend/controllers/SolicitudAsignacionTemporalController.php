@@ -64,10 +64,11 @@ class SolicitudAsignacionTemporalController extends Controller
     public function actionCreate()
     {
         $model = new SolicitudAsignacionTemporal();
-
+        
         if ($model->load(Yii::$app->request->post())) {
+
             $fechadividida = explode("-", $model -> FECHA_ASIGNACION_TEMPORAL);
-            $nombreDia = date("l",mktime(0,0,0,intval($fechadividida[0]), intval($fechadividida[1]), intval($fechadividida[2]))); 
+            $nombreDia = date("l",mktime(0,0,0,intval($fechadividida[1]), intval($fechadividida[2]), intval($fechadividida[0]))); 
             if($nombreDia == "Monday"){
                 $nombreDia = "Lunes";
             }else if($nombreDia == "Tuesday"){
@@ -86,17 +87,24 @@ class SolicitudAsignacionTemporalController extends Controller
             $idDia = Dia::find(["NOMBRE" => $nombreDia]) -> one() -> ID_DIA;
             $var = true;
             $bloques = Bloque::find() -> where(["ID_SALA" => $model -> SALA_ASIGNACION_TEMPORAL, "ID_DIA" => $idDia]) 
-                            -> orderBy("INICIO") -> all();
+            -> orderBy("INICIO") -> all();
             $comenzar = false;
             $i = 0;
             $idPadre = null;
             foreach ($bloques as $bloque) {
-                if($comenzar && $i <$model -> CANTIDAD_BLOQUES_ASIGNACION_TEMPORAL  && $var && ($var = $model -> save())){
+                if($bloque -> ID_BLOQUE == $model -> INICIO_BLOQUE_ASIGNACION_TEMPORAL){
+                   $comenzar = true;
+               }
+                if($comenzar && $i < $model -> CANTIDAD_BLOQUES_ASIGNACION_TEMPORAL  && $var && ($var = $model -> save())){
                     if($idPadre == null){
-                        $idPadred = $idPadre = Yii::$app->db->getLastInsertID();
+                        $idPadre = Yii::$app->db->getLastInsertID();
                         $model = $this -> findModel($idPadre);
                         $model -> SOLICITUD_TEMPORAL_PADRE = $idPadre;
-                        $model -> save();
+                        if(!$model -> save()){
+                            echo "Error";
+                            var_dump($model);
+                            return;
+                        }
                     }
                     $model = new SolicitudAsignacionTemporal();
                     $model->load(Yii::$app->request->post());
@@ -104,20 +112,25 @@ class SolicitudAsignacionTemporalController extends Controller
                     $model -> SOLICITUD_TEMPORAL_PADRE = $idPadre;
                     $i++;
                 }
-                if($bloque -> ID_BLOQUE == $model -> INICIO_BLOQUE_ASIGNACION_TEMPORAL){
-                     $comenzar = true;
-               }
-            }
 
-            if($var){
-                return $this->redirect(['view', 'id' => $model->ID_ASIGNACION_TEMPORAL]);
+           }
+
+           if($var){
+            return $this->redirect(['view', 'id' => $idPadre]);
             }
-        } else {
-            return $this->render('create', [
-                'model' => $model,
+            else{
+                echo "No se guardo algo... D:<br>";
+                echo "<hr>";
+                echo var_dump($model);
+                echo "<hr>";
+                echo var_dump(Yii::$app->request->post());
+              }
+    } else {
+        return $this->render('create', [
+            'model' => $model,
             ]);
-        }
     }
+}
 
     /**
      * Updates an existing SolicitudAsignacionTemporal model.
@@ -129,74 +142,11 @@ class SolicitudAsignacionTemporalController extends Controller
     {
         $model1 = $this->findModel($id);
         $model = $this -> findModel($model1->SOLICITUD_TEMPORAL_PADRE);
-        $inicial = $model -> CANTIDAD_BLOQUES_ASIGNACION_TEMPORAL;
-        if ($model->load(Yii::$app->request->post())) {
-            $modelos = SolicitudAsignacionTemporal::find() -> where(["SOLICITUD_TEMPORAL_PADRE"=> $model1->SOLICITUD_TEMPORAL_PADRE]) -> all();
-            
-            foreach($modelos as $modeli){
-                if($var  && ($var = $modeli -> save())){
-                    //Hi =)
-                }
-            }
-            $cantidad = $inicial - $model -> CANTIDAD_BLOQUES_ASIGNACION_TEMPORAL;
 
-            $fechadividida = explode("-", $model -> FECHA_ASIGNACION_TEMPORAL);
-            $nombreDia = date("l",mktime(0,0,0,intval($fechadividida[0]), intval($fechadividida[1]), intval($fechadividida[2]))); 
-            if($nombreDia == "Monday"){
-                $nombreDia = "Lunes";
-            }else if($nombreDia == "Tuesday"){
-                $nombreDia = "Martes";
-            }else if($nombreDia == "Wednesday"){
-                $nombreDia = "Miércoles";
-            }else if($nombreDia == "Thursday"){
-                $nombreDia = "Jueves";
-            }else if($nombreDia == "Friday"){
-                $nombreDia = "Viernes";
-            }else if($nombreDia == "Saturday"){
-                $nombreDia = "Sábado";
-            }else if($nombreDia == "Sunday"){
-                $nombreDia = "Domingo";
-            }
-            $idDia = Dia::find(["NOMBRE" => $nombreDia]) -> one() -> ID_DIA;
-            $var = true;
-            $bloques = Bloque::find() -> where(["ID_SALA" => $model -> SALA_ASIGNACION_TEMPORAL, "ID_DIA" => $idDia]) 
-                            -> orderBy("INICIO") -> all();
-            $comenzar = false;
-            $i = 0;
-            if($cantidad > 0    ){ //agregar
-                $idPadre = null;
-                foreach ($bloques as $bloque) {
-                    if($idPadre == null){
-                        $idPadred = $idPadre = Yii::$app->db->getLastInsertID();
-                        $model = $this -> findModel($idPadre);
-                        $model -> SOLICITUD_TEMPORAL_PADRE = $idPadre;
-                        $model -> save();
-                    }
-                    if($comenzar && $i <$model -> CANTIDAD_BLOQUES_ASIGNACION_TEMPORAL  && $var && ($var = $model -> save())){
-                        $model = new SolicitudAsignacionTemporal();
-                        $model->load(Yii::$app->request->post());
-                        $model -> ID_ASIGNACION_TEMPORAL = null;
-                        $model -> INICIO_BLOQUE_ASIGNACION_TEMPORAL = $bloque -> ID_BLOQUE;
-                        $model -> SOLICITUD_TEMPORAL_PADRE = $idPadre;
-                        $i++;
-                    }
-                    if($bloque -> ID_BLOQUE == $model -> INICIO_BLOQUE_ASIGNACION_TEMPORAL){
-                         $comenzar = true;
-                   }
-                }
-            }else if($cantidad > 0){ //quitar
-                $contador = 0;
-                foreach($modelos as $modeli){
-                    if($contador >= $model -> CANTIDAD_BLOQUES_ASIGNACION_TEMPORAL){
-                        $modeli -> delate();
-                    }
-                 $contador++;
-                }
-            }
-            if($var){
-                return $this->redirect(['view', 'id' => $model->ID_ASIGNACION_TEMPORAL]);
-            }
-        } else {
+        if ($model->load(Yii::$app->request->post())) {
+           $this->actionDelete($id, false);
+           $this->actionCreate();
+        } else {    
             return $this->render('update', [
                 'model' => $model,
             ]);
@@ -209,16 +159,16 @@ class SolicitudAsignacionTemporalController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionDelete($id)
+    public function actionDelete($id, $r = true)
     {
         $model1 = $this->findModel($id);
         $model = $this -> findModel($model1->SOLICITUD_TEMPORAL_PADRE);
         $model = SolicitudAsignacionTemporal::find() -> where(["SOLICITUD_TEMPORAL_PADRE" => $model1->SOLICITUD_TEMPORAL_PADRE]) -> all();
         foreach ($model as $mod) {
-            $mod -> delate();
+            $mod -> delete();
         }
 
-        return $this->redirect(['index']);
+        if($r){return $this->redirect(['index']);}
     }
 
     /**

@@ -50,7 +50,7 @@ use himiklab\yii2\recaptcha\ReCaptcha;
                              document.getElementById("solicitudasignacion-capacidad_asignacion").value = data;
                         });',] )->label('Primero seleccione asignatura') ?> 
 
-    <?= $form->field($model, 'CAPACIDAD_ASIGNACION')->textInput(['type' => 'number', 'min' => 1, 'disabled' => '',]) ?>
+    <?= $form->field($model, 'CAPACIDAD_ASIGNACION')->textInput(['type' => 'number', 'min' => 1, 'readonly'=>'readonly',]) ?>
 
      <?= $form->field($model, 'TIPO_SALA_ASIGNACION')->dropDownList(
         ArrayHelper::map(TipoSala::find()->all(),'ID_TIPO_SALA','NOMBRE_TIPO'),
