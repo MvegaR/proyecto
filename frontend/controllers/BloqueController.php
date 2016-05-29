@@ -6,6 +6,7 @@ use Yii;
 use frontend\models\Bloque;
 use frontend\models\Dia;
 use frontend\models\Sala;
+use frontend\models\TiempoInicio;
 use frontend\models\SolicitudAsignacionTemporal;
 use frontend\models\BloqueSearch;
 use yii\web\Controller;
@@ -345,6 +346,82 @@ use yii\filters\VerbFilter;
             }
             return true;
         }
+
+        //Funcion que entrega los bloques posibles para una asignación permanente. (no se consideran los bloques temporales)
+        public function actionLists5($sala, $cantidad){ 
+            
+            $dias = Dia::find() -> all();
+            $option = [];
+            foreach ($dias as $dia) {
+                $todosLosBloquesEnOrden = Bloque::find()->where(["ID_SALA" => $sala, "ID_DIA" => $dia -> ID_DIA]) -> orderBy("INICIO")->all();
+                $contadorBloquesDisponibles = Bloque::find()->where(["ID_SALA" => $sala, "ID_DIA" => $dia -> ID_DIA, "ID_SECCION" => null]) -> orderBy("INICIO")->count();
+                if($contadorBloquesDisponibles == 0){
+                    continue;
+                }else if($contadorBloquesDisponibles < $cantidad){
+                    continue;
+                }
+                $bloquesDisponibles = Bloque::find()->where(["ID_SALA" => $sala, "ID_DIA" => $dia -> ID_DIA, "ID_SECCION" => null]) -> orderBy("INICIO")->all();
+                $idsBloquesDisponibles = []; //Los que si alcanzan a cumplir con la cantidad de bloques.= # -cantidad+1
+                $idsBloquesDisponibles2 = []; //Los que no tienen interrupciones para la cantidad de bloques.
+                $todoslosIdsBloquesEnOrden = []; //para crear el anterior. (final = join(1 y 2))
+                $contador = 0;
+                
+                foreach ($bloquesDisponibles as $bloque) {
+                    if($contador < (count($bloquesDisponibles) - $cantidad+1)){
+                        array_push($idsBloquesDisponibles, $bloque -> ID_BLOQUE);
+                    }
+                    array_push($idsBloquesDisponibles2, $bloque -> ID_BLOQUE);
+                    $contador++;
+                }
+
+                unset($bloquesDisponibles); //ahorrar
+                foreach ($todosLosBloquesEnOrden as $bloque) {
+                    array_push($todoslosIdsBloquesEnOrden, $bloque -> ID_BLOQUE);
+                }
+                unset($todosLosBloquesEnOrden); //ahorrar
+
+
+
+                foreach ($idsBloquesDisponibles2 as $idbloque){
+                    if(!$this -> equalsDosArray((array_slice($idsBloquesDisponibles2, array_search($idbloque, $idsBloquesDisponibles2), $cantidad)), (array_slice($todoslosIdsBloquesEnOrden, array_search($idbloque, $todoslosIdsBloquesEnOrden), $cantidad)))){
+
+                        unset($idbloque);
+                    }
+                }
+
+
+
+
+
+                $idsBloquesDisponibles = array_intersect($idsBloquesDisponibles, $idsBloquesDisponibles2);
+
+                foreach ($idsBloquesDisponibles as $idasdf) {
+                    $bl = Bloque::find() -> where(["ID_BLOQUE" => $idasdf]) -> one();
+                    $blFin = Bloque::find() -> where(["ID_BLOQUE" => 
+                        $todoslosIdsBloquesEnOrden[array_search($idasdf, $todoslosIdsBloquesEnOrden)+$cantidad-1]]) -> one();
+                    $dia = Dia::find() -> where(["ID_DIA" => $bl -> ID_DIA]) -> one() -> NOMBRE;
+                    array_push($option, "<option value='".$idasdf."'> $dia - De: ".$bl->INICIO." a ".$blFin->TERMINO."</option>");
+                }
+            }
+            
+            if($cantidad > TiempoInicio::find()-> count()){
+                 echo "<option value=>Cantidad de bloques solicitados supera un día normal</option>";
+                 return;
+            }else if(count($option) == 0){
+                echo "<option value=>Sin bloques disponibles para la SALA seleccionada</option>";
+                return;
+            }else if(count($option) < 0){
+                 echo "<option value=>Sin bloques disponibles para la CANTIDAD de periodos seleccionados</option>";
+                 return;
+            }else{
+                foreach ($option as $o) {
+                    echo $o;
+                }
+            }
+
+        }
+
+
 
         
     }

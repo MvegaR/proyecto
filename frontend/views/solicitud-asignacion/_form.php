@@ -54,13 +54,23 @@ use himiklab\yii2\recaptcha\ReCaptcha;
 
      <?= $form->field($model, 'TIPO_SALA_ASIGNACION')->dropDownList(
         ArrayHelper::map(TipoSala::find()->all(),'ID_TIPO_SALA','NOMBRE_TIPO'),
-        ['prompt'=>'Seleccione tipo sala'] )->label('Tipo sala') ?>
+        ['prompt'=>'Seleccione tipo sala', 'onchange' => '$.post(
+        "index.php?r=sala/listscaptipo&tipo='.'"+$(this).val()+"&cap='.'"+$("input#solicitudasignacion-capacidad_asignacion").val()
+    , function(data){
+             $("select#solicitudasignacion-sala_asignacion").html(data);
+        });'] )->label('Tipo sala') ?>
 
-    <?= $form->field($model, 'SALA_ASIGNACION')->textInput(); ?>
+      <?= $form->field($model, 'SALA_ASIGNACION')->dropDownList([], ['prompt' => 'Seleccione una sala.', 'onchange' => 'document.getElementById("solicitudasignacion-inicio_bloque_asignacion").onchange()']); ?>
 
-    <?= $form->field($model, 'CANTIDAD_BLOQUES_ASIGNACION')->textInput(['type' => 'number', 'min' => 1, 'max' => 20]); ?>
+   <?= $form->field($model, 'CANTIDAD_BLOQUES_ASIGNACION')->textInput(['type' => 'number', 'min' => 1, 'max' => 20, 
+        'onchange' => '$.post(
+        "index.php?r=bloque/lists5&sala='.'"+$("select#solicitudasignacion-sala_asignacion").val()+"&cantidad='.'"+$(this).val()
+        ,function(data){
+            $("select#solicitudasignacion-inicio_bloque_asignacion").html(data);
+        });']) ?>
+     <p class="help-block">Cada bloque es de 40min y continuados.</p>
     
-	<?= $form->field($model, 'INICIO_BLOQUE_ASIGNACION')->textInput(); ?>
+    <?= $form->field($model, 'INICIO_BLOQUE_ASIGNACION')->dropDownList([], ['prompt' => 'Seleccione bloque inicial'])?> 
 
 	<?= $form->field($model, 'reCaptcha')->widget(ReCaptcha::className()) ?>
 
