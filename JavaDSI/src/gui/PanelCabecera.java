@@ -23,7 +23,7 @@ public class PanelCabecera extends JPanel {
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNewLabel.setToolTipText("");
 		add(lblNewLabel);
-	    imagen = new ImageIcon("recursos/texturaOP.png").getImage();
+	    imagen = new ImageIcon(this.getClass().getResource("/texturaOP.png")).getImage();
 	}
 	
     @Override
