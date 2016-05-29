@@ -1,69 +1,68 @@
 <?php
 
 /* @var $this yii\web\View */
-
-$this->title = 'My Yii Application';
+$this->title = 'PASH UBB';
 ?>
-<div class=" alert alert-info col-xs-12 " style=" margin: 15px 0px 20px 0px;">
-    <p>Información de autentificación / ocultar/mostrar</p>
-</div>
+    <div class="panel-title hidden" style="background-color:#0064AC; color:#FFFFFF; border-radius: 0px 30px 30px 0px; font-weight:bold; font-size:19px">Texto</div>
+     <br>
+            <ul class="breadcrumb">
+                <li><a href="#">Informacion de Autentificacion</a></li>
+                <li class="active"><button class="btn btn-default control">Ocultar/Mostrar</button></li>
+            </ul> 
 <div class="site-index">
 
     <div class="jumbotron">
         <?php 
             if(!Yii::$app -> user -> isGuest){
-                echo "<h1>Iniciado como rol de : ";
+                echo '<h2 align="left"><strong>Autentificado como rol de: ';
                 if(Yii::$app -> user -> identity -> ID_ROL == 1){
-                    echo "Administrador";
+                    echo "Administrador</strong>";
                 }else{
-                    echo "Docente";
+                    echo "Docente</strong>";
                 }
-                echo "</h1>";
+                echo "</h2>";
             }else {
-                echo "<h1>Congratulations!</h1>";
+                echo '<h2 align="left">Plataforma PASH UBB</h2>';
             }
         ?>
-        
-
-        <p class="lead">You have successfully created your Yii-powered application.</p>
-
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
+        <p align="left"><?php echo date('j \d\e F \d\e Y\, g:ia') ?></p>
+        <p align="left">Estimad@s Usuari@s:</p>
+        <p align="justify">Les damos la más cordial bienvenida a la Plataforma de Administracion de Salas y Horarios PASH UBB. Favor, ante cualquier consulta, inconveniente o requerimiento asociado a claves y password de acceso, y otras situaciones relativas a la plataforma, les invitamos a contactarnos al correo <a title="Plataforma PASH UBB" href="mailto:plataformamoodle@ubiobio.cl" target="_blank"><strong><u><span style="color:rgb(0,0,255);">plataformapash@ubiobio.cl</span></u></strong></a>.</p>
+        <p align="left">Les saluda,</p>
+        <p align="left">Administrador Plataforma PASH UBB</p>
     </div>
 
     <div class="body-content">
-
+    <div class="panel panel-default">
+  <div class="panel-body">
         <div class="row">
             <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
+                <h2><span class='glyphicon glyphicon-bookmark'> </span></h2>
+                <p align="justify">PASH es una Plataforma de Administracion que tiene por finalidad prestar servicios de apoyo a la docencia de Pregrado y Postgrado de la Universidad del Bío-Bío, optimizando las asignaciones de salas y horarios.</p>
             </div>
             <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
+                <h2><span class='glyphicon glyphicon-bookmark'> </span></h2>
+                <p align="justify">El diseño de PASH permite que el Administrador y los Academicos la utilicen fácilmente, dado que sus funcionalidades han sido configuradas en función de sus necesidades.</p>
             </div>
             <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
+                <h2><span class='glyphicon glyphicon-bookmark'> </span></h2>
+                <p align="justify">PASH es una plataforma en constante desarrollo, diseñada y construida en la Universidad del Bío-Bío, por lo cual invitamos a sus usuarios a enviar comentarios y sugerencias, a objeto de continuar ofreciéndoles un servicio de calidad.</p>
             </div>
         </div>
-
+ </div>
+</div>
     </div>
 </div>
+<script type="text/javascript">
+    var abierto=true;
+    var boton=true;
+    $(".control").on('click',function(){
+	    if(abierto){
+     	    $(".jumbotron").slideUp(1000);
+  	        abierto=false;
+        }else{
+  	        $(".jumbotron").slideDown(1000);
+  	        abierto=true;
+        }
+    });
+</script>

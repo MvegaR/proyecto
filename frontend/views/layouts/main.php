@@ -131,7 +131,7 @@ style="background-color:#0064AC; background-image:url(img/bg.png);color:#fff;  p
 </div>
 </main>
 <section class="container" id="Contenido" class="col-xs-12">
-
+<script src="js/jquery-2.2.4.min.js"></script>
   <div class="col-lg-9 col-md-9 col-xs-12 pull-left" style="padding:0px;">
     <div class="panel-title hidden" style="background-color:#0064AC; color:#FFFFFF; border-radius: 0px 30px 30px 0px; font-weight:bold; font-size:19px">Texto</div>
      <br>
