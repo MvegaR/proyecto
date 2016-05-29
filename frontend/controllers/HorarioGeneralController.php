@@ -45,7 +45,7 @@ class HorarioGeneralController extends Controller
     
     public function actionIndex(){
         $array = array();
-        for($i = 1, $j = 1; $i < 6; $i++, $j++){
+        for($i = 1, $j = 1; $i < 7; $i++, $j++){
             $var1 = Bloque::getCantidadBloquesLibresSegunDiaHora($i,'08:10:00');
             $var2 = Bloque::getCantidadBloquesLibresSegunDiaHora($i,'08:50:00');
             $var3 = Bloque::getCantidadBloquesLibresSegunDiaHora($i,'09:40:00');

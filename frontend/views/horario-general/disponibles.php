@@ -30,6 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
                   else if($dia == 3) echo 'Miercoles';
                   else if($dia == 4) echo 'Jueves';
                   else if($dia == 5) echo 'Viernes';
+                  else if($dia == 6) echo 'Sabado';
             ?></td>
         <td><?= $hora ?></td>
     </tr>
