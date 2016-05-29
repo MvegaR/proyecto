@@ -233,11 +233,8 @@ use yii\filters\VerbFilter;
 
         public function actionLists4($fecha, $sala, $cantidad){ //nececito: fecha, sala, cantidad de bloques.
             $fechadividida = explode("-", $fecha);
-            echo $fecha;
-            echo "<br>";
-            echo var_dump($fechadividida);
             $nombreDia = date("l",mktime(0,0,0,intval($fechadividida[1]), intval($fechadividida[2]), intval($fechadividida[0]))); 
-            echo "<br>$nombreDia";
+           
             if($nombreDia == "Monday"){
                 $nombreDia = "Lunes";
             }else if($nombreDia == "Tuesday"){
