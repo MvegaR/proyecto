@@ -317,7 +317,10 @@ use yii\filters\VerbFilter;
                         }else{
                             foreach ($idsBloquesDisponibles as $idbloque) {
                                 $bl = Bloque::find() -> where(["ID_BLOQUE" => $idbloque]) -> one();
-                                echo "<option value='".$idbloque."'> $nombreDia - De: ".$bl->INICIO." a ".$bl->TERMINO."</option>";
+                                $blFin = Bloque::find() -> where(["ID_BLOQUE" => 
+                                    $todoslosIdsBloquesEnOrden[array_search($idbloque, $todoslosIdsBloquesEnOrden)+$cantidad-1]]) -> one();
+                                echo "<option value='".$idbloque."'> $nombreDia - De: ".$bl->INICIO." a ".$blFin->TERMINO."</option>";
+
                             }
                         }
                     }

@@ -50,16 +50,21 @@ $.post(
         $fechamax = date('Y-m-d', $mesmax);
     ?>
 
-    <?= $form->field($model, 'SALA_ASIGNACION_TEMPORAL')->dropDownList([], ['prompt' => 'Seleccione una sala.']) ?>
+    <?= $form->field($model, 'SALA_ASIGNACION_TEMPORAL')->dropDownList([], ['prompt' => 'Seleccione una sala.', 'onchange' => 'document.getElementById("solicitudasignaciontemporal-cantidad_bloques_asignacion_temporal").onchange()']); ?>
 
-    <?= $form->field($model, 'FECHA_ASIGNACION_TEMPORAL')->textInput(['type' => 'date', 'min' => "$fecha", 'max' => "$fechamax"]) ?>
+    <?= $form->field($model, 'FECHA_ASIGNACION_TEMPORAL')->textInput(['type' => 'date', 'min' => "$fecha", 'max' => "$fechamax", 'onchange' => 'document.getElementById("solicitudasignaciontemporal-cantidad_bloques_asignacion_temporal").onchange()']); ?>
 
     <p class="help-block">Solo puede solicitar salas temporales con un mes de anticipación.</p>
 
-    <?= $form->field($model, 'CANTIDAD_BLOQUES_ASIGNACION_TEMPORAL')->textInput(['type' => 'number', 'min' => 1, 'max' => 20]) ?>
+    <?= $form->field($model, 'CANTIDAD_BLOQUES_ASIGNACION_TEMPORAL')->textInput(['type' => 'number', 'min' => 1, 'max' => 20, 
+        'onchange' => '$.post(
+        "index.php?r=bloque/lists4&fecha='.'"+$("input#solicitudasignaciontemporal-fecha_asignacion_temporal").val()+"&sala='.'"+$("select#solicitudasignaciontemporal-sala_asignacion_temporal").val()+"&cantidad='.'"+$(this).val()
+        ,function(data){
+            $("select#solicitudasignaciontemporal-inicio_bloque_asignacion_temporal").html(data);
+        });']) ?>
      <p class="help-block">Cada bloque es de 40min y continuados.</p>
 
-    <?= $form->field($model, 'INICIO_BLOQUE_ASIGNACION_TEMPORAL')->textInput() //falta este ultimo ?> 
+    <?= $form->field($model, 'INICIO_BLOQUE_ASIGNACION_TEMPORAL')->dropDownList([], ['prompt' => 'Seleccione bloque inicial']) //falta este ultimo ?> 
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Crear' : 'Modificar', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

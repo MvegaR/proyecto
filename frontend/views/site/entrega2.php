@@ -13,10 +13,9 @@ $this->params['breadcrumbs'][] = $this->title;
     Falta: <br>
     <br>
     Funcionalidad: <br>
-     -Ver horario usuario autentificado (docente)<br>
+    -Ver horario usuario autentificado (docente)<br>
     -Ver horarios de una sala determinada. (publico)<br>
     -Importar desde excel.<br>
-    - Consultas sql para selectores dependientes en formulario asignacion temporal<br>
 
     <br>
     Estetica:<br>
