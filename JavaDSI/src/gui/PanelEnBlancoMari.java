@@ -6,6 +6,9 @@ import java.awt.BorderLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 
@@ -20,6 +23,9 @@ public class PanelEnBlancoMari extends JPanel {
      * Create the panel.
      * PANEL DE MARI
      */
+    
+    private JButton btnAdministrar = new JButton("Administrar");
+    
     public PanelEnBlancoMari() {
     	setLayout(new BorderLayout(0, 0));
     	
@@ -49,7 +55,6 @@ public class PanelEnBlancoMari extends JPanel {
     	gbc_lblParaPoderAcceder.gridy = 5;
     	panel.add(lblParaPoderAcceder, gbc_lblParaPoderAcceder);
     	
-    	JButton btnAdministrar = new JButton("Administrar");
     	btnAdministrar.setFont(new Font("Tahoma", Font.PLAIN, 14));
     	GridBagConstraints gbc_btnAdministrar = new GridBagConstraints();
     	gbc_btnAdministrar.gridwidth = 6;
@@ -76,12 +81,21 @@ public class PanelEnBlancoMari extends JPanel {
     	panel.add(btnPlanificar, gbc_btnPlanificar);
     	
     	JButton btnCerrar = new JButton("Cerrar");
+    	btnCerrar.addActionListener(new ActionListener() {
+    		public void actionPerformed(ActionEvent arg0) {
+    			System.exit(0);
+    		}
+    	});
     	GridBagConstraints gbc_btnCerrar = new GridBagConstraints();
     	gbc_btnCerrar.insets = new Insets(0, 0, 5, 5);
     	gbc_btnCerrar.gridx = 11;
     	gbc_btnCerrar.gridy = 10;
     	panel.add(btnCerrar, gbc_btnCerrar);
 
+    }
+    
+    public JButton getBtnAdministrar(){
+    	return this.btnAdministrar;
     }
 
 }

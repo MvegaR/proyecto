@@ -16,6 +16,7 @@ public class PanelEnBlancoPablo extends JPanel {
     private static final long serialVersionUID = 1L;
 	private JTextField texto_user;
 	private JPasswordField password_texto;
+	private JButton btnEntrar;
 
     /**
      * Create the panel.
@@ -41,7 +42,7 @@ public class PanelEnBlancoPablo extends JPanel {
     	password_texto.setBounds(192, 139, 129, 20);
     	add(password_texto);
     	
-    	JButton btnEntrar = new JButton("Entrar");
+    	btnEntrar = new JButton("Entrar");
     	btnEntrar.setBounds(93, 216, 89, 23);
     	add(btnEntrar);
     	
@@ -55,4 +56,9 @@ public class PanelEnBlancoPablo extends JPanel {
     	add(btnSalir);
 
     }
+    
+    public JButton getBtnEntrar(){
+    	return btnEntrar;
+    }
+    
 }

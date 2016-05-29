@@ -31,7 +31,7 @@ public class VentanaPrincipal extends JFrame {
 		
 		this.add(cabecera,BorderLayout.NORTH);
 		this.add(panelRaul,BorderLayout.CENTER);
-        this.setSize(1024, 720);
+        this.setSize(1280, 720);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
 	}
