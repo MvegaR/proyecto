@@ -46,15 +46,15 @@ use himiklab\yii2\recaptcha\ReCaptcha;
 
     <?= $form->field($model, 'SECCION_ASIGNACION')->dropDownList(
         [],
-        ['prompt'=>'Seleccione seccion'] )->label('Sección') ?> 
+        ['prompt'=>'Seleccione seccion', 'onchange' => '$.post("index.php?r=seccion/lists2&id='.'"+$(this).val(), function(data){
+                             document.getElementById("solicitudasignacion-capacidad_asignacion").value = data;
+                        });',] )->label('Primero seleccione asignatura') ?> 
 
-    <?= $form->field($model, 'CAPACIDAD_ASIGNACION')->textInput(['type' => 'number', 'min' => 1, 'placeholder' => "Ingrese capacidad"]); ?>
+    <?= $form->field($model, 'CAPACIDAD_ASIGNACION')->textInput(['type' => 'number', 'min' => 1, 'disabled' => '',]) ?>
 
      <?= $form->field($model, 'TIPO_SALA_ASIGNACION')->dropDownList(
         ArrayHelper::map(TipoSala::find()->all(),'ID_TIPO_SALA','NOMBRE_TIPO'),
-        ['prompt'=>'Seleccione tipo sala'] )->label('Tipo sala') //falta filtar ?>
-
-        <!-- falta sin agregar en la bd: facultad, y edificio (para filtrar más). -->
+        ['prompt'=>'Seleccione tipo sala'] )->label('Tipo sala') ?>
 
     <?= $form->field($model, 'SALA_ASIGNACION')->textInput(); ?>
 

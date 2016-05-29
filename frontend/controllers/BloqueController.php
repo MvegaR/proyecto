@@ -250,7 +250,13 @@ use yii\filters\VerbFilter;
             }else if($nombreDia == "Sunday"){
                 $nombreDia = "Domingo";
             }
-            $idDia = Dia::find(["NOMBRE" => $nombreDia]) -> one() -> ID_DIA;
+            $idDia = (Dia::find()-> where(["NOMBRE" => $nombreDia]) -> one());
+            if($idDia){
+                $idDia = $idDia -> ID_DIA;
+            }else{
+                echo "<option value=>El día $nombreDia seleccionado no es valido</option>"; 
+                return;
+            }
             $contadorDeBloquesDeLaSemana =  Bloque::find()->where(["ID_SALA" => $sala, "ID_DIA" => $idDia, "ID_SECCION" => null])->count();
             if($contadorDeBloquesDeLaSemana == 0){
                 echo "<option value=>Sin bloques disponibles para la SALA seleccionada</option>"; //culpa bloques permanentes
