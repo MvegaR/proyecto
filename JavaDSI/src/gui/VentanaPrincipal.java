@@ -21,7 +21,7 @@ public class VentanaPrincipal extends JFrame {
 
     }
 
-    private PanelEnBlancoRaul panelRaul;
+    private GestionPaneles panelRaul;
 
     private PanelCabecera cabecera;
 
@@ -31,7 +31,7 @@ public class VentanaPrincipal extends JFrame {
 	this.setOpacity(0.95f); //5% de transparencia.
 
 
-	panelRaul = new PanelEnBlancoRaul();
+	panelRaul = new GestionPaneles();
 	cabecera = new PanelCabecera();
 
 	this.add(cabecera,BorderLayout.NORTH);

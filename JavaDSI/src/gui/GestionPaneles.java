@@ -6,20 +6,20 @@ import javax.swing.JPanel;
 import java.awt.CardLayout;
 
 
-public class PanelEnBlancoRaul extends JPanel {
+public class GestionPaneles extends JPanel {
 
     /**
-     * 
+     * Raúl
      */
     private static final long serialVersionUID = 1L;
-    private CheckResolución coni;
+    private CheckResolucion coni;
     private MenuAdmin marcos;
     private MenuInicial mari;
     private Autentificacion pablo;
     private CardLayout layout;
 
-    public PanelEnBlancoRaul() {
-	coni = new CheckResolución();
+    public GestionPaneles() {
+	coni = new CheckResolucion();
 	marcos = new MenuAdmin();
 	mari = new MenuInicial();
 	pablo = new Autentificacion();

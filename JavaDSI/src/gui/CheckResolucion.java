@@ -2,7 +2,7 @@ package gui;
 
 import javax.swing.JPanel;
 
-public class CheckResolución extends JPanel {
+public class CheckResolucion extends JPanel {
 
     /**
      * 
@@ -13,7 +13,7 @@ public class CheckResolución extends JPanel {
      * Create the panel.
      * PANEL DE CONI
      */
-    public CheckResolución() {
+    public CheckResolucion() {
 
     }
 
