@@ -88,7 +88,7 @@ public class MenuAdmin extends JPanel {
     	scrollpanel.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
     	scrollpanel.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
     	panelParaScroll.add(scrollpanel);
-        scrollpanel.setDoubleBuffered(true); 
+        scrollpanel.setDoubleBuffered(false); 
     	
     	panelPrincipalVisible = new JPanel();
     	panelPrincipalVisible.setPreferredSize(new Dimension(1230, 1280));
@@ -111,7 +111,6 @@ public class MenuAdmin extends JPanel {
     	moduloPlanificacion.setLayout(null);
     	
     	btnDepartamentos = new JButton("Departamentos");
-    	btnDepartamentos.addActionListener(e -> abrirEnNavegador("departamento/index"));
     	btnDepartamentos.setBounds(10, 21, 400, 41);
     	btnDepartamentos.setFont(fuenteBotones);
     	moduloPlanificacion.add(btnDepartamentos);
@@ -328,7 +327,9 @@ public class MenuAdmin extends JPanel {
     
     private void abrirEnNavegador(String url){
 	try {
+	     
 	     Desktop.getDesktop().browse(new URI("http://localhost/proyectoDSI/proyecto/frontend/web/index.php?r="+url));
+	     
 
 	}catch (URISyntaxException ex) {
 
