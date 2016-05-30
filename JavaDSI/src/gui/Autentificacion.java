@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 
-public class PanelEnBlancoPablo extends JPanel {
+public class Autentificacion extends JPanel {
 	/**
      * 
      */
@@ -22,7 +22,7 @@ public class PanelEnBlancoPablo extends JPanel {
      * Create the panel.
      * PANEL DE PABLO
      */
-    public PanelEnBlancoPablo() {
+    public Autentificacion() {
     	setLayout(null);
     	
     	JLabel label_user = new JLabel("User");

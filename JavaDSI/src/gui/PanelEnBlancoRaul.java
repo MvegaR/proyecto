@@ -12,17 +12,17 @@ public class PanelEnBlancoRaul extends JPanel {
      * 
      */
     private static final long serialVersionUID = 1L;
-    private PanelEnBlancoConi coni;
-    private PanelEnBlancoMarcos marcos;
-    private PanelEnBlancoMari mari;
-    private PanelEnBlancoPablo pablo;
+    private CheckResolución coni;
+    private MenuAdmin marcos;
+    private MenuInicial mari;
+    private Autentificacion pablo;
     private CardLayout layout;
 	
     public PanelEnBlancoRaul() {
-    	coni = new PanelEnBlancoConi();
-    	marcos = new PanelEnBlancoMarcos();
-    	mari = new PanelEnBlancoMari();
-    	pablo = new PanelEnBlancoPablo();
+    	coni = new CheckResolución();
+    	marcos = new MenuAdmin();
+    	mari = new MenuInicial();
+    	pablo = new Autentificacion();
     	layout = new CardLayout();
     	this.setLayout(layout);
     	this.add(marcos,"marcos");

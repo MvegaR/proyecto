@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JLabel;
 import java.awt.Font;
 
-public class PanelEnBlancoMari extends JPanel {
+public class MenuInicial extends JPanel {
 
     /**
      * 
@@ -26,7 +26,7 @@ public class PanelEnBlancoMari extends JPanel {
     
     private JButton btnAdministrar = new JButton("Administrar");
     
-    public PanelEnBlancoMari() {
+    public MenuInicial() {
     	setLayout(new BorderLayout(0, 0));
     	
     	JPanel panel = new JPanel();
