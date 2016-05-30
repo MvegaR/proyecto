@@ -99,7 +99,7 @@ public class MenuAdmin extends JPanel {
 	contenedorModulos = new JPanel();
 	contenedorModulos.setBorder(new LineBorder(new Color(0, 0, 0)));
 	contenedorModulos.setBackground(Color.DARK_GRAY);
-	contenedorModulos.setBounds(155, 44, 922, 1152);
+	contenedorModulos.setBounds(155, 44, 937, 1175);
 	panelPrincipalVisible.add(contenedorModulos);
 	contenedorModulos.setLayout(null);
 
@@ -327,14 +327,9 @@ public class MenuAdmin extends JPanel {
 
     private void abrirEnNavegador(String url){
 	try {
-
 	    Desktop.getDesktop().browse(new URI("http://localhost/proyectoDSI/proyecto/frontend/web/index.php?r="+url));
-
-
 	}catch (URISyntaxException ex) {
-
 	    System.out.println(ex);
-
 	}catch(IOException e){
 	    System.out.println(e);
 	}

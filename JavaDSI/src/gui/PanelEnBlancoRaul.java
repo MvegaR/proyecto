@@ -17,34 +17,34 @@ public class PanelEnBlancoRaul extends JPanel {
     private MenuInicial mari;
     private Autentificacion pablo;
     private CardLayout layout;
-	
+
     public PanelEnBlancoRaul() {
-    	coni = new CheckResolución();
-    	marcos = new MenuAdmin();
-    	mari = new MenuInicial();
-    	pablo = new Autentificacion();
-    	layout = new CardLayout();
-    	this.setLayout(layout);
-    	this.add(marcos,"marcos");
-    	this.add(mari,"mari");
-    	this.add(pablo,"pablo");
-    	layout.show(this, "pablo");
-    	pablo.getBtnEntrar().addMouseListener(new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent e) {
-            	mostrarPanel("mari");
-            }
-        });
-    	mari.getBtnAdministrar().addMouseListener(new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent e) {
-            	mostrarPanel("marcos");
-            }
-        });
+	coni = new CheckResolución();
+	marcos = new MenuAdmin();
+	mari = new MenuInicial();
+	pablo = new Autentificacion();
+	layout = new CardLayout();
+	this.setLayout(layout);
+	this.add(marcos,"marcos");
+	this.add(mari,"mari");
+	this.add(pablo,"pablo");
+	layout.show(this, "pablo");
+	pablo.getBtnEntrar().addMouseListener(new MouseAdapter() {
+	    @Override
+	    public void mousePressed(MouseEvent e) {
+		mostrarPanel("mari");
+	    }
+	});
+	mari.getBtnAdministrar().addMouseListener(new MouseAdapter() {
+	    @Override
+	    public void mousePressed(MouseEvent e) {
+		mostrarPanel("marcos");
+	    }
+	});
     }
-    
+
     public void mostrarPanel(String nombrePanel){
-    	layout.show(this,nombrePanel);
+	layout.show(this,nombrePanel);
     }
-    
+
 }
