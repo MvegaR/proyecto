@@ -88,6 +88,7 @@ public class MenuAdmin extends JPanel {
     	scrollpanel.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
     	scrollpanel.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
     	panelParaScroll.add(scrollpanel);
+        scrollpanel.setDoubleBuffered(true); 
     	
     	panelPrincipalVisible = new JPanel();
     	panelPrincipalVisible.setPreferredSize(new Dimension(1230, 1280));
