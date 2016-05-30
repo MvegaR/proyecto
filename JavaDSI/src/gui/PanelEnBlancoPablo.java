@@ -7,6 +7,9 @@ import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import java.awt.Font;
 
 
 public class PanelEnBlancoPablo extends JPanel {
@@ -23,36 +26,38 @@ public class PanelEnBlancoPablo extends JPanel {
      * PANEL DE PABLO
      */
     public PanelEnBlancoPablo() {
-    	setLayout(null);
     	
     	JLabel label_user = new JLabel("User");
-    	label_user.setBounds(106, 86, 76, 20);
-    	add(label_user);
+    	label_user.setFont(new Font("Tahoma", Font.PLAIN, 17));
+    	label_user.setBounds(67, 86, 115, 32);
     	
     	JLabel label_password = new JLabel("Password");
-    	label_password.setBounds(106, 139, 76, 20);
-    	add(label_password);
+    	label_password.setFont(new Font("Tahoma", Font.PLAIN, 17));
+    	label_password.setBounds(67, 139, 115, 32);
     	
     	texto_user = new JTextField();
-    	texto_user.setBounds(192, 86, 129, 20);
-    	add(texto_user);
+    	texto_user.setBounds(192, 86, 206, 32);
     	texto_user.setColumns(10);
     	
     	password_texto = new JPasswordField();
-    	password_texto.setBounds(192, 139, 129, 20);
-    	add(password_texto);
+    	password_texto.setBounds(192, 139, 206, 32);
     	
     	btnEntrar = new JButton("Entrar");
-    	btnEntrar.setBounds(93, 216, 89, 23);
-    	add(btnEntrar);
+    	btnEntrar.setBounds(93, 216, 134, 43);
     	
     	JButton btnSalir = new JButton("Salir");
+    	btnSalir.setBounds(269, 216, 129, 43);
     	btnSalir.addActionListener(new ActionListener() {
     		public void actionPerformed(ActionEvent arg0) {
     			System.exit(0);
     		}
     	});
-    	btnSalir.setBounds(269, 216, 89, 23);
+    	setLayout(null);
+    	add(label_user);
+    	add(texto_user);
+    	add(label_password);
+    	add(password_texto);
+    	add(btnEntrar);
     	add(btnSalir);
 
     }

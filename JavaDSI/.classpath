@@ -19,5 +19,6 @@
 	<classpathentry kind="lib" path="recursos/syntheticaSimple2D.jar"/>
 	<classpathentry kind="lib" path="recursos/syntheticaSkyMetallic.jar"/>
 	<classpathentry kind="lib" path="recursos/syntheticaWhiteVision.jar"/>
+	<classpathentry kind="lib" path="miglayout15-swing.jar" sourcepath="miglayout-src.zip"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
