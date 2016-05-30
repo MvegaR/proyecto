@@ -21,19 +21,19 @@ public class DescargaDeDB extends JPanel {
     	
     	JPanel panel = new JPanel();
     	panel.setBackground(Color.DARK_GRAY);
-    	panel.setBounds(88, 29, 1060, 537);
+    	panel.setBounds(88, 29, 1060, 552);
     	add(panel);
     	panel.setLayout(null);
     	
     	JLabel lblNewLabel = new JLabel("Descarga de base de datos");
     	lblNewLabel.setForeground(Color.WHITE);
     	lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 19));
-    	lblNewLabel.setBounds(410, 13, 236, 37);
+    	lblNewLabel.setBounds(410, 8, 236, 37);
     	panel.add(lblNewLabel);
     	
     	JPanel panel_1 = new JPanel();
     	panel_1.setBackground(Color.GRAY);
-    	panel_1.setBounds(42, 51, 996, 47);
+    	panel_1.setBounds(42, 53, 996, 47);
     	panel.add(panel_1);
     	panel_1.setLayout(null);
     	
@@ -53,7 +53,7 @@ public class DescargaDeDB extends JPanel {
     	JPanel panel_2 = new JPanel();
     	panel_2.setLayout(null);
     	panel_2.setBackground(Color.GRAY);
-    	panel_2.setBounds(42, 111, 996, 47);
+    	panel_2.setBounds(42, 108, 996, 47);
     	panel.add(panel_2);
     	
     	JLabel lblDepartamentos = new JLabel("Departamentos");
@@ -72,7 +72,7 @@ public class DescargaDeDB extends JPanel {
     	JPanel panel_3 = new JPanel();
     	panel_3.setLayout(null);
     	panel_3.setBackground(Color.GRAY);
-    	panel_3.setBounds(42, 171, 996, 47);
+    	panel_3.setBounds(42, 163, 996, 47);
     	panel.add(panel_3);
     	
     	JLabel lblDocentes_1 = new JLabel("Docentes");
@@ -91,7 +91,7 @@ public class DescargaDeDB extends JPanel {
     	JPanel panel_4 = new JPanel();
     	panel_4.setLayout(null);
     	panel_4.setBackground(Color.GRAY);
-    	panel_4.setBounds(42, 231, 996, 47);
+    	panel_4.setBounds(42, 218, 996, 47);
     	panel.add(panel_4);
     	
     	JLabel lblEdificios = new JLabel("Edificios");
@@ -110,7 +110,7 @@ public class DescargaDeDB extends JPanel {
     	JPanel panel_5 = new JPanel();
     	panel_5.setLayout(null);
     	panel_5.setBackground(Color.GRAY);
-    	panel_5.setBounds(42, 291, 996, 47);
+    	panel_5.setBounds(42, 273, 996, 47);
     	panel.add(panel_5);
     	
     	JLabel lblSalas = new JLabel("Salas");
@@ -129,7 +129,7 @@ public class DescargaDeDB extends JPanel {
     	JPanel panel_6 = new JPanel();
     	panel_6.setLayout(null);
     	panel_6.setBackground(Color.GRAY);
-    	panel_6.setBounds(42, 351, 996, 47);
+    	panel_6.setBounds(42, 328, 996, 47);
     	panel.add(panel_6);
     	
     	JLabel lblCarreras = new JLabel("Carreras");
@@ -148,7 +148,7 @@ public class DescargaDeDB extends JPanel {
     	JPanel panel_7 = new JPanel();
     	panel_7.setLayout(null);
     	panel_7.setBackground(Color.GRAY);
-    	panel_7.setBounds(42, 411, 996, 47);
+    	panel_7.setBounds(42, 438, 996, 47);
     	panel.add(panel_7);
     	
     	JLabel lblSecciones = new JLabel("Secciones");
@@ -159,7 +159,7 @@ public class DescargaDeDB extends JPanel {
     	
     	JProgressBar progressBar_6 = new JProgressBar();
     	progressBar_6.setForeground(new Color(0, 102, 204));
-    	progressBar_6.setValue(20);
+    	progressBar_6.setValue(10);
     	progressBar_6.setStringPainted(true);
     	progressBar_6.setBounds(166, 11, 820, 23);
     	panel_7.add(progressBar_6);
@@ -167,7 +167,7 @@ public class DescargaDeDB extends JPanel {
     	JPanel panel_8 = new JPanel();
     	panel_8.setLayout(null);
     	panel_8.setBackground(Color.GRAY);
-    	panel_8.setBounds(42, 467, 996, 47);
+    	panel_8.setBounds(42, 493, 996, 47);
     	panel.add(panel_8);
     	
     	JLabel lblBloques = new JLabel("Bloques");
@@ -178,10 +178,28 @@ public class DescargaDeDB extends JPanel {
     	
     	JProgressBar progressBar_7 = new JProgressBar();
     	progressBar_7.setForeground(new Color(0, 102, 204));
-    	progressBar_7.setValue(10);
     	progressBar_7.setStringPainted(true);
     	progressBar_7.setBounds(166, 11, 820, 23);
     	panel_8.add(progressBar_7);
+    	
+    	JPanel panel_9 = new JPanel();
+    	panel_9.setLayout(null);
+    	panel_9.setBackground(Color.GRAY);
+    	panel_9.setBounds(42, 383, 996, 47);
+    	panel.add(panel_9);
+    	
+    	JLabel lblAsignaturas = new JLabel("Asignaturas");
+    	lblAsignaturas.setForeground(Color.WHITE);
+    	lblAsignaturas.setFont(new Font("Tahoma", Font.PLAIN, 19));
+    	lblAsignaturas.setBounds(10, 11, 146, 23);
+    	panel_9.add(lblAsignaturas);
+    	
+    	JProgressBar progressBar_8 = new JProgressBar();
+    	progressBar_8.setValue(20);
+    	progressBar_8.setStringPainted(true);
+    	progressBar_8.setForeground(new Color(0, 102, 204));
+    	progressBar_8.setBounds(166, 11, 820, 23);
+    	panel_9.add(progressBar_8);
 	
     }
 }
