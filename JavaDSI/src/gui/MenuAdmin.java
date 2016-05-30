@@ -4,13 +4,20 @@ import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import javax.swing.JScrollPane;
 import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.Dimension;
 
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class MenuAdmin extends JPanel {
 
@@ -30,40 +37,39 @@ public class MenuAdmin extends JPanel {
 
     JScrollPane scrollpanel;
 
-    JButton btnBotton;
-    JButton button;
-    JButton button_1;
-    JButton button_2;
-    JButton button_3;
-    JButton button_9;
-    JButton button_10;
-    JButton button_11;
-    JButton button_12;
-    JButton button_19;
-    JButton button_20;
-    JButton button_21;
-    JButton button_22;
-    JButton button_23;
-    JButton button_4;
-    JButton button_5;
-    JButton button_6;
-    JButton button_7;
-    JButton button_8;
-    JButton button_13;
-    JButton button_14;
-    JButton button_15;
-    JButton button_16;
-    JButton button_17;
-    JButton button_18;
-    JButton button_24;
-    JButton button_25;
-    JButton button_26;
+    JButton btnDepartamentos;
+    JButton btnFacultades;
+    JButton btnEdificios;
+    JButton btnSalas;
+    JButton btnAsignaciones;
+    JButton btnDocentes;
+    JButton btnCarreras;
+    JButton btnAsignaturas;
+    JButton btnSecciones;
+    JButton btnSolicitudesDeAsignacin;
+    JButton btnSolicitudesDeAsignacin_1;
+    JButton btnSolicitudesDeCambio;
+    JButton btnSolicitudesDeCancelacin;
+    JButton btnReportesDeSala;
+    JButton btnEstadosAsignaciones;
+    JButton btnEstadosAsignacionesTemporales;
+    JButton btnEstadosCambios;
+    JButton btnEstadoCancelacin;
+    JButton btnTiposDeDenuncia;
+    JButton btnTiposDeSala;
+    JButton btnDasHbiles;
+    JButton btnIniciosDeHora;
+    JButton btnRoles;
+    JButton btnExportarBaseDe;
+    JButton btnImportarBaseDe;
     JScrollPane scrollPane;
     JLabel lblMduloDePlanificacin;
     JLabel lblMduloDeRecursos;
     JLabel lblMduloDeTipos;
     JLabel lblMduloDeRespaldos;
     JLabel label;
+    Font fuenteBotones = new Font("Times New Roman", Font.PLAIN, 22);
+
     /**
      * Create the panel.
      * 
@@ -73,7 +79,7 @@ public class MenuAdmin extends JPanel {
 	this.setBounds(0, 0, 1230, 600);
     	setLayout(null);
     	panelParaScroll = new JPanel();
-    	panelParaScroll.setBounds(0, 0, 1230, 600);
+    	panelParaScroll.setBounds(0, 0, 1260, 527);
     	add(panelParaScroll);
     	panelParaScroll.setLayout(new BorderLayout(0, 0));
     	
@@ -91,47 +97,44 @@ public class MenuAdmin extends JPanel {
     	
     	contenedorModulos = new JPanel();
     	contenedorModulos.setBorder(new LineBorder(new Color(0, 0, 0)));
-    	contenedorModulos.setBackground(Color.WHITE);
-    	contenedorModulos.setBounds(155, 44, 922, 1217);
+    	contenedorModulos.setBackground(Color.DARK_GRAY);
+    	contenedorModulos.setBounds(155, 44, 922, 1152);
     	panelPrincipalVisible.add(contenedorModulos);
     	contenedorModulos.setLayout(null);
     	
     	moduloPlanificacion = new JPanel();
     	moduloPlanificacion.setBorder(new LineBorder(new Color(0, 0, 0)));
-    	moduloPlanificacion.setBackground(Color.WHITE);
+    	moduloPlanificacion.setBackground(Color.GRAY);
     	moduloPlanificacion.setBounds(40, 63, 860, 181);
     	contenedorModulos.add(moduloPlanificacion);
     	moduloPlanificacion.setLayout(null);
     	
-    	btnBotton = new JButton("Botton");
-    	btnBotton.setBounds(10, 21, 400, 41);
-    	btnBotton.setFont(new Font("Times New Roman", Font.PLAIN, 27));
-    	btnBotton.setContentAreaFilled(false);
-    	moduloPlanificacion.add(btnBotton);
+    	btnDepartamentos = new JButton("Departamentos");
+    	btnDepartamentos.addActionListener(e -> abrirEnNavegador("departamento/index"));
+    	btnDepartamentos.setBounds(10, 21, 400, 41);
+    	btnDepartamentos.setFont(fuenteBotones);
+    	moduloPlanificacion.add(btnDepartamentos);
     	
-    	button = new JButton("Botton");
-    	button.setFont(new Font("Times New Roman", Font.PLAIN, 27));
-    	button.setContentAreaFilled(false);
-    	button.setBounds(450, 21, 400, 41);
-    	moduloPlanificacion.add(button);
     	
-    	button_1 = new JButton("Botton");
-    	button_1.setFont(new Font("Times New Roman", Font.PLAIN, 27));
-    	button_1.setContentAreaFilled(false);
-    	button_1.setBounds(10, 73, 400, 41);
-    	moduloPlanificacion.add(button_1);
+    	btnFacultades = new JButton("Facultades");
+    	btnFacultades.setFont(fuenteBotones);
+    	btnFacultades.setBounds(450, 21, 400, 41);
+    	moduloPlanificacion.add(btnFacultades);
     	
-    	button_2 = new JButton("Botton");
-    	button_2.setFont(new Font("Times New Roman", Font.PLAIN, 27));
-    	button_2.setContentAreaFilled(false);
-    	button_2.setBounds(450, 73, 400, 41);
-    	moduloPlanificacion.add(button_2);
+    	btnEdificios = new JButton("Edificios");
+    	btnEdificios.setFont(fuenteBotones);
+    	btnEdificios.setBounds(10, 73, 400, 41);
+    	moduloPlanificacion.add(btnEdificios);
     	
-    	button_3 = new JButton("Botton");
-    	button_3.setFont(new Font("Times New Roman", Font.PLAIN, 27));
-    	button_3.setContentAreaFilled(false);
-    	button_3.setBounds(10, 125, 400, 41);
-    	moduloPlanificacion.add(button_3);
+    	btnSalas = new JButton("Salas");
+    	btnSalas.setFont(fuenteBotones);
+    	btnSalas.setBounds(450, 73, 400, 41);
+    	moduloPlanificacion.add(btnSalas);
+    	
+    	btnAsignaciones = new JButton("Asignaciones");
+    	btnAsignaciones.setFont(fuenteBotones);
+    	btnAsignaciones.setBounds(10, 125, 400, 41);
+    	moduloPlanificacion.add(btnAsignaciones);
     	
     	lblMduloDePlanificacin = new JLabel("M\u00F3dulo de planificaci\u00F3n");
     	lblMduloDePlanificacin.setFont(new Font("Tahoma", Font.BOLD, 18));
@@ -141,33 +144,29 @@ public class MenuAdmin extends JPanel {
     	panel_3 = new JPanel();
     	panel_3.setLayout(null);
     	panel_3.setBorder(new LineBorder(new Color(0, 0, 0)));
-    	panel_3.setBackground(Color.WHITE);
+    	panel_3.setBackground(Color.GRAY);
     	panel_3.setBounds(40, 298, 860, 134);
     	contenedorModulos.add(panel_3);
     	
-    	button_9 = new JButton("Botton");
-    	button_9.setFont(new Font("Times New Roman", Font.PLAIN, 27));
-    	button_9.setContentAreaFilled(false);
-    	button_9.setBounds(10, 21, 400, 41);
-    	panel_3.add(button_9);
+    	btnDocentes = new JButton("Docentes");
+    	btnDocentes.setFont(fuenteBotones);
+    	btnDocentes.setBounds(10, 21, 400, 41);
+    	panel_3.add(btnDocentes);
     	
-    	button_10 = new JButton("Botton");
-    	button_10.setFont(new Font("Times New Roman", Font.PLAIN, 27));
-    	button_10.setContentAreaFilled(false);
-    	button_10.setBounds(450, 21, 400, 41);
-    	panel_3.add(button_10);
+    	btnCarreras = new JButton("Carreras");
+    	btnCarreras.setFont(fuenteBotones);
+    	btnCarreras.setBounds(450, 21, 400, 41);
+    	panel_3.add(btnCarreras);
     	
-    	button_11 = new JButton("Botton");
-    	button_11.setFont(new Font("Times New Roman", Font.PLAIN, 27));
-    	button_11.setContentAreaFilled(false);
-    	button_11.setBounds(10, 73, 400, 41);
-    	panel_3.add(button_11);
+    	btnAsignaturas = new JButton("Asignaturas");
+    	btnAsignaturas.setFont(fuenteBotones);
+    	btnAsignaturas.setBounds(10, 73, 400, 41);
+    	panel_3.add(btnAsignaturas);
     	
-    	button_12 = new JButton("Botton");
-    	button_12.setFont(new Font("Times New Roman", Font.PLAIN, 27));
-    	button_12.setContentAreaFilled(false);
-    	button_12.setBounds(450, 73, 400, 41);
-    	panel_3.add(button_12);
+    	btnSecciones = new JButton("Secciones");
+    	btnSecciones.setFont(fuenteBotones);
+    	btnSecciones.setBounds(450, 73, 400, 41);
+    	panel_3.add(btnSecciones);
     	
     	lblMduloDeRecursos = new JLabel("M\u00F3dulo de recursos");
     	lblMduloDeRecursos.setFont(new Font("Tahoma", Font.BOLD, 18));
@@ -177,39 +176,34 @@ public class MenuAdmin extends JPanel {
     	panel_5 = new JPanel();
     	panel_5.setLayout(null);
     	panel_5.setBorder(new LineBorder(new Color(0, 0, 0)));
-    	panel_5.setBackground(Color.WHITE);
+    	panel_5.setBackground(Color.GRAY);
     	panel_5.setBounds(40, 486, 860, 181);
     	contenedorModulos.add(panel_5);
     	
-    	button_19 = new JButton("Botton");
-    	button_19.setFont(new Font("Times New Roman", Font.PLAIN, 27));
-    	button_19.setContentAreaFilled(false);
-    	button_19.setBounds(10, 21, 400, 41);
-    	panel_5.add(button_19);
+    	btnSolicitudesDeAsignacin = new JButton("Solicitudes de asignaci\u00F3n");
+    	btnSolicitudesDeAsignacin.setFont(fuenteBotones);
+    	btnSolicitudesDeAsignacin.setBounds(10, 21, 400, 41);
+    	panel_5.add(btnSolicitudesDeAsignacin);
     	
-    	button_20 = new JButton("Botton");
-    	button_20.setFont(new Font("Times New Roman", Font.PLAIN, 27));
-    	button_20.setContentAreaFilled(false);
-    	button_20.setBounds(450, 21, 400, 41);
-    	panel_5.add(button_20);
+    	btnSolicitudesDeAsignacin_1 = new JButton("Solicitudes de asignaci\u00F3n temporal");
+    	btnSolicitudesDeAsignacin_1.setFont(fuenteBotones);
+    	btnSolicitudesDeAsignacin_1.setBounds(450, 21, 400, 41);
+    	panel_5.add(btnSolicitudesDeAsignacin_1);
     	
-    	button_21 = new JButton("Botton");
-    	button_21.setFont(new Font("Times New Roman", Font.PLAIN, 27));
-    	button_21.setContentAreaFilled(false);
-    	button_21.setBounds(10, 73, 400, 41);
-    	panel_5.add(button_21);
+    	btnSolicitudesDeCambio = new JButton("Solicitudes de cambio");
+    	btnSolicitudesDeCambio.setFont(fuenteBotones);
+    	btnSolicitudesDeCambio.setBounds(10, 73, 400, 41);
+    	panel_5.add(btnSolicitudesDeCambio);
     	
-    	button_22 = new JButton("Botton");
-    	button_22.setFont(new Font("Times New Roman", Font.PLAIN, 27));
-    	button_22.setContentAreaFilled(false);
-    	button_22.setBounds(450, 73, 400, 41);
-    	panel_5.add(button_22);
+    	btnSolicitudesDeCancelacin = new JButton("Solicitudes de cancelaci\u00F3n");
+    	btnSolicitudesDeCancelacin.setFont(fuenteBotones);
+    	btnSolicitudesDeCancelacin.setBounds(450, 73, 400, 41);
+    	panel_5.add(btnSolicitudesDeCancelacin);
     	
-    	button_23 = new JButton("Botton");
-    	button_23.setFont(new Font("Times New Roman", Font.PLAIN, 27));
-    	button_23.setContentAreaFilled(false);
-    	button_23.setBounds(10, 125, 400, 41);
-    	panel_5.add(button_23);
+    	btnReportesDeSala = new JButton("Reportes de sala");
+    	btnReportesDeSala.setFont(fuenteBotones);
+    	btnReportesDeSala.setBounds(10, 125, 400, 41);
+    	panel_5.add(btnReportesDeSala);
     	
     	JLabel lblMduloDeSolicitudes = new JLabel("M\u00F3dulo de solicitudes de sala");
     	lblMduloDeSolicitudes.setFont(new Font("Tahoma", Font.BOLD, 18));
@@ -219,69 +213,54 @@ public class MenuAdmin extends JPanel {
     	panel_6 = new JPanel();
     	panel_6.setLayout(null);
     	panel_6.setBorder(new LineBorder(new Color(0, 0, 0)));
-    	panel_6.setBackground(Color.WHITE);
+    	panel_6.setBackground(Color.GRAY);
     	panel_6.setBounds(40, 713, 860, 286);
     	contenedorModulos.add(panel_6);
     	
-    	button_4 = new JButton("Botton");
-    	button_4.setFont(new Font("Times New Roman", Font.PLAIN, 27));
-    	button_4.setContentAreaFilled(false);
-    	button_4.setBounds(10, 21, 400, 41);
-    	panel_6.add(button_4);
+    	btnEstadosAsignaciones = new JButton("Estados asignaciones");
+    	btnEstadosAsignaciones.setFont(fuenteBotones);
+    	btnEstadosAsignaciones.setBounds(10, 21, 400, 41);
+    	panel_6.add(btnEstadosAsignaciones);
     	
-    	button_5 = new JButton("Botton");
-    	button_5.setFont(new Font("Times New Roman", Font.PLAIN, 27));
-    	button_5.setContentAreaFilled(false);
-    	button_5.setBounds(450, 21, 400, 41);
-    	panel_6.add(button_5);
+    	btnEstadosAsignacionesTemporales = new JButton("Estados asignaciones temporales");
+    	btnEstadosAsignacionesTemporales.setFont(fuenteBotones);
+    	btnEstadosAsignacionesTemporales.setBounds(450, 21, 400, 41);
+    	panel_6.add(btnEstadosAsignacionesTemporales);
     	
-    	button_6 = new JButton("Botton");
-    	button_6.setFont(new Font("Times New Roman", Font.PLAIN, 27));
-    	button_6.setContentAreaFilled(false);
-    	button_6.setBounds(10, 73, 400, 41);
-    	panel_6.add(button_6);
+    	btnEstadosCambios = new JButton("Estados cambios");
+    	btnEstadosCambios.setFont(fuenteBotones);
+    	btnEstadosCambios.setBounds(10, 73, 400, 41);
+    	panel_6.add(btnEstadosCambios);
     	
-    	button_7 = new JButton("Botton");
-    	button_7.setFont(new Font("Times New Roman", Font.PLAIN, 27));
-    	button_7.setContentAreaFilled(false);
-    	button_7.setBounds(450, 73, 400, 41);
-    	panel_6.add(button_7);
+    	btnEstadoCancelacin = new JButton("Estado cancelaci\u00F3n");
+    	btnEstadoCancelacin.setFont(fuenteBotones);
+    	btnEstadoCancelacin.setBounds(450, 73, 400, 41);
+    	panel_6.add(btnEstadoCancelacin);
     	
-    	button_8 = new JButton("Botton");
-    	button_8.setFont(new Font("Times New Roman", Font.PLAIN, 27));
-    	button_8.setContentAreaFilled(false);
-    	button_8.setBounds(10, 125, 400, 41);
-    	panel_6.add(button_8);
+    	btnTiposDeDenuncia = new JButton("Tipos de denuncia");
+    	btnTiposDeDenuncia.setFont(fuenteBotones);
+    	btnTiposDeDenuncia.setBounds(10, 125, 400, 41);
+    	panel_6.add(btnTiposDeDenuncia);
     	
-    	button_13 = new JButton("Botton");
-    	button_13.setFont(new Font("Times New Roman", Font.PLAIN, 27));
-    	button_13.setContentAreaFilled(false);
-    	button_13.setBounds(450, 125, 400, 41);
-    	panel_6.add(button_13);
+    	btnTiposDeSala = new JButton("Tipos de sala");
+    	btnTiposDeSala.setFont(fuenteBotones);
+    	btnTiposDeSala.setBounds(450, 125, 400, 41);
+    	panel_6.add(btnTiposDeSala);
     	
-    	button_14 = new JButton("Botton");
-    	button_14.setFont(new Font("Times New Roman", Font.PLAIN, 27));
-    	button_14.setContentAreaFilled(false);
-    	button_14.setBounds(10, 177, 400, 41);
-    	panel_6.add(button_14);
+    	btnDasHbiles = new JButton("D\u00EDas h\u00E1biles");
+    	btnDasHbiles.setFont(fuenteBotones);
+    	btnDasHbiles.setBounds(10, 177, 400, 41);
+    	panel_6.add(btnDasHbiles);
     	
-    	button_15 = new JButton("Botton");
-    	button_15.setFont(new Font("Times New Roman", Font.PLAIN, 27));
-    	button_15.setContentAreaFilled(false);
-    	button_15.setBounds(450, 177, 400, 41);
-    	panel_6.add(button_15);
+    	btnIniciosDeHora = new JButton("Inicios de hora de clase");
+    	btnIniciosDeHora.setFont(fuenteBotones);
+    	btnIniciosDeHora.setBounds(450, 177, 400, 41);
+    	panel_6.add(btnIniciosDeHora);
     	
-    	button_16 = new JButton("Botton");
-    	button_16.setFont(new Font("Times New Roman", Font.PLAIN, 27));
-    	button_16.setContentAreaFilled(false);
-    	button_16.setBounds(10, 229, 400, 41);
-    	panel_6.add(button_16);
-    	
-    	button_17 = new JButton("Botton");
-    	button_17.setFont(new Font("Times New Roman", Font.PLAIN, 27));
-    	button_17.setContentAreaFilled(false);
-    	button_17.setBounds(450, 229, 400, 41);
-    	panel_6.add(button_17);
+    	btnRoles = new JButton("Roles");
+    	btnRoles.setFont(fuenteBotones);
+    	btnRoles.setBounds(10, 229, 400, 41);
+    	panel_6.add(btnRoles);
     	
     	lblMduloDeTipos = new JLabel("M\u00F3dulo de estados y tipos");
     	lblMduloDeTipos.setFont(new Font("Tahoma", Font.BOLD, 18));
@@ -296,33 +275,20 @@ public class MenuAdmin extends JPanel {
     	panel_7 = new JPanel();
     	panel_7.setLayout(null);
     	panel_7.setBorder(new LineBorder(new Color(0, 0, 0)));
-    	panel_7.setBackground(Color.WHITE);
-    	panel_7.setBounds(40, 1045, 860, 134);
+    	panel_7.setBackground(Color.GRAY);
+    	panel_7.setBounds(40, 1045, 860, 84);
     	contenedorModulos.add(panel_7);
     	
-    	button_18 = new JButton("Botton");
-    	button_18.setFont(new Font("Times New Roman", Font.PLAIN, 27));
-    	button_18.setContentAreaFilled(false);
-    	button_18.setBounds(10, 21, 400, 41);
-    	panel_7.add(button_18);
+    	btnExportarBaseDe = new JButton("Exportar base de datos");
+    	btnExportarBaseDe.setFont(fuenteBotones);
+    	btnExportarBaseDe.setBounds(10, 21, 400, 41);
+    	panel_7.add(btnExportarBaseDe);
     	
-    	button_24 = new JButton("Botton");
-    	button_24.setFont(new Font("Times New Roman", Font.PLAIN, 27));
-    	button_24.setContentAreaFilled(false);
-    	button_24.setBounds(450, 21, 400, 41);
-    	panel_7.add(button_24);
-    	
-    	button_25 = new JButton("Botton");
-    	button_25.setFont(new Font("Times New Roman", Font.PLAIN, 27));
-    	button_25.setContentAreaFilled(false);
-    	button_25.setBounds(10, 73, 400, 41);
-    	panel_7.add(button_25);
-    	
-    	button_26 = new JButton("Botton");
-    	button_26.setFont(new Font("Times New Roman", Font.PLAIN, 27));
-    	button_26.setContentAreaFilled(false);
-    	button_26.setBounds(450, 73, 400, 41);
-    	panel_7.add(button_26);
+    	btnImportarBaseDe = new JButton("Importar base de datos");
+    	btnImportarBaseDe.setFont(fuenteBotones);
+    	btnImportarBaseDe.setBounds(450, 21, 400, 41);
+    	panel_7.add(btnImportarBaseDe);
+  
     	
     	label = new JLabel("M\u00F3dulo administraci\u00F3n");
     	label.setFont(new Font("Tahoma", Font.BOLD, 20));
@@ -332,8 +298,44 @@ public class MenuAdmin extends JPanel {
     	scrollPane = new JScrollPane();
     	scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
     	scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-    	
-
-
+        btnDepartamentos.addActionListener(e -> abrirEnNavegador("departamento/index"));
+        btnFacultades.addActionListener(e -> abrirEnNavegador("facultad/index"));
+        btnEdificios.addActionListener(e -> abrirEnNavegador("edificio/index"));
+        btnSalas.addActionListener(e -> abrirEnNavegador("sala/index"));
+        btnAsignaciones.addActionListener(e -> abrirEnNavegador("bloque/index"));
+        btnDocentes.addActionListener(e -> abrirEnNavegador("docente/index"));
+        btnCarreras.addActionListener(e -> abrirEnNavegador("carrera/index"));
+        btnAsignaturas.addActionListener(e -> abrirEnNavegador("asignatura/index"));
+        btnSecciones.addActionListener(e -> abrirEnNavegador("seccion/index"));
+        btnSolicitudesDeAsignacin.addActionListener(e -> abrirEnNavegador("solicitud-asignacion/index"));
+        btnSolicitudesDeAsignacin_1.addActionListener(e -> abrirEnNavegador("solicitud-asignacion-temporal/index"));
+        btnSolicitudesDeCambio.addActionListener(e -> abrirEnNavegador("solicitud-cambio/index"));
+        btnSolicitudesDeCancelacin.addActionListener(e -> abrirEnNavegador("solicitud-cancelacion/index"));
+        btnReportesDeSala.addActionListener(e -> abrirEnNavegador("post-de-denuncia/index"));
+        btnEstadosAsignaciones.addActionListener(e -> abrirEnNavegador("estado-solicitud-asignacion/index"));
+        btnEstadosAsignacionesTemporales.addActionListener(e -> abrirEnNavegador("estado-asignacion-temporal/index"));
+        btnEstadosCambios.addActionListener(e -> abrirEnNavegador("estado-solicitud-cambio/index"));
+        btnEstadoCancelacin.addActionListener(e -> abrirEnNavegador("estado-solicitud-cancelacion/index"));
+        btnTiposDeDenuncia.addActionListener(e -> abrirEnNavegador("tipo-denuncia/index"));
+        btnTiposDeSala.addActionListener(e -> abrirEnNavegador("tipo-sala/index"));
+        btnDasHbiles.addActionListener(e -> abrirEnNavegador("dia/index"));
+        btnIniciosDeHora.addActionListener(e -> abrirEnNavegador("tiempo-inicio/index"));
+        btnRoles.addActionListener(e -> abrirEnNavegador("rol/index"));
+        btnExportarBaseDe.addActionListener(e -> abrirEnNavegador("site/respaldo"));
+        btnImportarBaseDe.addActionListener(e -> abrirEnNavegador(""));
     }
+    
+    private void abrirEnNavegador(String url){
+	try {
+	     Desktop.getDesktop().browse(new URI("http://localhost/proyectoDSI/proyecto/frontend/web/index.php?r="+url));
+
+	}catch (URISyntaxException ex) {
+
+	      System.out.println(ex);
+
+	}catch(IOException e){
+	      System.out.println(e);
+	}
+    }
+    
 }
