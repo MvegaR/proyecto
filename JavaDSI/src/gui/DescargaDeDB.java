@@ -25,10 +25,10 @@ public class DescargaDeDB extends JPanel {
     	add(panel);
     	panel.setLayout(null);
     	
-    	JLabel lblNewLabel = new JLabel("Descarga de base de datos");
+    	JLabel lblNewLabel = new JLabel("Descarga desde base de datos");
     	lblNewLabel.setForeground(Color.WHITE);
     	lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 19));
-    	lblNewLabel.setBounds(410, 8, 236, 37);
+    	lblNewLabel.setBounds(396, 8, 267, 37);
     	panel.add(lblNewLabel);
     	
     	JPanel panel_1 = new JPanel();
