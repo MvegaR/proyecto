@@ -28,7 +28,7 @@ public class VentanaPrincipal extends JFrame {
     public VentanaPrincipal() {
 	this.setResizable(false);
 	this.setUndecorated(true); //quita el frame de windows pero la libreria añade el suyo y queda muy bien.
-	this.setOpacity(1f); //5% de transparencia.
+	this.setOpacity(1f); //0% de transparencia.
 
 
 	panelRaul = new GestionPaneles();
