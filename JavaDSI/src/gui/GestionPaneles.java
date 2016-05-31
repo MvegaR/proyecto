@@ -32,7 +32,8 @@ public class GestionPaneles extends JPanel {
 	pablo.getBtnEntrar().addMouseListener(new MouseAdapter() {
 	    @Override
 	    public void mousePressed(MouseEvent e) {
-		//prueba parte marí //MensajesError.meEr_FallaAutentificacion();
+		//prueba parte Marí 
+		MensajesError.meEr_FallaAutentificacion();
 		mostrarPanel("mari");
 	    }
 	});
