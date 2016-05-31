@@ -3,7 +3,7 @@ package gui;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 
-import de.javasoft.plaf.synthetica.SyntheticaBlackEyeLookAndFeel;
+import de.javasoft.plaf.synthetica.SyntheticaBlueSteelLookAndFeel;
 import java.awt.BorderLayout;
 
 public class VentanaPrincipal extends JFrame {
@@ -15,7 +15,7 @@ public class VentanaPrincipal extends JFrame {
 
     public static void main(String[] args) throws Exception {
 
-	UIManager.setLookAndFeel(new SyntheticaBlackEyeLookAndFeel()); // cambia el estilo
+	UIManager.setLookAndFeel(new SyntheticaBlueSteelLookAndFeel()); // cambia el estilo
 	VentanaPrincipal vp = new VentanaPrincipal();
 	vp.setVisible(true);
 
@@ -28,7 +28,7 @@ public class VentanaPrincipal extends JFrame {
     public VentanaPrincipal() {
 	this.setResizable(false);
 	this.setUndecorated(true); //quita el frame de windows pero la libreria añade el suyo y queda muy bien.
-	this.setOpacity(0.95f); //5% de transparencia.
+	this.setOpacity(1f); //5% de transparencia.
 
 
 	panelRaul = new GestionPaneles();

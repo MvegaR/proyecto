@@ -18,6 +18,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.SystemColor;
 
 public class MenuAdmin extends JPanel {
 
@@ -97,15 +98,15 @@ public class MenuAdmin extends JPanel {
 	panelPrincipalVisible.setLayout(null);
 
 	contenedorModulos = new JPanel();
-	contenedorModulos.setBorder(new LineBorder(new Color(0, 0, 0)));
-	contenedorModulos.setBackground(Color.DARK_GRAY);
+	//contenedorModulos.setBorder(new LineBorder(new Color(0, 0, 0)));
+	//contenedorModulos.setBackground(Color.WHITE);
 	contenedorModulos.setBounds(155, 44, 937, 1175);
 	panelPrincipalVisible.add(contenedorModulos);
 	contenedorModulos.setLayout(null);
 
 	moduloPlanificacion = new JPanel();
 	moduloPlanificacion.setBorder(new LineBorder(new Color(0, 0, 0)));
-	moduloPlanificacion.setBackground(Color.GRAY);
+	moduloPlanificacion.setBackground(SystemColor.inactiveCaption);
 	moduloPlanificacion.setBounds(40, 63, 860, 181);
 	contenedorModulos.add(moduloPlanificacion);
 	moduloPlanificacion.setLayout(null);
@@ -144,7 +145,7 @@ public class MenuAdmin extends JPanel {
 	panel_3 = new JPanel();
 	panel_3.setLayout(null);
 	panel_3.setBorder(new LineBorder(new Color(0, 0, 0)));
-	panel_3.setBackground(Color.GRAY);
+	panel_3.setBackground(SystemColor.inactiveCaption);
 	panel_3.setBounds(40, 298, 860, 134);
 	contenedorModulos.add(panel_3);
 
@@ -176,7 +177,7 @@ public class MenuAdmin extends JPanel {
 	panel_5 = new JPanel();
 	panel_5.setLayout(null);
 	panel_5.setBorder(new LineBorder(new Color(0, 0, 0)));
-	panel_5.setBackground(Color.GRAY);
+	panel_5.setBackground(SystemColor.inactiveCaption);
 	panel_5.setBounds(40, 486, 860, 181);
 	contenedorModulos.add(panel_5);
 
@@ -213,7 +214,7 @@ public class MenuAdmin extends JPanel {
 	panel_6 = new JPanel();
 	panel_6.setLayout(null);
 	panel_6.setBorder(new LineBorder(new Color(0, 0, 0)));
-	panel_6.setBackground(Color.GRAY);
+	panel_6.setBackground(SystemColor.inactiveCaption);
 	panel_6.setBounds(40, 713, 860, 286);
 	contenedorModulos.add(panel_6);
 
@@ -275,7 +276,7 @@ public class MenuAdmin extends JPanel {
 	panel_7 = new JPanel();
 	panel_7.setLayout(null);
 	panel_7.setBorder(new LineBorder(new Color(0, 0, 0)));
-	panel_7.setBackground(Color.GRAY);
+	panel_7.setBackground(SystemColor.inactiveCaption);
 	panel_7.setBounds(40, 1045, 860, 84);
 	contenedorModulos.add(panel_7);
 
