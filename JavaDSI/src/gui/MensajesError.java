@@ -36,7 +36,7 @@ public class MensajesError {
     }
     
     public static void meEr_FallaAutentificacion(){
-        JOptionPane.showMessageDialog(null, "Ha ocurrido un error en la autentificación del usuario",
+        JOptionPane.showMessageDialog(null, "Ha ocurrido un error en la autentificacion del usuario",
                 "Problema en conexion", JOptionPane.WARNING_MESSAGE);
     }
 
