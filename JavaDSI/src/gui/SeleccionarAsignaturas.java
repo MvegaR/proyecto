@@ -25,7 +25,7 @@ public class SeleccionarAsignaturas extends JPanel {
 	private PanelAsignaturas panelAsignaturas;
 	private int contador = 1, posPBotones = 0;
 	private JLabel lblSeleccioneCarreras;
-	private JButton btnSeleccionar, btnVolverAtras;
+	private JButton btnSeleccionar;
 	
 	public SeleccionarAsignaturas() {
 		contenedor = new JPanel();
@@ -33,9 +33,7 @@ public class SeleccionarAsignaturas extends JPanel {
         setLayout(new BorderLayout(0, 0));
 		
 		btnSeleccionar = new JButton("SELECCIONAR");
-		btnVolverAtras = new JButton("VOLVER");
 		panelSur.add(btnSeleccionar);
-		panelSur.add(btnVolverAtras);
 		contenedor.setLayout(new BoxLayout(contenedor, BoxLayout.X_AXIS));
 		panelBotones = new JPanel();
 		GridBagLayout gbl_panelBotones = new GridBagLayout();

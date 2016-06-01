@@ -38,6 +38,7 @@ public class GestionPaneles extends JPanel {
 		//prueba parte Marí 
 		//MensajesError.meEr_FallaAutentificacion();
 		mostrarPanel("mari");
+		VentanaPrincipal.btnVolver.setVisible(true);
 	    }
 	});
 	mari.getBtnAdministrar().addMouseListener(new MouseAdapter() {

@@ -9,6 +9,7 @@ public class Conexion {
 	public Conexion(){
 		try{
 		    Class.forName("com.mysql.jdbc.Driver");
+		    /* con = DriverManager.getConnection("jdbc:mysql://ip:puerto/nombreBD","usuario","pass"); */
 		    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/dsi01","root","");
 		    //System.out.println("ok");
 		}catch (Exception e){
