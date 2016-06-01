@@ -7,7 +7,7 @@ $this->title = 'PASH UBB';
      <br>
             <ul class="breadcrumb">
                 <li><a href="#">Informacion de Autentificacion</a></li>
-                <li class="active"><button class="btn btn-default control">Ocultar/Mostrar</button></li>
+                <li class="active"><button class="btn btn-default glyphicon glyphicon glyphicon-arrow-up control"> Ocultar</button></li>
             </ul> 
 <div class="site-index">
 
@@ -45,7 +45,7 @@ $this->title = 'PASH UBB';
                 <p align="justify">El diseño de PASH permite que el Administrador y los Academicos la utilicen fácilmente, dado que sus funcionalidades han sido configuradas en función de sus necesidades.</p>
             </div>
             <div class="col-lg-4">
-                <h2><span class='glyphicon glyphicon-bookmark'> </span></h2>
+                <h2><span class='glyphicon glyphicon-bookmark'></span></h2>
                 <p align="justify">PASH es una plataforma en constante desarrollo, diseñada y construida en la Universidad del Bío-Bío, por lo cual invitamos a sus usuarios a enviar comentarios y sugerencias, a objeto de continuar ofreciéndoles un servicio de calidad.</p>
             </div>
         </div>
@@ -59,9 +59,13 @@ $this->title = 'PASH UBB';
     $(".control").on('click',function(){
 	    if(abierto){
      	    $(".jumbotron").slideUp(1000);
+            $(".control").attr('class', 'btn btn-default glyphicon glyphicon glyphicon-arrow-down control');
+            $(".control").text(" Mostrar");
   	        abierto=false;
         }else{
   	        $(".jumbotron").slideDown(1000);
+            $(".control").attr('class', 'btn btn-default glyphicon glyphicon glyphicon-arrow-up control');
+            $(".control").text(" Ocultar");
   	        abierto=true;
         }
     });
