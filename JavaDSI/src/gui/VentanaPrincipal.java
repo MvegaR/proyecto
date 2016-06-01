@@ -16,9 +16,9 @@ public class VentanaPrincipal extends JFrame {
     public static void main(String[] args) throws Exception {
 
 	UIManager.setLookAndFeel(new SyntheticaBlueSteelLookAndFeel()); // cambia el estilo
+	Conexion conn = new Conexion();
 	VentanaPrincipal vp = new VentanaPrincipal();
 	vp.setVisible(true);
-
     }
 
     private GestionPaneles panelRaul;
