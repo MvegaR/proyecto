@@ -16,21 +16,28 @@ import javax.swing.JButton;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 
 public class SeleccionarAsignaturas extends JPanel {
 	
-	private JPanel contenedor,panelBotones,panelSur;
+	private JPanel ContenedorPrincipal,contenedor,panelBotones,panelSur, panelScroll;
 	private JComboBox comboBoxCarrera,comboBoxSemestre,comboBoxFacultad;
 	private JLabel tituloComboBoxCarrera,tituloComboBoxSemestre,tituloComboBoxFacultad;
 	private PanelAsignaturas panelAsignaturas;
 	private int contador = 1, posPBotones = 0;
 	private JLabel lblSeleccioneCarreras;
 	private JButton btnSeleccionar;
+	private JScrollPane scrollpanel;
 	
 	public SeleccionarAsignaturas() {
 		contenedor = new JPanel();
+		panelScroll = new JPanel();
+		ContenedorPrincipal = new JPanel();
 		panelSur = new JPanel();
-        setLayout(new BorderLayout(0, 0));
+		ContenedorPrincipal.setLayout(new BorderLayout(0, 0));
+		panelScroll.setBounds(0, 0, 1260, 527);
+		panelScroll.setLayout(new BorderLayout(0, 0));
 		
 		btnSeleccionar = new JButton("SELECCIONAR");
 		panelSur.add(btnSeleccionar);
@@ -44,21 +51,21 @@ public class SeleccionarAsignaturas extends JPanel {
 		panelBotones.setLayout(gbl_panelBotones);
 		tituloComboBoxCarrera = new JLabel("Seleccionar por Carrera:");
 		GridBagConstraints gbc_tituloComboBoxCarrera = new GridBagConstraints();
-		gbc_tituloComboBoxCarrera.anchor = GridBagConstraints.NORTHEAST;
+		gbc_tituloComboBoxCarrera.anchor = GridBagConstraints.NORTHWEST;
 		gbc_tituloComboBoxCarrera.insets = new Insets(0, 0, 5, 5);
 		gbc_tituloComboBoxCarrera.gridx = 0;
 		gbc_tituloComboBoxCarrera.gridy = 0;
 		panelBotones.add(tituloComboBoxCarrera, gbc_tituloComboBoxCarrera);
 		tituloComboBoxSemestre = new JLabel("Seleccionar por Semestre:");
 		GridBagConstraints gbc_tituloComboBoxSemestre = new GridBagConstraints();
-		gbc_tituloComboBoxSemestre.anchor = GridBagConstraints.NORTHEAST;
+		gbc_tituloComboBoxSemestre.anchor = GridBagConstraints.NORTHWEST;
 		gbc_tituloComboBoxSemestre.insets = new Insets(0, 0, 5, 5);
 		gbc_tituloComboBoxSemestre.gridx = 1;
 		gbc_tituloComboBoxSemestre.gridy = 0;
 		panelBotones.add(tituloComboBoxSemestre, gbc_tituloComboBoxSemestre);
 		tituloComboBoxFacultad = new JLabel("Seleccionar por Facultad:");
 		GridBagConstraints gbc_tituloComboBoxFacultad = new GridBagConstraints();
-		gbc_tituloComboBoxFacultad.anchor = GridBagConstraints.NORTHEAST;
+		gbc_tituloComboBoxFacultad.anchor = GridBagConstraints.NORTHWEST;
 		gbc_tituloComboBoxFacultad.insets = new Insets(0, 0, 5, 0);
 		gbc_tituloComboBoxFacultad.gridx = 2;
 		gbc_tituloComboBoxFacultad.gridy = 0;
@@ -91,11 +98,19 @@ public class SeleccionarAsignaturas extends JPanel {
 		lblSeleccioneCarreras = new JLabel("SELECCIONAR ASIGNATURAS");
 		lblSeleccioneCarreras.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSeleccioneCarreras.setFont(new Font("Tahoma", Font.BOLD, 18));
-		add(lblSeleccioneCarreras, BorderLayout.NORTH);
-		add(contenedor, BorderLayout.CENTER);
+		ContenedorPrincipal.add(lblSeleccioneCarreras, BorderLayout.NORTH);
+		ContenedorPrincipal.add(contenedor, BorderLayout.CENTER);
 		panelAsignaturas = new PanelAsignaturas(null);
 		contenedor.add(panelAsignaturas);
-		add(panelSur, BorderLayout.SOUTH);
+		ContenedorPrincipal.add(panelSur, BorderLayout.SOUTH);
+		scrollpanel = new JScrollPane();
+		scrollpanel.setAutoscrolls(true);
+		scrollpanel.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+		scrollpanel.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		panelScroll.add(scrollpanel);
+		scrollpanel.setDoubleBuffered(false);
+		scrollpanel.setViewportView(ContenedorPrincipal);
+		add(panelScroll);
 	}
 	
 	public void Listenner(JComboBox comboBox){
