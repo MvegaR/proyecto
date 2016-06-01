@@ -33,7 +33,7 @@ public class GestionPaneles extends JPanel {
 	    @Override
 	    public void mousePressed(MouseEvent e) {
 		//prueba parte Marí 
-		MensajesError.meEr_FallaAutentificacion();
+		//MensajesError.meEr_FallaAutentificacion();
 		mostrarPanel("mari");
 	    }
 	});
