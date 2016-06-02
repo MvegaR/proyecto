@@ -199,4 +199,16 @@ class SalaController extends Controller
          echo "<option value=>Sin salas con la capacidad mínima ingresada y tipo, disponibles</option>";
         }
     }
+
+  public function actionHorario(){
+      $todosLosDias = Dia::find()-> all();
+      $Datos=array();
+      foreach ($todosLosDias as $key) {
+        $todosLosBloquesEnOrden = Bloque::find()->where(["ID_SALA" => $sala, "ID_DIA" => $idDia]) -> orderBy("INICIO")->all();
+        array_push($Datos, $todosLosBloquesEnOrden);
+      }
+      return $this->render('HorarioSalas', [
+            'Horario' => $Datos
+            ]);
+  }
 }
