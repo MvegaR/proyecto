@@ -14,18 +14,12 @@ $this->params['breadcrumbs'][] = $this->title;
     <br>
     Funcionalidad: <br>
     -Ver horario usuario autentificado (docente)<br>
-    -Ver horarios de una sala determinada. (publico)<br>
     -Importar desde excel.<br>
 
     <br>
     Estetica:<br>
     -Cambiar numeros ID por su Nombre, en todos los index.php y view.php siguiento el video (ejemplo ya hecho index.php de docente) -> https://www.youtube.com/watch?v=OLfz7Iy_y84<br>
     -Migas de pan (breadcrumbs) y que diferencie admin de docente y invitado<br>
-
- <div class="embed-responsive embed-responsive-16by9">
-    <br>
-    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/OLfz7Iy_y84" frameborder="0" allowfullscreen></iframe>
-</div>
 
     <p><?= Html::a('RFW02 Importación de datos (Marcos) (PENDIENTE)', [''], ['class'=>'']) ?></p>
     <p><?= Html::a('RFW09 Generación de usuario y contraseña docentes (Pablo)', ['docente/create'], ['class'=>'']) ?></p>
@@ -37,8 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <p><?= Html::a('RFW16 Ver horario (pablo) (PENDIENTE)', [''], ['class'=>'']) ?></p>
         -Es el horario desde un docente (usuario conectado)<br><br>
         
-    <p><?= Html::a('RFW17 Información salas (Marí) (PENDIENTE)', ['sala/lista'], ['class'=>'']) ?></p>
-        -Tabla de horarios de una sala (información publica)<br><br>
+    <p><?= Html::a('RFW17 Información salas (Marí)', ['sala/lista'], ['class'=>'']) ?></p>
         
     <p><?= Html::a('RFW18 Exportar a Archivo Excel (Marcos)', ['sala/index'], ['class'=>'']) ?></p>
         
