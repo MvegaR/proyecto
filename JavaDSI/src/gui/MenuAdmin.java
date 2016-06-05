@@ -16,8 +16,6 @@ import java.net.URISyntaxException;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 
 public class MenuAdmin extends JPanel {
