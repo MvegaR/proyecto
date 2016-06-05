@@ -10,9 +10,6 @@ import java.awt.BorderLayout;
 
 public class VentanaPrincipal extends JFrame {
 
-    /**
-     * 
-     */
     private static final long serialVersionUID = 1L;
 
     public static void main(String[] args) throws Exception {
@@ -30,10 +27,8 @@ public class VentanaPrincipal extends JFrame {
 
     public VentanaPrincipal() {
 	this.setResizable(false);
-	this.setUndecorated(true); //quita el frame de windows pero la libreria añade el suyo y queda muy bien.
-	this.setOpacity(1f); //0% de transparencia.
-
-
+	this.setUndecorated(true);
+	
 	panelRaul = new GestionPaneles();
 	cabecera = new PanelCabecera();
 	seccionOpciones = new JPanel();

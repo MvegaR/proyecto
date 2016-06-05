@@ -276,7 +276,7 @@ class SiteController extends Controller
                  $nombretabla2 = str_replace('-', '_', $nombretabla2);
                  
                  $selectDB2 = "SELECT COLUMN_NAME FROM COLUMNS where TABLE_NAME = '$nombretabla2' and COLUMN_KEY = 'PRI'";
-                 $clave = ( Yii::$app -> db2 -> createCommand($selectDB2) -> queryOne() ['COLUMN_NAME']);
+                 $clave = Yii::$app -> db2 -> createCommand($selectDB2) -> queryOne()['COLUMN_NAME'];
                  if(is_numeric($rowData[0][0])){
                     $selectSql = "SELECT * FROM $nombretabla2 WHERE $clave = ".$rowData[0][0].";";
                 }else{
