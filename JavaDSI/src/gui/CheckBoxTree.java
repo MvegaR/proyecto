@@ -8,7 +8,7 @@ public class CheckBoxTree extends JCheckBox{
     //Checkbox que tiene padre y hijos.
     //El comentario es pensado para salas, pero es generico. (Falta todo lo grafico)
     private static final long serialVersionUID = 1L;
-    private CheckBoxTree padre; 
+    private CheckBoxTree padre;  //puede ser null, solo si es facultad.
     private Integer tipo; // 0: Sala, 1: edificio, 2: departamento, 3: Facultad.
     private String codigo; //Codigo de la facultad, departamento, edifiico o sala. (en caso de salas)
     // private String nombre; //<-- cuando exista conexion con la DB y debe ser obtenido automaticamente por una funcion de esta clase setNombre().
