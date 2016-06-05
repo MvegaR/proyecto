@@ -9,6 +9,8 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use frontend\models\Bloque;
+use frontend\models\Facultad;
+use frontend\models\Edificio;
 use frontend\models\TiempoInicio;
 use frontend\models\Dia;
 /**
@@ -16,6 +18,33 @@ use frontend\models\Dia;
  */
 class SalaController extends Controller
 {
+
+    public function actionEdificios(){
+      $post = Yii::$app->request->post(); 
+      $id = $post['id'];
+      $edificios = Edificio::find()-> where(["ID_FACULTAD" => $id])->all();
+      return $this->renderPartial('edificios', [
+            'edificios' => $edificios,
+            ]);
+    }
+
+    public function actionSalas(){
+      $post = Yii::$app->request->post(); 
+      $id = $post['id'];
+      $salas;
+      $titulo = "Seleccione sala";
+      if($id == "*") {
+        $salas = Sala::find()->all();
+      }
+      else{
+        $titulo = "Paso 3: Seleccione sala";
+        $salas = Sala::find()-> where(["ID_EDIFICIO" => $id])->all();
+      }
+      return $this->renderPartial('salas', [
+            'salas' => $salas,
+            'titulo' => $titulo,
+            ]);
+    }
 
     public function actionLista()
     {
@@ -199,4 +228,21 @@ class SalaController extends Controller
          echo "<option value=>Sin salas con la capacidad mínima ingresada y tipo, disponibles</option>";
         }
     }
+
+    public function actionHorarioSala($sala){
+      $datos = [];
+      $dias = Dia::find() -> all();
+      foreach ($dias as $key) {
+        //$todosLosBloquesEnOrden = Bloque::find()->where(["ID_SALA" => $sala, "ID_DIA" => $key -> ID_DIA])->andWhere(['not',['ID_SECCION' => null]]) -> orderBy("INICIO")->all();
+        $todosLosBloquesEnOrden = Bloque::find()->where(["ID_SALA" => $sala, "ID_DIA" => $key -> ID_DIA])-> orderBy("INICIO")->all();
+          array_push($datos,$todosLosBloquesEnOrden);
+          //echo $datos[0][0]->ID_BLOQUE;
+      }
+      //echo $datos[1][0]->ID_BLOQUE;
+      return $this->render('horario-sala', [
+            'datos' => $datos,
+            'sala' => $sala
+            ]);
+    }
+
 }

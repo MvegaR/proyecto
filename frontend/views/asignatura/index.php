@@ -48,7 +48,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ]); ?>
         </div>
         <?php
-        echo "Exportar, seleccione columnas y formato: ";
+        echo '<div><label class="control-label">Exportar a archivo</label></div>';
         $gridColumns = [
         
         'ID_ASIGNATURA',

@@ -25,6 +25,7 @@ public class MenuInicial extends JPanel {
      */
 
     private JButton btnAdministrar = new JButton("Administrar");
+    private JButton btnPlanificar = new JButton("Planificar");
 
     public MenuInicial() {
 	setLayout(new BorderLayout(0, 0));
@@ -71,7 +72,6 @@ public class MenuInicial extends JPanel {
 	gbc_lblNewLabel.gridy = 8;
 	panel.add(lblNewLabel, gbc_lblNewLabel);
 
-	JButton btnPlanificar = new JButton("Planificar");
 	btnPlanificar.setFont(new Font("Tahoma", Font.PLAIN, 14));
 	GridBagConstraints gbc_btnPlanificar = new GridBagConstraints();
 	gbc_btnPlanificar.gridwidth = 3;
@@ -96,6 +96,9 @@ public class MenuInicial extends JPanel {
 
     public JButton getBtnAdministrar(){
 	return this.btnAdministrar;
+    }
+    public JButton getBtnPlanificar(){
+	return this.btnPlanificar;
     }
 
 }

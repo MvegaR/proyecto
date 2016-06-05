@@ -303,12 +303,7 @@ use yii\filters\VerbFilter;
                             $bloquesTemporales = SolicitudAsignacionTemporal::find() 
                             ->where(["FECHA_ASIGNACION_TEMPORAL" => $fecha, "SALA_ASIGNACION_TEMPORAL" => $sala,]) -> andWhere(["<>", "SOLICITUD_TEMPORAL_PADRE", $id]) -> all();
                             foreach($bloquesTemporales as $bloquetemporal){
-                                 echo "<hr>";
-                                echo "id: ".$bloquetemporal -> INICIO_BLOQUE_ASIGNACION_TEMPORAL."<br>";
-                                echo "<br> ".var_dump($idsBloquesDisponibles)."<br>";
                                 $posicionBloque = array_search($bloquetemporal -> INICIO_BLOQUE_ASIGNACION_TEMPORAL, $idsBloquesDisponibles);
-                                echo "<br>".var_dump($posicionBloque);
-                                echo "<hr>";
                                 unset($idsBloquesDisponibles[$posicionBloque]);
 
                             }
@@ -391,10 +386,6 @@ use yii\filters\VerbFilter;
                         unset($idbloque);
                     }
                 }
-
-
-
-
 
                 $idsBloquesDisponibles = array_intersect($idsBloquesDisponibles, $idsBloquesDisponibles2);
 

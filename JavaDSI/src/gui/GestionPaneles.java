@@ -15,6 +15,7 @@ public class GestionPaneles extends JPanel {
     private CheckResolucion coni;
     private MenuAdmin marcos;
     private MenuInicial mari;
+    private SeleccionarAsignaturas asignaturas;
     private Autentificacion pablo;
     private CardLayout layout;
 
@@ -24,10 +25,12 @@ public class GestionPaneles extends JPanel {
 	mari = new MenuInicial();
 	pablo = new Autentificacion();
 	layout = new CardLayout();
+	asignaturas = new SeleccionarAsignaturas();
 	this.setLayout(layout);
 	this.add(marcos,"marcos");
 	this.add(mari,"mari");
 	this.add(pablo,"pablo");
+	this.add(asignaturas,"asignaturas");
 	layout.show(this, "pablo");
 	pablo.getBtnEntrar().addMouseListener(new MouseAdapter() {
 	    @Override
@@ -35,12 +38,19 @@ public class GestionPaneles extends JPanel {
 		//prueba parte Marí 
 		//MensajesError.meEr_FallaAutentificacion();
 		mostrarPanel("mari");
+		VentanaPrincipal.btnVolver.setVisible(true);
 	    }
 	});
 	mari.getBtnAdministrar().addMouseListener(new MouseAdapter() {
 	    @Override
 	    public void mousePressed(MouseEvent e) {
 		mostrarPanel("marcos");
+	    }
+	});
+	mari.getBtnPlanificar().addMouseListener(new MouseAdapter() {
+	    @Override
+	    public void mousePressed(MouseEvent e) {
+		mostrarPanel("asignaturas");
 	    }
 	});
     }
