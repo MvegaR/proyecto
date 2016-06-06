@@ -11,6 +11,8 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
+import db.Conexion;
+
 public class PanelAsignaturas extends JPanel {
 	
 	private JTable table;

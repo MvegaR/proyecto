@@ -8,6 +8,7 @@ import javax.swing.UIManager;
 import db.Asignatura;
 import db.Bloque;
 import db.Carrera;
+import db.Conexion;
 import db.Departamento;
 import db.Docente;
 import db.Edificio;
