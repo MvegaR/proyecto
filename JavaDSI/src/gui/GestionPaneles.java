@@ -12,7 +12,7 @@ public class GestionPaneles extends JPanel {
      * Raúl
      */
     private static final long serialVersionUID = 1L;
-   // private CheckResolucion coni;
+    // private CheckResolucion coni;
     private MenuAdmin marcos;
     private MenuInicial mari;
     private SeleccionarAsignaturas asignaturas;

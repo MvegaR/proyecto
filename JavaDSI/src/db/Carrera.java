@@ -1,5 +1,8 @@
 package db;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Carrera {
 
     private String idCarrera;
@@ -10,23 +13,34 @@ public class Carrera {
 	this.idFacultad = idFacultad;
 	this.nombreCarrera = nombreCarrera;
     }
+    public Carrera(ResultSet datos) {
+	try {
+	    this.idCarrera = datos.getString(1);
+	    this.idFacultad = datos.getInt(2);
+	    this.nombreCarrera = datos.getString(3);
+	} catch (SQLException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	}
+
+    }
     /**
      * @return the idCarrera
      */
     public String getIdCarrera() {
-        return idCarrera;
+	return idCarrera;
     }
     /**
      * @return the idFacultad
      */
     public Integer getIdFacultad() {
-        return idFacultad;
+	return idFacultad;
     }
     /**
      * @return the nombreCarrera
      */
     public String getNombreCarrera() {
-        return nombreCarrera;
+	return nombreCarrera;
     }
     /* (non-Javadoc)
      * @see java.lang.Object#toString()
@@ -69,8 +83,8 @@ public class Carrera {
 	}
 	return true;
     }
-    
-    
-    
-    
+
+
+
+
 }

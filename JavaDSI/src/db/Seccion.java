@@ -1,42 +1,55 @@
 package db;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Seccion {
-    
+
     private String idSeccion;
     private String idDocente;
     private String idAsignatura;
     private Integer cupo;
-    
+
     public Seccion(String idSeccion, String idDocente, String idAsignatura, Integer cupo) {
-	
 	this.idSeccion = idSeccion;
 	this.idDocente = idDocente;
 	this.idAsignatura = idAsignatura;
 	this.cupo = cupo;
     }
+    public Seccion(ResultSet datos) {
+	try {
+	    this.idDocente = datos.getString(2);
+	    this.idSeccion = datos.getString(1);
+	    this.idAsignatura = datos.getString(3);
+	    this.cupo = datos.getInt(4);
+	} catch (SQLException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	}
+    }
     /**
      * @return the idSeccion
      */
     public String getIdSeccion() {
-        return idSeccion;
+	return idSeccion;
     }
     /**
      * @return the idDocente
      */
     public String getIdDocente() {
-        return idDocente;
+	return idDocente;
     }
     /**
      * @return the idAsignatura
      */
     public String getIdAsignatura() {
-        return idAsignatura;
+	return idAsignatura;
     }
     /**
      * @return the cupo
      */
     public Integer getCupo() {
-        return cupo;
+	return cupo;
     }
     /* (non-Javadoc)
      * @see java.lang.Object#toString()
@@ -79,9 +92,9 @@ public class Seccion {
 	}
 	return true;
     }
-    
-    
-    
-    
+
+
+
+
 
 }

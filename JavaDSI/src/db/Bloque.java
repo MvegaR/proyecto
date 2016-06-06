@@ -1,5 +1,8 @@
 package db;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Bloque {
     private Integer idBloque;
     private Integer idDia;
@@ -18,65 +21,81 @@ public class Bloque {
 	this.termino = termino;
 	this.bloqueSiguiente = bloqueSiguiente;
     }
+
+    public Bloque(ResultSet datos) {
+
+	try {
+	    this.idBloque = datos.getInt(1);
+	    this.idDia = datos.getInt(2);
+	    this.idSala = datos.getString(3);
+	    this.idSeccion = datos.getString(4);
+	    this.inicio = datos.getString(5);
+	    this.termino = datos.getString(6);
+	    this.bloqueSiguiente = datos.getInt(7);
+	} catch (SQLException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	}
+    }
     /**
      * @return the idSala
      */
     public String getIdSala() {
-        return idSala;
+	return idSala;
     }
     /**
      * @param idSala the idSala to set
      */
     public void setIdSala(String idSala) {
-        this.idSala = idSala;
+	this.idSala = idSala;
     }
     /**
      * @return the idSeccion
      */
     public String getIdSeccion() {
-        return idSeccion;
+	return idSeccion;
     }
     /**
      * @param idSeccion the idSeccion to set
      */
     public void setIdSeccion(String idSeccion) {
-        this.idSeccion = idSeccion;
+	this.idSeccion = idSeccion;
     }
     /**
      * @return the bloqueSiguiente
      */
     public Integer getBloqueSiguiente() {
-        return bloqueSiguiente;
+	return bloqueSiguiente;
     }
     /**
      * @param bloqueSiguiente the bloqueSiguiente to set
      */
     public void setBloqueSiguiente(Integer bloqueSiguiente) {
-        this.bloqueSiguiente = bloqueSiguiente;
+	this.bloqueSiguiente = bloqueSiguiente;
     }
     /**
      * @return the idBloque
      */
     public Integer getIdBloque() {
-        return idBloque;
+	return idBloque;
     }
     /**
      * @return the idDia
      */
     public Integer getIdDia() {
-        return idDia;
+	return idDia;
     }
     /**
      * @return the inicio
      */
     public String getInicio() {
-        return inicio;
+	return inicio;
     }
     /**
      * @return the termino
      */
     public String getTermino() {
-        return termino;
+	return termino;
     }
     /* (non-Javadoc)
      * @see java.lang.Object#toString()
@@ -119,8 +138,8 @@ public class Bloque {
 	}
 	return true;
     }
-    
-    
-    
+
+
+
 
 }

@@ -1,33 +1,46 @@
 package db;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Edificio {
-    
+
     private String idEdificio;
     private Integer idFacultad;
     private String nombreEdificio;
     public Edificio(String idEdificio, Integer idFacultad, String nombreEdificio) {
-	
+
 	this.idEdificio = idEdificio;
 	this.idFacultad = idFacultad;
 	this.nombreEdificio = nombreEdificio;
+    }
+    public Edificio(ResultSet datos) {
+	try {
+	    this.idEdificio = datos.getString(1);
+	    this.idFacultad = datos.getInt(2);
+	    this.nombreEdificio = datos.getString(3);
+	} catch (SQLException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	}
     }
     /**
      * @return the idEdificio
      */
     public String getIdEdificio() {
-        return idEdificio;
+	return idEdificio;
     }
     /**
      * @return the idFacultad
      */
     public Integer getIdFacultad() {
-        return idFacultad;
+	return idFacultad;
     }
     /**
      * @return the nombreEdificio
      */
     public String getNombreEdificio() {
-        return nombreEdificio;
+	return nombreEdificio;
     }
     /* (non-Javadoc)
      * @see java.lang.Object#toString()
@@ -70,10 +83,10 @@ public class Edificio {
 	}
 	return true;
     }
-    
-    
-    
-    
-    
+
+
+
+
+
 
 }

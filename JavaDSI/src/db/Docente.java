@@ -1,5 +1,8 @@
 package db;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Docente {
     private String idDocente;
     private Integer idRol;
@@ -11,7 +14,6 @@ public class Docente {
     private String cookie;
     public Docente(String idDocente, Integer idRol, Integer idFacultad, String nombreDocente, String email, String user,
 	    String password, String cookie) {
-	
 	this.idDocente = idDocente;
 	this.idRol = idRol;
 	this.idFacultad = idFacultad;
@@ -21,6 +23,24 @@ public class Docente {
 	this.password = password;
 	this.cookie = cookie;
     }
+
+    public Docente(ResultSet datos) {
+	try {
+	    this.idDocente = datos.getString(1);
+	    this.idRol = datos.getInt(2);
+	    this.idFacultad = datos.getInt(3);
+	    this.nombreDocente = datos.getString(4);
+	    this.email = datos.getString(5);
+	    this.user = datos.getString(6);
+	    this.password = datos.getString(7);
+	    this.cookie = datos.getString(8);
+	} catch (SQLException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	}
+    }
+
+
     /* (non-Javadoc)
      * @see java.lang.Object#toString()
      */
@@ -32,49 +52,49 @@ public class Docente {
      * @return the idDocente
      */
     public String getIdDocente() {
-        return idDocente;
+	return idDocente;
     }
     /**
      * @return the idRol
      */
     public Integer getIdRol() {
-        return idRol;
+	return idRol;
     }
     /**
      * @return the idFacultad
      */
     public Integer getIdFacultad() {
-        return idFacultad;
+	return idFacultad;
     }
     /**
      * @return the nombreDocente
      */
     public String getNombreDocente() {
-        return nombreDocente;
+	return nombreDocente;
     }
     /**
      * @return the email
      */
     public String getEmail() {
-        return email;
+	return email;
     }
     /**
      * @return the user
      */
     public String getUser() {
-        return user;
+	return user;
     }
     /**
      * @return the password
      */
     public String getPassword() {
-        return password;
+	return password;
     }
     /**
      * @return the cookie
      */
     public String getCookie() {
-        return cookie;
+	return cookie;
     }
     /* (non-Javadoc)
      * @see java.lang.Object#hashCode()
@@ -110,6 +130,6 @@ public class Docente {
 	}
 	return true;
     }
-    
-    
+
+
 }

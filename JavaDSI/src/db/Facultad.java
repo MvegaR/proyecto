@@ -1,5 +1,8 @@
 package db;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Facultad {
     
     private Integer idFacultad;
@@ -11,6 +14,18 @@ public class Facultad {
 	this.idDepartamento = idDepartamento;
 	this.nombreDepartamento = nombreDepartamento;
     }
+    public Facultad(ResultSet datos) {
+	try {
+	    this.idDepartamento = datos.getInt(2);
+	    this.nombreDepartamento = datos.getString(3);
+	    this.idFacultad = datos.getInt(1);
+	} catch (SQLException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	}
+	
+    }
+    
     /**
      * @return the idFacultad
      */

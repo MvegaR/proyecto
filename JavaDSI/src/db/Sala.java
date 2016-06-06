@@ -1,7 +1,10 @@
 package db;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Sala {
-    
+
     private String idSala;
     private Integer idTipoSala;
     private String idEdificio;
@@ -12,29 +15,40 @@ public class Sala {
 	this.idEdificio = idEdificio;
 	this.capacidadSala = capacidadSala;
     }
+    public Sala(ResultSet datos) {
+	try {
+	    this.idSala = datos.getString(1);
+	    this.idTipoSala = datos.getInt(2);
+	    this.idEdificio = datos.getString(3);
+	    this.capacidadSala = datos.getInt(4);
+	} catch (SQLException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	}
+    }
     /**
      * @return the idSala
      */
     public String getIdSala() {
-        return idSala;
+	return idSala;
     }
     /**
      * @return the idTipoSala
      */
     public Integer getIdTipoSala() {
-        return idTipoSala;
+	return idTipoSala;
     }
     /**
      * @return the idEdificio
      */
     public String getIdEdificio() {
-        return idEdificio;
+	return idEdificio;
     }
     /**
      * @return the capacidadSala
      */
     public Integer getCapacidadSala() {
-        return capacidadSala;
+	return capacidadSala;
     }
     /* (non-Javadoc)
      * @see java.lang.Object#toString()
@@ -77,8 +91,8 @@ public class Sala {
 	}
 	return true;
     }
-    
-    
-    
-    	
+
+
+
+
 }

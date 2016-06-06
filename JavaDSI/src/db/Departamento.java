@@ -1,11 +1,23 @@
 package db;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Departamento {
     private Integer idDepartamento;
     private String nombreDepartamento;
     public Departamento(Integer idDepartamento, String nombreDepartamento) {
 	this.idDepartamento = idDepartamento;
 	this.nombreDepartamento = nombreDepartamento;
+    }
+    public Departamento(ResultSet datos) {
+	try {
+	    this.idDepartamento = datos.getInt(1);
+	    this.nombreDepartamento = datos.getString(2);
+	} catch (SQLException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	}
     }
     /* (non-Javadoc)
      * @see java.lang.Object#toString()
@@ -52,18 +64,18 @@ public class Departamento {
      * @return the idDepartamento
      */
     public Integer getIdDepartamento() {
-        return idDepartamento;
+	return idDepartamento;
     }
     /**
      * @return the nombreDepartamento
      */
     public String getNombreDepartamento() {
-        return nombreDepartamento;
+	return nombreDepartamento;
     }
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
 }
