@@ -12,7 +12,7 @@ public class CheckBoxTree extends JCheckBox{
     private Integer tipo; // 0: Sala, 1: edificio, 2: departamento, 3: Facultad.
     private String codigo; //Codigo de la facultad, departamento, edifiico o sala. (en caso de salas)
     // private String nombre; //<-- cuando exista conexion con la DB y debe ser obtenido automaticamente por una funcion de esta clase setNombre().
-    // agregar un boton dentro de esta clase para ocultar/mostrar hijos. que se pinte en el metodo paint, en la pos actual del checkbox
+    // agregar un boton dentro de esta clase para ocultar/mostrar hijos. que se pinte en el metodo paint, con la pos relativa actual del checkbox
     private ArrayList<CheckBoxTree> hijos = new ArrayList<>();;
     
     public CheckBoxTree(Integer tipo, String codigo, CheckBoxTree padre) {

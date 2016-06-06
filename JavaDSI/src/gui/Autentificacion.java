@@ -27,24 +27,24 @@ public class Autentificacion extends JPanel {
     	
     	JLabel label_user = new JLabel("User");
     	label_user.setFont(new Font("Tahoma", Font.PLAIN, 17));
-    	label_user.setBounds(67, 86, 115, 32);
+    	label_user.setBounds(269, 123, 115, 32);
     	
     	JLabel label_password = new JLabel("Password");
     	label_password.setFont(new Font("Tahoma", Font.PLAIN, 17));
-    	label_password.setBounds(67, 139, 115, 32);
+    	label_password.setBounds(269, 254, 115, 32);
     	
     	texto_user = new JTextField();
-    	texto_user.setBounds(192, 86, 206, 32);
+    	texto_user.setBounds(509, 123, 366, 32);
     	texto_user.setColumns(10);
     	
     	password_texto = new JPasswordField();
-    	password_texto.setBounds(192, 139, 206, 32);
+    	password_texto.setBounds(509, 254, 366, 32);
     	
     	btnEntrar = new JButton("Entrar");
-    	btnEntrar.setBounds(93, 216, 134, 43);
+    	btnEntrar.setBounds(509, 385, 134, 43);
     	
     	JButton btnSalir = new JButton("Salir");
-    	btnSalir.setBounds(269, 216, 129, 43);
+    	btnSalir.setBounds(746, 385, 129, 43);
     	btnSalir.addActionListener(new ActionListener() {
     		public void actionPerformed(ActionEvent arg0) {
     			System.exit(0);
