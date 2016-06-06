@@ -12,7 +12,7 @@ public class GestionPaneles extends JPanel {
      * Raúl
      */
     private static final long serialVersionUID = 1L;
-    private CheckResolucion coni;
+   // private CheckResolucion coni;
     private MenuAdmin marcos;
     private MenuInicial mari;
     private SeleccionarAsignaturas asignaturas;
@@ -20,7 +20,7 @@ public class GestionPaneles extends JPanel {
     private CardLayout layout;
 
     public GestionPaneles() {
-	coni = new CheckResolucion();
+	//coni = new CheckResolucion();
 	marcos = new MenuAdmin();
 	mari = new MenuInicial();
 	pablo = new Autentificacion();
