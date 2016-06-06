@@ -35,21 +35,21 @@ public class Asignatura {
     //Contructor para sql
     public Asignatura(ResultSet datos) {
 	try {
-	    this.idAsignatura = datos.getString(0);
-	    this.nombreAsignatura = datos.getString(1);
-	    this.anio = datos.getInt(2);
-	    this.semestre = datos.getInt(3);
-	    this.horaTeo = datos.getInt(4);
-	    this.horaLabCom = datos.getInt(5);
-	    this.horaAyudantia = datos.getInt(6);
-	    this.horaLabFisica = datos.getInt(7);
-	    this.horaLabQuimica = datos.getInt(8);
-	    this.horaLabRobotica = datos.getInt(9);
-	    this.horaLabMecanica = datos.getInt(10);
-	    this.horaTallerArquitectura = datos.getInt(11);
-	    this.horaTallerMadera = datos.getInt(12);
-	    this.horaGYM = datos.getInt(13);
-	    this.horaAuditorio = datos.getInt(14);
+	    this.idAsignatura = datos.getString(1);
+	    this.nombreAsignatura = datos.getString(2);
+	    this.anio = datos.getInt(3);
+	    this.semestre = datos.getInt(4);
+	    this.horaTeo = datos.getInt(5);
+	    this.horaLabCom = datos.getInt(6);
+	    this.horaAyudantia = datos.getInt(7);
+	    this.horaLabFisica = datos.getInt(8);
+	    this.horaLabQuimica = datos.getInt(9);
+	    this.horaLabRobotica = datos.getInt(10);
+	    this.horaLabMecanica = datos.getInt(11);
+	    this.horaTallerArquitectura = datos.getInt(12);
+	    this.horaTallerMadera = datos.getInt(13);
+	    this.horaGYM = datos.getInt(14);
+	    this.horaAuditorio = datos.getInt(15);
 	} catch (SQLException e) {
 	    e.printStackTrace();
 	}
