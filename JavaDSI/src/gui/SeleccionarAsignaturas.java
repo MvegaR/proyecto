@@ -73,6 +73,8 @@ public class SeleccionarAsignaturas extends JPanel {
 	gbc_tituloComboBoxFacultad.gridx = 2;
 	gbc_tituloComboBoxFacultad.gridy = 0;
 	panelBotones.add(tituloComboBoxFacultad, gbc_tituloComboBoxFacultad);
+
+	
 	comboBoxCarrera = new JComboBox(opcionesComboBox("select ID_CARRERA, NOMBRE_CARRERA from carrera",1));
 	Listenner(comboBoxCarrera);
 	GridBagConstraints gbc_comboBoxCarrera = new GridBagConstraints();
@@ -212,6 +214,7 @@ public class SeleccionarAsignaturas extends JPanel {
 	    if(opcion == 1) dataVector.add("[*,*]");
 	    else dataVector.add("[*]");
 	    int columns = md.getColumnCount();
+	    
 	    while (rs.next()){
 		ArrayList row = new ArrayList(columns);
 		for (int i = 1; i <= columns; i++)
