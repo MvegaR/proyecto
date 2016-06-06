@@ -1,5 +1,7 @@
 package db;
-
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 public class Asignatura {
 
     private String idAsignatura;
@@ -14,22 +16,44 @@ public class Asignatura {
 	    Integer anio, Integer semestre, Integer horaTeo, Integer horaLabCom, Integer horaAyudantia, 
 	    Integer horaLabFisica, Integer horaLabQuimica, Integer horaLabRobotica, 
 	    Integer horaLabMecanica, Integer horaTallerArquitectura, Integer horaTallerMadera, Integer horaGYM, Integer horaAuditorio) {
-	this.idAsignatura = idAsignatura;
-	this.nombreAsignatura = nombreAsignatura;
-	this.anio = anio;
-	this.semestre = semestre;
-	this.horaTeo = horaTeo;
-	this.horaLabCom = horaLabCom;
-	this.horaAyudantia = horaAyudantia;
-	this.horaLabFisica = horaLabFisica;
-	this.horaLabQuimica = horaLabQuimica;
-	this.horaLabRobotica = horaLabRobotica;
-	this.horaLabMecanica = horaLabMecanica;
-	this.horaTallerArquitectura = horaTallerArquitectura;
-	this.horaTallerMadera = horaTallerMadera;
-	this.horaGYM = horaGYM;
-	this.horaAuditorio = horaAuditorio;
+    	this.idAsignatura = idAsignatura;
+    	this.nombreAsignatura = nombreAsignatura;
+    	this.anio = anio;
+    	this.semestre = semestre;
+    	this.horaTeo = horaTeo;
+    	this.horaLabCom = horaLabCom;
+    	this.horaAyudantia = horaAyudantia;
+    	this.horaLabFisica = horaLabFisica;
+    	this.horaLabQuimica = horaLabQuimica;
+    	this.horaLabRobotica = horaLabRobotica;
+    	this.horaLabMecanica = horaLabMecanica;
+    	this.horaTallerArquitectura = horaTallerArquitectura;
+    	this.horaTallerMadera = horaTallerMadera;
+    	this.horaGYM = horaGYM;
+    	this.horaAuditorio = horaAuditorio;
 		
+    }
+    //Contructor para sql
+    public Asignatura(ResultSet datos) {
+	try {
+	    this.idAsignatura = datos.getString(0);
+	    this.nombreAsignatura = datos.getString(1);
+	    this.anio = datos.getInt(2);
+	    this.semestre = datos.getInt(3);
+	    this.horaTeo = datos.getInt(4);
+	    this.horaLabCom = datos.getInt(5);
+	    this.horaAyudantia = datos.getInt(6);
+	    this.horaLabFisica = datos.getInt(7);
+	    this.horaLabQuimica = datos.getInt(8);
+	    this.horaLabRobotica = datos.getInt(9);
+	    this.horaLabMecanica = datos.getInt(10);
+	    this.horaTallerArquitectura = datos.getInt(11);
+	    this.horaTallerMadera = datos.getInt(12);
+	    this.horaGYM = datos.getInt(13);
+	    this.horaAuditorio = datos.getInt(14);
+	} catch (SQLException e) {
+	    e.printStackTrace();
+	}
     }
 
     /**
