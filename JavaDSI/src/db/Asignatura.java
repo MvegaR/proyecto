@@ -5,17 +5,19 @@ public class Asignatura {
 
     private String idAsignatura;
     private String nombreAsignatura;
+    private String idCarrera;
     private Integer anio;
     private Integer semestre;
     private Integer horaTeo, horaLabCom, horaAyudantia, 
     horaLabFisica, horaLabQuimica, horaLabRobotica, 
     horaLabMecanica, horaTallerArquitectura, horaTallerMadera, horaGYM, horaAuditorio;
 
-    public Asignatura(String idAsignatura, String nombreAsignatura,
+    public Asignatura(String idAsignatura, String idCarrera, String nombreAsignatura,
 	    Integer anio, Integer semestre, Integer horaTeo, Integer horaLabCom, Integer horaAyudantia, 
 	    Integer horaLabFisica, Integer horaLabQuimica, Integer horaLabRobotica, 
 	    Integer horaLabMecanica, Integer horaTallerArquitectura, Integer horaTallerMadera, Integer horaGYM, Integer horaAuditorio) {
 	this.idAsignatura = idAsignatura;
+	this.idCarrera = idCarrera;
 	this.nombreAsignatura = nombreAsignatura;
 	this.anio = anio;
 	this.semestre = semestre;
@@ -36,20 +38,21 @@ public class Asignatura {
     public Asignatura(ResultSet datos) {
 	try {
 	    this.idAsignatura = datos.getString(1);
-	    this.nombreAsignatura = datos.getString(2);
-	    this.anio = datos.getInt(3);
-	    this.semestre = datos.getInt(4);
-	    this.horaTeo = datos.getInt(5);
-	    this.horaLabCom = datos.getInt(6);
-	    this.horaAyudantia = datos.getInt(7);
-	    this.horaLabFisica = datos.getInt(8);
-	    this.horaLabQuimica = datos.getInt(9);
-	    this.horaLabRobotica = datos.getInt(10);
-	    this.horaLabMecanica = datos.getInt(11);
-	    this.horaTallerArquitectura = datos.getInt(12);
-	    this.horaTallerMadera = datos.getInt(13);
-	    this.horaGYM = datos.getInt(14);
-	    this.horaAuditorio = datos.getInt(15);
+	    this.idCarrera = datos.getString(2);
+	    this.nombreAsignatura = datos.getString(3);
+	    this.anio = datos.getInt(4);
+	    this.semestre = datos.getInt(5);
+	    this.horaTeo = datos.getInt(6);
+	    this.horaLabCom = datos.getInt(7);
+	    this.horaAyudantia = datos.getInt(8);
+	    this.horaLabFisica = datos.getInt(9);
+	    this.horaLabQuimica = datos.getInt(10);
+	    this.horaLabRobotica = datos.getInt(11);
+	    this.horaLabMecanica = datos.getInt(12);
+	    this.horaTallerArquitectura = datos.getInt(13);
+	    this.horaTallerMadera = datos.getInt(14);
+	    this.horaGYM = datos.getInt(15);
+	    this.horaAuditorio = datos.getInt(16);
 	} catch (SQLException e) {
 	    e.printStackTrace();
 	}

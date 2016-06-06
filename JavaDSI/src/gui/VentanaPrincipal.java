@@ -70,7 +70,7 @@ public class VentanaPrincipal extends JFrame {
 
     private void rellenarListas(){
 	//inicio rellenar asignaturas:
-	ResultSet tabla = Conexion.ejecutarSQL("Select * from asignaturas");
+	ResultSet tabla = Conexion.ejecutarSQL("Select * from asignatura");
 	try {
 	    while(tabla.next()){
 		this.getAsignaturas().add(new Asignatura(tabla));
@@ -275,9 +275,10 @@ public class VentanaPrincipal extends JFrame {
 
 
     public static void main(String[] args) throws Exception {
-
+	Conexion conn = new Conexion();
+	conn.toString();
 	UIManager.setLookAndFeel(new SyntheticaBlueSteelLookAndFeel()); // cambia el estilo
-	//Conexion conn = new Conexion();
+	
 	VentanaPrincipal vp = new VentanaPrincipal();
 	vp.setVisible(true);
     }
