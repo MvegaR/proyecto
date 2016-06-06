@@ -25,19 +25,21 @@ public class Autentificacion extends JPanel {
      */
     public Autentificacion() {
     	
-    	JLabel label_user = new JLabel("User");
-    	label_user.setFont(new Font("Tahoma", Font.PLAIN, 17));
-    	label_user.setBounds(269, 123, 115, 32);
+    	JLabel lblUsuario = new JLabel("Usuario");
+    	lblUsuario.setFont(new Font("Tahoma", Font.PLAIN, 32));
+    	lblUsuario.setBounds(262, 120, 115, 32);
     	
-    	JLabel label_password = new JLabel("Password");
-    	label_password.setFont(new Font("Tahoma", Font.PLAIN, 17));
-    	label_password.setBounds(269, 254, 115, 32);
+    	JLabel lblContrasea = new JLabel("Contrase\u00F1a");
+    	lblContrasea.setFont(new Font("Tahoma", Font.PLAIN, 30));
+    	lblContrasea.setBounds(262, 254, 181, 32);
     	
     	texto_user = new JTextField();
+    	texto_user.setFont(new Font("Tahoma", Font.PLAIN, 25));
     	texto_user.setBounds(509, 123, 366, 32);
     	texto_user.setColumns(10);
     	
     	password_texto = new JPasswordField();
+    	password_texto.setFont(new Font("Tahoma", Font.PLAIN, 25));
     	password_texto.setBounds(509, 254, 366, 32);
     	
     	btnEntrar = new JButton("Entrar");
@@ -51,9 +53,9 @@ public class Autentificacion extends JPanel {
     		}
     	});
     	setLayout(null);
-    	add(label_user);
+    	add(lblUsuario);
     	add(texto_user);
-    	add(label_password);
+    	add(lblContrasea);
     	add(password_texto);
     	add(btnEntrar);
     	add(btnSalir);
