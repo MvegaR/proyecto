@@ -1,5 +1,7 @@
 package gui;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JPanel;
@@ -18,6 +20,7 @@ public class GestionPaneles extends JPanel {
     private SeleccionarAsignaturas asignaturas;
     private Autentificacion pablo;
     private CardLayout layout;
+    private PanelTreeSalas salas;
 
     public GestionPaneles() {
 	//coni = new CheckResolucion();
@@ -26,11 +29,13 @@ public class GestionPaneles extends JPanel {
 	pablo = new Autentificacion();
 	layout = new CardLayout();
 	asignaturas = new SeleccionarAsignaturas();
+	salas = new PanelTreeSalas();
 	this.setLayout(layout);
 	this.add(marcos,"marcos");
 	this.add(mari,"mari");
 	this.add(pablo,"pablo");
 	this.add(asignaturas,"asignaturas");
+	this.add(salas, "salas");
 	layout.show(this, "pablo");
 	pablo.getBtnEntrar().addMouseListener(new MouseAdapter() {
 	    @Override
@@ -51,6 +56,13 @@ public class GestionPaneles extends JPanel {
 	    @Override
 	    public void mousePressed(MouseEvent e) {
 		mostrarPanel("asignaturas");
+	    }
+	});
+	mari.getBtnSeleccionarSalas().addActionListener(new ActionListener() {
+	    
+	    @Override
+	    public void actionPerformed(ActionEvent e) {
+		mostrarPanel("salas");
 	    }
 	});
     }

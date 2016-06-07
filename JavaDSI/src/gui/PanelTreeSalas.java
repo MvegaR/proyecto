@@ -68,11 +68,7 @@ public class PanelTreeSalas extends JPanel {
         };
         tree.setModel(new DefaultTreeModel(
         	new DefaultMutableTreeNode("UBB") {
-        		/**
-		     * 
-		     */
 		    private static final long serialVersionUID = 1L;
-
 			{
         			DefaultMutableTreeNode node_1;
         			DefaultMutableTreeNode node_2;
