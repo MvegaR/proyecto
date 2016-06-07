@@ -4,7 +4,6 @@
 $this->title = 'PASH UBB';
 ?>
     <div class="panel-title hidden" style="background-color:#0064AC; color:#FFFFFF; border-radius: 0px 30px 30px 0px; font-weight:bold; font-size:19px">Texto</div>
-     <br>
             <ul class="breadcrumb">
                 <li><a href="#">Informacion de Autentificacion</a></li>
                 <li class="active"><button class="btn btn-default glyphicon glyphicon glyphicon-arrow-up control"> Ocultar</button></li>

@@ -7,8 +7,6 @@ import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import java.awt.Font;
 
 
@@ -27,35 +25,37 @@ public class Autentificacion extends JPanel {
      */
     public Autentificacion() {
     	
-    	JLabel label_user = new JLabel("User");
-    	label_user.setFont(new Font("Tahoma", Font.PLAIN, 17));
-    	label_user.setBounds(67, 86, 115, 32);
+    	JLabel lblUsuario = new JLabel("Usuario");
+    	lblUsuario.setFont(new Font("Tahoma", Font.PLAIN, 32));
+    	lblUsuario.setBounds(262, 120, 115, 32);
     	
-    	JLabel label_password = new JLabel("Password");
-    	label_password.setFont(new Font("Tahoma", Font.PLAIN, 17));
-    	label_password.setBounds(67, 139, 115, 32);
+    	JLabel lblContrasea = new JLabel("Contrase\u00F1a");
+    	lblContrasea.setFont(new Font("Tahoma", Font.PLAIN, 30));
+    	lblContrasea.setBounds(262, 254, 181, 32);
     	
     	texto_user = new JTextField();
-    	texto_user.setBounds(192, 86, 206, 32);
+    	texto_user.setFont(new Font("Tahoma", Font.PLAIN, 25));
+    	texto_user.setBounds(509, 123, 366, 32);
     	texto_user.setColumns(10);
     	
     	password_texto = new JPasswordField();
-    	password_texto.setBounds(192, 139, 206, 32);
+    	password_texto.setFont(new Font("Tahoma", Font.PLAIN, 25));
+    	password_texto.setBounds(509, 254, 366, 32);
     	
     	btnEntrar = new JButton("Entrar");
-    	btnEntrar.setBounds(93, 216, 134, 43);
+    	btnEntrar.setBounds(509, 385, 134, 43);
     	
     	JButton btnSalir = new JButton("Salir");
-    	btnSalir.setBounds(269, 216, 129, 43);
+    	btnSalir.setBounds(746, 385, 129, 43);
     	btnSalir.addActionListener(new ActionListener() {
     		public void actionPerformed(ActionEvent arg0) {
     			System.exit(0);
     		}
     	});
     	setLayout(null);
-    	add(label_user);
+    	add(lblUsuario);
     	add(texto_user);
-    	add(label_password);
+    	add(lblContrasea);
     	add(password_texto);
     	add(btnEntrar);
     	add(btnSalir);

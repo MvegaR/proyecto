@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'EMAIL:email',
             'USER',
             'PASSWORD',
-            //'COOKIE',
+            'COOKIE',
         ],
     ]) ?>
 
