@@ -2,6 +2,7 @@ package gui;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 import db.Asignatura;
@@ -16,6 +17,7 @@ import db.Sala;
 import db.Seccion;
 import de.javasoft.plaf.synthetica.SyntheticaBlueSteelLookAndFeel;
 import java.awt.BorderLayout;
+import java.awt.Toolkit;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -66,6 +68,7 @@ public class VentanaPrincipal extends JFrame {
 	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	this.setLocationRelativeTo(null);
 	this.rellenarListas();
+	this.checkResolucion();
     }
 
     private void rellenarListas(){
@@ -271,7 +274,13 @@ public class VentanaPrincipal extends JFrame {
     }
 
 
-
+    private void checkResolucion(){
+	
+	if(Toolkit.getDefaultToolkit().getScreenSize().getWidth() < 1280 || Toolkit.getDefaultToolkit().getScreenSize().getHeight()< 720 ){
+	    JOptionPane.showMessageDialog(this, "La resolución de pantalla no es lo suficientemente grande para la interfaz de la aplicación,"
+	    	+ "\npuede tener problemas al visualizar elementos","Fuera de resolución", JOptionPane.ERROR_MESSAGE);
+	}
+    }
 
 
     public static void main(String[] args) throws Exception {
