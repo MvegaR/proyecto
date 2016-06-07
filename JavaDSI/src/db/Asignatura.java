@@ -148,6 +148,13 @@ public class Asignatura {
     public Integer getHoraTallerMadera() {
 	return horaTallerMadera;
     }
+    
+    /**
+     * @return the idCarrera
+     */
+    public String getIdCarrera() {
+	return idCarrera;
+    }
 
     /**
      * @return the horaGYM
