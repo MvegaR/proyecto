@@ -4,17 +4,16 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.util.ArrayList;
 import java.util.Vector;
-
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
 import db.Conexion;
 
 public class PanelAsignaturas extends JPanel {
 
+    private static final long serialVersionUID = 1L;
     private JTable table;
     private JScrollPane scrollPane;
 
@@ -22,6 +21,7 @@ public class PanelAsignaturas extends JPanel {
      * Create the panel.
      */
 
+    @SuppressWarnings({ "rawtypes", "unchecked", "serial" })
     public PanelAsignaturas(String sql){
 	try{
 	    if(sql == null) sql = "select ID_ASIGNATURA, NOMBRE_ASIGNATURA, ANIO, SEMESTRE from asignatura where ID_CARRERA IS NOT NULL";

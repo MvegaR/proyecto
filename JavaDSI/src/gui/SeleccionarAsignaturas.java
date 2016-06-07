@@ -24,7 +24,12 @@ import javax.swing.ScrollPaneConstants;
 
 public class SeleccionarAsignaturas extends JPanel {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
     private JPanel ContenedorPrincipal,contenedor,panelBotones,panelSur, panelScroll;
+    @SuppressWarnings("rawtypes")
     private JComboBox comboBoxCarrera,comboBoxSemestre,comboBoxFacultad;
     private JLabel tituloComboBoxCarrera,tituloComboBoxSemestre,tituloComboBoxFacultad;
     private PanelAsignaturas panelAsignaturas;
@@ -33,6 +38,7 @@ public class SeleccionarAsignaturas extends JPanel {
     private JButton btnSeleccionar;
     private JScrollPane scrollpanel;
 
+    @SuppressWarnings({ "unchecked", "rawtypes" })
     public SeleccionarAsignaturas() {
 	contenedor = new JPanel();
 	panelScroll = new JPanel();
@@ -118,6 +124,7 @@ public class SeleccionarAsignaturas extends JPanel {
 	add(panelScroll);
     }
 
+    @SuppressWarnings("rawtypes")
     public void Listenner(JComboBox comboBox){
 	comboBox.addItemListener(
 		new ItemListener(){
@@ -177,6 +184,7 @@ public class SeleccionarAsignaturas extends JPanel {
 		});
     }
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public void initComboBox(String carrera, String semestre, String facultad){
 	this.contenedor.getComponent(posPBotones).setVisible(false);
 	if(carrera == null) carrera = "select ID_CARRERA, NOMBRE_CARRERA from carrera";
@@ -205,6 +213,7 @@ public class SeleccionarAsignaturas extends JPanel {
 	contador++;
     }
 
+    @SuppressWarnings({ "rawtypes", "unchecked"})
     public Vector opcionesComboBox(String sql, int opcion){
 	try {
 	    ResultSet rs = Conexion.ejecutarSQL(sql);
