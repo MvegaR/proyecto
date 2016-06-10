@@ -25,7 +25,7 @@ class SiteController extends Controller
         return $this -> render("entrega");
     }
 
-     public function actionEntrega2(){
+    public function actionEntrega2(){
         return $this -> render("entrega2");
     }
 
@@ -43,28 +43,28 @@ class SiteController extends Controller
     public function behaviors()
     {
         return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'only' => ['logout', 'signup'],
-                'rules' => [
-                    [
-                        'actions' => ['signup'],
-                        'allow' => true,
-                        'roles' => ['?'],
-                    ],
-                    [
-                        'actions' => ['logout'],
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                ],
-            ],
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'logout' => ['post'],
-                ],
-            ],
+        'access' => [
+        'class' => AccessControl::className(),
+        'only' => ['logout', 'signup'],
+        'rules' => [
+        [
+        'actions' => ['signup'],
+        'allow' => true,
+        'roles' => ['?'],
+        ],
+        [
+        'actions' => ['logout'],
+        'allow' => true,
+        'roles' => ['@'],
+        ],
+        ],
+        ],
+        'verbs' => [
+        'class' => VerbFilter::className(),
+        'actions' => [
+        'logout' => ['post'],
+        ],
+        ],
         ];
     }
 
@@ -74,13 +74,13 @@ class SiteController extends Controller
     public function actions()
     {
         return [
-            'error' => [
-                'class' => 'yii\web\ErrorAction',
-            ],
-            'captcha' => [
-                'class' => 'yii\captcha\CaptchaAction',
-                'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
-            ],
+        'error' => [
+        'class' => 'yii\web\ErrorAction',
+        ],
+        'captcha' => [
+        'class' => 'yii\captcha\CaptchaAction',
+        'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
+        ],
         ];
     }
 
@@ -111,7 +111,7 @@ class SiteController extends Controller
         } else {
             return $this->render('login', [
                 'model' => $model,
-            ]);
+                ]);
         }
     }
 
@@ -146,7 +146,7 @@ class SiteController extends Controller
         } else {
             return $this->render('contact', [
                 'model' => $model,
-            ]);
+                ]);
         }
     }
 
@@ -180,7 +180,7 @@ class SiteController extends Controller
 
         return $this->render('signup', [
             'model' => $model,
-        ]);
+            ]);
     }
 
     /**
@@ -203,7 +203,7 @@ class SiteController extends Controller
 
         return $this->render('requestPasswordResetToken', [
             'model' => $model,
-        ]);
+            ]);
     }
 
     /**
@@ -229,7 +229,7 @@ class SiteController extends Controller
 
         return $this->render('resetPassword', [
             'model' => $model,
-        ]);
+            ]);
     }
 
     public function actionResumenImportacion(){
@@ -272,27 +272,27 @@ class SiteController extends Controller
 
             for($row = 1; $row <= $nFilas; $row++){
                 $rowData = $sheet->rangeToArray('A'.$row.':'.$nColumnas.$row,null,true,false);
-                 if($row == 1){
+                if($row == 1){
                     continue;
-                 } 
-                 $nombretabla2 = "".$nombretabla;
-                 $nombretabla2 = str_replace('-', '_', $nombretabla2);
-                 
-                 $selectDB2 = "SELECT COLUMN_NAME FROM COLUMNS where TABLE_NAME = '$nombretabla2' and COLUMN_KEY = 'PRI'";
-                 $clave = Yii::$app -> db2 -> createCommand($selectDB2) -> queryOne()['COLUMN_NAME'];
-                 if(is_numeric($rowData[0][0])){
+                } 
+                $nombretabla2 = "".$nombretabla;
+                $nombretabla2 = str_replace('-', '_', $nombretabla2);
+
+                $selectDB2 = "SELECT COLUMN_NAME FROM COLUMNS where TABLE_NAME = '$nombretabla2' and COLUMN_KEY = 'PRI'";
+                $clave = Yii::$app -> db2 -> createCommand($selectDB2) -> queryOne()['COLUMN_NAME'];
+                if(ctype_digit($rowData[0][0])){
                     $selectSql = "SELECT * FROM $nombretabla2 WHERE $clave = ".$rowData[0][0].";";
                 }else{
                     $selectSql = "SELECT * FROM $nombretabla2 WHERE $clave = '".$rowData[0][0]."';";
                 }
-                 if( (Yii::$app -> db -> createCommand($selectSql) -> execute()) == 1 ){
+                if( (Yii::$app -> db -> createCommand($selectSql) -> execute()) == 1 ){
                     $selectDB2 = "SELECT COLUMN_NAME FROM COLUMNS where TABLE_NAME = '$nombretabla2'; orderBy(ORDINAL_POSITION);";
                     $resultado = Yii::$app -> db2 -> createCommand($selectDB2) -> queryAll();
-                  
+
                     array_push($actualizar, $rowData[0]);
-                 } else {
+                } else {
                     array_push($agregar, $rowData[0]);
-                 }
+                }
             } 
         }
         
@@ -300,6 +300,21 @@ class SiteController extends Controller
 
     }
 
+    private function print_paraSQL($array){ //numero o caracteres
+        $r = "";
+
+        foreach ($array as $valor) {
+            if(ctype_digit($valor)){
+                $r.=$valor.", ";
+            }if($valor == '(no definido)'){
+                $r.='null'.", ";
+            }else{
+                $r.="'".$valor."', ";
+            }
+        }
+        $r = substr($r, 0, strrpos($r,", "));
+        return $r;
+    }
 
     public function actionEjecutarImportacion($el, $inputFile){
 
@@ -329,7 +344,7 @@ class SiteController extends Controller
 
             $selectDB2 = "SELECT COLUMN_NAME FROM COLUMNS where TABLE_NAME = '$nombretabla2' and COLUMN_KEY = 'PRI'";
             $clave = Yii::$app -> db2 -> createCommand($selectDB2) -> queryOne()['COLUMN_NAME'];
-            if(is_numeric($rowData[0][0])){
+            if(ctype_digit($rowData[0][0])){
                 $selectSql = "SELECT * FROM $nombretabla2 WHERE $clave = ".$rowData[0][0].";";
             }else{
                 $selectSql = "SELECT * FROM $nombretabla2 WHERE $clave = '".$rowData[0][0]."';";
@@ -340,7 +355,7 @@ class SiteController extends Controller
                 $cadena = "UPDATE $nombretabla2 SET ";
                 $contador = 0;
                 foreach($resultado as $fila){
-                    if(is_numeric($rowData[0][$contador])){
+                    if(ctype_digit($rowData[0][$contador])){
                         $cadena = $cadena.array_values($fila)[0]." = ".$rowData[0][$contador].", "; 
                     }else{
                         if($rowData[0][$contador] == "(no definido)"){ 
@@ -352,25 +367,33 @@ class SiteController extends Controller
                 $contador ++;
             }
             $contador = 0;
-            $cadena = substr($cadena, 0, strrpos(", ", $cadena));
-            if(is_numeric($rowData[0][$contador])){
-                $cadena = $cadena." WHERE $clave = ".$rowData[0][0].";";
+
+            $cadena = substr($cadena, 0, strrpos( $cadena,", "));
+   
+            if(ctype_digit($rowData[0][$contador])){
+                $cadena = $cadena." WHERE $clave = ".$rowData[0][0]."";
             }else{
-               $cadena = $cadena." WHERE $clave = '".$rowData[0][0]."';";
-           }
-           array_push($actualizar, $rowData[0]);
-           array_push($consultas, $cadena);
-       } else {
-        $asdf = implode(",", $rowData[0]);
-        array_push($consultas, "INSERT INTO $nombretabla2 values (".$asdf.");");
-        array_push($agregar, $rowData[0]);
+             $cadena = $cadena." WHERE $clave = '".$rowData[0][0]."'";
+            }
+            array_push($actualizar, $rowData[0]);
+            array_push($consultas, $cadena);
+        } else {
+            $asdf = implode(",", $rowData[0]);
+            array_push($consultas, "INSERT INTO $nombretabla2 values (".$this->print_paraSQL($rowData[0]).")");
+            array_push($agregar, $rowData[0]);
     }
-    } 
-    foreach ($consultas as $consulta) {
-        Yii::$app -> db2 -> createCommand($consulta) -> execute();
-    }
+} 
 
-    return $this->redirect("index.php?r=".$paginaAnterior);
+foreach ($consultas as $consulta) {
 
-    }
+    Yii::$app -> db -> createCommand($consulta) -> execute();
+}
+
+return $this->redirect("index.php?r=".$paginaAnterior);
+
+}
+
+
+
+
 }
