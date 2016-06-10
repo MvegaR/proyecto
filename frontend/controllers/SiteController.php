@@ -378,7 +378,6 @@ class SiteController extends Controller
             array_push($actualizar, $rowData[0]);
             array_push($consultas, $cadena);
         } else {
-            $asdf = implode(",", $rowData[0]);
             array_push($consultas, "INSERT INTO $nombretabla2 values (".$this->print_paraSQL($rowData[0]).")");
             array_push($agregar, $rowData[0]);
     }
