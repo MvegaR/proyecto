@@ -9,8 +9,6 @@ import java.awt.SystemColor;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import java.awt.BorderLayout;
-import javax.swing.JTextPane;
-import java.awt.Dimension;
 import java.awt.Rectangle;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JButton;

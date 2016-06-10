@@ -22,7 +22,6 @@ public class MenuInicial extends JPanel {
 
     private JButton btnAdministrar = new JButton("Administrar");
     private JButton btnPlanificar = new JButton("Planificar");
-    private JButton btnSeleccionarSalas = new JButton("Seleccionar salas");
 
     public MenuInicial() {
 	setLayout(null);
@@ -54,16 +53,6 @@ public class MenuInicial extends JPanel {
 	    }
 	});
 	panel.add(btnCerrar);
-	
-	
-	btnSeleccionarSalas.setFont(new Font("Tahoma", Font.PLAIN, 15));
-	btnSeleccionarSalas.setBounds(759, 298, 141, 54);
-	panel.add(btnSeleccionarSalas);
-	
-	JLabel lblAccesosTemporales = new JLabel("Botones temporales:");
-	lblAccesosTemporales.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 16));
-	lblAccesosTemporales.setBounds(759, 270, 141, 26);
-	panel.add(lblAccesosTemporales);
 
     }
 
@@ -73,7 +62,5 @@ public class MenuInicial extends JPanel {
     public JButton getBtnPlanificar(){
 	return this.btnPlanificar;
     }
-    public JButton getBtnSeleccionarSalas() {
-	return btnSeleccionarSalas;
-    }
+  
 }

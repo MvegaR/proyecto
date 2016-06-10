@@ -58,13 +58,7 @@ public class GestionPaneles extends JPanel {
 		mostrarPanel("asignaturas");
 	    }
 	});
-	mari.getBtnSeleccionarSalas().addActionListener(new ActionListener() {
-	    
-	    @Override
-	    public void actionPerformed(ActionEvent e) {
-		mostrarPanel("salas");
-	    }
-	});
+	
     }
 
     public void mostrarPanel(String nombrePanel){

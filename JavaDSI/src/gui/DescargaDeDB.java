@@ -46,7 +46,7 @@ public class DescargaDeDB extends JPanel {
 
 	JProgressBar facultadesBar = new JProgressBar();
 	facultadesBar.setForeground(new Color(0, 102, 204));
-	facultadesBar.setValue(90);
+	facultadesBar.setValue(100);
 	facultadesBar.setStringPainted(true);
 	facultadesBar.setBounds(166, 11, 820, 23);
 	panel_1.add(facultadesBar);
@@ -66,7 +66,7 @@ public class DescargaDeDB extends JPanel {
 	JProgressBar departamentosBar = new JProgressBar();
 	departamentosBar.setForeground(new Color(0, 102, 204));
 	departamentosBar.setStringPainted(true);
-	departamentosBar.setValue(80);
+	departamentosBar.setValue(100);
 	departamentosBar.setBounds(166, 11, 820, 23);
 	panel_2.add(departamentosBar);
 
@@ -84,7 +84,7 @@ public class DescargaDeDB extends JPanel {
 
 	JProgressBar docentesBar = new JProgressBar();
 	docentesBar.setForeground(new Color(0, 102, 204));
-	docentesBar.setValue(70);
+	docentesBar.setValue(100);
 	docentesBar.setStringPainted(true);
 	docentesBar.setBounds(166, 11, 820, 23);
 	panel_3.add(docentesBar);
@@ -103,7 +103,7 @@ public class DescargaDeDB extends JPanel {
 
 	JProgressBar edificiosBar = new JProgressBar();
 	edificiosBar.setForeground(new Color(0, 102, 204));
-	edificiosBar.setValue(60);
+	edificiosBar.setValue(100);
 	edificiosBar.setStringPainted(true);
 	edificiosBar.setBounds(166, 11, 820, 23);
 	panel_4.add(edificiosBar);
@@ -121,8 +121,8 @@ public class DescargaDeDB extends JPanel {
 	panel_5.add(lblSalas);
 
 	JProgressBar salaBar = new JProgressBar();
+	salaBar.setValue(100);
 	salaBar.setForeground(new Color(0, 102, 204));
-	salaBar.setValue(50);
 	salaBar.setStringPainted(true);
 	salaBar.setBounds(166, 11, 820, 23);
 	panel_5.add(salaBar);
@@ -141,7 +141,6 @@ public class DescargaDeDB extends JPanel {
 
 	JProgressBar carrerasBar = new JProgressBar();
 	carrerasBar.setForeground(new Color(0, 102, 204));
-	carrerasBar.setValue(40);
 	carrerasBar.setStringPainted(true);
 	carrerasBar.setBounds(166, 11, 820, 23);
 	panel_6.add(carrerasBar);
@@ -160,7 +159,7 @@ public class DescargaDeDB extends JPanel {
 
 	JProgressBar seccionesBar = new JProgressBar();
 	seccionesBar.setForeground(new Color(0, 102, 204));
-	seccionesBar.setValue(10);
+	seccionesBar.setValue(100);
 	seccionesBar.setStringPainted(true);
 	seccionesBar.setBounds(166, 11, 820, 23);
 	panel_7.add(seccionesBar);
@@ -178,6 +177,7 @@ public class DescargaDeDB extends JPanel {
 	panel_8.add(lblBloques);
 
 	JProgressBar bloquesBar = new JProgressBar();
+	bloquesBar.setValue(100);
 	bloquesBar.setForeground(new Color(0, 102, 204));
 	bloquesBar.setStringPainted(true);
 	bloquesBar.setBounds(166, 11, 820, 23);
@@ -196,7 +196,7 @@ public class DescargaDeDB extends JPanel {
 	panel_9.add(lblAsignaturas);
 
 	JProgressBar asignaturasBar = new JProgressBar();
-	asignaturasBar.setValue(20);
+	asignaturasBar.setValue(100);
 	asignaturasBar.setStringPainted(true);
 	asignaturasBar.setForeground(new Color(0, 102, 204));
 	asignaturasBar.setBounds(166, 11, 820, 23);

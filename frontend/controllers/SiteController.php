@@ -247,9 +247,12 @@ class SiteController extends Controller
         $agregar = [];
         $actualizar = [];
         $consultas = [];
+        $resultado = null;
+        $inputFile = null;
         $paginaAnterior = $nombretabla."/index";
         $file = new SubirArchivo;
         $date = date('y-m-d_h-m-s');
+        $nombretabla2 = null;
         if($file -> load(Yii::$app->request->post())){
             $file -> file = UploadedFile::getInstance($file,'file');
             $file -> file -> saveAs('imports/'.$nombretabla.'_'.$date.'.'.$file->file->extension);
@@ -285,38 +288,89 @@ class SiteController extends Controller
                  if( (Yii::$app -> db -> createCommand($selectSql) -> execute()) == 1 ){
                     $selectDB2 = "SELECT COLUMN_NAME FROM COLUMNS where TABLE_NAME = '$nombretabla2'; orderBy(ORDINAL_POSITION);";
                     $resultado = Yii::$app -> db2 -> createCommand($selectDB2) -> queryAll();
-                    $cadena = "UPDATE $nombretabla2 SET ";
-                    $contador = 0;
-                    foreach($resultado as $fila){
-                        if(is_numeric($rowData[0][$contador])){
-                            $cadena = $cadena.array_values($fila)[0]." = ".$rowData[0][$contador].", "; 
-                        }else{
-                            if($rowData[0][$contador] == "(no definido)"){ 
-                                $cadena = $cadena.array_values($fila)[0]." = NULL, ";
-                            }else{
-                                $cadena = $cadena.array_values($fila)[0]." = '".$rowData[0][$contador]."', ";
-                            }
-                        }   
-                        $contador ++;
-                    }
-                    $contador = 0;
-                    $cadena = substr($cadena, 0, strrpos(", ", $cadena));
-                    if(is_numeric($rowData[0][$contador])){
-                        $cadena = $cadena." WHERE $clave = ".$rowData[0][0].";";
-                    }else{
-                         $cadena = $cadena." WHERE $clave = '".$rowData[0][0]."';";
-                    }
+                  
                     array_push($actualizar, $rowData[0]);
-                    array_push($consultas, $cadena);
                  } else {
-                    $asdf = implode(",", $rowData[0]);
-                    array_push($consultas, "INSERT INTO $nombretabla2 values (".$asdf.");");
                     array_push($agregar, $rowData[0]);
                  }
             } 
         }
         
-        return $this -> render("resumenImportacion",["agregar" => $agregar, "actualizar" => $actualizar, "paginaAnterior" => $paginaAnterior, "consultas" => $consultas]);
+        return $this -> render("resumenImportacion",["agregar" => $agregar, "actualizar" => $actualizar, "paginaAnterior" => $paginaAnterior, "archivo" => $inputFile,"tabla"=>$nombretabla2, "columnas" => $resultado]);
+
+    }
+
+
+    public function actionEjecutarImportacion($el, $inputFile){
+
+        $nombretabla = $el;
+        $agregar = [];
+        $actualizar = [];
+        $consultas = [];
+        $resultado = null;
+        $paginaAnterior = $nombretabla."/index";
+        try{
+            $inputFileType = \PHPExcel_IOfactory::identify($inputFile);
+            $objReader = \PHPExcel_IOFactory::createReader($inputFileType);
+            $objPHPExcel = $objReader -> load($inputFile);
+        } catch(Exception $e){
+            die("Error en abrir archivo");
+        }
+        $sheet = $objPHPExcel -> getSheet(0);
+        $nFilas = $sheet -> getHighestRow();
+        $nColumnas = $sheet -> getHighestColumn();
+        for($row = 1; $row <= $nFilas; $row++){
+            $rowData = $sheet->rangeToArray('A'.$row.':'.$nColumnas.$row,null,true,false);
+            if($row == 1){
+                continue;
+            } 
+            $nombretabla2 = "".$nombretabla;
+            $nombretabla2 = str_replace('-', '_', $nombretabla2);
+
+            $selectDB2 = "SELECT COLUMN_NAME FROM COLUMNS where TABLE_NAME = '$nombretabla2' and COLUMN_KEY = 'PRI'";
+            $clave = Yii::$app -> db2 -> createCommand($selectDB2) -> queryOne()['COLUMN_NAME'];
+            if(is_numeric($rowData[0][0])){
+                $selectSql = "SELECT * FROM $nombretabla2 WHERE $clave = ".$rowData[0][0].";";
+            }else{
+                $selectSql = "SELECT * FROM $nombretabla2 WHERE $clave = '".$rowData[0][0]."';";
+            }
+            if( (Yii::$app -> db -> createCommand($selectSql) -> execute()) == 1 ){
+                $selectDB2 = "SELECT COLUMN_NAME FROM COLUMNS where TABLE_NAME = '$nombretabla2'; orderBy(ORDINAL_POSITION);";
+                $resultado = Yii::$app -> db2 -> createCommand($selectDB2) -> queryAll();
+                $cadena = "UPDATE $nombretabla2 SET ";
+                $contador = 0;
+                foreach($resultado as $fila){
+                    if(is_numeric($rowData[0][$contador])){
+                        $cadena = $cadena.array_values($fila)[0]." = ".$rowData[0][$contador].", "; 
+                    }else{
+                        if($rowData[0][$contador] == "(no definido)"){ 
+                          $cadena = $cadena.array_values($fila)[0]." = NULL, ";
+                      }else{
+                        $cadena = $cadena.array_values($fila)[0]." = '".$rowData[0][$contador]."', ";
+                    }
+                }   
+                $contador ++;
+            }
+            $contador = 0;
+            $cadena = substr($cadena, 0, strrpos(", ", $cadena));
+            if(is_numeric($rowData[0][$contador])){
+                $cadena = $cadena." WHERE $clave = ".$rowData[0][0].";";
+            }else{
+               $cadena = $cadena." WHERE $clave = '".$rowData[0][0]."';";
+           }
+           array_push($actualizar, $rowData[0]);
+           array_push($consultas, $cadena);
+       } else {
+        $asdf = implode(",", $rowData[0]);
+        array_push($consultas, "INSERT INTO $nombretabla2 values (".$asdf.");");
+        array_push($agregar, $rowData[0]);
+    }
+    } 
+    foreach ($consultas as $consulta) {
+        Yii::$app -> db2 -> createCommand($consulta) -> execute();
+    }
+
+    return $this->redirect("index.php?r=".$paginaAnterior);
 
     }
 }
