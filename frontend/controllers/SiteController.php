@@ -272,7 +272,7 @@ class SiteController extends Controller
         $resultado = null;
         $inputFile = null;
         $paginaAnterior = $nombretabla."/index";
-        $nombreDB = (Yii::$app -> db -> createCommand("SELECT DATABASE()") -> queryOne())['DATABASE()'];
+        $nombreDB = Yii::$app -> db -> createCommand("SELECT DATABASE()") -> queryOne()['DATABASE()'];
         $file = new SubirArchivo;
         $date = date('y-m-d_h-m-s');
         $nombretabla2 = null;
@@ -345,7 +345,7 @@ class SiteController extends Controller
         $actualizar = [];
         $consultas = [];
         $resultado = null;
-        $nombreDB = (Yii::$app -> db -> createCommand("SELECT DATABASE()") -> queryOne())['DATABASE()'];
+        $nombreDB = Yii::$app -> db -> createCommand("SELECT DATABASE()") -> queryOne()['DATABASE()'];
         $paginaAnterior = $nombretabla."/index";
         try{
             $inputFileType = \PHPExcel_IOfactory::identify($inputFile);
