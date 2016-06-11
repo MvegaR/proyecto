@@ -34,6 +34,7 @@ import java.util.EventObject;
 import java.util.Objects;
 
 import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.Icon;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
@@ -45,12 +46,16 @@ public class PanelTreeSalas extends JPanel {
      * 
      */
     private static final long serialVersionUID = 1L;
+    private JLabel tituloSalas;
+    private String titulo;
     /**
      * Create the panel.
      */
     public PanelTreeSalas() {
 	super(new BorderLayout());
-
+	titulo = "<html><body><h2><strong><center>SELECCIONE SALAS</center></strong></h2></body></html>";
+	tituloSalas = new JLabel(titulo);
+	tituloSalas.setAlignmentX(Component.CENTER_ALIGNMENT);
         JTree tree = new JTree() {
             /**
 	     * 
@@ -131,6 +136,8 @@ public class PanelTreeSalas extends JPanel {
         //tree.setToggleClickCount(1);
 
         setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        add(tituloSalas);
         add(new JScrollPane(tree));
         setPreferredSize(new Dimension(320, 240));
     }

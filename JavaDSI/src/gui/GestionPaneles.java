@@ -17,7 +17,7 @@ public class GestionPaneles extends JPanel {
     // private CheckResolucion coni;
     private MenuAdmin marcos;
     private MenuInicial mari;
-    private SeleccionarAsignaturas asignaturas;
+    private PanelPlanificar panelPlanificar;
     private Autentificacion pablo;
     private CardLayout layout;
     private PanelTreeSalas salas;
@@ -28,13 +28,13 @@ public class GestionPaneles extends JPanel {
 	mari = new MenuInicial();
 	pablo = new Autentificacion();
 	layout = new CardLayout();
-	asignaturas = new SeleccionarAsignaturas();
+	panelPlanificar = new PanelPlanificar();
 	salas = new PanelTreeSalas();
 	this.setLayout(layout);
 	this.add(marcos,"marcos");
 	this.add(mari,"mari");
 	this.add(pablo,"pablo");
-	this.add(asignaturas,"asignaturas");
+	this.add(panelPlanificar,"planificar");
 	this.add(salas, "salas");
 	layout.show(this, "pablo");
 	pablo.getBtnEntrar().addMouseListener(new MouseAdapter() {
@@ -55,7 +55,7 @@ public class GestionPaneles extends JPanel {
 	mari.getBtnPlanificar().addMouseListener(new MouseAdapter() {
 	    @Override
 	    public void mousePressed(MouseEvent e) {
-		mostrarPanel("asignaturas");
+		mostrarPanel("planificar");
 	    }
 	});
 	

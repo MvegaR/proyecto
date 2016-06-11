@@ -284,12 +284,11 @@ public class VentanaPrincipal extends JFrame {
 
 
     public static void main(String[] args) throws Exception {
-	Conexion conn = new Conexion();
-	conn.toString();
 	UIManager.setLookAndFeel(new SyntheticaBlueSteelLookAndFeel()); // cambia el estilo
-	
-	VentanaPrincipal vp = new VentanaPrincipal();
-	vp.setVisible(true);
+	if(Conexion.PruebaConexion()){ // realiza prueba de conexion
+	    VentanaPrincipal vp = new VentanaPrincipal();
+	    vp.setVisible(true);
+	}
     }
 
 }
