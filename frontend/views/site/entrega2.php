@@ -9,14 +9,17 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-about">
     <h1><?= Html::encode($this->title) ?></h1>
-    Funcionalia:<br>
+    Funcionalidad:<br>
     -Importación de la BD completa desde un solo excel. 
     <br>
+    <br>
+    <br>
+    <br>
     Estetica:<br>
-    -Cambiar numeros ID por su Nombre, en todos los index.php y view.php siguiento el video (ejemplo ya hecho index.php de docente) -> https://www.youtube.com/watch?v=OLfz7Iy_y84<br>
     -Migas de pan (breadcrumbs) y que diferencie admin de docente y invitado<br>
-    En<br><br>
-    edificio -> id facultad<br>
+    -Cambiar numeros ID por su Nombre, en todos los index.php y view.php siguiento el video (ejemplo ya hecho index.php de docente) -> https://www.youtube.com/watch?v=OLfz7Iy_y84<br>
+   
+edificio -> id facultad<br>
 bloque -> id Dia<br>
 Asignatura -> Id carrera<br>
 Solicitudes asignación de sala ->  estado, docente, tipo sala.<br>
@@ -24,7 +27,10 @@ Solicitudes de Asignacion Temporal -> estado, docente, tipo sala.<br>
 Solicitud de cambio -> estado, docente.<br>
 Solicitudes cancelacion -> estado, docente, <br>
 reportes de sala (post de denuncia) -> tipo denuncia, estado denuncia, facultad, edificio.<br>
-
+    <br>
+    <br>
+    <br>
+    <br>
 
 
 
