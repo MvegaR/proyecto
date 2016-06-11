@@ -56,22 +56,22 @@ class Asignatura extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'ID_ASIGNATURA' => 'Id  Asignatura',
-            'ID_CARRERA' => 'Id  Carrera',
-            'NOMBRE_ASIGNATURA' => 'Nombre  Asignatura',
-            'ANIO' => 'Anio',
+            'ID_ASIGNATURA' => 'Id Asignatura',
+            'ID_CARRERA' => 'Id Carrera',
+            'NOMBRE_ASIGNATURA' => 'Nombre Asignatura',
+            'ANIO' => 'Año',
             'SEMESTRE' => 'Semestre',
-            'HORAS_TEO' => 'Horas  Teo',
-            'HORAS_LAB_COM' => 'Horas  Lab  Com',
-            'HORAS_AYUDANTIA' => 'Horas  Ayudantia',
-            'HORAS_LAB_FISICA' => 'Horas  Lab  Fisica',
-            'HORAS_LAB_QUIMICA' => 'Horas  Lab  Quimica',
-            'HORAS_LAB_ROBOTICA' => 'Horas  Lab  Robotica',
-            'HORAS_LAB_MECANICA' => 'Horas  Lab  Mecanica',
-            'HORAS_TALLER_ARQUITECTURA' => 'Horas  Taller  Arquitectura',
-            'HORAS_TALLER_MADERA' => 'Horas  Taller  Madera',
-            'HORAS_GYM' => 'Horas  Gym',
-            'HORAS_AUDITORIO' => 'Horas  Auditorio',
+            'HORAS_TEO' => 'Horas Teoricas',
+            'HORAS_LAB_COM' => 'Horas Lab Computacion',
+            'HORAS_AYUDANTIA' => 'Horas Ayudantia',
+            'HORAS_LAB_FISICA' => 'Horas Lab Fisica',
+            'HORAS_LAB_QUIMICA' => 'Horas Lab Quimica',
+            'HORAS_LAB_ROBOTICA' => 'Horas Lab Robotica',
+            'HORAS_LAB_MECANICA' => 'Horas Lab Mecanica',
+            'HORAS_TALLER_ARQUITECTURA' => 'Horas Taller Arquitectura',
+            'HORAS_TALLER_MADERA' => 'Horas Taller Madera',
+            'HORAS_GYM' => 'Horas Gym',
+            'HORAS_AUDITORIO' => 'Horas Auditorio',
         ];
     }
 

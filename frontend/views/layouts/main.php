@@ -181,7 +181,7 @@ style="background-color:#0064AC; background-image:url(img/bg.png);color:#fff;  p
 
 
  <script type="text/javascript">jQuery(document).ready(function () {
-jQuery('#w0').yiiGridView({"filterUrl":"\/proyectoDSI\/proyecto\/frontend\/web\/index.php?r=docente","filterSelector":"#w0-filters input, #w0-filters select"});
+
 jQuery('#w1-html').exportdata({"settings":kvexpmenu_e22a9b48,"alertMsg":"El archivo HTML será generado para descargar","target":"_self","showConfirmAlert":true,"columnSelectorId":"w1-cols"});
 jQuery('#w1-csv').exportdata({"settings":kvexpmenu_e22a9b48,"alertMsg":"El archivo CSV será generado para descargar","target":"_self","showConfirmAlert":true,"columnSelectorId":"w1-cols"});
 jQuery('#w1-txt').exportdata({"settings":kvexpmenu_e22a9b48,"alertMsg":"El archivo TEXT será generado para descargar","target":"_self","showConfirmAlert":true,"columnSelectorId":"w1-cols"});

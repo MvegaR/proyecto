@@ -55,7 +55,7 @@ class Docente extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
         'ID_DOCENTE' => 'Rut  Docente',
         'ID_ROL' => 'Rol',
         'ID_FACULTAD' => 'Facultad',
-        'NOMBRE_DOCENTE' => 'Nombre  Docente',
+        'NOMBRE_DOCENTE' => 'Nombre Docente',
         'EMAIL' => 'Email',
         'USER' => 'User',
         'PASSWORD' => 'Password',

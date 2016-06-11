@@ -62,7 +62,7 @@ class SeccionSearch extends Seccion
         $query->andFilterWhere(['like', 'ID_SECCION', $this->ID_SECCION])
             ->andFilterWhere(['like', 'ID_DOCENTE', $this->ID_DOCENTE])
             ->andFilterWhere(['like', 'ID_ASIGNATURA', $this->ID_ASIGNATURA]);
-
+            
         return $dataProvider;
     }
 }
