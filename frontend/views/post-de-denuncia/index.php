@@ -34,9 +34,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'ID_ESTADO_DENUNCIA',
             'FACULTAD_DENUNCIA',
             'EDIFICIO_DENUNCIA',
-            // 'SALA_DENUNCIA',
-            // 'BLOQUE_DENUNCIA',
-            // 'FECHA_DENUNCIA',
+            'SALA_DENUNCIA',
+            'BLOQUE_DENUNCIA',
+            'FECHA_DENUNCIA',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
@@ -54,7 +54,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'ID_TIPO_DENUNCIA',
             'ID_ESTADO_DENUNCIA',
             'FACULTAD_DENUNCIA',
-            'EDIFICIO_DENUNCIA', 
+            'EDIFICIO_DENUNCIA',
+            'SALA_DENUNCIA',
+            'BLOQUE_DENUNCIA',
+            'FECHA_DENUNCIA',
 
         ];
 
