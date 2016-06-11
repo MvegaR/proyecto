@@ -27,6 +27,7 @@ public class PanelAsignaturas extends JPanel {
     private static final long serialVersionUID = 1L;
     private JLabel tituloAsignaturas;
     private String titulo;
+    private DefaultMutableTreeNode node_0;
 	private DefaultMutableTreeNode node_1;
 	private DefaultMutableTreeNode node_2;
 	private DefaultMutableTreeNode node_3;
@@ -57,27 +58,23 @@ public class PanelAsignaturas extends JPanel {
 		    private static final long serialVersionUID = 1L;
 			{
 				try{
+				for(int i = 1; i <=2; i++){
+				node_0 = new DefaultMutableTreeNode("Semestre "+i);
 					ResultSet rsFacultad = Conexion.ejecutarSQL("select * from facultad");
 					while(rsFacultad.next()){
 					    node_1 = new DefaultMutableTreeNode(rsFacultad.getString("NOMBRE_FACULTAD"));
 					    ResultSet rsCarrera = Conexion.ejecutarSQL("select * from carrera where ID_FACULTAD="+rsFacultad.getString("ID_FACULTAD"));
 					    while(rsCarrera.next()){
 					    	node_2 = new DefaultMutableTreeNode(rsCarrera.getString("NOMBRE_CARRERA"));
-					    	    node_3 = new DefaultMutableTreeNode("Semestre 1");
-					    	    ResultSet rsAsignatura1 = Conexion.ejecutarSQL("select * from asignatura where SEMESTRE=1 AND ID_CARRERA='"+rsCarrera.getString("ID_CARRERA")+"' ORDER BY ID_ASIGNATURA");
-					    	    while(rsAsignatura1.next()){
-					    		    node_3.add(new DefaultMutableTreeNode(rsAsignatura1.getString("ID_ASIGNATURA")+" - "+rsAsignatura1.getString("NOMBRE_ASIGNATURA")));
-					    	    }
-					            node_2.add(node_3);
-					    	    node_3 = new DefaultMutableTreeNode("Semestre 2");
-					    	    ResultSet rsAsignatura2 = Conexion.ejecutarSQL("select * from asignatura where SEMESTRE=2 AND ID_CARRERA='"+rsCarrera.getString("ID_CARRERA")+"' ORDER BY ID_ASIGNATURA");
-					    	    while(rsAsignatura2.next()){
-					    		    node_3.add(new DefaultMutableTreeNode(rsAsignatura2.getString("ID_ASIGNATURA")+" - "+rsAsignatura2.getString("NOMBRE_ASIGNATURA")));
-					    	    }
-					    	    node_2.add(node_3);
+					    	ResultSet rsAsignatura1 = Conexion.ejecutarSQL("select * from asignatura where SEMESTRE="+i+" AND ID_CARRERA='"+rsCarrera.getString("ID_CARRERA")+"' ORDER BY ID_ASIGNATURA");
+					    	while(rsAsignatura1.next()){
+					    		node_2.add(new DefaultMutableTreeNode(rsAsignatura1.getString("ID_ASIGNATURA")+" - "+rsAsignatura1.getString("NOMBRE_ASIGNATURA")));
+					    	}
 					    	node_1.add(node_2);
 					    }
-					    add(node_1);
+			        node_0.add(node_1);
+				}
+			    add(node_0);
 					}
 
 				} catch (Exception e) {
