@@ -30,7 +30,6 @@ public class PanelAsignaturas extends JPanel {
     private DefaultMutableTreeNode node_0;
 	private DefaultMutableTreeNode node_1;
 	private DefaultMutableTreeNode node_2;
-	private DefaultMutableTreeNode node_3;
     /**
      * Create the panel.
      */
@@ -59,16 +58,19 @@ public class PanelAsignaturas extends JPanel {
 			{
 				try{
 				for(int i = 1; i <=2; i++){
-				node_0 = new DefaultMutableTreeNode("Semestre "+i);
+				if(i==1) 
+				node_0 = new DefaultMutableTreeNode("Semestre I");
+				else 
+				node_0 = new DefaultMutableTreeNode("Semestre II");
 					ResultSet rsFacultad = Conexion.ejecutarSQL("select * from facultad");
 					while(rsFacultad.next()){
-					    node_1 = new DefaultMutableTreeNode(rsFacultad.getString("NOMBRE_FACULTAD"));
+					    node_1 = new DefaultMutableTreeNode("["+rsFacultad.getString("ID_FACULTAD")+"] - "+rsFacultad.getString("NOMBRE_FACULTAD"));
 					    ResultSet rsCarrera = Conexion.ejecutarSQL("select * from carrera where ID_FACULTAD="+rsFacultad.getString("ID_FACULTAD"));
 					    while(rsCarrera.next()){
-					    	node_2 = new DefaultMutableTreeNode(rsCarrera.getString("NOMBRE_CARRERA"));
+					    	node_2 = new DefaultMutableTreeNode("["+rsCarrera.getString("ID_CARRERA")+"] - "+rsCarrera.getString("NOMBRE_CARRERA"));
 					    	ResultSet rsAsignatura1 = Conexion.ejecutarSQL("select * from asignatura where SEMESTRE="+i+" AND ID_CARRERA='"+rsCarrera.getString("ID_CARRERA")+"' ORDER BY ID_ASIGNATURA");
 					    	while(rsAsignatura1.next()){
-					    		node_2.add(new DefaultMutableTreeNode(rsAsignatura1.getString("ID_ASIGNATURA")+" - "+rsAsignatura1.getString("NOMBRE_ASIGNATURA")));
+					    		node_2.add(new DefaultMutableTreeNode("["+rsAsignatura1.getString("ID_ASIGNATURA")+"] - "+rsAsignatura1.getString("NOMBRE_ASIGNATURA")));
 					    	}
 					    	node_1.add(node_2);
 					    }
@@ -136,8 +138,8 @@ public class PanelAsignaturas extends JPanel {
     	return node_2;
     }
     
-    public DefaultMutableTreeNode getNode3(){
-    	return node_3;
+    public DefaultMutableTreeNode getNode0(){
+    	return node_0;
     }
     
 }
