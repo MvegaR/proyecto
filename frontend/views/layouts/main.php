@@ -171,27 +171,6 @@ style="background-color:#0064AC; background-image:url(img/bg.png);color:#fff;  p
 </footer>
 
  <?php  $this->endBody() ?>
-<script type="text/javascript" src="js/kv-export-data.js"></script>
-<script type="text/javascript" src="js/kv-export-columns.js"></script>
-<script type="text/javascript" src="js/yii.gridView.js"></script>
-<script type="text/javascript" src="js/yii.captcha.js"></script>
-<script type="text/javascript" src="js/yii.validation.js"></script>
-<script type="text/javascript" src="js/yii.activeForm.js"></script>
-
-
-
- <script type="text/javascript">jQuery(document).ready(function () {
-
-jQuery('#w1-html').exportdata({"settings":kvexpmenu_e22a9b48,"alertMsg":"El archivo HTML será generado para descargar","target":"_self","showConfirmAlert":true,"columnSelectorId":"w1-cols"});
-jQuery('#w1-csv').exportdata({"settings":kvexpmenu_e22a9b48,"alertMsg":"El archivo CSV será generado para descargar","target":"_self","showConfirmAlert":true,"columnSelectorId":"w1-cols"});
-jQuery('#w1-txt').exportdata({"settings":kvexpmenu_e22a9b48,"alertMsg":"El archivo TEXT será generado para descargar","target":"_self","showConfirmAlert":true,"columnSelectorId":"w1-cols"});
-jQuery('#w1-pdf').exportdata({"settings":kvexpmenu_e22a9b48,"alertMsg":"El archivo PDF será generado para descargar","target":"_self","showConfirmAlert":true,"columnSelectorId":"w1-cols"});
-jQuery('#w1-excel5').exportdata({"settings":kvexpmenu_e22a9b48,"alertMsg":"El archivo EXCEL 95+ (xls) será generado para descargar","target":"_self","showConfirmAlert":true,"columnSelectorId":"w1-cols"});
-jQuery('#w1-excel2007').exportdata({"settings":kvexpmenu_e22a9b48,"alertMsg":"El archivo EXCEL 2007+ (xlsx) será generado para descargar","target":"_self","showConfirmAlert":true,"columnSelectorId":"w1-cols"});
-jQuery('#w1-cols-list').exportcolumns({});
-
-jQuery('#w2').button();
-});</script>  
 
 
 
