@@ -5,7 +5,9 @@ use yii\grid\GridView;
 use yii\helpers\ArrayHelper;
 use frontend\models\Docente;
 use frontend\models\Asignatura;
-
+use frontend\models\SubirArchivo;
+use yii\widgets\ActiveForm;
+use kartik\export\ExportMenu;
 /* @var $this yii\web\View */
 /* @var $searchModel frontend\models\SeccionSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -53,4 +55,40 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]); ?>
 </div>
+
+
+        <div class="col-ls-12 col-md-6">
+
+        <?php
+        echo '<div><label class="control-label">Exportar a archivo</label></div>';
+        $gridColumns = [
+        
+            'ID_SECCION',
+            'ID_DOCENTE',
+            'ID_ASIGNATURA',
+            'CUPO',
+
+        ];
+
+// Renders a export dropdown menu
+        echo ExportMenu::widget([
+            'dataProvider' => $dataProvider,
+            'columns' => $gridColumns,
+            'target' => '_self'
+            ]);
+
+            ?>
+</div>
+<div class="col-ls-12 col-md-6">
+<?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'action' => 'index.php?r=site/importar-excel&nombretabla='.$_GET['r']]) ?>
+
+    <?= $form->field(new SubirArchivo, 'file')->fileInput(["class" => "btn btn-default"]) 
+    -> label("Importar desde excel") ?>
+
+    <button class="btn btn-success">Importar</button>
+
+<?php ActiveForm::end() ?>
+</div>
+
+
 </div>

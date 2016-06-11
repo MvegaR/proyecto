@@ -44,21 +44,36 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]); ?>
 </div>
-    <?php
-echo '<div><label class="control-label">Exportar a archivo</label></div>';
-$gridColumns = [
-    'ID_SALA',
-    'ID_TIPO_SALA',
-    'ID_EDIFICIO',
-    'CAPACIDAD_SALA',
-];
+<div class="col-ls-12 col-md-6">
+
+        <?php
+        echo '<div><label class="control-label">Exportar a archivo</label></div>';
+        $gridColumns = [
+        
+                'ID_SALA',
+                'ID_TIPO_SALA',
+                'ID_EDIFICIO',
+                'CAPACIDAD_SALA',
+
+        ];
 
 // Renders a export dropdown menu
-echo ExportMenu::widget([
-    'dataProvider' => $dataProvider,
-    'columns' => $gridColumns,
-    'target' => '_self'
-]);
+        echo ExportMenu::widget([
+            'dataProvider' => $dataProvider,
+            'columns' => $gridColumns,
+            'target' => '_self'
+            ]);
 
-?>
+            ?>
+</div>
+<div class="col-ls-12 col-md-6">
+<?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'action' => 'index.php?r=site/importar-excel&nombretabla='.$_GET['r']]) ?>
+
+    <?= $form->field(new SubirArchivo, 'file')->fileInput(["class" => "btn btn-default"]) 
+    -> label("Importar desde excel") ?>
+
+    <button class="btn btn-success">Importar</button>
+
+<?php ActiveForm::end() ?>
+</div>
 </div>

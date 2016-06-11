@@ -237,6 +237,28 @@ class SiteController extends Controller
     }
 
 
+/* MEJORA pseudocodigo (revisar claves foraneas)
+//if $valor != null
+    $consulta = select ID, REF_NAME from INNODB_SYS_FOREIGN where FOR_NAME = $nombreBD./.$nombretabla //(desde db2)
+    if($consulta.count() > 0){
+        por cada uno
+            select REF_COL_NAME from //(desde db2)
+            INNODB_SYS_FOREIGN_COLS
+            where id = $id
+
+            select count(id) from $ref_name //(desde db)
+            where $ref_col_name = $valor
+
+            if($count(id) == 0) {
+                Inserte en $ref_name una tupla con clave igual a $valor antes de continuar.
+            }else{nada...}
+        
+    }
+
+
+*/
+
+
     public function actionImportarExcel($nombretabla){
         if(strpos($nombretabla,'/',0) != false){
             $nombretabla = substr($nombretabla, 0, strpos($nombretabla,'/',0));
@@ -250,6 +272,7 @@ class SiteController extends Controller
         $resultado = null;
         $inputFile = null;
         $paginaAnterior = $nombretabla."/index";
+        $nombreDB = (Yii::$app -> db -> createCommand("SELECT DATABASE()") -> queryOne())['DATABASE()'];
         $file = new SubirArchivo;
         $date = date('y-m-d_h-m-s');
         $nombretabla2 = null;
@@ -278,7 +301,7 @@ class SiteController extends Controller
                 $nombretabla2 = "".$nombretabla;
                 $nombretabla2 = str_replace('-', '_', $nombretabla2);
 
-                $selectDB2 = "SELECT COLUMN_NAME FROM COLUMNS where TABLE_NAME = '$nombretabla2' and COLUMN_KEY = 'PRI'";
+                $selectDB2 = "SELECT COLUMN_NAME FROM COLUMNS where TABLE_SCHEMA = '$nombreDB' and TABLE_NAME = '$nombretabla2' and COLUMN_KEY = 'PRI'";
                 $clave = Yii::$app -> db2 -> createCommand($selectDB2) -> queryOne()['COLUMN_NAME'];
                 if(ctype_digit($rowData[0][0])){
                     $selectSql = "SELECT * FROM $nombretabla2 WHERE $clave = ".$rowData[0][0].";";
@@ -286,9 +309,8 @@ class SiteController extends Controller
                     $selectSql = "SELECT * FROM $nombretabla2 WHERE $clave = '".$rowData[0][0]."';";
                 }
                 if( (Yii::$app -> db -> createCommand($selectSql) -> execute()) == 1 ){
-                    $selectDB2 = "SELECT COLUMN_NAME FROM COLUMNS where TABLE_NAME = '$nombretabla2'; orderBy(ORDINAL_POSITION);";
+                    $selectDB2 = "SELECT COLUMN_NAME FROM COLUMNS where TABLE_SCHEMA = '$nombreDB' and TABLE_NAME = '$nombretabla2'; orderBy(ORDINAL_POSITION);";
                     $resultado = Yii::$app -> db2 -> createCommand($selectDB2) -> queryAll();
-
                     array_push($actualizar, $rowData[0]);
                 } else {
                     array_push($agregar, $rowData[0]);
@@ -323,6 +345,7 @@ class SiteController extends Controller
         $actualizar = [];
         $consultas = [];
         $resultado = null;
+        $nombreDB = (Yii::$app -> db -> createCommand("SELECT DATABASE()") -> queryOne())['DATABASE()'];
         $paginaAnterior = $nombretabla."/index";
         try{
             $inputFileType = \PHPExcel_IOfactory::identify($inputFile);
@@ -342,7 +365,7 @@ class SiteController extends Controller
             $nombretabla2 = "".$nombretabla;
             $nombretabla2 = str_replace('-', '_', $nombretabla2);
 
-            $selectDB2 = "SELECT COLUMN_NAME FROM COLUMNS where TABLE_NAME = '$nombretabla2' and COLUMN_KEY = 'PRI'";
+            $selectDB2 = "SELECT COLUMN_NAME FROM COLUMNS where TABLE_SCHEMA = '$nombreDB' and TABLE_NAME = '$nombretabla2' and COLUMN_KEY = 'PRI'";
             $clave = Yii::$app -> db2 -> createCommand($selectDB2) -> queryOne()['COLUMN_NAME'];
             if(ctype_digit($rowData[0][0])){
                 $selectSql = "SELECT * FROM $nombretabla2 WHERE $clave = ".$rowData[0][0].";";
@@ -350,7 +373,7 @@ class SiteController extends Controller
                 $selectSql = "SELECT * FROM $nombretabla2 WHERE $clave = '".$rowData[0][0]."';";
             }
             if( (Yii::$app -> db -> createCommand($selectSql) -> execute()) == 1 ){
-                $selectDB2 = "SELECT COLUMN_NAME FROM COLUMNS where TABLE_NAME = '$nombretabla2'; orderBy(ORDINAL_POSITION);";
+                $selectDB2 = "SELECT COLUMN_NAME FROM COLUMNS where TABLE_SCHEMA = '$nombreDB' and TABLE_NAME = '$nombretabla2'; orderBy(ORDINAL_POSITION);";
                 $resultado = Yii::$app -> db2 -> createCommand($selectDB2) -> queryAll();
                 $cadena = "UPDATE $nombretabla2 SET ";
                 $contador = 0;
