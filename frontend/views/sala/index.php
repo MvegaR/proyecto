@@ -5,6 +5,8 @@ use yii\grid\GridView;
 use kartik\export\ExportMenu;
 use yii\helpers\ArrayHelper;
 use frontend\models\TipoSala;
+use yii\widgets\ActiveForm;
+use frontend\models\SubirArchivo;
 
 /* @var $this yii\web\View */
 /* @var $searchModel frontend\models\PostSalafrontend */
