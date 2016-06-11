@@ -13,8 +13,14 @@ public class Sha1 {
 	        System.out.println(sha1("Admin"));
 	    }*/
 	     
-	    public static String sha1(String input) throws NoSuchAlgorithmException {
-	        MessageDigest mDigest = MessageDigest.getInstance("SHA1");
+	    public static String sha1(String input) {
+	        MessageDigest mDigest;
+		try {
+		    mDigest = MessageDigest.getInstance("SHA1");
+		} catch (NoSuchAlgorithmException e) {
+		    // TODO Auto-generated catch block
+		    e.printStackTrace();
+		}
 	        byte[] result = mDigest.digest(input.getBytes());
 	        StringBuffer sb = new StringBuffer();
 	        for (int i = 0; i < result.length; i++) {
