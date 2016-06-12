@@ -8,13 +8,11 @@ use Yii;
  * This is the model class for table "facultad".
  *
  * @property integer $ID_FACULTAD
- * @property integer $ID_DEPARTAMENTO
  * @property string $NOMBRE_FACULTAD
  *
  * @property Carrera[] $carreras
- * @property Docente[] $docentes
+ * @property Departamento[] $departamentos
  * @property Edificio[] $edificios
- * @property Departamento $iDDEPARTAMENTO
  */
 class Facultad extends \yii\db\ActiveRecord
 {
@@ -32,7 +30,6 @@ class Facultad extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['ID_DEPARTAMENTO'], 'integer'],
             [['NOMBRE_FACULTAD'], 'required'],
             [['NOMBRE_FACULTAD'], 'string', 'max' => 255]
         ];
@@ -45,7 +42,6 @@ class Facultad extends \yii\db\ActiveRecord
     {
         return [
             'ID_FACULTAD' => 'Id  Facultad',
-            'ID_DEPARTAMENTO' => 'Id  Departamento',
             'NOMBRE_FACULTAD' => 'Nombre  Facultad',
         ];
     }
@@ -61,9 +57,9 @@ class Facultad extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getDocentes()
+    public function getDepartamentos()
     {
-        return $this->hasMany(Docente::className(), ['ID_FACULTAD' => 'ID_FACULTAD']);
+        return $this->hasMany(Departamento::className(), ['ID_FACULTAD' => 'ID_FACULTAD']);
     }
 
     /**
@@ -72,13 +68,5 @@ class Facultad extends \yii\db\ActiveRecord
     public function getEdificios()
     {
         return $this->hasMany(Edificio::className(), ['ID_FACULTAD' => 'ID_FACULTAD']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getIDDEPARTAMENTO()
-    {
-        return $this->hasOne(Departamento::className(), ['ID_DEPARTAMENTO' => 'ID_DEPARTAMENTO']);
     }
 }

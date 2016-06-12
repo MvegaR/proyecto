@@ -23,8 +23,8 @@ use frontend\models\Facultad;
         ArrayHelper::map(Rol::find()->all(),'ID_ROL','NOMBRE_ROL'),
         ['prompt'=>'Seleccione Rol'] )->label('Rol') ?>
 
-    <?= $form->field($model, 'ID_FACULTAD')->dropDownList(
-        ArrayHelper::map(Facultad::find()->all(),'ID_FACULTAD','NOMBRE_FACULTAD'),
+    <?= $form->field($model, 'ID_DEPARTAMENTO')->dropDownList(
+        ArrayHelper::map(Facultad::find()->all(),'ID_DEPARTAMENTO','NOMBRE_FACULTAD'),
         ['prompt'=>'Seleccione Facultad'] )->label('Facultad') ?>
 
     <?= $form->field($model, 'NOMBRE_DOCENTE')->textInput(['maxlength' => true])->input('nombre', ['placeholder' => "Ingrese nombre"]) ?>

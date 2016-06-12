@@ -14,7 +14,21 @@ $this->params['breadcrumbs'][] = $this->title;
 <div>
 
 	<h1><?php echo Html::encode($this->title); if(isset($tabla)) echo " [$tabla]";  ?></h1>
-	<?php if(isset($errores)) echo $errores; ?>
+
+	<?php if(count($errores) != 0){?>
+
+		<p><h3>¡Claves foraneas que debe de cumplir para importar este archivo!</h3></p>
+		<div class="alert alert-danger">
+		<ul>
+			<?php foreach ($errores as $error) {
+					
+					echo "<li>".$error."<br></li>";
+					
+				} 
+			?>
+		</ul>
+		</div>
+	<?php } ?>
 	<p><h3>Elementos por agregar</h3></p>
 		<div class="table-responsive">
 		<table class="table">
@@ -66,6 +80,14 @@ $this->params['breadcrumbs'][] = $this->title;
 		
 	</p>
 	<button class="btn btn-danger" onclick="location.href='index.php?r=<?php echo $paginaAnterior; ?>'">Cancelar</button>
-	<button class="btn btn-success" onclick="location.href='index.php?r=<?php echo "site/ejecutar-importacion&el=$tabla&inputFile=$archivo";?>'">Continuar</button>
+	<?php if(count($errores) != 0){ ?>
+	<button class="btn btn-success" disabled>Continuar</button>
+	<?php } ?>
+	<?php if(count($errores) == 0){ ?> 
+			<button class="btn btn-success" onclick="location.href='index.php?r=<?php echo "site/ejecutar-importacion&el=$tabla&inputFile=$archivo";?>'">Continuar</button>
+	<?php } ?>
+
+	
+
 	<br>
 </div>

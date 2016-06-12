@@ -9,7 +9,7 @@ use Yii;
  *
  * @property string $ID_DOCENTE
  * @property integer $ID_ROL
- * @property integer $ID_FACULTAD
+ * @property integer $ID_DEPARTAMENTO
  * @property string $NOMBRE_DOCENTE
  * @property string $EMAIL
  * @property string $USER
@@ -38,7 +38,7 @@ class Docente extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     {
         return [
         [['ID_DOCENTE', 'NOMBRE_DOCENTE'], 'required'],
-        [['ID_ROL', 'ID_FACULTAD'], 'integer'],
+        [['ID_ROL', 'ID_DEPARTAMENTO'], 'integer'],
         [['ID_DOCENTE', 'NOMBRE_DOCENTE', 'EMAIL', 'USER', 'PASSWORD', 'COOKIE'], 'string', 'max' => 255],
         ['USER', 'unique'],
         ["PASSWORD_REPEAT", "required", "message" => "Campo requerido."],
@@ -54,7 +54,7 @@ class Docente extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
         return [
         'ID_DOCENTE' => 'Rut  Docente',
         'ID_ROL' => 'Rol',
-        'ID_FACULTAD' => 'Facultad',
+        'ID_DEPARTAMENTO' => 'Departamento',
         'NOMBRE_DOCENTE' => 'Nombre Docente',
         'EMAIL' => 'Email',
         'USER' => 'User',
@@ -73,9 +73,9 @@ class Docente extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getIDFACULTAD()
+    public function getIDDEPARTAMENTO()
     {
-        return $this->hasOne(Facultad::className(), ['ID_FACULTAD' => 'ID_FACULTAD']);
+        return $this->hasOne(Facultad::className(), ['ID_DEPARTAMENTO' => 'ID_DEPARTAMENTO']);
     }
 
     /**

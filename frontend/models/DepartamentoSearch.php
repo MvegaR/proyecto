@@ -18,7 +18,7 @@ class DepartamentoSearch extends Departamento
     public function rules()
     {
         return [
-            [['ID_DEPARTAMENTO'], 'integer'],
+            [['ID_DEPARTAMENTO', 'ID_FACULTAD'], 'integer'],
             [['NOMBRE_DEPARTAMENTO'], 'safe'],
         ];
     }
@@ -57,6 +57,7 @@ class DepartamentoSearch extends Departamento
 
         $query->andFilterWhere([
             'ID_DEPARTAMENTO' => $this->ID_DEPARTAMENTO,
+            'ID_FACULTAD' => $this->ID_FACULTAD,
         ]);
 
         $query->andFilterWhere(['like', 'NOMBRE_DEPARTAMENTO', $this->NOMBRE_DEPARTAMENTO]);

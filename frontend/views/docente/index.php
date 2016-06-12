@@ -44,11 +44,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     ArrayHelper::map(Rol::find()->asArray()->all(),'ID_ROL', 'NOMBRE_ROL'), ['class' => 'form-control','prompt' => 'Seleccione un rol']),//atributos html del selector
             ],
             [
-                'attribute' => 'ID_FACULTAD',
-                'value' => 'iDFACULTAD.NOMBRE_FACULTAD', 
+                'attribute' => 'ID_DEPARTAMENTO',
+                'value' => 'iDDEPARTAMENTO.NOMBRE_DEPARTAMENTO', 
                 'filter' => 
-                Html::activeDropDownList($searchModel, 'ID_FACULTAD', 
-                    ArrayHelper::map(Facultad::find()->asArray()->all(),'ID_FACULTAD', 'NOMBRE_FACULTAD'), ['class' => 'form-control','prompt' => 'Seleccione una facultad']),
+                Html::activeDropDownList($searchModel, 'ID_DEPARTAMENTO', 
+                    ArrayHelper::map(Facultad::find()->asArray()->all(),'ID_DEPARTAMENTO', 'NOMBRE_DEPARTAMENTO'), ['class' => 'form-control','prompt' => 'Seleccione un departamento']),
             ],
             'NOMBRE_DOCENTE',
             'EMAIL:email',

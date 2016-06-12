@@ -29,7 +29,6 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'ID_FACULTAD',
-            'ID_DEPARTAMENTO',
             'NOMBRE_FACULTAD',
         ],
     ]) ?>
