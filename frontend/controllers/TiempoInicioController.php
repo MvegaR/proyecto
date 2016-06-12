@@ -8,6 +8,10 @@ use frontend\models\TiempoInicioSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use frontend\models\Dia;
+use frontend\models\Sala;
+use frontend\models\Bloque;
+
 
 /**
  * TiempoInicioController implements the CRUD actions for TiempoInicio model.
@@ -62,8 +66,26 @@ class TiempoInicioController extends Controller
     {
         $model = new TiempoInicio();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->TIEMPO]);
+        if ($model->load(Yii::$app->request->post())) {
+            $dias = Dia::find() -> all();
+            $salas = Salas::find() -> all();
+            foreach ($salas as $sala) {
+                foreach ($dias as $dia) {
+                    $bloque = new Bloque();
+                    $bloque -> ID_DIA = $dia-> ID_DIA;
+                    $bloque -> ID_SALA = $sala -> ID_SALA;
+                    $bloque -> SECCION = null;
+                    $bloque -> INICIO = $model -> TIEMPO;
+                    $bloque -> TERMINO = date("H:i:s", strtotime($model -> TIEMPO) + 40*60);
+                    $bloque -> BLOQUE_SIGUIENTE = null;
+                    $bloque -> save();
+
+                }
+            }
+            if($model->save()){
+                return $this->redirect(['view', 'id' => $model->TIEMPO]);
+            }
+            
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -81,7 +103,14 @@ class TiempoInicioController extends Controller
     {
         $model = $this->findModel($id);
 
+        $bloques = Bloque::find()-> where(['INICIO' => $model -> TIEMPO]) -> all();
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            foreach ($bloques as $bloque) {
+                    $bloque -> INICIO = $model -> TIEMPO;
+                    $bloque -> TERMINO = date("H:i:s", strtotime($model -> TIEMPO) + 40*60);
+                    $bloque -> save();
+            }
             return $this->redirect(['view', 'id' => $model->TIEMPO]);
         } else {
             return $this->render('update', [
@@ -98,7 +127,11 @@ class TiempoInicioController extends Controller
      */
     public function actionDelete($id)
     {
+        $bloques = Bloque::find()-> where(['INICIO' => $this->findModel($id) -> TIEMPO]) -> all();
         $this->findModel($id)->delete();
+        foreach ($bloques as $bloque) {
+            $bloque -> delete();
+        }
 
         return $this->redirect(['index']);
     }

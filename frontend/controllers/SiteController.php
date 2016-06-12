@@ -18,6 +18,7 @@ use frontend\models\Docente;
 use frontend\models\Dia;
 use frontend\models\TiempoInicio;
 use frontend\models\Sala;
+use frontend\models\Bloque;
 
 /**
  * Site controller

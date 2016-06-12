@@ -8,6 +8,10 @@ use frontend\models\DiaSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use frontend\models\TiempoInicio;
+use frontend\models\Sala;
+use frontend\models\Bloque;
+
 
 /**
  * DiaController implements the CRUD actions for Dia model.
@@ -62,8 +66,24 @@ class DiaController extends Controller
     {
         $model = new Dia();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->ID_DIA]);
+        if ($model->load(Yii::$app->request->post())) {
+            $salas = Sala::find()->all();
+            $tiempos = TiempoInicio::find()->all();
+            foreach ($salas as $sala) {
+                foreach ($tiempos as $tiempo) {
+                    $bloque = new Bloque();
+                    $bloque -> ID_DIA = $model -> ID_DIA;
+                    $bloque -> ID_SALA = $sala -> ID_SALA;
+                    $bloque -> SECCION = null;
+                    $bloque -> INICIO = $tiempo -> TIEMPO;
+                    $bloque -> TERMINO = date("H:i:s", strtotime($tiempo -> TIEMPO) + 40*60);
+                    $bloque -> BLOQUE_SIGUIENTE = null;
+                    $bloque -> save();
+                }
+            }
+            if($model->save()){
+                return $this->redirect(['view', 'id' => $model->ID_DIA]);
+            }
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -98,7 +118,12 @@ class DiaController extends Controller
      */
     public function actionDelete($id)
     {
+        $bloques = Bloque::find()-> where(['ID_DIA' => $id]) -> all();
+        foreach ($bloques as $bloque) {
+            $bloque -> delete();
+        }
         $this->findModel($id)->delete();
+
 
         return $this->redirect(['index']);
     }
