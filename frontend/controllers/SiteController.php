@@ -14,6 +14,9 @@ use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 use frontend\models\SubirArchivo;
+use frontend\models\Docente;
+use frontend\models\Dia;
+use frontend\models\TiempoInicio;
 
 /**
  * Site controller
@@ -423,7 +426,7 @@ class SiteController extends Controller{
 					if(ctype_digit($rowData[0][$contador])){
 						$cadena = $cadena.array_values($fila)[0]." = ".$rowData[0][$contador].", "; 
 					}else{
-						if($rowData[0][$contador] == "(no definido)"){ 
+						if($rowData[0][$contador] == "(no definido)" || $rowData[0][$contador] == "" $rowData[0][$contador] == "NULL"){ 
 							$cadena = $cadena.array_values($fila)[0]." = NULL, ";
 						}else{
 							$cadena = $cadena.array_values($fila)[0]." = '".$rowData[0][$contador]."', ";
@@ -451,9 +454,40 @@ class SiteController extends Controller{
 		foreach ($consultas as $consulta) {
 
 			Yii::$app -> db -> createCommand($consulta) -> execute();
+			$this->especiales($consulta);//especiales: dia, tiempo_inicio, docente.
+
 		}
 
 		return $this->redirect("index.php?r=".$paginaAnterior);
+	}
+
+	private function especiales($consulta){
+
+		if(strpos($consulta, "INSERT INTO docente") != false){ //especial docente
+			$id = substr($consulta, strpos($consulta,"'"),strpos($consulta,",")-1); //id de cadena
+			$model = new Docente;
+			$model = $model -> findModel($id);
+			if($model -> PASSWORD == NULL){
+				$model -> PASSWORD = sha1($model-> ID_DOCENTE);
+			}
+			if($model -> COOKIE == NULL){
+				$model -> COOKIE = \Yii::$app->security->generateRandomString();
+			}
+			if($model -> USER == NULL){
+				$model -> USER = $model-> ID_DOCENTE;
+			}
+		}else if(strpos($consulta, "INSERT INTO dia") != false){ //especial insertar un dia
+			$id = substr($consulta, strpos($consulta,"("),strpos($consulta,",")); //id de intenger
+		}else if(strpos($consulta, "UPDATE dia") != false){ //actualizar un dia (cambiar nombre)
+			$id = substr($consulta, strpos($consulta,"("),strpos($consulta,",")); //id de intenger
+
+		}else if(strpos($consulta, "INSERT INTO tiempo_inicio") != false){ //especial insertar tiempo inicial (crear bloques)
+			$id = substr($consulta, strpos($consulta,"'"),strpos($consulta,",")-1); //id de cadena
+
+		}else if(strpos($consulta, "UPDATE tiempo_inicio") != false){ //especial cambiar tiempo (recalcular bloques)
+			$id = substr($consulta, strpos($consulta,"'"),strpos($consulta,",")-1); //id de cadena
+		}
+
 	}
 
 }
