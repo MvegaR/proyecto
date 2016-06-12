@@ -6,37 +6,28 @@ import java.sql.SQLException;
 public class Facultad {
     
     private Integer idFacultad;
-    private Integer idDepartamento;
     private String nombreDepartamento;
     public Facultad(Integer idFacultad, Integer idDepartamento, String nombreDepartamento) {
 	
 	this.idFacultad = idFacultad;
-	this.idDepartamento = idDepartamento;
 	this.nombreDepartamento = nombreDepartamento;
     }
     public Facultad(ResultSet datos) {
 	try {
-	    this.idDepartamento = datos.getInt(2);
-	    this.nombreDepartamento = datos.getString(3);
 	    this.idFacultad = datos.getInt(1);
+	    this.nombreDepartamento = datos.getString(2);
+	   
 	} catch (SQLException e) {
 	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	}
 	
     }
-    
     /**
      * @return the idFacultad
      */
     public Integer getIdFacultad() {
         return idFacultad;
-    }
-    /**
-     * @return the idDepartamento
-     */
-    public Integer getIdDepartamento() {
-        return idDepartamento;
     }
     /**
      * @return the nombreDepartamento
@@ -49,7 +40,7 @@ public class Facultad {
      */
     @Override
     public String toString() {
-	return "Facultad [idFacultad=" + idFacultad + "]";
+	return "Facultad [idFacultad=" + idFacultad + ", nombreDepartamento=" + nombreDepartamento + "]";
     }
     /* (non-Javadoc)
      * @see java.lang.Object#hashCode()
@@ -59,6 +50,7 @@ public class Facultad {
 	final int prime = 31;
 	int result = 1;
 	result = prime * result + ((idFacultad == null) ? 0 : idFacultad.hashCode());
+	result = prime * result + ((nombreDepartamento == null) ? 0 : nombreDepartamento.hashCode());
 	return result;
     }
     /* (non-Javadoc)
@@ -83,12 +75,17 @@ public class Facultad {
 	} else if (!idFacultad.equals(other.idFacultad)) {
 	    return false;
 	}
+	if (nombreDepartamento == null) {
+	    if (other.nombreDepartamento != null) {
+		return false;
+	    }
+	} else if (!nombreDepartamento.equals(other.nombreDepartamento)) {
+	    return false;
+	}
 	return true;
     }
     
-    
-    
-    
+ 
     
     
 

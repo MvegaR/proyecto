@@ -6,17 +6,17 @@ import java.sql.SQLException;
 public class Docente {
     private String idDocente;
     private Integer idRol;
-    private Integer idFacultad;
+    private Integer idDepartamento;
     private String nombreDocente;
     private String email;
     private String user;
     private String password;
     private String cookie;
-    public Docente(String idDocente, Integer idRol, Integer idFacultad, String nombreDocente, String email, String user,
+    public Docente(String idDocente, Integer idRol, Integer idDepartamento, String nombreDocente, String email, String user,
 	    String password, String cookie) {
 	this.idDocente = idDocente;
 	this.idRol = idRol;
-	this.idFacultad = idFacultad;
+	this.idDepartamento = idDepartamento;
 	this.nombreDocente = nombreDocente;
 	this.email = email;
 	this.user = user;
@@ -28,7 +28,7 @@ public class Docente {
 	try {
 	    this.idDocente = datos.getString(1);
 	    this.idRol = datos.getInt(2);
-	    this.idFacultad = datos.getInt(3);
+	    this.idDepartamento = datos.getInt(3);
 	    this.nombreDocente = datos.getString(4);
 	    this.email = datos.getString(5);
 	    this.user = datos.getString(6);
@@ -61,10 +61,10 @@ public class Docente {
 	return idRol;
     }
     /**
-     * @return the idFacultad
+     * @return the idDeparamento
      */
-    public Integer getIdFacultad() {
-	return idFacultad;
+    public Integer getIdDepartamento() {
+	return idDepartamento;
     }
     /**
      * @return the nombreDocente

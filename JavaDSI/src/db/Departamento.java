@@ -5,15 +5,19 @@ import java.sql.SQLException;
 
 public class Departamento {
     private Integer idDepartamento;
+    private Integer idFacultad;
     private String nombreDepartamento;
-    public Departamento(Integer idDepartamento, String nombreDepartamento) {
+   
+    public Departamento(Integer idDepartamento, Integer idFacultad, String nombreDepartamento) {
 	this.idDepartamento = idDepartamento;
+	this.idFacultad = idFacultad;
 	this.nombreDepartamento = nombreDepartamento;
     }
     public Departamento(ResultSet datos) {
 	try {
 	    this.idDepartamento = datos.getInt(1);
-	    this.nombreDepartamento = datos.getString(2);
+	    this.idFacultad = datos.getInt(2);
+	    this.nombreDepartamento = datos.getString(3);
 	} catch (SQLException e) {
 	    // TODO Auto-generated catch block
 	    e.printStackTrace();
@@ -71,6 +75,9 @@ public class Departamento {
      */
     public String getNombreDepartamento() {
 	return nombreDepartamento;
+    }
+    public Integer getIdFacultad() {
+	return idFacultad;
     }
 
 
