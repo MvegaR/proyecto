@@ -75,7 +75,7 @@ class Docente extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
      */
     public function getIDDEPARTAMENTO()
     {
-        return $this->hasOne(Facultad::className(), ['ID_DEPARTAMENTO' => 'ID_DEPARTAMENTO']);
+        return $this->hasOne(Departamento::className(), ['ID_DEPARTAMENTO' => 'ID_DEPARTAMENTO']);
     }
 
     /**

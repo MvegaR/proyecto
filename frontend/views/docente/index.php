@@ -5,7 +5,7 @@ use yii\grid\GridView;
 use kartik\export\ExportMenu;
 use yii\helpers\ArrayHelper;
 use frontend\models\Rol;
-use frontend\models\Facultad;
+use frontend\models\Departamento;
 use frontend\models\SubirArchivo;
 use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
@@ -48,7 +48,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => 'iDDEPARTAMENTO.NOMBRE_DEPARTAMENTO', 
                 'filter' => 
                 Html::activeDropDownList($searchModel, 'ID_DEPARTAMENTO', 
-                    ArrayHelper::map(Facultad::find()->asArray()->all(),'ID_DEPARTAMENTO', 'NOMBRE_DEPARTAMENTO'), ['class' => 'form-control','prompt' => 'Seleccione un departamento']),
+                    ArrayHelper::map(Departamento::find()->asArray()->all(),'ID_DEPARTAMENTO', 'NOMBRE_DEPARTAMENTO'), ['class' => 'form-control','prompt' => 'Seleccione un departamento']),
             ],
             'NOMBRE_DOCENTE',
             'EMAIL:email',

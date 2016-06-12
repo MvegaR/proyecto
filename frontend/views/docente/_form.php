@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use frontend\models\Rol;
-use frontend\models\Facultad;
+use frontend\models\Departamento;
 
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Docente */
@@ -24,8 +24,8 @@ use frontend\models\Facultad;
         ['prompt'=>'Seleccione Rol'] )->label('Rol') ?>
 
     <?= $form->field($model, 'ID_DEPARTAMENTO')->dropDownList(
-        ArrayHelper::map(Facultad::find()->all(),'ID_DEPARTAMENTO','NOMBRE_FACULTAD'),
-        ['prompt'=>'Seleccione Facultad'] )->label('Facultad') ?>
+        ArrayHelper::map(Departamento::find()->all(),'ID_DEPARTAMENTO','NOMBRE_DEPARTAMENTO'),
+        ['prompt'=>'Seleccione departamento'] )->label('Facultad') ?>
 
     <?= $form->field($model, 'NOMBRE_DOCENTE')->textInput(['maxlength' => true])->input('nombre', ['placeholder' => "Ingrese nombre"]) ?>
 
