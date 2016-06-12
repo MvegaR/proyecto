@@ -427,7 +427,7 @@ class SiteController extends Controller{
 					if(ctype_digit($rowData[0][$contador])){
 						$cadena = $cadena.array_values($fila)[0]." = ".$rowData[0][$contador].", "; 
 					}else{
-						if($rowData[0][$contador] == "(no definido)" || $rowData[0][$contador] == "" $rowData[0][$contador] == "NULL"){ 
+						if($rowData[0][$contador] == "(no definido)" || $rowData[0][$contador] == "" || $rowData[0][$contador] == "NULL"){ 
 							$cadena = $cadena.array_values($fila)[0]." = NULL, ";
 						}else{
 							$cadena = $cadena.array_values($fila)[0]." = '".$rowData[0][$contador]."', ";
