@@ -456,6 +456,7 @@ class SiteController extends Controller{
 		foreach ($consultas as $consulta) {
 
 			Yii::$app -> db -> createCommand($consulta) -> execute();
+			
 			$this->especiales($consulta);//especiales: dia, tiempo_inicio, docente, sala
 
 		}
@@ -464,11 +465,11 @@ class SiteController extends Controller{
 	}
 
 	private function especiales($consulta){
-
-		if(strpos($consulta, "INSERT INTO docente") != false){ //especial docente
-			$id = substr($consulta, strpos($consulta,"'"),strpos($consulta,",")-1); //id de cadena
+		
+		if(strpos($consulta, "INSERT INTO docente") !== false){ //especial docente
+			$id = substr($consulta, strpos($consulta,"'")+1,strpos($consulta,",")-strpos($consulta,"'")-2); //id de cadena
 			$model = new Docente;
-			$model = $model -> findModel($id);
+			$model = $model -> find() -> where(["ID_DOCENTE" => $id]) -> one();
 			if($model -> PASSWORD == NULL){
 				$model -> PASSWORD = sha1($model-> ID_DOCENTE);
 			}
@@ -478,10 +479,10 @@ class SiteController extends Controller{
 			if($model -> USER == NULL){
 				$model -> USER = $model-> ID_DOCENTE;
 			}
-		}else if(strpos($consulta, "INSERT INTO dia") != false){ //especial insertar un dia (crear bloquesxsalaxdia)
-			$id = substr($consulta, strpos($consulta,"("),strpos($consulta,",")); //id de intenger
+		}else if(strpos($consulta, "INSERT INTO dia") !== false){ //especial insertar un dia (crear bloquesxsalaxdia)
+			$id = substr($consulta, strpos($consulta,"(")+1,strpos($consulta,",")-strpos($consulta,"'")-1); //id de intenger
 			$model = new Dia;
-			$model = $model -> findModel($id);
+			$model = $model -> find() -> where(["ID_DIA" => $id]) -> one();
 			$salas = Salas::find()-> all();
 			$tiempo_inicio = TiempoInicio::find()->all();
 			foreach ($salas as $sala) {
@@ -496,10 +497,10 @@ class SiteController extends Controller{
 					$bloque -> save();
 				}
 			}
-		}else if(strpos($consulta, "INSERT INTO tiempo_inicio") != false){ //especial insertar tiempo (crear bloquesxsalaxdia)
-			$id = substr($consulta, strpos($consulta,"'"),strpos($consulta,",")-1); //id de cadena
+		}else if(strpos($consulta, "INSERT INTO tiempo_inicio") !== false){ //especial insertar tiempo (crear bloquesxsalaxdia)
+			$id = substr($consulta, strpos($consulta,"'")+1,strpos($consulta,",")-strpos($consulta,"'")-2); //id de cadena
 			$tiempo = new TiempoInicio;
-			$tiempo = $tiempo -> findModel($id);
+			$tiempo = $tiempo -> find() -> where(["TIEMPO" => $id]) -> one();
 			$salas = Salas::find()-> all();
 			$dias = Dia::find()->all();
 			foreach ($salas as $sala) {
@@ -515,10 +516,13 @@ class SiteController extends Controller{
 				}
 			}
 
-		}else if(strpos($consulta, "INSERT INTO sala") != false){ //especial insertar sala (crear bloquesxdiaxhora)
-			$id = substr($consulta, strpos($consulta,"'"),strpos($consulta,",")-1); //id de cadena
+		}else if(strpos($consulta, "INSERT INTO sala") !== false){ //especial insertar sala (crear bloquesxdiaxhora)
+			
+			$id = substr($consulta, strpos($consulta,"'")+1,strpos($consulta,",")-strpos($consulta,"'")-2); //id de cadena
 			$sala = new Sala;
-			$sala = $sala -> findModel($id);
+			$sala = $sala -> find() -> where(["ID_SALA" => $id]) -> one();
+			echo var_dump($id);
+			die();
 			$dias = Dia::find()->all();
 			$tiempo_inicio = TiempoInicio::find()->all();
 			foreach ($dias as $dia) {
