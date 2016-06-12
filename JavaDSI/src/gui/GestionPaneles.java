@@ -56,7 +56,7 @@ public class GestionPaneles extends JPanel {
 		mostrarPanel("planificar");
 	    }
 	});
-	
+
     }
 
     public void mostrarPanel(String nombrePanel){

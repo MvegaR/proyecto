@@ -63,13 +63,13 @@ public class VentanaPrincipal extends JFrame {
 	btnSalir = new JButton("Salir");
 	btnSalir.setBounds(746, 385, 129, 43);
 	btnSalir.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent arg0) {
-			String[] opciones = {"Si", "No" };
-	        int opcion = JOptionPane.showOptionDialog(null,"¿Seguro que desea cerrar la aplicación?"
-	                             ,"Informacion",JOptionPane.DEFAULT_OPTION,JOptionPane.INFORMATION_MESSAGE
-	                             ,null,opciones,null);
-			if(opciones[opcion].equals("Si")) System.exit(0);
-		}
+	    public void actionPerformed(ActionEvent arg0) {
+		String[] opciones = {"Si", "No" };
+		int opcion = JOptionPane.showOptionDialog(null,"¿Seguro que desea cerrar la aplicación?"
+			,"Informacion",JOptionPane.DEFAULT_OPTION,JOptionPane.INFORMATION_MESSAGE
+			,null,opciones,null);
+		if(opciones[opcion].equals("Si")) System.exit(0);
+	    }
 	});
 	seccionOpciones.add(btnVolver);
 	seccionOpciones.add(btnSalir);
@@ -192,7 +192,7 @@ public class VentanaPrincipal extends JFrame {
 	    e.printStackTrace();
 	}
 	//fin rellenar Secciones.
-	
+
 	System.out.println("Numero de asignaturas agregadas: "+getAsignaturas().size());
 	System.out.println("Numero de bloques agregados: "+getBloques().size());
 	System.out.println("Numero de carreras agregadas: "+getCarreras().size());
@@ -202,7 +202,7 @@ public class VentanaPrincipal extends JFrame {
 	System.out.println("Numero de facultades agregadas: "+getFacultades().size());
 	System.out.println("Numero de salas agregadas: "+getSalas().size());
 	System.out.println("Numero de secciones agregadas: "+getSecciones().size());
-	
+
 
     }
 
@@ -288,10 +288,10 @@ public class VentanaPrincipal extends JFrame {
 
 
     private void checkResolucion(){
-	
+
 	if(Toolkit.getDefaultToolkit().getScreenSize().getWidth() < 1280 || Toolkit.getDefaultToolkit().getScreenSize().getHeight()< 720 ){
 	    JOptionPane.showMessageDialog(this, "La resolución de pantalla no es lo suficientemente grande para la interfaz de la aplicación,"
-	    	+ "\npuede tener problemas al visualizar elementos","Fuera de resolución", JOptionPane.ERROR_MESSAGE);
+		    + "\npuede tener problemas al visualizar elementos","Fuera de resolución", JOptionPane.ERROR_MESSAGE);
 	}
     }
 

@@ -5,24 +5,15 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import java.awt.Font;
 
-
 public class Autentificacion extends JPanel {
-	/**
-     * 
-     */
+
     private static final long serialVersionUID = 1L;
 	private JTextField texto_user;
 	private JPasswordField password_texto;
 	private JButton btnEntrar;
 
-    /**
-     * Create the panel.
-     * PANEL DE PABLO
-     */
     public Autentificacion() {
     	
     	JLabel lblUsuario = new JLabel("Usuario");

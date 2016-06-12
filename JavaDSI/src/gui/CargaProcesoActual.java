@@ -17,14 +17,8 @@ import java.awt.event.ActionEvent;
 
 public class CargaProcesoActual extends JPanel {
 
-    /**
-     * 
-     */
     private static final long serialVersionUID = 1L;
 
-    /**
-     * Create the panel.
-     */
     public CargaProcesoActual() {
 	setLayout(null);
 
