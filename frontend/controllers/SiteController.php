@@ -17,6 +17,7 @@ use frontend\models\SubirArchivo;
 use frontend\models\Docente;
 use frontend\models\Dia;
 use frontend\models\TiempoInicio;
+use frontend\models\Sala;
 
 /**
  * Site controller
@@ -454,7 +455,7 @@ class SiteController extends Controller{
 		foreach ($consultas as $consulta) {
 
 			Yii::$app -> db -> createCommand($consulta) -> execute();
-			$this->especiales($consulta);//especiales: dia, tiempo_inicio, docente.
+			$this->especiales($consulta);//especiales: dia, tiempo_inicio, docente, sala
 
 		}
 
@@ -476,16 +477,13 @@ class SiteController extends Controller{
 			if($model -> USER == NULL){
 				$model -> USER = $model-> ID_DOCENTE;
 			}
-		}else if(strpos($consulta, "INSERT INTO dia") != false){ //especial insertar un dia
+		}else if(strpos($consulta, "INSERT INTO dia") != false){ //especial insertar un dia (crear bloques)
 			$id = substr($consulta, strpos($consulta,"("),strpos($consulta,",")); //id de intenger
-		}else if(strpos($consulta, "UPDATE dia") != false){ //actualizar un dia (cambiar nombre)
-			$id = substr($consulta, strpos($consulta,"("),strpos($consulta,",")); //id de intenger
-
-		}else if(strpos($consulta, "INSERT INTO tiempo_inicio") != false){ //especial insertar tiempo inicial (crear bloques)
+		}else if(strpos($consulta, "INSERT INTO tiempo_inicio") != false){ //especial insertar tiempo (crear bloques)
+			$id = substr($consulta, strpos($consulta,"'"),strpos($consulta,",")-1); //id de cadena
+		}else if(strpos($consulta, "INSERT INTO sala") != false){ //especial insertar tiempo (crear bloques)
 			$id = substr($consulta, strpos($consulta,"'"),strpos($consulta,",")-1); //id de cadena
 
-		}else if(strpos($consulta, "UPDATE tiempo_inicio") != false){ //especial cambiar tiempo (recalcular bloques)
-			$id = substr($consulta, strpos($consulta,"'"),strpos($consulta,",")-1); //id de cadena
 		}
 
 	}
