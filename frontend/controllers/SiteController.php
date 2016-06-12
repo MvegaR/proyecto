@@ -428,7 +428,7 @@ class SiteController extends Controller{
 					if(ctype_digit($rowData[0][$contador])){
 						$cadena = $cadena.array_values($fila)[0]." = ".$rowData[0][$contador].", "; 
 					}else{
-						if($rowData[0][$contador] == "(no definido)" || $rowData[0][$contador] == "" || $rowData[0][$contador] == "NULL"){ 
+						if($rowData[0][$contador] == "(no definido)" || $rowData[0][$contador] == "" || $rowData[0][$contador] == "NULL" || $rowData[0][$contador] == "null"){ 
 							$cadena = $cadena.array_values($fila)[0]." = NULL, ";
 						}else{
 							$cadena = $cadena.array_values($fila)[0]." = '".$rowData[0][$contador]."', ";
@@ -490,7 +490,7 @@ class SiteController extends Controller{
 					$bloque = new Bloque();
 					$bloque -> ID_DIA = $model -> ID_DIA;
 					$bloque -> ID_SALA = $sala -> ID_SALA;
-					$bloque -> SECCION = null;
+					$bloque -> ID_SECCION = null;
 					$bloque -> INICIO = $tiempo -> TIEMPO;
 					$bloque -> TERMINO = date("H:i:s", strtotime($tiempo -> TIEMPO) + 40*60);
 					$bloque -> BLOQUE_SIGUIENTE = null;
@@ -508,7 +508,7 @@ class SiteController extends Controller{
 					$bloque = new Bloque();
 					$bloque -> ID_DIA = $dia-> ID_DIA;
 					$bloque -> ID_SALA = $sala -> ID_SALA;
-					$bloque -> SECCION = null;
+					$bloque -> ID_SECCION = null;
 					$bloque -> INICIO = $tiempo -> TIEMPO;
 					$bloque -> TERMINO = date("H:i:s", strtotime($tiempo -> TIEMPO) + 40*60);
 					$bloque -> BLOQUE_SIGUIENTE = null;
@@ -521,8 +521,6 @@ class SiteController extends Controller{
 			$id = substr($consulta, strpos($consulta,"'")+1,strpos($consulta,",")-strpos($consulta,"'")-2); //id de cadena
 			$sala = new Sala;
 			$sala = $sala -> find() -> where(["ID_SALA" => $id]) -> one();
-			echo var_dump($id);
-			die();
 			$dias = Dia::find()->all();
 			$tiempo_inicio = TiempoInicio::find()->all();
 			foreach ($dias as $dia) {
@@ -530,7 +528,7 @@ class SiteController extends Controller{
 					$bloque = new Bloque();
 					$bloque -> ID_DIA = $dia-> ID_DIA;
 					$bloque -> ID_SALA = $sala -> ID_SALA;
-					$bloque -> SECCION = null;
+					$bloque -> ID_SECCION = null;
 					$bloque -> INICIO = $tiempo -> TIEMPO;
 					$bloque -> TERMINO = date("H:i:s", strtotime($tiempo -> TIEMPO) + 40*60);
 					$bloque -> BLOQUE_SIGUIENTE = null;

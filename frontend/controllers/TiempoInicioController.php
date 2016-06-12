@@ -74,7 +74,7 @@ class TiempoInicioController extends Controller
                     $bloque = new Bloque();
                     $bloque -> ID_DIA = $dia-> ID_DIA;
                     $bloque -> ID_SALA = $sala -> ID_SALA;
-                    $bloque -> SECCION = null;
+                    $bloque -> ID_SECCION = null;
                     $bloque -> INICIO = $model -> TIEMPO;
                     $bloque -> TERMINO = date("H:i:s", strtotime($model -> TIEMPO) + 40*60);
                     $bloque -> BLOQUE_SIGUIENTE = null;

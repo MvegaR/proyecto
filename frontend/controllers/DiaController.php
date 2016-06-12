@@ -74,7 +74,7 @@ class DiaController extends Controller
                     $bloque = new Bloque();
                     $bloque -> ID_DIA = $model -> ID_DIA;
                     $bloque -> ID_SALA = $sala -> ID_SALA;
-                    $bloque -> SECCION = null;
+                    $bloque -> ID_SECCION = null;
                     $bloque -> INICIO = $tiempo -> TIEMPO;
                     $bloque -> TERMINO = date("H:i:s", strtotime($tiempo -> TIEMPO) + 40*60);
                     $bloque -> BLOQUE_SIGUIENTE = null;
