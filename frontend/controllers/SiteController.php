@@ -479,14 +479,14 @@ class SiteController extends Controller{
 			}
 		}else if(strpos($consulta, "INSERT INTO dia") != false){ //especial insertar un dia (crear bloquesxsalaxdia)
 			$id = substr($consulta, strpos($consulta,"("),strpos($consulta,",")); //id de intenger
-			$dia = new Dia;
+			$model = new Dia;
 			$model = $model -> findModel($id);
 			$salas = Salas::find()-> all();
 			$tiempo_inicio = TiempoInicio::find()->all();
 			foreach ($salas as $sala) {
 				foreach ($tiempo_inicio as $tiempo) {
 					$bloque = new Bloque();
-					$bloque -> ID_DIA = $dia -> ID_DIA;
+					$bloque -> ID_DIA = $model -> ID_DIA;
 					$bloque -> ID_SALA = $sala -> ID_SALA;
 					$bloque -> SECCION = null;
 					$bloque -> INICIO = $tiempo -> TIEMPO;
@@ -497,8 +497,41 @@ class SiteController extends Controller{
 			}
 		}else if(strpos($consulta, "INSERT INTO tiempo_inicio") != false){ //especial insertar tiempo (crear bloquesxsalaxdia)
 			$id = substr($consulta, strpos($consulta,"'"),strpos($consulta,",")-1); //id de cadena
+			$tiempo = new TiempoInicio;
+			$tiempo = $tiempo -> findModel($id);
+			$salas = Salas::find()-> all();
+			$dias = Dia::find()->all();
+			foreach ($salas as $sala) {
+				foreach ($dias as $dia ) {
+					$bloque = new Bloque();
+					$bloque -> ID_DIA = $dia-> ID_DIA;
+					$bloque -> ID_SALA = $sala -> ID_SALA;
+					$bloque -> SECCION = null;
+					$bloque -> INICIO = $tiempo -> TIEMPO;
+					$bloque -> TERMINO = date("H:i:s", strtotime($tiempo -> TIEMPO) + 40*60);
+					$bloque -> BLOQUE_SIGUIENTE = null;
+					$bloque -> save();
+				}
+			}
+
 		}else if(strpos($consulta, "INSERT INTO sala") != false){ //especial insertar sala (crear bloquesxdiaxhora)
 			$id = substr($consulta, strpos($consulta,"'"),strpos($consulta,",")-1); //id de cadena
+			$sala = new Sala;
+			$sala = $sala -> findModel($id);
+			$dias = Dia::find()->all();
+			$tiempo_inicio = TiempoInicio::find()->all();
+			foreach ($dias as $dia) {
+				foreach ($tiempo_inicio as $tiempo) {
+					$bloque = new Bloque();
+					$bloque -> ID_DIA = $dia-> ID_DIA;
+					$bloque -> ID_SALA = $sala -> ID_SALA;
+					$bloque -> SECCION = null;
+					$bloque -> INICIO = $tiempo -> TIEMPO;
+					$bloque -> TERMINO = date("H:i:s", strtotime($tiempo -> TIEMPO) + 40*60);
+					$bloque -> BLOQUE_SIGUIENTE = null;
+					$bloque -> save();
+				}
+			}
 
 		}
 
