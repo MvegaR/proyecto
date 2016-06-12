@@ -45,20 +45,12 @@ public class Autentificacion extends JPanel {
     	btnEntrar = new JButton("Entrar");
     	btnEntrar.setBounds(509, 385, 134, 43);
     	
-    	JButton btnSalir = new JButton("Salir");
-    	btnSalir.setBounds(746, 385, 129, 43);
-    	btnSalir.addActionListener(new ActionListener() {
-    		public void actionPerformed(ActionEvent arg0) {
-    			System.exit(0);
-    		}
-    	});
     	setLayout(null);
     	add(lblUsuario);
     	add(texto_user);
     	add(lblContrasea);
     	add(password_texto);
     	add(btnEntrar);
-    	add(btnSalir);
 
     }
     

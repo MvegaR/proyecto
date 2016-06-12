@@ -44,16 +44,6 @@ public class MenuInicial extends JPanel {
 	btnPlanificar.setFont(new Font("Tahoma", Font.PLAIN, 30));
 	panel.add(btnPlanificar);
 
-	JButton btnCerrar = new JButton("Cerrar");
-	btnCerrar.setFont(new Font("Tahoma", Font.PLAIN, 20));
-	btnCerrar.setBounds(626, 388, 123, 43);
-	btnCerrar.addActionListener(new ActionListener() {
-	    public void actionPerformed(ActionEvent arg0) {
-		System.exit(0);
-	    }
-	});
-	panel.add(btnCerrar);
-
     }
 
     public JButton getBtnAdministrar(){

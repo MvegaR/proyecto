@@ -18,6 +18,8 @@ import db.Seccion;
 import de.javasoft.plaf.synthetica.SyntheticaBlueSteelLookAndFeel;
 import java.awt.BorderLayout;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -31,6 +33,7 @@ public class VentanaPrincipal extends JFrame {
     private PanelCabecera cabecera;
     private JPanel seccionOpciones;
     public static JButton btnVolver;
+    private JButton btnSalir;
 
     //---------------------------------------------------------------------
     //Se debe rellenar estas listas cada vez que se inicie le programa:
@@ -57,9 +60,19 @@ public class VentanaPrincipal extends JFrame {
 	seccionOpciones = new JPanel();
 
 	btnVolver = new JButton("Volver");
-	btnVolver.setVisible(false);
-
+	btnSalir = new JButton("Salir");
+	btnSalir.setBounds(746, 385, 129, 43);
+	btnSalir.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent arg0) {
+			String[] opciones = {"Si", "No" };
+	        int opcion = JOptionPane.showOptionDialog(null,"¿Seguro que desea cerrar la aplicación?"
+	                             ,"Informacion",JOptionPane.DEFAULT_OPTION,JOptionPane.INFORMATION_MESSAGE
+	                             ,null,opciones,null);
+			if(opciones[opcion].equals("Si")) System.exit(0);
+		}
+	});
 	seccionOpciones.add(btnVolver);
+	seccionOpciones.add(btnSalir);
 
 	this.add(cabecera,BorderLayout.NORTH);
 	this.add(panelRaul,BorderLayout.CENTER);
