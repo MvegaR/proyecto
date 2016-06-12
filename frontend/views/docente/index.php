@@ -68,7 +68,7 @@ echo '<div><label class="control-label">Exportar a archivo</label></div>';
 $gridColumns = [
     'ID_DOCENTE',
     'ID_ROL',
-    'ID_FACULTAD',
+    'ID_DEPARTAMENTO',
     'NOMBRE_DOCENTE',
     'EMAIL:email',
     'USER',
