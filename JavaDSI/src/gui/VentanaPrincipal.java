@@ -64,12 +64,18 @@ public class VentanaPrincipal extends JFrame {
 	btnSalir.setBounds(746, 385, 129, 43);
 	btnVolver.addActionListener(new ActionListener() {
 	    public void actionPerformed(ActionEvent arg0) {
-		if(!paneles.isEmpty()){
-			paneles.get(paneles.size()-1).setVisible(false);
-			paneles.remove(paneles.size()-1);
-			paneles.get(paneles.size()-1).setVisible(true);
-			if(paneles.size()==1) btnVolver.setVisible(false); // Cuando llega al panel principal
-		}
+			String[] opciones = {"Si", "No" };
+			int opcion = JOptionPane.showOptionDialog(null,"¿Seguro que desea volver?"
+				,"Informacion",JOptionPane.DEFAULT_OPTION,JOptionPane.INFORMATION_MESSAGE
+				,null,opciones,null);
+			if(opciones[opcion].equals("Si")){
+		        if(!paneles.isEmpty()){
+			        paneles.get(paneles.size()-1).setVisible(false);
+			        paneles.remove(paneles.size()-1);
+			        paneles.get(paneles.size()-1).setVisible(true);
+			        if(paneles.size()==1) btnVolver.setVisible(false); // Cuando llega al panel principal
+		        }
+		    }
 	    }
 	});
 	btnSalir.addActionListener(new ActionListener() {
