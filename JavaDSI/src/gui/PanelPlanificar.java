@@ -3,11 +3,16 @@ package gui;
 import javax.swing.JPanel;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreeModel;
+
+import db.Conexion;
+
 import javax.swing.BoxLayout;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JButton;
 
@@ -37,7 +42,8 @@ public class PanelPlanificar extends JPanel {
 				TreeModel model = panelAsignaturas.getTree().getModel();
 			    DefaultMutableTreeNode root = (DefaultMutableTreeNode) model.getRoot();
 			    ArrayList<String> codigosAsignaturas = new ArrayList<String>(); //Almacena los codigos de las asignaturas
-			    for(int i=0; i < root.getChildCount(); i++){
+			    ArrayList<String> codigosSecciones = new ArrayList<String>(); //Almacena los codigos de las secciones que se incluiran
+			    for(int i=0; i < root.getChildCount(); i++){ // obteniendo las asignatura seleccionadas
 			    	for(int j=0; j < root.getChildAt(i).getChildCount(); j++){
 			    		for(int x=0; x < root.getChildAt(i).getChildAt(j).getChildCount(); x++){
 			    			for(int y=0; y < root.getChildAt(i).getChildAt(j).getChildAt(x).getChildCount(); y++){
@@ -50,6 +56,21 @@ public class PanelPlanificar extends JPanel {
 			    		}
 			    	}
 			    }
+			    for(int i=0;i<codigosAsignaturas.size();i++){ // obtiene las secciones
+			    	try {
+			    		ResultSet rsSecciones = Conexion.ejecutarSQL("SELECT ID_SECCION FROM seccion WHERE ID_ASIGNATURA='"+codigosAsignaturas.get(i)+"'");
+						while(rsSecciones.next())
+							codigosSecciones.add(rsSecciones.getString("ID_SECCION"));
+					} catch (SQLException e) {
+						
+					}
+			    }
+			    /*
+			    System.out.println("Las secciones a planificar son: ");
+			    for(int i=0;i<codigosSecciones.size();i++){
+			    	System.out.println(codigosSecciones.get(i));
+			    }
+			    */
 			}
 		});
 		panelSur.add(btnNewButton);
