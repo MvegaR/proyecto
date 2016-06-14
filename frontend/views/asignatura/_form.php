@@ -29,37 +29,45 @@ use frontend\models\Carrera;
 
     <div class="control-label"><label>Horas de clase</label></div>
 <div class = "col-xs-3">&nbsp;&nbsp;
-    <?= $form->field($model, 'HORAS_TEO')->textInput(['type' => 'number','size' => "3", 'maxleng' => '3', 'min' => 0, 'value' => 0, 'placeholder' => "Horas"])->label("Teóricas"); ?>
+<?php function horaModelo($model, $columna){
+        if($model -> {$columna} == NULL){
+            return 0;
+        }else{
+            return $model -> {$columna};
+        }
+}
+?>
+    <?= $form->field($model, 'HORAS_TEO')->textInput(['type' => 'number','size' => "3", 'maxleng' => '3', 'min' => 0, 'value' => horaModelo($model,'HORAS_TEO'), 'placeholder' => "Horas"])->label("Teóricas"); ?>
     </div>
     <div class = "col-xs-3">&nbsp;&nbsp;
-    <?= $form->field($model, 'HORAS_LAB_COM')->textInput(['type' => 'number','size' => "3", 'maxleng' => '3', 'min' => 0, 'value' => 0, 'placeholder' => "Horas"])->label("Computación"); ?>
+    <?= $form->field($model, 'HORAS_LAB_COM')->textInput(['type' => 'number','size' => "3", 'maxleng' => '3', 'min' => 0, 'value' => horaModelo($model,'HORAS_LAB_COM'), 'placeholder' => "Horas"])->label("Computación"); ?>
     </div>
     <div class = "col-xs-3">&nbsp;&nbsp;
-    <?= $form->field($model, 'HORAS_AYUDANTIA')->textInput(['type' => 'number','size' => "3", 'maxleng' => '3', 'min' => 0, 'value' => 0, 'placeholder' => "Horas"])->label("Ayudantia");?>
+    <?= $form->field($model, 'HORAS_AYUDANTIA')->textInput(['type' => 'number','size' => "3", 'maxleng' => '3', 'min' => 0, 'value' => horaModelo($model,'HORAS_AYUDANTIA'), 'placeholder' => "Horas"])->label("Ayudantia");?>
     </div>
     <div class = "col-xs-3">&nbsp;&nbsp;
-    <?= $form->field($model, 'HORAS_LAB_FISICA')->textInput(['type' => 'number','size' => "3", 'maxleng' => '3', 'min' => 0, 'value' => 0, 'placeholder' => "Horas"])->label("Lab. Física");?>
+    <?= $form->field($model, 'HORAS_LAB_FISICA')->textInput(['type' => 'number','size' => "3", 'maxleng' => '3', 'min' => 0, 'value' => horaModelo($model,'HORAS_LAB_FISICA'), 'placeholder' => "Horas"])->label("Lab. Física");?>
     </div>
     <div class = "col-xs-3">&nbsp;&nbsp;
-    <?= $form->field($model, 'HORAS_LAB_QUIMICA')->textInput(['type' => 'number','size' => "3", 'maxleng' => '3', 'min' => 0, 'value' => 0, 'placeholder' => "Horas"])->label("Lab. Química");?>
+    <?= $form->field($model, 'HORAS_LAB_QUIMICA')->textInput(['type' => 'number','size' => "3", 'maxleng' => '3', 'min' => 0, 'value' => horaModelo($model,'HORAS_LAB_QUIMICA'), 'placeholder' => "Horas"])->label("Lab. Química");?>
     </div>
     <div class = "col-xs-3">&nbsp;&nbsp;
-    <?= $form->field($model, 'HORAS_LAB_ROBOTICA')->textInput(['type' => 'number','size' => "3", 'maxleng' => '3', 'min' => 0, 'value' => 0, 'placeholder' => "Horas"])->label("Lab Robótica");?>
+    <?= $form->field($model, 'HORAS_LAB_ROBOTICA')->textInput(['type' => 'number','size' => "3", 'maxleng' => '3', 'min' => 0, 'value' => horaModelo($model,'HORAS_LAB_ROBOTICA'), 'placeholder' => "Horas"])->label("Lab Robótica");?>
     </div>
     <div class = "col-xs-3">&nbsp;&nbsp;
-    <?= $form->field($model, 'HORAS_LAB_MECANICA')->textInput(['type' => 'number','size' => "3", 'maxleng' => '3', 'min' => 0, 'value' => 0, 'placeholder' => "Horas"])->label("Lab. Mecánica");?>
+    <?= $form->field($model, 'HORAS_LAB_MECANICA')->textInput(['type' => 'number','size' => "3", 'maxleng' => '3', 'min' => 0, 'value' => horaModelo($model,'HORAS_LAB_MECANICA'), 'placeholder' => "Horas"])->label("Lab. Mecánica");?>
     </div>
     <div class = "col-xs-3">&nbsp;&nbsp;
-    <?= $form->field($model, 'HORAS_TALLER_ARQUITECTURA')->textInput(['type' => 'number','size' => "3", 'maxleng' => '3', 'min' => 0, 'value' => 0, 'placeholder' => "Horas"])->label("Taller Arquitectura");?>
+    <?= $form->field($model, 'HORAS_TALLER_ARQUITECTURA')->textInput(['type' => 'number','size' => "3", 'maxleng' => '3', 'min' => 0, 'value' => horaModelo($model,'HORAS_TALLER_ARQUITECTURA'), 'placeholder' => "Horas"])->label("Taller Arquitectura");?>
     </div>
     <div class = "col-xs-3">&nbsp;&nbsp;
-    <?= $form->field($model, 'HORAS_TALLER_MADERA')->textInput(['type' => 'number','size' => "3", 'maxleng' => '3', 'min' => 0, 'value' => 0, 'placeholder' => "Horas"])->label("Taller Maderas");?>
+    <?= $form->field($model, 'HORAS_TALLER_MADERA')->textInput(['type' => 'number','size' => "3", 'maxleng' => '3', 'min' => 0, 'value' => horaModelo($model,'HORAS_TEO'), 'placeholder' => "Horas"])->label("Taller Maderas");?>
     </div>
     <div class = "col-xs-3">&nbsp;&nbsp;
-    <?= $form->field($model, 'HORAS_GYM')->textInput(['type' => 'number','size' => "3", 'maxleng' => '3', 'min' => 0, 'value' => 0, 'placeholder' => "Horas"])->label("Gimnasio");?>
+    <?= $form->field($model, 'HORAS_GYM')->textInput(['type' => 'number','size' => "3", 'maxleng' => '3', 'min' => 0, 'value' => horaModelo($model,'HORAS_GYM'), 'placeholder' => "Horas"])->label("Gimnasio");?>
     </div>
     <div class = "col-xs-3">&nbsp;&nbsp;
-<?= $form->field($model, 'HORAS_AUDITORIO')->textInput(['type' => 'number','size' => "3", 'maxleng' => '3', 'min' => 0, 'value' => 0, 'placeholder' => "Horas"])->label("Auditorio");?>
+<?= $form->field($model, 'HORAS_AUDITORIO')->textInput(['type' => 'number','size' => "3", 'maxleng' => '3', 'min' => 0, 'value' => horaModelo($model,'HORAS_AUDITORIO'), 'placeholder' => "Horas"])->label("Auditorio");?>
 </div>
 
     <div class="form-group col-xs-12">
