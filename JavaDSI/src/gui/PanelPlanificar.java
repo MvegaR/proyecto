@@ -58,9 +58,9 @@ public class PanelPlanificar extends JPanel {
 			    }
 			    for(int i=0;i<codigosAsignaturas.size();i++){ // obtiene las secciones y su cupo, solo las que tienen profesore asignados
 			    	try {
-			    		ResultSet rsSecciones = Conexion.ejecutarSQL("SELECT ID_SECCION, CUPO FROM seccion WHERE ID_DOCENTE IS NOT NULL AND ID_ASIGNATURA='"+codigosAsignaturas.get(i)+"'");
+			    		ResultSet rsSecciones = Conexion.ejecutarSQL("SELECT ID_SECCION, CUPO, ID_DOCENTE FROM seccion WHERE ID_DOCENTE IS NOT NULL AND ID_ASIGNATURA='"+codigosAsignaturas.get(i)+"'");
 						while(rsSecciones.next())
-							codigosSecciones.add(rsSecciones.getString("ID_SECCION")+" "+rsSecciones.getString("CUPO"));
+							codigosSecciones.add(rsSecciones.getString("ID_SECCION")+" "+rsSecciones.getString("CUPO")+" "+rsSecciones.getString("ID_DOCENTE"));
 					} catch (SQLException e) {
 						
 					}
