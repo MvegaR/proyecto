@@ -26,7 +26,7 @@ $this->title = 'PASH UBB';
         ?>
         <p align="left"><?php echo date('j \d\e F \d\e Y\, g:ia') ?></p>
         <p align="left">Estimad@s Usuari@s:</p>
-        <p align="justify">Les damos la más cordial bienvenida a la Plataforma de Administracion de Salas y Horarios PASH UBB. Favor, ante cualquier consulta, inconveniente o requerimiento asociado a claves y password de acceso, y otras situaciones relativas a la plataforma, les invitamos a contactarnos al correo <a title="Plataforma PASH UBB" href="mailto:plataformamoodle@ubiobio.cl" target="_blank"><strong><u><span style="color:rgb(0,0,255);">plataformapash@ubiobio.cl</span></u></strong></a>.</p>
+        <p align="justify">Les damos la más cordial bienvenida a la Plataforma de Administracion de Salas y Horarios PASH UBB. Favor, ante cualquier consulta, inconveniente o requerimiento asociado a claves de acceso, y otras situaciones relativas a la plataforma, les invitamos a contactarnos al correo <a title="Plataforma PASH UBB" href="mailto:plataformamoodle@ubiobio.cl" target="_blank"><strong><u><span style="color:rgb(0,0,255);">plataformapash@ubiobio.cl</span></u></strong></a>.</p>
         <p align="left">Les saluda,</p>
         <p align="left">Administrador Plataforma PASH UBB</p>
     </div>
