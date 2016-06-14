@@ -69,12 +69,15 @@ public class PanelPlanificar extends JPanel {
 			    for(int i=0;i<Asignaturas.size();i++){ // obtiene las secciones y su cupo, solo las que tienen profesore asignados
 			    	try {
 			    		String[] partes = Asignaturas.get(i).split(" ");
-			    		ResultSet rsSecciones = Conexion.ejecutarSQL("SELECT ID_SECCION, CUPO, ID_DOCENTE FROM seccion WHERE ID_DOCENTE IS NOT NULL AND ID_ASIGNATURA='"+partes[0]+"'");
+			    		//Sin cosiderar seccione sin profesores
+			    		//ResultSet rsSecciones = Conexion.ejecutarSQL("SELECT ID_SECCION, CUPO, ID_DOCENTE FROM seccion WHERE ID_DOCENTE IS NOT NULL AND ID_ASIGNATURA='"+partes[0]+"'");
+			    		//Con considerar secciones con profesores
+			    		ResultSet rsSecciones = Conexion.ejecutarSQL("SELECT ID_SECCION, CUPO, ID_DOCENTE FROM seccion WHERE ID_ASIGNATURA='"+partes[0]+"'");
 						while(rsSecciones.next())
 							/* ID SECCION | CUPO SECCION | ID DOCENTE SECCION | HORAS TEORIA | HORAS LAB COM | HORAS AYUDANTIAS | HORAS LAB FISICA | HORAS LAB QUIMICA | HORAS LAB ROBOTICA | HORAS LAB MECANICA | HORAS TALLER ARQUITECTURA | HORAS TALLER MADERA | HORAS GYM | HORAS AUDITORIO */
 							Secciones.add(rsSecciones.getString("ID_SECCION")+" "+rsSecciones.getString("CUPO")+" "+rsSecciones.getString("ID_DOCENTE")+" "+partes[1]+" "+partes[2]+" "+partes[3]+" "+partes[4]+" "+partes[5]+" "+partes[6]+" "+partes[7]+" "+partes[8]+" "+partes[9]+" "+partes[10]+" "+partes[11]);
-					} catch (SQLException e) {
-						
+					} catch (Exception e) {
+						//Falta añadir mensaje
 					}
 			    }
 			    /*
