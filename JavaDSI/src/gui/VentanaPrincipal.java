@@ -208,7 +208,7 @@ public class VentanaPrincipal extends JFrame {
 	    e.printStackTrace();
 	}
 	//fin rellenar Secciones.
-
+/*
 	System.out.println("Numero de asignaturas agregadas: "+getAsignaturas().size());
 	System.out.println("Numero de bloques agregados: "+getBloques().size());
 	System.out.println("Numero de carreras agregadas: "+getCarreras().size());
@@ -218,7 +218,7 @@ public class VentanaPrincipal extends JFrame {
 	System.out.println("Numero de facultades agregadas: "+getFacultades().size());
 	System.out.println("Numero de salas agregadas: "+getSalas().size());
 	System.out.println("Numero de secciones agregadas: "+getSecciones().size());
-
+*/
 
     }
 

@@ -55,21 +55,22 @@ $this->params['breadcrumbs'][] = $this->title;
         echo '<div><label class="control-label">Exportar a archivo</label></div>';
         $gridColumns = [
         
-        'ID_ASIGNATURA',
-        'ID_CARRERA',
-        'NOMBRE_ASIGNATURA',
-        'SEMESTRE',            
-        'HORAS_TEO', 
-        'HORAS_LAB_COM', 
-        'HORAS_AYUDANTIA', 
-        'HORAS_LAB_FISICA', 
-        'HORAS_LAB_QUIMICA', 
-        'HORAS_LAB_ROBOTICA', 
-        'HORAS_LAB_MECANICA', 
-        'HORAS_TALLER_ARQUITECTURA', 
-        'HORAS_TALLER_MADERA', 
-        'HORAS_GYM', 
-        'HORAS_AUDITORIO', 
+         'ID_ASIGNATURA',
+            'ID_CARRERA',
+            'NOMBRE_ASIGNATURA',
+            'ANIO',
+            'SEMESTRE',            
+            'HORAS_TEO', 
+            'HORAS_LAB_COM', 
+            'HORAS_AYUDANTIA', 
+            'HORAS_LAB_FISICA', 
+            'HORAS_LAB_QUIMICA', 
+            'HORAS_LAB_ROBOTICA', 
+            'HORAS_LAB_MECANICA', 
+            'HORAS_TALLER_ARQUITECTURA', 
+            'HORAS_TALLER_MADERA', 
+            'HORAS_GYM', 
+            'HORAS_AUDITORIO', 
 
         ];
 

@@ -25,7 +25,7 @@ use frontend\models\Departamento;
 
     <?= $form->field($model, 'ID_DEPARTAMENTO')->dropDownList(
         ArrayHelper::map(Departamento::find()->all(),'ID_DEPARTAMENTO','NOMBRE_DEPARTAMENTO'),
-        ['prompt'=>'Seleccione departamento'] )->label('Facultad') ?>
+        ['prompt'=>'Seleccione departamento'] )->label('Departamento') ?>
 
     <?= $form->field($model, 'NOMBRE_DOCENTE')->textInput(['maxlength' => true])->input('nombre', ['placeholder' => "Ingrese nombre"]) ?>
 
