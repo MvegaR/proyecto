@@ -48,20 +48,30 @@ public class VentanaPrincipal extends JFrame {
     private ArrayList<Facultad> facultades = new ArrayList<>();
     private ArrayList<Sala> salas = new ArrayList<>();
     private ArrayList<Seccion> secciones = new ArrayList<>();
+    public static ArrayList<JPanel> paneles = new ArrayList<>(); // Para el boton volver atras
 
     //---------------------------------------------------------------------
 
     public VentanaPrincipal() {
 	this.setResizable(false);
 	this.setUndecorated(true);
-
 	panelRaul = new GestionPaneles();
 	cabecera = new PanelCabecera();
 	seccionOpciones = new JPanel();
-
 	btnVolver = new JButton("Volver");
+	btnVolver.setVisible(false);
 	btnSalir = new JButton("Salir");
 	btnSalir.setBounds(746, 385, 129, 43);
+	btnVolver.addActionListener(new ActionListener() {
+	    public void actionPerformed(ActionEvent arg0) {
+		if(!paneles.isEmpty()){
+			paneles.get(paneles.size()-1).setVisible(false);
+			paneles.remove(paneles.size()-1);
+			paneles.get(paneles.size()-1).setVisible(true);
+			if(paneles.size()==1) btnVolver.setVisible(false); // Cuando llega al panel principal
+		}
+	    }
+	});
 	btnSalir.addActionListener(new ActionListener() {
 	    public void actionPerformed(ActionEvent arg0) {
 		String[] opciones = {"Si", "No" };

@@ -2,6 +2,8 @@ package gui;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+
 import javax.swing.JPanel;
 import java.awt.CardLayout;
 
@@ -40,19 +42,23 @@ public class GestionPaneles extends JPanel {
 	    public void mousePressed(MouseEvent e) {
 		//prueba parte Marí 
 		//MensajesError.meEr_FallaAutentificacion();
+	    VentanaPrincipal.paneles.add(mari);
 		mostrarPanel("mari");
-		VentanaPrincipal.btnVolver.setVisible(true);
 	    }
 	});
 	mari.getBtnAdministrar().addMouseListener(new MouseAdapter() {
 	    @Override
 	    public void mousePressed(MouseEvent e) {
+	    VentanaPrincipal.paneles.add(marcos);
+	    VentanaPrincipal.btnVolver.setVisible(true);
 		mostrarPanel("marcos");
 	    }
 	});
 	mari.getBtnPlanificar().addMouseListener(new MouseAdapter() {
 	    @Override
 	    public void mousePressed(MouseEvent e) {
+	    VentanaPrincipal.paneles.add(panelPlanificar);
+	    VentanaPrincipal.btnVolver.setVisible(true);
 		mostrarPanel("planificar");
 	    }
 	});
