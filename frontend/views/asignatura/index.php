@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'NOMBRE_ASIGNATURA',
             'ANIO',
             'SEMESTRE',            
-            'HORAS_TEO', 
+            /*'HORAS_TEO', 
             'HORAS_LAB_COM', 
             'HORAS_AYUDANTIA', 
             'HORAS_LAB_FISICA', 
@@ -43,7 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'HORAS_TALLER_ARQUITECTURA', 
             'HORAS_TALLER_MADERA', 
             'HORAS_GYM', 
-            'HORAS_AUDITORIO', 
+            'HORAS_AUDITORIO', */
 
             ['class' => 'yii\grid\ActionColumn'],
             ],
