@@ -18,6 +18,8 @@ import javax.swing.tree.TreeCellRenderer;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
 
+import db.Conexion;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -29,6 +31,7 @@ import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
+import java.sql.ResultSet;
 import java.util.Enumeration;
 import java.util.EventObject;
 import java.util.Objects;
@@ -72,47 +75,34 @@ public class PanelTreeSalas extends JPanel {
             }
         };
         tree.setModel(new DefaultTreeModel(
-        	new DefaultMutableTreeNode("UBB") {
-		    private static final long serialVersionUID = 1L;
-			{
-        			DefaultMutableTreeNode node_1;
-        			DefaultMutableTreeNode node_2;
-        			DefaultMutableTreeNode node_3;
-        			node_1 = new DefaultMutableTreeNode("Facultad1");
-        				node_2 = new DefaultMutableTreeNode("Departamento1");
-        					node_3 = new DefaultMutableTreeNode("Edificio 1");
-        						node_3.add(new DefaultMutableTreeNode("Sala 1"));
-        						node_3.add(new DefaultMutableTreeNode("sala 2"));
-        						node_3.add(new DefaultMutableTreeNode("sala 3"));
-        					node_2.add(node_3);
-        					node_3 = new DefaultMutableTreeNode("Edificio 2");
-        						node_3.add(new DefaultMutableTreeNode("sala 4"));
-        						node_3.add(new DefaultMutableTreeNode("sala 5"));
-        					node_2.add(node_3);
-        				node_1.add(node_2);
-        				node_2 = new DefaultMutableTreeNode("Departamento2");
-        					node_3 = new DefaultMutableTreeNode("Edificio 3");
-        						node_3.add(new DefaultMutableTreeNode("Sala 6"));
-        						node_3.add(new DefaultMutableTreeNode("Sala 8"));
-        						node_3.add(new DefaultMutableTreeNode("Sala 9"));
-        					node_2.add(node_3);
-        					node_3 = new DefaultMutableTreeNode("Edificio 4");
-        						node_3.add(new DefaultMutableTreeNode("Sala 10"));
-        					node_2.add(node_3);
-        				node_1.add(node_2);
-        			add(node_1);
-        			node_1 = new DefaultMutableTreeNode("Facultad2");
-        				node_1.add(new DefaultMutableTreeNode("Departaamento3"));
-        			add(node_1);
-        			node_1 = new DefaultMutableTreeNode("EdificiosSinDepartamento");
-        				node_2 = new DefaultMutableTreeNode("Edificio5");
-        					node_2.add(new DefaultMutableTreeNode("Sala 11"));
-        					node_2.add(new DefaultMutableTreeNode("Sala 12"));
-        				node_1.add(node_2);
-        			add(node_1);
-        		}
-        	}
-        ));
+            	new DefaultMutableTreeNode("UBB") {
+    		    private static final long serialVersionUID = 1L;
+    			{
+    				try{
+    					ResultSet rsFacultad = Conexion.ejecutarSQL("select * from facultad");    					
+    					while(rsFacultad.next()){
+    						DefaultMutableTreeNode node_0;
+    						node_0 = new DefaultMutableTreeNode("["+rsFacultad.getString("ID_FACULTAD")+"] - "+rsFacultad.getString("NOMBRE_FACULTAD"));
+    						ResultSet rsEdificio = Conexion.ejecutarSQL("select ID_EDIFICIO, NOMBRE_EDIFICIO from edificio where ID_FACULTAD="+rsFacultad.getString("ID_FACULTAD"));
+    						while(rsEdificio.next()){
+    						   	DefaultMutableTreeNode node_1;
+    						   	node_1 = new DefaultMutableTreeNode("["+rsEdificio.getString("ID_EDIFICIO")+"] - "+rsEdificio.getString("NOMBRE_EDIFICIO"));
+    						    ResultSet rsSala = Conexion.ejecutarSQL("select * from sala where ID_EDIFICIO='"+rsEdificio.getString("ID_EDIFICIO")+"'");  	
+    						    while(rsSala.next()){
+    								node_1.add(new DefaultMutableTreeNode("["+rsSala.getString("ID_SALA")+"]"));					    					    	 
+    							   	}
+    					    	node_0.add(node_1);
+    							    }
+    					  add(node_0);
+    						}
+    					  
+    					 }
+    			 catch (Exception e) {
+    						    
+    					  }   	
+               		}
+            	}
+            ));
         TreeModel model = tree.getModel();
         DefaultMutableTreeNode root = (DefaultMutableTreeNode) model.getRoot();
         @SuppressWarnings("rawtypes")
@@ -127,14 +117,7 @@ public class PanelTreeSalas extends JPanel {
         model.addTreeModelListener(new CheckBoxStatusUpdateListener());
         tree.setEditable(true);
         tree.setBorder(BorderFactory.createEmptyBorder(4, 4, 4, 4));
-
-        //???#1: JDK 1.6.0 bug??? Nimbus LnF
-        //tree.setCellRenderer(new CheckBoxNodeRenderer());
-        //tree.setCellEditor(new CheckBoxNodeEditor());
-
         tree.expandRow(0);
-        //tree.setToggleClickCount(1);
-
         setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         add(tituloSalas);
