@@ -6,6 +6,7 @@
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+use frontend\models\SubirArchivo;
 
 $this->title = 'Menú de administración';
 $this->params['breadcrumbs'][] = $this->title;
@@ -19,8 +20,8 @@ $this->params['breadcrumbs'][] = $this->title;
 		<div class="panel-body">
 			<div class="panel panel-default panel col-xs-12"> 
 				<h2 class="">Módulo de planificación</h2>
-				<p><a class="btn btn-lg btn-default col-xs-6" href="index.php?r=departamento/index">Departamentos</a></p>
 				<p><a class="btn btn-lg btn-default col-xs-6" href="index.php?r=facultad/index">Facultades</a></p>
+				<p><a class="btn btn-lg btn-default col-xs-6" href="index.php?r=departamento/index">Departamentos</a></p>
 				<p><a class="btn btn-lg btn-default col-xs-6" href="index.php?r=edificio/index">Edificios</a></p>
 				<p><a class="btn btn-lg btn-default col-xs-6" href="index.php?r=sala/index">Salas</a></p>
 				<p><a class="btn btn-lg btn-default col-xs-6" href="index.php?r=bloque/index">Asignaciones</a></p>
@@ -59,7 +60,16 @@ $this->params['breadcrumbs'][] = $this->title;
 			<div class="panel panel-default col-xs-12">
 				<h2 class="">Módulo de respaldo</h2>
 				<p><a class="btn btn-lg btn-default col-xs-6" href="index.php?r=site/respaldo">Exportar base de datos</a></p>
-				<p><a class="btn btn-lg btn-default col-xs-6" href="#">Importar base de datos</a></p>
+				<p><a class="col-xs-6" href="#">
+					<?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'action' => 'index.php?r=site/importardb']) ?>
+
+				    <?= $form->field(new SubirArchivo, 'file')->fileInput(["class" => "btn btn-default"]) 
+				    -> label(false) ?>
+
+   					 <button class="btn btn-success">Importar</button>
+
+					<?php ActiveForm::end() ?>
+				</a></p>
 			</div>
 
 

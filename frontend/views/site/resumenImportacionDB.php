@@ -10,6 +10,7 @@ use yii\bootstrap\ActiveForm;
 $this->title = 'Resumen de la importación';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<!--nececito Array de agregar, array de actualizar, array de no cambios, pagina anterior, errores, nombre tabla -->
 <div>
 
 	<h1><?php echo Html::encode($this->title); if(isset($tabla)) echo " [$tabla]";  ?></h1>
@@ -83,7 +84,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	<button class="btn btn-success" disabled>Continuar</button>
 	<?php } ?>
 	<?php if(count($errores) == 0){ ?> 
-			<button class="btn btn-success" onclick="location.href='index.php?r=<?php echo "site/ejecutar-importacion&el=$tabla&inputFile=$archivo";?>'">Continuar</button>
+			<button class="btn btn-success" onclick="location.href='index.php?r=<?php echo "site/ejecutar-importacionbd&inputFile=$archivo";?>'">Continuar</button>
 	<?php } ?>
 
 	
