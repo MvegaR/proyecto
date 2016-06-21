@@ -44,7 +44,14 @@ public class Autentificacion extends JPanel {
     	add(btnEntrar);
 
     }
+    public String getTexto_user(){
+    	return texto_user.getText();
+    }
     
+    public String getPassword_texto(){
+    	return password_texto.getText();
+    	
+    }
     public JButton getBtnEntrar(){
     	return btnEntrar;
     }
