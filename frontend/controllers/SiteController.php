@@ -269,7 +269,7 @@ class SiteController extends Controller{
 				}
 			}
 		}
-		
+
 		return $msj;
 	}
 
@@ -298,6 +298,7 @@ class SiteController extends Controller{
 			}
 			$cantidadDeHojas = $objPHPExcel -> getSheetCount();
 			$tablas = $objPHPExcel -> getSheetNames();
+
 			foreach ($tablas as $tabla) {
 				if($tabla == "Worksheet"){ //al exportar se crea una hoja con este nombre vacia :/
 					continue;
@@ -306,51 +307,62 @@ class SiteController extends Controller{
 				$nFilas = $sheet -> getHighestRow();
 				$letraColumna = $sheet -> getHighestColumn();
 				$nColumnas =  \PHPExcel_Cell::columnIndexFromString($letraColumna);
-				for($row = 1; $row <= $nFilas; $row++){
+				if($nFilas <= 1 || $nColumnas == 0 || !$sheet){
 					$erroresDeEstaTabla = [];
 					$agregarDeEstaTabla = [];
 					$actualizarDeEstatabla = [];
-					$rowData = $sheet->rangeToArray('A'.$row.':'.$letraColumna.$row,null,true,false);
-					if($row == 1){
-						continue;
-					} 
-					$selectDB2 = "SELECT COLUMN_NAME FROM COLUMNS where TABLE_SCHEMA = '$nombreDB' and TABLE_NAME = '$tabla' and COLUMN_KEY = 'PRI'";
-					$clave = Yii::$app -> db2 -> createCommand($selectDB2) -> queryOne()['COLUMN_NAME'];
-					if(ctype_digit($rowData[0][0])){
-						$selectSql = "SELECT * FROM $tabla WHERE $clave = ".$rowData[0][0].";";
-					}else{
-						$selectSql = "SELECT * FROM $tabla WHERE $clave = '".$rowData[0][0]."';";
-					}
-					$selectDB2 = "SELECT COLUMN_NAME FROM COLUMNS where TABLE_SCHEMA = '$nombreDB' and TABLE_NAME = '$tabla'; orderBy(ORDINAL_POSITION);";
-						$resultado = Yii::$app -> db2 -> createCommand($selectDB2) -> queryAll();
-					$contador = 0;
-					if(count($resultado) != $nColumnas && $nColumnas != 0){
-						array_push($erroresDeEstaTabla, ['cantidad'=>"La cantidad de columnas del archivo excel no es valido, Excel: ". count($resultado) ." Tabla en BD:". $nColumnas]);
-						break;
-					}
-					foreach($resultado as $fila){
-						foreach($this->checkClavesForaneas($tabla, array_values($fila)[0], 
-								$rowData[0][$contador], $nombreDB) as $ms){
-							array_push($erroresDeEstaTabla,  $ms);
+					$actualizar[$tabla] = $actualizarDeEstatabla;
+					$agregar[$tabla] = $agregarDeEstaTabla;
+					$error[$tabla] = $erroresDeEstaTabla;
+					$resultado[$tabla] = [];
+				}else {
+					$erroresDeEstaTabla = [];
+					$agregarDeEstaTabla = [];
+					$actualizarDeEstatabla = [];
+					for($row = 1; $row <= $nFilas; $row++){
+
+						$rowData = $sheet->rangeToArray('A'.$row.':'.$letraColumna.$row,null,true,false);
+						if($row == 1){
+							continue;
+						} 
+						$selectDB2 = "SELECT COLUMN_NAME FROM COLUMNS where TABLE_SCHEMA = '$nombreDB' and TABLE_NAME = '$tabla' and COLUMN_KEY = 'PRI'";
+						$clave = Yii::$app -> db2 -> createCommand($selectDB2) -> queryOne()['COLUMN_NAME'];
+						if(ctype_digit($rowData[0][0])){
+							$selectSql = "SELECT * FROM $tabla WHERE $clave = ".$rowData[0][0].";";
+						}else{
+							$selectSql = "SELECT * FROM $tabla WHERE $clave = '".$rowData[0][0]."';";
 						}
-						array_push($error,  [$tabla => $ms]);
-						$contador++;
-					}
-					$contador = 0;
-					if( (Yii::$app -> db -> createCommand($selectSql) -> execute()) == 1 ){
-						array_push($actualizarDeEstatabla, $rowData[0]);
-					} else {
-						array_push($agregarDeEstaTabla, $rowData[0]);
-					}
-				} 
-				array_push($actualizar, [$tabla => $actualizarDeEstatabla]);
-				array_push($agregar, [$tabla => $agregarDeEstaTabla]);
-				array_push($error, [$tabla => $erroresDeEstaTabla]);
+						$selectDB2 = "SELECT COLUMN_NAME FROM COLUMNS where TABLE_SCHEMA = '$nombreDB' and TABLE_NAME = '$tabla'; orderBy(ORDINAL_POSITION);";
+						$resultado[$tabla] = Yii::$app -> db2 -> createCommand($selectDB2) -> queryAll();	
+						$contador = 0;
+						if(count($resultado[$tabla]) != $nColumnas && $nColumnas != 0){
+							array_push($erroresDeEstaTabla, ['cantidad'=>"La cantidad de columnas del archivo excel no es valido, Excel: ". $nColumnas ." Tabla en BD:". count($resultado[$tabla])]);
+							break;
+						}
+						foreach($resultado[$tabla] as $fila){
+							foreach($this->checkClavesForaneas($tabla, array_values($fila)[0], 
+									$rowData[0][$contador], $nombreDB) as $ms){
+								array_push($erroresDeEstaTabla,  $ms);
+							}
+							$error[$tabla] = $erroresDeEstaTabla;
+							$contador++;
+						}
+						$contador = 0;
+						if( (Yii::$app -> db -> createCommand($selectSql) -> execute()) == 1 ){
+							array_push($actualizarDeEstatabla, $rowData[0]);
+						} else {
+							array_push($agregarDeEstaTabla, $rowData[0]);
+						}
+					} 
+					$actualizar[$tabla] = $actualizarDeEstatabla;
+					$agregar[$tabla] = $agregarDeEstaTabla;
+					$error[$tabla] = $erroresDeEstaTabla;
+				}
 			}
 
 
 		}
-		return $this -> render("resumenImportacion",["agregar" => $agregar, "actualizar" => $actualizar, "paginaAnterior" => $paginaAnterior, "archivo" => $inputFile,"tablas"=>$tablas, "columnas" => $resultado, "errores" => $error]);
+		return $this -> render("resumenImportaciondb",["agregar" => $agregar, "actualizar" => $actualizar, "paginaAnterior" => $paginaAnterior, "archivo" => $inputFile,"tablas"=>$tablas, "columnas" => $resultado, "errores" => $error]);
 
 	}
 
@@ -405,6 +417,7 @@ class SiteController extends Controller{
 				}
 				$selectDB2 = "SELECT COLUMN_NAME FROM COLUMNS where TABLE_SCHEMA = '$nombreDB' and TABLE_NAME = '$nombretabla2'; orderBy(ORDINAL_POSITION);";
 					$resultado = Yii::$app -> db2 -> createCommand($selectDB2) -> queryAll();
+
 				$contador = 0;
 				if(count($resultado) != $nColumnas && $nColumnas != 0){
 					array_push($error, "La cantidad de columnas del archivo excel no es valido, Excel: ". count($resultado) ." Tabla en BD:". $nColumnas);
@@ -468,8 +481,8 @@ class SiteController extends Controller{
 			if($tabla == "Worksheet"){ //al exportar se crea una hoja con este nombre vacia :/
 						continue;
 			}
-			$agregar = [];
-			$actualizar = [];
+			//$agregar = [];
+			//$actualizar = [];
 			$consultas = [];
 			$sheet = $objPHPExcel -> getSheetByName($tabla);
 			$nFilas = $sheet -> getHighestRow();
@@ -513,11 +526,11 @@ class SiteController extends Controller{
 					}else{
 						$cadena = $cadena." WHERE $clave = '".$rowData[0][0]."'";
 					}
-					array_push($actualizar, $rowData[0]);
+					//array_push($actualizar, $rowData[0]);
 					array_push($consultas, $cadena);
 				}else{
 					array_push($consultas, "INSERT INTO $tabla values (".$this->print_paraSQL($rowData[0]).")");
-					array_push($agregar, $rowData[0]);
+					//array_push($agregar, $rowData[0]);
 				}
 			} 
 
@@ -633,7 +646,7 @@ class SiteController extends Controller{
 			$id = substr($consulta, strpos($consulta,"(")+1,strpos($consulta,",")-strpos($consulta,"'")-1); //id de intenger
 			$model = new Dia;
 			$model = $model -> find() -> where(["ID_DIA" => $id]) -> one();
-			$salas = Salas::find()-> all();
+			$salas = Sala::find()-> all();
 			$tiempo_inicio = TiempoInicio::find()->all();
 			foreach ($salas as $sala) {
 				foreach ($tiempo_inicio as $tiempo) {
@@ -651,7 +664,7 @@ class SiteController extends Controller{
 			$id = substr($consulta, strpos($consulta,"'")+1,strpos($consulta,",")-strpos($consulta,"'")-2); //id de cadena
 			$tiempo = new TiempoInicio;
 			$tiempo = $tiempo -> find() -> where(["TIEMPO" => $id]) -> one();
-			$salas = Salas::find()-> all();
+			$salas = Sala::find()-> all();
 			$dias = Dia::find()->all();
 			foreach ($salas as $sala) {
 				foreach ($dias as $dia ) {

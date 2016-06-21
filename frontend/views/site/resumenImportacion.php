@@ -20,8 +20,11 @@ $this->params['breadcrumbs'][] = $this->title;
 		<div class="alert alert-danger">
 		<ul>
 			<?php foreach ($errores as $error) {
-					
-					echo "<li> Inserte en '".$error['tabla']."' una tupla con clave '".$error['columna']."' igual a '".$error['valor']."'"."<br></li>";
+					if(isset($error['tabla']) && isset($error['columna']) && $error['valor']){
+						echo "<li> Inserte en '".$error['tabla']."' una tupla con clave '".$error['columna']."' igual a '".$error['valor']."'"."<br></li>";
+					}else if(isset($error['cantidad'])){
+						echo $error['cantidad'];
+					}
 					
 				} 
 			?>
@@ -51,7 +54,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			?>
 		</table>
 		</div>
-	<p><h3>Elementos por actualizar</h3></p>
+	<p><h3>Elementos por actualizar</h3><h6> Puede que no existan cambios pero son sus valores finales entregados en el excel</h6></p>
 		<div class="table-responsive">
 			<table class="table">
 			<tr>
