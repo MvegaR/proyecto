@@ -4,6 +4,8 @@ import java.sql.*;
 
 import javax.swing.JOptionPane;
 
+import gui.MensajesError;
+
 public class Conexion {
 	
 	private static String user = "root";
@@ -19,10 +21,7 @@ public class Conexion {
 	    con.close();
 	    return stmt.getResultSet();
 	} catch (Exception e) {
-		JOptionPane.showMessageDialog(null,
-		        "Error al conectar con la base de datos! '",
-		        "Error Base de Datos",
-		        JOptionPane.ERROR_MESSAGE);
+		MensajesError.meEr_FallaConexion();
 		System.exit(0);
 	}
 	    return null;
@@ -36,10 +35,7 @@ public class Conexion {
     	    con.close();
     	    return true;
     	} catch (Exception e) {
-    		JOptionPane.showMessageDialog(null,
-    		        "Error al conectar con la base de datos! '",
-    		        "Error Base de Datos",
-    		        JOptionPane.ERROR_MESSAGE);
+    		MensajesError.meEr_FallaConexion();
     		System.exit(0);
     	}
     	return false;
