@@ -34,6 +34,7 @@ public class VentanaPrincipal extends JFrame {
     private JPanel seccionOpciones;
     public static JButton btnVolver;
     private JButton btnSalir;
+    private MensajesError error;
 
     //---------------------------------------------------------------------
     //Se debe rellenar estas listas cada vez que se inicie le programa:
@@ -48,11 +49,14 @@ public class VentanaPrincipal extends JFrame {
     private ArrayList<Facultad> facultades = new ArrayList<>();
     private ArrayList<Sala> salas = new ArrayList<>();
     private ArrayList<Seccion> secciones = new ArrayList<>();
-    public static ArrayList<JPanel> paneles = new ArrayList<>(); // Para el boton volver atras
+    public static ArrayList<JPanel> paneles = new ArrayList<>();  
 
+  
+    
     //---------------------------------------------------------------------
-
+   
     public VentanaPrincipal() {
+    error = new MensajesError();
 	this.setResizable(false);
 	this.setUndecorated(true);
 	panelRaul = new GestionPaneles();
@@ -122,6 +126,7 @@ public class VentanaPrincipal extends JFrame {
 	} catch (SQLException e) {
 	    // TODO Auto-generated catch block
 	    e.printStackTrace();
+	    
 	}
 	//fin rellenar Bloques.
 
@@ -134,6 +139,7 @@ public class VentanaPrincipal extends JFrame {
 	} catch (SQLException e) {
 	    // TODO Auto-generated catch block
 	    e.printStackTrace();
+	      
 	}
 	//fin rellenar Carrera.
 
@@ -146,6 +152,7 @@ public class VentanaPrincipal extends JFrame {
 	} catch (SQLException e) {
 	    // TODO Auto-generated catch block
 	    e.printStackTrace();
+	    
 	}
 	//fin rellenar Departamento.
 
@@ -155,9 +162,10 @@ public class VentanaPrincipal extends JFrame {
 	    while(tabla.next()){
 		this.getDocentes().add(new Docente(tabla));
 	    }
-	} catch (SQLException e) {
+	} catch (SQLException e) { 
 	    // TODO Auto-generated catch block
 	    e.printStackTrace();
+	     
 	}
 	//fin rellenar Docentes.
 
@@ -170,10 +178,11 @@ public class VentanaPrincipal extends JFrame {
 	} catch (SQLException e) {
 	    // TODO Auto-generated catch block
 	    e.printStackTrace();
+	   
 	}
 	//fin rellenar Edificios.
 
-	//inicio rellenar Sacultades:
+	//inicio rellenar Facultades:
 	tabla = Conexion.ejecutarSQL("Select * from facultad");
 	try {
 	    while(tabla.next()){
@@ -182,8 +191,9 @@ public class VentanaPrincipal extends JFrame {
 	} catch (SQLException e) {
 	    // TODO Auto-generated catch block
 	    e.printStackTrace();
+	        
 	}
-	//fin rellenar Sacultades.
+	//fin rellenar Facultades.
 
 	//inicio rellenar Salas:
 	tabla = Conexion.ejecutarSQL("Select * from sala");
@@ -194,6 +204,7 @@ public class VentanaPrincipal extends JFrame {
 	} catch (SQLException e) {
 	    // TODO Auto-generated catch block
 	    e.printStackTrace();
+	       
 	}
 	//fin rellenar Salas.
 
@@ -206,6 +217,7 @@ public class VentanaPrincipal extends JFrame {
 	} catch (SQLException e) {
 	    // TODO Auto-generated catch block
 	    e.printStackTrace();
+	    
 	}
 	//fin rellenar Secciones.
 //*
