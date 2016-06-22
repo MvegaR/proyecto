@@ -15,15 +15,15 @@ import java.util.ArrayList;
 
 public class BuscarErrores {
     
-    private ArrayList<Asignatura> asignaturas = new ArrayList<>();
-    private ArrayList<Bloque> bloques = new ArrayList<>();
-    private ArrayList<Carrera> carreras = new ArrayList<>();
-    private ArrayList<Departamento> departamentos = new ArrayList<>();
-    private ArrayList<Docente> docentes = new ArrayList<>();
-    private ArrayList<Edificio> edificios = new ArrayList<>();
-    private ArrayList<Facultad> facultades = new ArrayList<>();
-    private ArrayList<Sala> salas = new ArrayList<>();
-    private ArrayList<Seccion> secciones = new ArrayList<>();
+    private ArrayList<Asignatura> asignaturas ;
+    private ArrayList<Bloque> bloques;
+    private ArrayList<Carrera> carreras;
+    private ArrayList<Departamento> departamentos;
+    private ArrayList<Docente> docentes;
+    private ArrayList<Edificio> edificios;
+    private ArrayList<Facultad> facultades;
+    private ArrayList<Sala> salas;
+    private ArrayList<Seccion> secciones;
 
     public BuscarErrores(VentanaPrincipal ventanaPrincipal) {
         asignaturas = ventanaPrincipal.getAsignaturas();
