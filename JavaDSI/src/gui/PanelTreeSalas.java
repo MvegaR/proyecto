@@ -79,24 +79,46 @@ public class PanelTreeSalas extends JPanel {
     		    private static final long serialVersionUID = 1L;
     			{
     				try{
-    					ResultSet rsFacultad = Conexion.ejecutarSQL("select * from facultad");    					
-    					while(rsFacultad.next()){
+    					for(int i = 1; i <=2; i++){
     						DefaultMutableTreeNode node_0;
-    						node_0 = new DefaultMutableTreeNode("["+rsFacultad.getString("ID_FACULTAD")+"] - "+rsFacultad.getString("NOMBRE_FACULTAD"));
-    						ResultSet rsEdificio = Conexion.ejecutarSQL("select ID_EDIFICIO, NOMBRE_EDIFICIO from edificio where ID_FACULTAD="+rsFacultad.getString("ID_FACULTAD"));
-    						while(rsEdificio.next()){
-    						   	DefaultMutableTreeNode node_1;
-    						   	node_1 = new DefaultMutableTreeNode("["+rsEdificio.getString("ID_EDIFICIO")+"] - "+rsEdificio.getString("NOMBRE_EDIFICIO"));
-    						    ResultSet rsSala = Conexion.ejecutarSQL("select * from sala where ID_EDIFICIO='"+rsEdificio.getString("ID_EDIFICIO")+"'");  	
-    						    while(rsSala.next()){
-    								node_1.add(new DefaultMutableTreeNode("["+rsSala.getString("ID_SALA")+"]"));					    					    	 
-    							   	}
-    					    	node_0.add(node_1);
-    							    }
-    					  add(node_0);
+    						if(i==1){ 
+    						node_0 = new DefaultMutableTreeNode("Con Facultad");
+    						ResultSet rsFacultad = Conexion.ejecutarSQL("select * from facultad");    					
+							while(rsFacultad.next()){
+								DefaultMutableTreeNode node_1;
+								node_1 = new DefaultMutableTreeNode("["+rsFacultad.getString("ID_FACULTAD")+"] - "+rsFacultad.getString("NOMBRE_FACULTAD"));
+								ResultSet rsEdificio = Conexion.ejecutarSQL("select ID_EDIFICIO, NOMBRE_EDIFICIO from edificio where ID_FACULTAD="+rsFacultad.getString("ID_FACULTAD"));
+									while(rsEdificio.next()){
+										DefaultMutableTreeNode node_2;
+										node_2 = new DefaultMutableTreeNode("["+rsEdificio.getString("ID_EDIFICIO")+"] - "+rsEdificio.getString("NOMBRE_EDIFICIO"));
+										ResultSet rsSala = Conexion.ejecutarSQL("select * from sala where ID_EDIFICIO='"+rsEdificio.getString("ID_EDIFICIO")+"'");  	
+											while(rsSala.next()){
+												node_2.add(new DefaultMutableTreeNode("["+rsSala.getString("ID_SALA")+"]"));					    					    	 
+											}
+											node_1.add(node_2);
+										}
+									node_0.add(node_1);
+								}
+							add(node_0);					 		    						
     						}
-    					  
-    					 }
+    						else{ 
+    						node_0 = new DefaultMutableTreeNode("Sin Facultad");
+    						ResultSet rsEdificio = Conexion.ejecutarSQL("select ID_EDIFICIO, NOMBRE_EDIFICIO from edificio where ID_FACULTAD IS NULL");
+    							while(rsEdificio.next()){
+    								DefaultMutableTreeNode node_1;
+    								node_1 = new DefaultMutableTreeNode("["+rsEdificio.getString("ID_EDIFICIO")+"] - "+rsEdificio.getString("NOMBRE_EDIFICIO"));
+    								ResultSet rsSala = Conexion.ejecutarSQL("select * from sala where ID_EDIFICIO='"+rsEdificio.getString("ID_EDIFICIO")+"'");  	
+    								while(rsSala.next()){
+    									node_1.add(new DefaultMutableTreeNode("["+rsSala.getString("ID_SALA")+"]"));					    					    	 
+    									}
+    								node_0.add(node_1);
+    								}
+    							add(node_0);
+    						}
+    						
+    				}
+    				
+    			}
     			 catch (Exception e) {
     						    
     					  }   	
