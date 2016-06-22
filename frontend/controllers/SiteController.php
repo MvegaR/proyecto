@@ -274,6 +274,8 @@ class SiteController extends Controller{
 	}
 
 	public function actionImportardb(){
+		ini_set('max_execution_time', 3000);  
+		ini_set('memory_limit', '-1');
 		$agregar = [];
 		$actualizar = [];
 		$consultas = [];
@@ -368,6 +370,8 @@ class SiteController extends Controller{
 
 
 	public function actionImportarExcel($nombretabla){
+		ini_set('max_execution_time', 3000);  
+		ini_set('memory_limit', '-1');
 		if(strpos($nombretabla,'/',0) != false){
 			$nombretabla = substr($nombretabla, 0, strpos($nombretabla,'/',0));
 		}else if (strpos($nombretabla,'%',0) != false){
@@ -463,6 +467,8 @@ class SiteController extends Controller{
 	public function actionEjecutarImportacionbd($inputFile){
 
 		//$nombretabla = $el;
+		ini_set('max_execution_time', 3000);  
+		ini_set('memory_limit', '-1');
 
 		$resultado = null;
 		$nombreDB = Yii::$app -> db -> createCommand("SELECT DATABASE()") -> queryOne()['DATABASE()'];
@@ -548,6 +554,8 @@ class SiteController extends Controller{
 
 
 	public function actionEjecutarImportacion($el, $inputFile){
+		ini_set('max_execution_time', 3000);  
+		ini_set('memory_limit', '-1');
 
 		$nombretabla = $el;
 		$agregar = [];

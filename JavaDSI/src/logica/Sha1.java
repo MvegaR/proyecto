@@ -9,7 +9,9 @@ public class Sha1 {
 	 * @param args
 	 * @throws NoSuchAlgorithmException 
 	 */
-	/*public static void main(String[] args) throws NoSuchAlgorithmException {
+	
+	/*
+	public static void main(String[] args) throws NoSuchAlgorithmException {
 	        System.out.println(sha1("Admin"));
 	    }*/
 
