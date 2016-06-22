@@ -63,7 +63,7 @@ class CarreraController extends Controller
         $model = new Carrera();
 
         if ($model->load(Yii::$app->request->post())) {
-            if($model -> ID_FACULTAD = ''){
+            if($model -> ID_FACULTAD == ''){
                 $model -> ID_FACULTAD = null;
             }
             if($model->save())
@@ -87,7 +87,7 @@ class CarreraController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post())) {
-            if($model -> ID_FACULTAD = ''){
+            if($model -> ID_FACULTAD == ''){
                 $model -> ID_FACULTAD = null;
             }
             if($model->save())
