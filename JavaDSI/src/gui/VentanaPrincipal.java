@@ -56,7 +56,7 @@ public class VentanaPrincipal extends JFrame {
     //---------------------------------------------------------------------
 
     public VentanaPrincipal() {
-	barras = new DescargaDeDB();
+	DescargaDeDB barras = new DescargaDeDB();
 	error = new MensajesError();
 	this.setResizable(false);
 	this.setUndecorated(true);
@@ -118,6 +118,7 @@ public class VentanaPrincipal extends JFrame {
 	    totalElementos = total.getInt(1);
 	    while(tabla.next()){
 		this.getAsignaturas().add(new Asignatura(tabla));
+		
 	    }
 	} catch (SQLException e) {
 	    // TODO Auto-generated catch block
