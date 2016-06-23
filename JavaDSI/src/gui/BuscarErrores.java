@@ -65,37 +65,37 @@ public class BuscarErrores {
     	}
     
     public void SinBloques(){
-   	 if(asignaturas.isEmpty())
+   	 if(bloques.isEmpty())
    	  MensajesError.MeEr_SinBloques();
    	}
     
     public void SinCarreras(){
-      	 if(asignaturas.isEmpty())
+      	 if(carreras.isEmpty())
       	  MensajesError.MeEr_SinCarreras();
       	}
     
     public void SinDepartamento(){
-     	 if(asignaturas.isEmpty())
+     	 if(departamentos.isEmpty())
      	  MensajesError.MeEr_SinDepartamentos();
      	}
     
     public void SinDocentes(){
-     	 if(asignaturas.isEmpty())
+     	 if(docentes.isEmpty())
      	  MensajesError.MeEr_SinDocentes();
      	}
     
     public void SinEdificios(){
-     	 if(asignaturas.isEmpty())
+     	 if(edificios.isEmpty())
      	  MensajesError.MeEr_SinEdificios();
      	}
     
     public void SinSalas(){
-     	 if(asignaturas.isEmpty())
+     	 if(salas.isEmpty())
      	  MensajesError.MeEr_SinSalas();
      	}
     
     public void SinSecciones(){
-     	 if(asignaturas.isEmpty())
+     	 if(secciones.isEmpty())
      	  MensajesError.MeEr_SinSecciones();
      	}
     

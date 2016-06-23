@@ -14,6 +14,17 @@ public class DescargaDeDB extends JPanel {
      */
     private static final long serialVersionUID = 1L;
 
+	private JProgressBar departamentosBar = new JProgressBar();
+	private JProgressBar docentesBar = new JProgressBar();
+	private JProgressBar edificiosBar = new JProgressBar();
+	private JProgressBar salaBar = new JProgressBar();
+	private JProgressBar carrerasBar = new JProgressBar();
+	private JProgressBar seccionesBar = new JProgressBar();
+	private JProgressBar bloquesBar = new JProgressBar();
+	private JProgressBar asignaturasBar = new JProgressBar();
+	private JProgressBar facultadesBar = new JProgressBar();
+
+
     /**
      * Create the panel.
      */
@@ -44,7 +55,7 @@ public class DescargaDeDB extends JPanel {
 	lblDocentes.setFont(new Font("Tahoma", Font.PLAIN, 19));
 	panel_1.add(lblDocentes);
 
-	JProgressBar facultadesBar = new JProgressBar();
+	
 	facultadesBar.setForeground(new Color(0, 102, 204));
 	facultadesBar.setValue(100);
 	facultadesBar.setStringPainted(true);
@@ -63,7 +74,7 @@ public class DescargaDeDB extends JPanel {
 	lblDepartamentos.setBounds(10, 11, 146, 23);
 	panel_2.add(lblDepartamentos);
 
-	JProgressBar departamentosBar = new JProgressBar();
+	
 	departamentosBar.setForeground(new Color(0, 102, 204));
 	departamentosBar.setStringPainted(true);
 	departamentosBar.setValue(100);
@@ -82,7 +93,7 @@ public class DescargaDeDB extends JPanel {
 	lblDocentes_1.setBounds(10, 11, 146, 23);
 	panel_3.add(lblDocentes_1);
 
-	JProgressBar docentesBar = new JProgressBar();
+	
 	docentesBar.setForeground(new Color(0, 102, 204));
 	docentesBar.setValue(100);
 	docentesBar.setStringPainted(true);
@@ -101,7 +112,7 @@ public class DescargaDeDB extends JPanel {
 	lblEdificios.setBounds(10, 11, 146, 23);
 	panel_4.add(lblEdificios);
 
-	JProgressBar edificiosBar = new JProgressBar();
+	
 	edificiosBar.setForeground(new Color(0, 102, 204));
 	edificiosBar.setValue(100);
 	edificiosBar.setStringPainted(true);
@@ -120,7 +131,7 @@ public class DescargaDeDB extends JPanel {
 	lblSalas.setBounds(10, 11, 146, 23);
 	panel_5.add(lblSalas);
 
-	JProgressBar salaBar = new JProgressBar();
+	
 	salaBar.setValue(100);
 	salaBar.setForeground(new Color(0, 102, 204));
 	salaBar.setStringPainted(true);
@@ -139,7 +150,7 @@ public class DescargaDeDB extends JPanel {
 	lblCarreras.setBounds(10, 11, 146, 23);
 	panel_6.add(lblCarreras);
 
-	JProgressBar carrerasBar = new JProgressBar();
+	
 	carrerasBar.setForeground(new Color(0, 102, 204));
 	carrerasBar.setStringPainted(true);
 	carrerasBar.setBounds(166, 11, 820, 23);
@@ -157,7 +168,7 @@ public class DescargaDeDB extends JPanel {
 	lblSecciones.setBounds(10, 11, 146, 23);
 	panel_7.add(lblSecciones);
 
-	JProgressBar seccionesBar = new JProgressBar();
+	
 	seccionesBar.setForeground(new Color(0, 102, 204));
 	seccionesBar.setValue(100);
 	seccionesBar.setStringPainted(true);
@@ -176,7 +187,7 @@ public class DescargaDeDB extends JPanel {
 	lblBloques.setBounds(10, 11, 146, 23);
 	panel_8.add(lblBloques);
 
-	JProgressBar bloquesBar = new JProgressBar();
+	
 	bloquesBar.setValue(100);
 	bloquesBar.setForeground(new Color(0, 102, 204));
 	bloquesBar.setStringPainted(true);
@@ -195,12 +206,145 @@ public class DescargaDeDB extends JPanel {
 	lblAsignaturas.setBounds(10, 11, 146, 23);
 	panel_9.add(lblAsignaturas);
 
-	JProgressBar asignaturasBar = new JProgressBar();
+	
 	asignaturasBar.setValue(100);
 	asignaturasBar.setStringPainted(true);
 	asignaturasBar.setForeground(new Color(0, 102, 204));
 	asignaturasBar.setBounds(166, 11, 820, 23);
 	panel_9.add(asignaturasBar);
 
+    }
+    
+	/**
+     * @return the facultadesBar
+     */
+    public JProgressBar getFacultadesBar() {
+        return facultadesBar;
+    }
+
+    /**
+     * @param facultadesBar the facultadesBar to set
+     */
+    public void setFacultadesBar(JProgressBar facultadesBar) {
+        this.facultadesBar = facultadesBar;
+    }
+
+    /**
+     * @return the departamentosBar
+     */
+    public JProgressBar getDepartamentosBar() {
+        return departamentosBar;
+    }
+
+    /**
+     * @param departamentosBar the departamentosBar to set
+     */
+    public void setDepartamentosBar(JProgressBar departamentosBar) {
+        this.departamentosBar = departamentosBar;
+    }
+
+    /**
+     * @return the docentesBar
+     */
+    public JProgressBar getDocentesBar() {
+        return docentesBar;
+    }
+
+    /**
+     * @param docentesBar the docentesBar to set
+     */
+    public void setDocentesBar(JProgressBar docentesBar) {
+        this.docentesBar = docentesBar;
+    }
+
+    /**
+     * @return the edificiosBar
+     */
+    public JProgressBar getEdificiosBar() {
+        return edificiosBar;
+    }
+
+    /**
+     * @param edificiosBar the edificiosBar to set
+     */
+    public void setEdificiosBar(JProgressBar edificiosBar) {
+        this.edificiosBar = edificiosBar;
+    }
+
+    /**
+     * @return the salaBar
+     */
+    public JProgressBar getSalaBar() {
+        return salaBar;
+    }
+
+    /**
+     * @param salaBar the salaBar to set
+     */
+    public void setSalaBar(JProgressBar salaBar) {
+        this.salaBar = salaBar;
+    }
+
+    /**
+     * @return the carrerasBar
+     */
+    public JProgressBar getCarrerasBar() {
+        return carrerasBar;
+    }
+
+    /**
+     * @param carrerasBar the carrerasBar to set
+     */
+    public void setCarrerasBar(JProgressBar carrerasBar) {
+        this.carrerasBar = carrerasBar;
+    }
+
+    /**
+     * @return the seccionesBar
+     */
+    public JProgressBar getSeccionesBar() {
+        return seccionesBar;
+    }
+
+    /**
+     * @param seccionesBar the seccionesBar to set
+     */
+    public void setSeccionesBar(JProgressBar seccionesBar) {
+        this.seccionesBar = seccionesBar;
+    }
+
+    /**
+     * @return the bloquesBar
+     */
+    public JProgressBar getBloquesBar() {
+        return bloquesBar;
+    }
+
+    /**
+     * @param bloquesBar the bloquesBar to set
+     */
+    public void setBloquesBar(JProgressBar bloquesBar) {
+        this.bloquesBar = bloquesBar;
+    }
+
+    /**
+     * @return the asignaturasBar
+     */
+    public JProgressBar getAsignaturasBar() {
+        return asignaturasBar;
+    }
+
+    /**
+     * @param asignaturasBar the asignaturasBar to set
+     */
+    public void setAsignaturasBar(JProgressBar asignaturasBar) {
+        this.asignaturasBar = asignaturasBar;
+    }
+
+    /**
+     * @return the serialversionuid
+     */
+    public static long getSerialversionuid() {
+        return serialVersionUID;
     }
 }
