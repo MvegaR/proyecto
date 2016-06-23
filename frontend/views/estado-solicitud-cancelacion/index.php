@@ -5,6 +5,8 @@ use yii\grid\GridView;
 use frontend\models\SubirArchivo;
 use kartik\export\ExportMenu;
 use yii\widgets\ActiveForm;
+use frontend\models\EstadoSolicitudCancelacion;
+use yii\data\ActiveDataProvider;
 
 /* @var $this yii\web\View */
 /* @var $searchModel frontend\models\EstadoSolicitudCancelacionSearch */
@@ -45,7 +47,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'NOMBRE_ESTADO_CANCELACION',
 
         ];
-
+$query = EstadoSolicitudCancelacion::find();
+$dataProvider = new ActiveDataProvider([
+    'query' => $query,
+]);
 // Renders a export dropdown menu
         echo ExportMenu::widget([
             'dataProvider' => $dataProvider,

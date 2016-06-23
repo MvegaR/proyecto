@@ -6,6 +6,8 @@ use kartik\export\ExportMenu;
 use frontend\models\Departamento;
 use frontend\models\SubirArchivo;
 use yii\widgets\ActiveForm;
+use frontend\models\Facultad;
+use yii\data\ActiveDataProvider;
 /* @var $this yii\web\View */
 /* @var $searchModel frontend\models\FacultadSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -46,6 +48,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'NOMBRE_FACULTAD',
 
         ];
+        $query = Facultad::find();
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
 
 // Renders a export dropdown menu
         echo ExportMenu::widget([

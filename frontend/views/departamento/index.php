@@ -7,6 +7,8 @@ use yii\widgets\ActiveForm;
 use kartik\export\ExportMenu;
 use yii\helpers\ArrayHelper;
 use frontend\models\Facultad;
+use frontend\models\Departamento;
+use yii\data\ActiveDataProvider;
 
 
 /* @var $this yii\web\View */
@@ -56,7 +58,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'NOMBRE_DEPARTAMENTO',
 
         ];
-
+$query = Departamento::find();
+$dataProvider = new ActiveDataProvider([
+    'query' => $query,
+]);
 // Renders a export dropdown menu
         echo ExportMenu::widget([
             'dataProvider' => $dataProvider,

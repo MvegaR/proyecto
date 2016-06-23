@@ -5,6 +5,8 @@ use yii\grid\GridView;
 use frontend\models\SubirArchivo;
 use yii\widgets\ActiveForm;
 use kartik\export\ExportMenu;
+use frontend\models\SolicitudAsignacion;
+use yii\data\ActiveDataProvider;
 /* @var $this yii\web\View */
 /* @var $searchModel frontend\models\SolicitudAsignacionSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -61,7 +63,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'INICIO_BLOQUE_ASIGNACION', 
 
         ];
-
+$query = SolicitudAsignacion::find();
+$dataProvider = new ActiveDataProvider([
+    'query' => $query,
+]);
 // Renders a export dropdown menu
         echo ExportMenu::widget([
             'dataProvider' => $dataProvider,

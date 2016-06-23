@@ -7,6 +7,8 @@ use yii\helpers\ArrayHelper;
 use frontend\models\TipoSala;
 use yii\widgets\ActiveForm;
 use frontend\models\SubirArchivo;
+use frontend\models\Sala;
+use yii\data\ActiveDataProvider;
 
 /* @var $this yii\web\View */
 /* @var $searchModel frontend\models\PostSalafrontend */
@@ -58,7 +60,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 'CAPACIDAD_SALA',
 
         ];
-
+$query = Sala::find();
+$dataProvider = new ActiveDataProvider([
+    'query' => $query,
+]);
 // Renders a export dropdown menu
         echo ExportMenu::widget([
             'dataProvider' => $dataProvider,

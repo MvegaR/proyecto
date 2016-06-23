@@ -8,6 +8,8 @@ use frontend\models\Rol;
 use frontend\models\Departamento;
 use frontend\models\SubirArchivo;
 use yii\widgets\ActiveForm;
+use frontend\models\Docente;
+use yii\data\ActiveDataProvider;
 /* @var $this yii\web\View */
 /* @var $searchModel frontend\models\DocenteSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -64,6 +66,8 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
     <div class="col-ls-12 col-md-6">
      <?php
+
+
 echo '<div><label class="control-label">Exportar a archivo</label></div>';
 $gridColumns = [
     'ID_DOCENTE',
@@ -75,7 +79,10 @@ $gridColumns = [
     'PASSWORD',
     'COOKIE',
 ];
-
+             $query = Docente::find();
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
 // Renders a export dropdown menu
 echo ExportMenu::widget([
     'dataProvider' => $dataProvider,

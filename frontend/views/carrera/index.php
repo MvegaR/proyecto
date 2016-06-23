@@ -7,6 +7,8 @@ use yii\helpers\ArrayHelper;
 use frontend\models\Facultad;
 use frontend\models\SubirArchivo;
 use yii\widgets\ActiveForm;
+use frontend\models\Carrera;
+use yii\data\ActiveDataProvider;
 /* @var $this yii\web\View */
 /* @var $searchModel frontend\models\CarreraSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -53,7 +55,10 @@ $gridColumns = [
     'ID_FACULTAD',
     'NOMBRE_CARRERA',
 ];
-
+$query = Carrera::find();
+$dataProvider = new ActiveDataProvider([
+    'query' => $query,
+]);
 // Renders a export dropdown menu
 echo ExportMenu::widget([
     'dataProvider' => $dataProvider,

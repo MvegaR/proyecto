@@ -5,6 +5,8 @@ use yii\grid\GridView;
 use frontend\models\SubirArchivo;
 use yii\widgets\ActiveForm;
 use kartik\export\ExportMenu;
+use frontend\models\EstadoSolicitudCambio;
+use yii\data\ActiveDataProvider;
 
 /* @var $this yii\web\View */
 /* @var $searchModel frontend\models\EstadoSolicitudCambioSearch */
@@ -47,7 +49,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'NOMBRE_ESTADO_CAMBIO',
 
         ];
-
+$query = EstadoSolicitudCambio::find();
+$dataProvider = new ActiveDataProvider([
+    'query' => $query,
+]);
 // Renders a export dropdown menu
         echo ExportMenu::widget([
             'dataProvider' => $dataProvider,

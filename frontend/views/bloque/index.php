@@ -5,6 +5,8 @@ use yii\grid\GridView;
 use frontend\models\SubirArchivo;
 use yii\widgets\ActiveForm;
 use kartik\export\ExportMenu;
+use frontend\models\Bloque;
+use yii\data\ActiveDataProvider;
 
 /* @var $this yii\web\View */
 /* @var $searchModel frontend\models\BloqueSearch */
@@ -56,7 +58,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'BLOQUE_SIGUIENTE',
 
         ];
-
+             $query = Bloque::find();
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
 // Renders a export dropdown menu
         echo ExportMenu::widget([
             'dataProvider' => $dataProvider,

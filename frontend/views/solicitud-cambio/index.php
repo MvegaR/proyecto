@@ -5,6 +5,8 @@ use yii\grid\GridView;
 use frontend\models\SubirArchivo;
 use yii\widgets\ActiveForm;
 use kartik\export\ExportMenu;
+use frontend\models\SolicitudCambio;
+use yii\data\ActiveDataProvider;
 
 /* @var $this yii\web\View */
 /* @var $searchModel frontend\models\SolicitudCambioSearch */
@@ -57,7 +59,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'CAPACIDAD_CAMBIO',
 
         ];
-
+$query = SolicitudCambio::find();
+$dataProvider = new ActiveDataProvider([
+    'query' => $query,
+]);
 // Renders a export dropdown menu
         echo ExportMenu::widget([
             'dataProvider' => $dataProvider,

@@ -5,6 +5,8 @@ use yii\grid\GridView;
 use kartik\export\ExportMenu;
 use frontend\models\SubirArchivo;
 use yii\widgets\ActiveForm;
+use frontend\models\Edificio;
+use yii\data\ActiveDataProvider;
 /* @var $this yii\web\View */
 /* @var $searchModel frontend\models\EdificioSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -48,6 +50,10 @@ $this->params['breadcrumbs'][] = $this->title;
         ];
 
 // Renders a export dropdown menu
+        $query = Edificio::find();
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
         echo ExportMenu::widget([
             'dataProvider' => $dataProvider,
             'columns' => $gridColumns,

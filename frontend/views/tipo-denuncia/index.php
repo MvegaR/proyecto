@@ -5,6 +5,8 @@ use yii\grid\GridView;
 use frontend\models\SubirArchivo;
 use yii\widgets\ActiveForm;
 use kartik\export\ExportMenu;
+use frontend\models\TipoDenuncia;
+use yii\data\ActiveDataProvider;
 
 /* @var $this yii\web\View */
 /* @var $searchModel frontend\models\TipoDenunciaSearch */
@@ -46,7 +48,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'NOMBRE_TIPO_DENUNCIA',
 
         ];
-
+$query = TipoDenuncia::find();
+$dataProvider = new ActiveDataProvider([
+    'query' => $query,
+]);
 // Renders a export dropdown menu
         echo ExportMenu::widget([
             'dataProvider' => $dataProvider,

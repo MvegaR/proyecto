@@ -5,6 +5,8 @@ use yii\grid\GridView;
 use kartik\export\ExportMenu;
 use frontend\models\SubirArchivo;
 use yii\widgets\ActiveForm;
+use frontend\models\Asignatura;
+use yii\data\ActiveDataProvider;
 
 /* @var $this yii\web\View */
 /* @var $searchModel frontend\models\AsignaturaSearch */
@@ -73,8 +75,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'HORAS_AUDITORIO', 
 
         ];
+        
+        $query = Asignatura::find();
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
 
-// Renders a export dropdown menu
         echo ExportMenu::widget([
             'dataProvider' => $dataProvider,
             'columns' => $gridColumns,
