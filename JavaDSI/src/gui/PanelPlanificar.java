@@ -25,7 +25,7 @@ public class PanelPlanificar extends JPanel {
 	private PanelAsignaturas panelAsignaturas;
 	private JButton btnNewButton;
 	
-	public PanelPlanificar(){
+	public PanelPlanificar(VentanaPrincipal ventana){
 		this.setLayout(new BorderLayout(0, 0));
 		panelNorte  = new JPanel();
 		panelCentro = new JPanel();
@@ -37,6 +37,7 @@ public class PanelPlanificar extends JPanel {
 		panelCentro.add(panelAsignaturas);
 		panelNorte.setLayout(new FlowLayout());
 		btnNewButton = new JButton("Ejecutar Planificación");
+		btnNewButton.addActionListener(e -> new BuscarErrores(ventana).ejecutarTodasLasBusquedas());
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				TreeModel model = panelAsignaturas.getTree().getModel();

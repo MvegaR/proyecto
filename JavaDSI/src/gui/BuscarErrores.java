@@ -36,6 +36,28 @@ public class BuscarErrores {
         salas = ventanaPrincipal.getSalas();
         secciones = ventanaPrincipal.getSecciones();
     }
+
+    public void ejecutarTodasLasBusquedas(){
+        SinAsignaturas();
+        SinBloques();
+        SinCarreras();
+        SinDepartamento();
+        SinDocentes();
+        SinEdificios();
+        SinSalas();
+        SinSecciones();
+        AsignaturasSinCarreras();
+        CarrerasSinFacultad();
+        SeccionSinDocente();
+        SalasSinEdificio();
+        BloquesSinSalas();
+        BloquesSinSecciones();
+        DepartamentoSinFacultad();
+        DocenteSinDepartamento();
+        EdificioSinFacultad();
+        FacultadSinDepartamento();
+        SeccionSinAsignatura();
+    }
     
     
     public void SinAsignaturas(){
@@ -82,6 +104,7 @@ public class BuscarErrores {
         for (int i = 0; i < asignaturas.size(); i++) {
             if(asignaturas.get(i).getIdCarrera() == null){
                 MensajesError.meEr_CarrerasSinAsignaturas();
+                break;
             }
         }
     }
@@ -90,6 +113,7 @@ public class BuscarErrores {
     	for(int i=0; i < carreras.size(); i++){
     		if(carreras.get(i).getIdFacultad() == null){
     			MensajesError.meEr_CarreraSinFacultad();
+                break;
     		}
     	}
     }
@@ -98,6 +122,7 @@ public class BuscarErrores {
     	for(int i =0; i< secciones.size(); i++){
     		if(secciones.get(i).getIdDocente() == null){
     			MensajesError.meEr_SeccionSinDocentes();
+                break;
     		}
     	}
     }
@@ -106,6 +131,7 @@ public class BuscarErrores {
     	for(int i=0; i< salas.size(); i++){
     		if(salas.get(i).getIdEdificio()== null){
     			MensajesError.meEr_SalasSinEdificios();
+                break;
     		}
     	}
     }
@@ -114,6 +140,7 @@ public class BuscarErrores {
     	for(int i=0; i<bloques.size(); i++){
     		if(bloques.get(i).getIdSala() == null){
     			MensajesError.meEr_BloquesSinSalas();
+                break;
     		}
     	}
     }
@@ -122,6 +149,7 @@ public class BuscarErrores {
     	for(int i=0; i<bloques.size(); i++){
     		if(bloques.get(i).getIdSeccion() == null){
     			MensajesError.meEr_BloquesSinSecciones();
+                break;
     		}
     	}
     }
@@ -130,6 +158,7 @@ public class BuscarErrores {
     	for(int i=0; i< departamentos.size(); i++){
     		if(departamentos.get(i).getIdFacultad() == null){
     			MensajesError.meEr_DepartamentoSinFacultad();
+                break;
     		}
     	}
     }
@@ -138,6 +167,7 @@ public class BuscarErrores {
     	for(int i=0; i< docentes.size(); i++){
     		if(docentes.get(i).getIdDepartamento() == null){
     			MensajesError.meEr_DocenteSinDepartamento();
+                break;
     		}
     	}
     }
@@ -146,6 +176,7 @@ public class BuscarErrores {
     	for(int i=0; i< edificios.size(); i++){
     		if(edificios.get(i).getIdFacultad() == null){
     			MensajesError.meEr_EdificioSinFacultad();
+                break;
     		}
     	}
     }
@@ -154,6 +185,7 @@ public class BuscarErrores {
     	for(int i=0; i<facultades.size(); i++){
     		if(facultades.get(i).getNombreDepartamento() == null){
     			MensajesError.meEr_FacultadSinDepartamento();
+                break;
     		}
     	}
     }
@@ -162,6 +194,7 @@ public class BuscarErrores {
     	for(int i =0; i< secciones.size(); i++){
     		if(secciones.get(i).getIdAsignatura() == null){
     			MensajesError.meEr_SeccionSinAsignaturas();
+                break;
     		}
     	}
     }

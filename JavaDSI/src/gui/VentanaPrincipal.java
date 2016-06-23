@@ -59,7 +59,7 @@ public class VentanaPrincipal extends JFrame {
     error = new MensajesError();
 	this.setResizable(false);
 	this.setUndecorated(true);
-	panelRaul = new GestionPaneles();
+	panelRaul = new GestionPaneles(this);
 	cabecera = new PanelCabecera();
 	seccionOpciones = new JPanel();
 	btnVolver = new JButton("Volver");

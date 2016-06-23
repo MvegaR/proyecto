@@ -27,13 +27,13 @@ public class GestionPaneles extends JPanel {
     private CardLayout layout;
     private PanelTreeSalas salas;
 
-    public GestionPaneles() {
+    public GestionPaneles(VentanaPrincipal ventana) {
 	//coni = new CheckResolucion();
 	marcos = new MenuAdmin();
 	mari = new MenuInicial();
 	pablo = new Autentificacion();
 	layout = new CardLayout();
-	panelPlanificar = new PanelPlanificar();
+	panelPlanificar = new PanelPlanificar(ventana);
 	salas = new PanelTreeSalas();
 	this.setLayout(layout);
 	this.add(marcos,"marcos");
