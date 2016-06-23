@@ -48,6 +48,7 @@ public class Autentificacion extends JPanel {
     	return texto_user.getText();
     }
     
+    @SuppressWarnings("deprecation")
     public String getPassword_texto(){
     	return password_texto.getText();
     	

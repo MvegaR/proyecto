@@ -2,8 +2,6 @@ package db;
 
 import java.sql.*;
 
-import javax.swing.JOptionPane;
-
 import gui.MensajesError;
 
 public class Conexion {
@@ -14,7 +12,7 @@ public class Conexion {
 	private static String serverYNombre = "localhost:3306/dsi01";
     //*/
 	
-    /* Server remoto 
+    /* Server remoto  
 	private static String user = "dci01";
 	private static String pass = "@01icd@";
 	private static String serverYNombre = "146.83.198.35/dci01";
