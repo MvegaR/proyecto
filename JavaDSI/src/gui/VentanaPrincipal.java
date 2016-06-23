@@ -32,10 +32,11 @@ public class VentanaPrincipal extends JFrame {
     private GestionPaneles panelRaul;
     private PanelCabecera cabecera;
     private JPanel seccionOpciones;
-    public static JButton btnVolver;
+    private JButton btnVolver;
     private JButton btnSalir;
     private MensajesError error;
-
+    private ArrayList<JPanel> paneles = new ArrayList<>();  
+    
     //---------------------------------------------------------------------
     //Se debe rellenar estas listas cada vez que se inicie le programa:
     //ArrayList por que no vamos a insertar más... pero vamos a buscar mucho.
@@ -49,18 +50,58 @@ public class VentanaPrincipal extends JFrame {
     private ArrayList<Facultad> facultades = new ArrayList<>();
     private ArrayList<Sala> salas = new ArrayList<>();
     private ArrayList<Seccion> secciones = new ArrayList<>();
-    public static ArrayList<JPanel> paneles = new ArrayList<>();  
-
-
-
     //---------------------------------------------------------------------
 
+    /**
+     * @return the btnVolver
+     */
+    public JButton getBtnVolver() {
+        return btnVolver;
+    }
+
+    /**
+     * @param btnVolver the btnVolver to set
+     */
+    public void setBtnVolver(JButton btnVolver) {
+        this.btnVolver = btnVolver;
+    }
+
+    /**
+     * @return the btnSalir
+     */
+    public JButton getBtnSalir() {
+        return btnSalir;
+    }
+
+    /**
+     * @param btnSalir the btnSalir to set
+     */
+    public void setBtnSalir(JButton btnSalir) {
+        this.btnSalir = btnSalir;
+    }
+
+    /**
+     * @return the paneles
+     */
+    public ArrayList<JPanel> getPaneles() {
+        return paneles;
+    }
+
+    /**
+     * @param paneles the paneles to set
+     */
+    public void setPaneles(ArrayList<JPanel> paneles) {
+        this.paneles = paneles;
+    }
+    public GestionPaneles getPanelRaul() {
+	return panelRaul;
+    }
+
     public VentanaPrincipal() {
-	DescargaDeDB barras = new DescargaDeDB();
+	panelRaul = new GestionPaneles(this);
 	error = new MensajesError();
 	this.setResizable(false);
 	this.setUndecorated(true);
-	panelRaul = new GestionPaneles(this);
 	cabecera = new PanelCabecera();
 	seccionOpciones = new JPanel();
 	btnVolver = new JButton("Volver");
@@ -101,179 +142,13 @@ public class VentanaPrincipal extends JFrame {
 	this.setSize(1280, 720);
 	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	this.setLocationRelativeTo(null);
-	this.rellenarListas(barras);
+
 	this.checkResolucion();
+	
+	
     }
 
-    private void rellenarListas(DescargaDeDB barras){
-	//inicio rellenar asignaturas:
 
-	@SuppressWarnings("unused")
-	Integer totalElementos;
-	ResultSet total;
-	ResultSet tabla = Conexion.ejecutarSQL("Select * from asignatura");
-	try {
-	    total = Conexion.ejecutarSQL("Select count(*) as total from asignatura");
-	    total.next();
-	    totalElementos = total.getInt(1);
-	    while(tabla.next()){
-		this.getAsignaturas().add(new Asignatura(tabla));
-		
-	    }
-	} catch (SQLException e) {
-	    // TODO Auto-generated catch block
-	    e.printStackTrace();
-	}
-	//fin rellenar asignaturas.
-
-	//inicio rellenar Bloques:
-
-	tabla = Conexion.ejecutarSQL("Select * from bloque");
-	try {
-	    total = Conexion.ejecutarSQL("Select count(*) as total from bloque");
-	    total.next();
-	    totalElementos = total.getInt(1);
-	    while(tabla.next()){
-		this.getBloques().add(new Bloque(tabla));
-	    }
-	} catch (SQLException e) {
-	    // TODO Auto-generated catch block
-	    e.printStackTrace();
-
-	}
-	//fin rellenar Bloques.
-
-	//inicio rellenar Carreras:
-
-	tabla = Conexion.ejecutarSQL("Select * from carrera");
-	try {
-	    total = Conexion.ejecutarSQL("Select count(*) as total from carrera");
-	    total.next();
-	    totalElementos = total.getInt(1);
-	    while(tabla.next()){
-		this.getCarreras().add(new Carrera(tabla));
-	    }
-	} catch (SQLException e) {
-	    // TODO Auto-generated catch block
-	    e.printStackTrace();
-
-	}
-	//fin rellenar Carrera.
-
-	//inicio rellenar Departamentos:
-
-	tabla = Conexion.ejecutarSQL("Select * from departamento");
-	try {
-	    total = Conexion.ejecutarSQL("Select count(*) as total from departamento");
-	    total.next();
-	    totalElementos = total.getInt(1);
-	    while(tabla.next()){
-		this.getDepartamentos().add(new Departamento(tabla));
-	    }
-	} catch (SQLException e) {
-	    // TODO Auto-generated catch block
-	    e.printStackTrace();
-
-	}
-	//fin rellenar Departamento.
-
-	//inicio rellenar Docentes:
-
-	tabla = Conexion.ejecutarSQL("Select * from docente");
-	try {
-	    total = Conexion.ejecutarSQL("Select count(*) as total from docente");
-	    total.next();
-	    totalElementos = total.getInt(1);
-	    while(tabla.next()){
-		this.getDocentes().add(new Docente(tabla));
-	    }
-	} catch (SQLException e) { 
-	    // TODO Auto-generated catch block
-	    e.printStackTrace();
-
-	}
-	//fin rellenar Docentes.
-
-	//inicio rellenar Edificios:
-
-	tabla = Conexion.ejecutarSQL("Select * from edificio");
-	try {
-	    total = Conexion.ejecutarSQL("Select count(*) as total from edificio");
-	    total.next();
-	    totalElementos = total.getInt(1);
-	    while(tabla.next()){
-		this.getEdificios().add(new Edificio(tabla));
-	    }
-	} catch (SQLException e) {
-	    // TODO Auto-generated catch block
-	    e.printStackTrace();
-
-	}
-	//fin rellenar Edificios.
-
-	//inicio rellenar Facultades:
-
-	tabla = Conexion.ejecutarSQL("Select * from facultad");
-	try {
-	    total = Conexion.ejecutarSQL("Select count(*) as total from facultad");
-	    total.next();
-	    totalElementos = total.getInt(1);
-	    while(tabla.next()){
-		this.getFacultades().add(new Facultad(tabla));
-	    }
-	} catch (SQLException e) {
-	    // TODO Auto-generated catch block
-	    e.printStackTrace();
-
-	}
-	//fin rellenar Facultades.
-
-	//inicio rellenar Salas:
-
-	tabla = Conexion.ejecutarSQL("Select * from sala");
-	try {
-	    total = Conexion.ejecutarSQL("Select count(*) as total from sala");
-	    total.next();
-	    totalElementos = total.getInt(1);
-	    while(tabla.next()){
-		this.getSalas().add(new Sala(tabla));
-	    }
-	} catch (SQLException e) {
-	    // TODO Auto-generated catch block
-	    e.printStackTrace();
-
-	}
-	//fin rellenar Salas.
-
-	//inicio rellenar Secciones:
-
-	tabla = Conexion.ejecutarSQL("Select * from seccion");
-	try {
-	    total = Conexion.ejecutarSQL("Select count(*) as total from seccion");
-	    total.next();
-	    totalElementos = total.getInt(1);
-	    while(tabla.next()){
-		this.getSecciones().add(new Seccion(tabla));
-	    }
-	} catch (SQLException e) {
-	    // TODO Auto-generated catch block
-	    e.printStackTrace();
-
-	}
-	//fin rellenar Secciones.
-	//*
-	System.out.println("Numero de asignaturas agregadas: "+getAsignaturas().size());
-	System.out.println("Numero de bloques agregados: "+getBloques().size());
-	System.out.println("Numero de carreras agregadas: "+getCarreras().size());
-	System.out.println("Numero de departamentos agregados: "+getDepartamentos().size());
-	System.out.println("Numero de docentes agregados: "+getDocentes().size());
-	System.out.println("Numero de edificios agregados: "+getEdificios().size());
-	System.out.println("Numero de facultades agregadas: "+getFacultades().size());
-	System.out.println("Numero de salas agregadas: "+getSalas().size());
-	System.out.println("Numero de secciones agregadas: "+getSecciones().size());
-	//*/
-
-    }
 
 
     /**

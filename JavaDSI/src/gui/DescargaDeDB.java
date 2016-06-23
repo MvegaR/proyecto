@@ -5,7 +5,22 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JProgressBar;
+
+import db.Asignatura;
+import db.Bloque;
+import db.Carrera;
+import db.Conexion;
+import db.Departamento;
+import db.Docente;
+import db.Edificio;
+import db.Facultad;
+import db.Sala;
+import db.Seccion;
+
 import java.awt.SystemColor;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Random;
 
 public class DescargaDeDB extends JPanel {
 
@@ -23,16 +38,26 @@ public class DescargaDeDB extends JPanel {
 	private JProgressBar bloquesBar = new JProgressBar();
 	private JProgressBar asignaturasBar = new JProgressBar();
 	private JProgressBar facultadesBar = new JProgressBar();
-
+	private VentanaPrincipal ventana;
 
     /**
      * Create the panel.
      */
-    public DescargaDeDB() {
+    public DescargaDeDB(VentanaPrincipal ventana) {
 	setLayout(null);
+	this.ventana = ventana;
+	departamentosBar.setDoubleBuffered(true);
+	docentesBar.setDoubleBuffered(true);
+	edificiosBar.setDoubleBuffered(true);
+	salaBar.setDoubleBuffered(true);
+	carrerasBar.setDoubleBuffered(true);
+	seccionesBar.setDoubleBuffered(true);
+	bloquesBar.setDoubleBuffered(true);
+	asignaturasBar.setDoubleBuffered(true);
+	facultadesBar.setDoubleBuffered(true);
 
 	JPanel panel = new JPanel();
-	panel.setBackground(SystemColor.windowBorder);
+	panel.setBackground(new Color(0, 100, 172));
 	panel.setBounds(88, 29, 1060, 552);
 	add(panel);
 	panel.setLayout(null);
@@ -44,7 +69,7 @@ public class DescargaDeDB extends JPanel {
 	panel.add(lblNewLabel);
 
 	JPanel panel_1 = new JPanel();
-	panel_1.setBackground(Color.LIGHT_GRAY);
+	panel_1.setBackground(new Color(255, 255, 255));
 	panel_1.setBounds(42, 53, 996, 47);
 	panel.add(panel_1);
 	panel_1.setLayout(null);
@@ -63,7 +88,7 @@ public class DescargaDeDB extends JPanel {
 
 	JPanel panel_2 = new JPanel();
 	panel_2.setLayout(null);
-	panel_2.setBackground(Color.LIGHT_GRAY);
+	panel_2.setBackground(new Color(255, 255, 255));
 	panel_2.setBounds(42, 108, 996, 47);
 	panel.add(panel_2);
 
@@ -81,7 +106,7 @@ public class DescargaDeDB extends JPanel {
 
 	JPanel panel_3 = new JPanel();
 	panel_3.setLayout(null);
-	panel_3.setBackground(Color.LIGHT_GRAY);
+	panel_3.setBackground(new Color(255, 255, 255));
 	panel_3.setBounds(42, 163, 996, 47);
 	panel.add(panel_3);
 
@@ -99,7 +124,7 @@ public class DescargaDeDB extends JPanel {
 
 	JPanel panel_4 = new JPanel();
 	panel_4.setLayout(null);
-	panel_4.setBackground(Color.LIGHT_GRAY);
+	panel_4.setBackground(new Color(255, 255, 255));
 	panel_4.setBounds(42, 218, 996, 47);
 	panel.add(panel_4);
 
@@ -117,7 +142,7 @@ public class DescargaDeDB extends JPanel {
 
 	JPanel panel_5 = new JPanel();
 	panel_5.setLayout(null);
-	panel_5.setBackground(Color.LIGHT_GRAY);
+	panel_5.setBackground(new Color(255, 255, 255));
 	panel_5.setBounds(42, 273, 996, 47);
 	panel.add(panel_5);
 
@@ -133,7 +158,7 @@ public class DescargaDeDB extends JPanel {
 
 	JPanel panel_6 = new JPanel();
 	panel_6.setLayout(null);
-	panel_6.setBackground(Color.LIGHT_GRAY);
+	panel_6.setBackground(new Color(255, 255, 255));
 	panel_6.setBounds(42, 328, 996, 47);
 	panel.add(panel_6);
 
@@ -151,7 +176,7 @@ public class DescargaDeDB extends JPanel {
 
 	JPanel panel_7 = new JPanel();
 	panel_7.setLayout(null);
-	panel_7.setBackground(Color.LIGHT_GRAY);
+	panel_7.setBackground(new Color(255, 255, 255));
 	panel_7.setBounds(42, 438, 996, 47);
 	panel.add(panel_7);
 
@@ -169,7 +194,7 @@ public class DescargaDeDB extends JPanel {
 
 	JPanel panel_8 = new JPanel();
 	panel_8.setLayout(null);
-	panel_8.setBackground(Color.LIGHT_GRAY);
+	panel_8.setBackground(new Color(255, 255, 255));
 	panel_8.setBounds(42, 493, 996, 47);
 	panel.add(panel_8);
 
@@ -185,7 +210,7 @@ public class DescargaDeDB extends JPanel {
 
 	JPanel panel_9 = new JPanel();
 	panel_9.setLayout(null);
-	panel_9.setBackground(Color.LIGHT_GRAY);
+	panel_9.setBackground(new Color(255, 255, 255));
 	panel_9.setBounds(42, 383, 996, 47);
 	panel.add(panel_9);
 
@@ -332,5 +357,214 @@ public class DescargaDeDB extends JPanel {
      */
     public static long getSerialversionuid() {
         return serialVersionUID;
+    }
+    
+    public void rellenarListas(){
+	//inicio rellenar asignaturas:
+	
+	Integer totalElementos, actual;
+	ResultSet total;
+	ResultSet tabla = Conexion.ejecutarSQL("Select * from asignatura");
+	try {
+	    total = Conexion.ejecutarSQL("Select count(*) as total from asignatura");
+	    total.next();
+	    totalElementos = total.getInt(1);
+	    actual = 0;
+	    while(tabla.next()){
+		getVentana().getAsignaturas().add(new Asignatura(tabla));
+		this.getAsignaturasBar().setValue( ((++actual)*100/totalElementos));
+		this.getAsignaturasBar().paintAll(this.getAsignaturasBar().getGraphics());
+	    }
+	} catch (SQLException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	}
+	//fin rellenar asignaturas.
+
+	//inicio rellenar Bloques:
+
+	tabla = Conexion.ejecutarSQL("Select * from bloque");
+	try {
+	    total = Conexion.ejecutarSQL("Select count(*) as total from bloque");
+	    total.next();
+	    totalElementos = total.getInt(1);
+	    actual = 0;
+	    while(tabla.next()){
+		getVentana().getBloques().add(new Bloque(tabla));
+		this.getBloquesBar().setValue( ((++actual)*100/totalElementos));
+		//this.getBloquesBar().paintAll(this.getBloquesBar().getGraphics());
+		if(new Random().nextInt()%7 == 0) this.getBloquesBar().paintAll(this.getBloquesBar().getGraphics()); //por mejorar pintado así no va...
+		
+	    }
+	} catch (SQLException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+
+	}
+	//fin rellenar Bloques.
+
+	//inicio rellenar Carreras:
+
+	tabla = Conexion.ejecutarSQL("Select * from carrera");
+	try {
+	    total = Conexion.ejecutarSQL("Select count(*) as total from carrera");
+	    total.next();
+	    totalElementos = total.getInt(1);
+	    actual = 0;
+	    while(tabla.next()){
+		getVentana().getCarreras().add(new Carrera(tabla));
+		this.getCarrerasBar().setValue( ((++actual)*100/totalElementos));
+		this.getCarrerasBar().paintAll(this.getCarrerasBar().getGraphics());
+	    }
+	} catch (SQLException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+
+	}
+	//fin rellenar Carrera.
+
+	//inicio rellenar Departamentos:
+
+	tabla = Conexion.ejecutarSQL("Select * from departamento");
+	try {
+	    total = Conexion.ejecutarSQL("Select count(*) as total from departamento");
+	    total.next();
+	    totalElementos = total.getInt(1);
+	    actual = 0;
+	    while(tabla.next()){
+		getVentana().getDepartamentos().add(new Departamento(tabla));
+		this.getDepartamentosBar().setValue( ((++actual)*100/totalElementos));
+		this.getDepartamentosBar().paintAll(this.getDepartamentosBar().getGraphics());
+	    }
+	} catch (SQLException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+
+	}
+	//fin rellenar Departamento.
+
+	//inicio rellenar Docentes:
+
+	tabla = Conexion.ejecutarSQL("Select * from docente");
+	try {
+	    total = Conexion.ejecutarSQL("Select count(*) as total from docente");
+	    total.next();
+	    totalElementos = total.getInt(1);
+	    actual = 0;
+	    while(tabla.next()){
+		getVentana().getDocentes().add(new Docente(tabla));
+		this.getDocentesBar().setValue( ((++actual)*100/totalElementos));
+		this.getDocentesBar().paintAll(this.getDocentesBar().getGraphics());
+	    }
+	} catch (SQLException e) { 
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+
+	}
+	//fin rellenar Docentes.
+
+	//inicio rellenar Edificios:
+
+	tabla = Conexion.ejecutarSQL("Select * from edificio");
+	try {
+	    total = Conexion.ejecutarSQL("Select count(*) as total from edificio");
+	    total.next();
+	    totalElementos = total.getInt(1);
+	    actual = 0;
+	    while(tabla.next()){
+		getVentana().getEdificios().add(new Edificio(tabla));
+		this.getEdificiosBar().setValue( ((++actual)*100/totalElementos));
+		this.getEdificiosBar().paintAll(this.getEdificiosBar().getGraphics());
+	    }
+	} catch (SQLException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+
+	}
+	//fin rellenar Edificios.
+
+	//inicio rellenar Facultades:
+
+	tabla = Conexion.ejecutarSQL("Select * from facultad");
+	try {
+	    total = Conexion.ejecutarSQL("Select count(*) as total from facultad");
+	    total.next();
+	    totalElementos = total.getInt(1);
+	    actual = 0;
+	    while(tabla.next()){
+		getVentana().getFacultades().add(new Facultad(tabla));
+		this.getFacultadesBar().setValue( ((++actual)*100/totalElementos));
+		this.getFacultadesBar().paintAll(this.getFacultadesBar().getGraphics());
+	    }
+	} catch (SQLException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+
+	}
+	//fin rellenar Facultades.
+
+	//inicio rellenar Salas:
+
+	tabla = Conexion.ejecutarSQL("Select * from sala");
+	try {
+	    total = Conexion.ejecutarSQL("Select count(*) as total from sala");
+	    total.next();
+	    totalElementos = total.getInt(1);
+	    actual = 0;
+	    while(tabla.next()){
+		getVentana().getSalas().add(new Sala(tabla));
+		this.getSalaBar().setValue( ((++actual)*100/totalElementos));
+		this.getSalaBar().paintAll(this.getSalaBar().getGraphics());
+	    }
+	} catch (SQLException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+
+	}
+	//fin rellenar Salas.
+
+	//inicio rellenar Secciones:
+
+	tabla = Conexion.ejecutarSQL("Select * from seccion");
+	try {
+	    total = Conexion.ejecutarSQL("Select count(*) as total from seccion");
+	    total.next();
+	    totalElementos = total.getInt(1);
+	    actual = 0;
+	    while(tabla.next()){
+		getVentana().getSecciones().add(new Seccion(tabla));
+		this.getSeccionesBar().setValue( ((++actual)*100/totalElementos));
+		this.getSeccionesBar().paintAll(this.getSeccionesBar().getGraphics());
+	    }
+	} catch (SQLException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+
+	}
+	//fin rellenar Secciones.
+	//*
+	System.out.println("Numero de asignaturas agregadas: "+getVentana().getAsignaturas().size());
+	System.out.println("Numero de bloques agregados: "+getVentana().getBloques().size());
+	System.out.println("Numero de carreras agregadas: "+getVentana().getCarreras().size());
+	System.out.println("Numero de departamentos agregados: "+getVentana().getDepartamentos().size());
+	System.out.println("Numero de docentes agregados: "+getVentana().getDocentes().size());
+	System.out.println("Numero de edificios agregados: "+getVentana().getEdificios().size());
+	System.out.println("Numero de facultades agregadas: "+getVentana().getFacultades().size());
+	System.out.println("Numero de salas agregadas: "+getVentana().getSalas().size());
+	System.out.println("Numero de secciones agregadas: "+getVentana().getSecciones().size());
+	//*/
+	try {
+	    Thread.sleep(1000);
+	} catch (InterruptedException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	}
+	ventana.getPanelRaul().mostrarPanel("planificar");
+	
+
+    }
+    
+    public VentanaPrincipal getVentana() {
+	return ventana;
     }
 }
