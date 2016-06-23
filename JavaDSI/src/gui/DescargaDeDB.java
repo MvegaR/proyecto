@@ -59,6 +59,7 @@ public class DescargaDeDB extends JPanel {
 	JPanel panel = new JPanel();
 	panel.setBackground(new Color(0, 100, 172));
 	panel.setBounds(88, 29, 1060, 552);
+	panel.setDoubleBuffered(true);
 	add(panel);
 	panel.setLayout(null);
 
@@ -69,6 +70,7 @@ public class DescargaDeDB extends JPanel {
 	panel.add(lblNewLabel);
 
 	JPanel panel_1 = new JPanel();
+	panel_1.setDoubleBuffered(true);
 	panel_1.setBackground(new Color(255, 255, 255));
 	panel_1.setBounds(42, 53, 996, 47);
 	panel.add(panel_1);
@@ -90,12 +92,14 @@ public class DescargaDeDB extends JPanel {
 	panel_2.setLayout(null);
 	panel_2.setBackground(new Color(255, 255, 255));
 	panel_2.setBounds(42, 108, 996, 47);
+	panel_2.setDoubleBuffered(true);
 	panel.add(panel_2);
 
 	JLabel lblDepartamentos = new JLabel("Departamentos");
 	lblDepartamentos.setForeground(Color.BLACK);
 	lblDepartamentos.setFont(new Font("Tahoma", Font.PLAIN, 19));
 	lblDepartamentos.setBounds(10, 11, 146, 23);
+	
 	panel_2.add(lblDepartamentos);
 
 	
@@ -108,6 +112,8 @@ public class DescargaDeDB extends JPanel {
 	panel_3.setLayout(null);
 	panel_3.setBackground(new Color(255, 255, 255));
 	panel_3.setBounds(42, 163, 996, 47);
+	panel_3.setDoubleBuffered(true);
+	panel_3.setDoubleBuffered(true);
 	panel.add(panel_3);
 
 	JLabel lblDocentes_1 = new JLabel("Docentes");
@@ -126,6 +132,7 @@ public class DescargaDeDB extends JPanel {
 	panel_4.setLayout(null);
 	panel_4.setBackground(new Color(255, 255, 255));
 	panel_4.setBounds(42, 218, 996, 47);
+	panel_4.setDoubleBuffered(true);
 	panel.add(panel_4);
 
 	JLabel lblEdificios = new JLabel("Edificios");
@@ -144,6 +151,7 @@ public class DescargaDeDB extends JPanel {
 	panel_5.setLayout(null);
 	panel_5.setBackground(new Color(255, 255, 255));
 	panel_5.setBounds(42, 273, 996, 47);
+	panel_5.setDoubleBuffered(true);
 	panel.add(panel_5);
 
 	JLabel lblSalas = new JLabel("Salas");
@@ -160,6 +168,7 @@ public class DescargaDeDB extends JPanel {
 	panel_6.setLayout(null);
 	panel_6.setBackground(new Color(255, 255, 255));
 	panel_6.setBounds(42, 328, 996, 47);
+	panel_6.setDoubleBuffered(true);
 	panel.add(panel_6);
 
 	JLabel lblCarreras = new JLabel("Carreras");
@@ -178,6 +187,7 @@ public class DescargaDeDB extends JPanel {
 	panel_7.setLayout(null);
 	panel_7.setBackground(new Color(255, 255, 255));
 	panel_7.setBounds(42, 438, 996, 47);
+	panel_7.setDoubleBuffered(true);
 	panel.add(panel_7);
 
 	JLabel lblSecciones = new JLabel("Secciones");
@@ -196,6 +206,7 @@ public class DescargaDeDB extends JPanel {
 	panel_8.setLayout(null);
 	panel_8.setBackground(new Color(255, 255, 255));
 	panel_8.setBounds(42, 493, 996, 47);
+	panel_8.setDoubleBuffered(true);
 	panel.add(panel_8);
 
 	JLabel lblBloques = new JLabel("Bloques");
@@ -212,6 +223,7 @@ public class DescargaDeDB extends JPanel {
 	panel_9.setLayout(null);
 	panel_9.setBackground(new Color(255, 255, 255));
 	panel_9.setBounds(42, 383, 996, 47);
+	panel_9.setDoubleBuffered(true);
 	panel.add(panel_9);
 
 	JLabel lblAsignaturas = new JLabel("Asignaturas");
@@ -393,7 +405,7 @@ public class DescargaDeDB extends JPanel {
 		getVentana().getBloques().add(new Bloque(tabla));
 		this.getBloquesBar().setValue( ((++actual)*100/totalElementos));
 		//this.getBloquesBar().paintAll(this.getBloquesBar().getGraphics());
-		if(new Random().nextInt()%7 == 0) this.getBloquesBar().paintAll(this.getBloquesBar().getGraphics()); //por mejorar pintado así no va...
+		if(new Random().nextInt()%7 == 0 || actual == totalElementos) this.getBloquesBar().paintAll(this.getBloquesBar().getGraphics()); //por mejorar pintado así no va...
 		
 	    }
 	} catch (SQLException e) {

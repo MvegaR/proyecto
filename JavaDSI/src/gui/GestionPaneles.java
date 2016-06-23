@@ -74,11 +74,12 @@ public class GestionPaneles extends JPanel {
 		if(ventana.getBloques().isEmpty()){
 		    mostrarPanel("descargaDB");
 		    ventana.paintComponents(ventana.getGraphics());
+		    descargaDB.rellenarListas();
 		}else{
 		    mostrarPanel("planificar");
 		}
 		
-		descargaDB.rellenarListas();
+		
 	    }
 	});
 
