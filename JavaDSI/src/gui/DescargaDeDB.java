@@ -17,7 +17,6 @@ import db.Facultad;
 import db.Sala;
 import db.Seccion;
 
-import java.awt.SystemColor;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Random;
