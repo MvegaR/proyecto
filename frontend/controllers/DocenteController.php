@@ -62,7 +62,7 @@ class DocenteController extends Controller
     {
         $model = new Docente();
         if($model->load(Yii::$app->request->post()) ){
-            if($model -> PASSWORD != null || $model -> PASSWORD != '') {$model -> PASSWORD = sha1($model -> PASSWORD);}
+            if($model -> PASSWORD != null || $model -> PASSWORD != '') {$model -> PASSWORD = sha1($model -> PASSWORD);  $model -> PASSWORD_REPEAT = sha1($model -> PASSWORD);}
             if($model -> ID_ROL == ''){
                 $model -> ID_ROL = null;
             }

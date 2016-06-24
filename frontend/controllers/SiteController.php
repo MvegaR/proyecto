@@ -630,14 +630,14 @@ class SiteController extends Controller{
 			
 			$this->especiales($consulta);//especiales: dia, tiempo_inicio, docente, sala
 
+			
 		}
-
 		return $this->redirect("index.php?r=".$paginaAnterior);
 	}
 
 	private function especiales($consulta){
-		
-		if(strpos($consulta, "INSERT INTO docente") !== false){ //especial docente
+
+		if(strpos($consulta, "INSERT INTO docente") !== false || strpos($consulta, "UPDATE docente") !== false  ){ //especial docente
 			$id = substr($consulta, strpos($consulta,"'")+1,strpos($consulta,",")-strpos($consulta,"'")-2); //id de cadena
 			$model = new Docente;
 			$model = $model -> find() -> where(["ID_DOCENTE" => $id]) -> one();
@@ -650,6 +650,8 @@ class SiteController extends Controller{
 			if($model -> USER == NULL || $model -> USER == '' || $model -> USER == '(no definido)'){
 				$model -> USER = $model-> ID_DOCENTE;
 			}
+			$model -> PASSWORD_REPEAT = $model -> PASSWORD;
+			$model -> save();
 		}else if(strpos($consulta, "INSERT INTO dia") !== false){ //especial insertar un dia (crear bloquesxsalaxdia)
 			$id = substr($consulta, strpos($consulta,"(")+1,strpos($consulta,",")-strpos($consulta,"'")-1); //id de intenger
 			$model = new Dia;
