@@ -47,6 +47,12 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'HORAS_AUDITORIO') ?>
 
+    <?php // echo $form->field($model, 'HORAS_LAB_REDES') ?>
+
+    <?php // echo $form->field($model, 'HORAS_LAB_ELECTRONICA') ?>
+
+    <?php // echo $form->field($model, 'HORAS_LAB_MAQ_ELECTRICAS') ?>
+
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
         <?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>

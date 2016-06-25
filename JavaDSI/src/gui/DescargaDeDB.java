@@ -4,6 +4,8 @@ import javax.swing.JPanel;
 import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.Rectangle;
+
 import javax.swing.JProgressBar;
 
 import db.Asignatura;
@@ -16,10 +18,8 @@ import db.Edificio;
 import db.Facultad;
 import db.Sala;
 import db.Seccion;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Random;
 
 public class DescargaDeDB extends JPanel {
 
@@ -372,7 +372,6 @@ public class DescargaDeDB extends JPanel {
     
     public void rellenarListas(){
 	//inicio rellenar asignaturas:
-	
 	Integer totalElementos, actual;
 	ResultSet total;
 	ResultSet tabla = Conexion.ejecutarSQL("Select * from asignatura");
@@ -384,7 +383,7 @@ public class DescargaDeDB extends JPanel {
 	    while(tabla.next()){
 		getVentana().getAsignaturas().add(new Asignatura(tabla));
 		this.getAsignaturasBar().setValue( ((++actual)*100/totalElementos));
-		this.getAsignaturasBar().paintAll(this.getAsignaturasBar().getGraphics());
+		this.getAsignaturasBar().paintImmediately(new Rectangle(0, 0, this.getAsignaturasBar().getWidth(), this.getAsignaturasBar().getHeight())); 
 	    }
 	} catch (SQLException e) {
 	    // TODO Auto-generated catch block
@@ -403,9 +402,7 @@ public class DescargaDeDB extends JPanel {
 	    while(tabla.next()){
 		getVentana().getBloques().add(new Bloque(tabla));
 		this.getBloquesBar().setValue( ((++actual)*100/totalElementos));
-		//this.getBloquesBar().paintAll(this.getBloquesBar().getGraphics());
-		if(new Random().nextInt()%7 == 0 || actual == totalElementos) this.getBloquesBar().paintAll(this.getBloquesBar().getGraphics()); //por mejorar pintado así no va...
-		
+		this.getBloquesBar().paintImmediately(new Rectangle(0, 0, this.getBloquesBar().getWidth(), this.getBloquesBar().getHeight())); //por mejorar pintado así no va...
 	    }
 	} catch (SQLException e) {
 	    // TODO Auto-generated catch block
@@ -425,7 +422,7 @@ public class DescargaDeDB extends JPanel {
 	    while(tabla.next()){
 		getVentana().getCarreras().add(new Carrera(tabla));
 		this.getCarrerasBar().setValue( ((++actual)*100/totalElementos));
-		this.getCarrerasBar().paintAll(this.getCarrerasBar().getGraphics());
+		this.getCarrerasBar().paintImmediately(new Rectangle(0, 0, this.getCarrerasBar().getWidth(), this.getCarrerasBar().getHeight())); 
 	    }
 	} catch (SQLException e) {
 	    // TODO Auto-generated catch block
@@ -445,7 +442,7 @@ public class DescargaDeDB extends JPanel {
 	    while(tabla.next()){
 		getVentana().getDepartamentos().add(new Departamento(tabla));
 		this.getDepartamentosBar().setValue( ((++actual)*100/totalElementos));
-		this.getDepartamentosBar().paintAll(this.getDepartamentosBar().getGraphics());
+		this.getDepartamentosBar().paintImmediately(new Rectangle(0, 0, this.getDepartamentosBar().getWidth(), this.getDepartamentosBar().getHeight())); 
 	    }
 	} catch (SQLException e) {
 	    // TODO Auto-generated catch block
@@ -465,7 +462,7 @@ public class DescargaDeDB extends JPanel {
 	    while(tabla.next()){
 		getVentana().getDocentes().add(new Docente(tabla));
 		this.getDocentesBar().setValue( ((++actual)*100/totalElementos));
-		this.getDocentesBar().paintAll(this.getDocentesBar().getGraphics());
+		this.getDocentesBar().paintImmediately(new Rectangle(0, 0, this.getDocentesBar().getWidth(), this.getDocentesBar().getHeight()));
 	    }
 	} catch (SQLException e) { 
 	    // TODO Auto-generated catch block
@@ -485,7 +482,7 @@ public class DescargaDeDB extends JPanel {
 	    while(tabla.next()){
 		getVentana().getEdificios().add(new Edificio(tabla));
 		this.getEdificiosBar().setValue( ((++actual)*100/totalElementos));
-		this.getEdificiosBar().paintAll(this.getEdificiosBar().getGraphics());
+		this.getEdificiosBar().paintImmediately(new Rectangle(0, 0, this.getEdificiosBar().getWidth(), this.getEdificiosBar().getHeight()));
 	    }
 	} catch (SQLException e) {
 	    // TODO Auto-generated catch block
@@ -505,7 +502,7 @@ public class DescargaDeDB extends JPanel {
 	    while(tabla.next()){
 		getVentana().getFacultades().add(new Facultad(tabla));
 		this.getFacultadesBar().setValue( ((++actual)*100/totalElementos));
-		this.getFacultadesBar().paintAll(this.getFacultadesBar().getGraphics());
+		this.getFacultadesBar().paintImmediately(new Rectangle(0, 0, this.getFacultadesBar().getWidth(), this.getFacultadesBar().getHeight()));
 	    }
 	} catch (SQLException e) {
 	    // TODO Auto-generated catch block
@@ -525,7 +522,7 @@ public class DescargaDeDB extends JPanel {
 	    while(tabla.next()){
 		getVentana().getSalas().add(new Sala(tabla));
 		this.getSalaBar().setValue( ((++actual)*100/totalElementos));
-		this.getSalaBar().paintAll(this.getSalaBar().getGraphics());
+		this.getSalaBar().paintImmediately(new Rectangle(0, 0, this.getSalaBar().getWidth(), this.getSalaBar().getHeight()));
 	    }
 	} catch (SQLException e) {
 	    // TODO Auto-generated catch block
@@ -545,7 +542,7 @@ public class DescargaDeDB extends JPanel {
 	    while(tabla.next()){
 		getVentana().getSecciones().add(new Seccion(tabla));
 		this.getSeccionesBar().setValue( ((++actual)*100/totalElementos));
-		this.getSeccionesBar().paintAll(this.getSeccionesBar().getGraphics());
+		this.getSeccionesBar().paintImmediately(new Rectangle(0, 0, this.getSeccionesBar().getWidth(), this.getSeccionesBar().getHeight()));
 	    }
 	} catch (SQLException e) {
 	    // TODO Auto-generated catch block
@@ -570,9 +567,7 @@ public class DescargaDeDB extends JPanel {
 	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	}
-	ventana.getPanelRaul().mostrarPanel("planificar");
-	
-
+	ventana.getGestorPaneles().mostrarPanel("planificar");
     }
     
     public VentanaPrincipal getVentana() {

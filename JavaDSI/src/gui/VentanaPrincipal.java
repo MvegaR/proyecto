@@ -20,8 +20,6 @@ import java.awt.BorderLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class VentanaPrincipal extends JFrame {
@@ -29,12 +27,12 @@ public class VentanaPrincipal extends JFrame {
     private static final long serialVersionUID = 1L;
 
 
-    private GestionPaneles panelRaul;
+    private GestionPaneles gestorPaneles;
     private PanelCabecera cabecera;
     private JPanel seccionOpciones;
     private JButton btnVolver;
     private JButton btnSalir;
-    private MensajesError error;
+    //private MensajesError error;
     private ArrayList<JPanel> paneles = new ArrayList<>();  
     
     //---------------------------------------------------------------------
@@ -93,13 +91,12 @@ public class VentanaPrincipal extends JFrame {
     public void setPaneles(ArrayList<JPanel> paneles) {
         this.paneles = paneles;
     }
-    public GestionPaneles getPanelRaul() {
-	return panelRaul;
+    public GestionPaneles getGestorPaneles() {
+	return gestorPaneles;
     }
 
     public VentanaPrincipal() {
-	panelRaul = new GestionPaneles(this);
-	error = new MensajesError();
+	gestorPaneles = new GestionPaneles(this);
 	this.setResizable(false);
 	this.setUndecorated(true);
 	cabecera = new PanelCabecera();
@@ -137,7 +134,7 @@ public class VentanaPrincipal extends JFrame {
 	seccionOpciones.add(btnSalir);
 
 	this.add(cabecera,BorderLayout.NORTH);
-	this.add(panelRaul,BorderLayout.CENTER);
+	this.add(gestorPaneles,BorderLayout.CENTER);
 	this.add(seccionOpciones,BorderLayout.SOUTH);
 	this.setSize(1280, 720);
 	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

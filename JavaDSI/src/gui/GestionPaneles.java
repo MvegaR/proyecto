@@ -13,16 +13,11 @@ import java.awt.CardLayout;
 
 
 public class GestionPaneles extends JPanel {
-
-    /**
-     * Raúl
-     */
     private static final long serialVersionUID = 1L;
-    // private CheckResolucion coni;
-    private MenuAdmin marcos;
-    private MenuInicial mari;
+    private MenuAdmin MenuAdmin;
+    private MenuInicial menuInicial;
     private PanelPlanificar panelPlanificar;
-    private Autentificacion pablo;
+    private Autentificacion PanelAutentificacion;
     private CardLayout layout;
     private PanelTreeSalas salas;
     private DescargaDeDB descargaDB;
@@ -30,43 +25,42 @@ public class GestionPaneles extends JPanel {
     public GestionPaneles(VentanaPrincipal ventana) {
 	//coni = new CheckResolucion();
 	this.ventana = ventana;
-	marcos = new MenuAdmin();
-	mari = new MenuInicial();
-	pablo = new Autentificacion();
+	MenuAdmin = new MenuAdmin();
+	menuInicial = new MenuInicial();
+	PanelAutentificacion = new Autentificacion();
 	layout = new CardLayout();
 	panelPlanificar = new PanelPlanificar(ventana);
 	salas = new PanelTreeSalas();
 	descargaDB = new DescargaDeDB(ventana);
 	this.setLayout(layout);
-	this.add(marcos,"marcos");
-	this.add(mari,"mari");
-	this.add(pablo,"pablo");
+	this.add(PanelAutentificacion,"auntentificacion");
+	this.add(menuInicial,"menuInicial");
+	this.add(MenuAdmin,"menuAdmin");
 	this.add(panelPlanificar,"planificar");
 	this.add(salas, "salas");
 	this.add(descargaDB, "descargaDB");
-	layout.show(this, "pablo");
-	pablo.getBtnEntrar().addMouseListener(new MouseAdapter() {
+	layout.show(this, "auntentificacion");
+	PanelAutentificacion.getBtnEntrar().addMouseListener(new MouseAdapter() {
 	    @Override
 	    public void mousePressed(MouseEvent e) {
-		//prueba parte Marí
 		boolean acceso = Autentificacion_Usuario();
 		if (acceso){
-		    ventana.getPaneles().add(mari);
-		    mostrarPanel("mari");
+		    ventana.getPaneles().add(menuInicial);
+		    mostrarPanel("menuInicial");
 		}else{
 		    MensajesError.meEr_FallaAutentificacion();
 		}
 	    }
 	});
-	mari.getBtnAdministrar().addMouseListener(new MouseAdapter() {
+	menuInicial.getBtnAdministrar().addMouseListener(new MouseAdapter() {
 	    @Override
 	    public void mousePressed(MouseEvent e) {
-		ventana.getPaneles().add(marcos);
+		ventana.getPaneles().add(MenuAdmin);
 		ventana.getBtnVolver().setVisible(true);
-		mostrarPanel("marcos");
+		mostrarPanel("menuAdmin");
 	    }
 	});
-	mari.getBtnPlanificar().addMouseListener(new MouseAdapter() {
+	menuInicial.getBtnPlanificar().addMouseListener(new MouseAdapter() {
 	    @Override
 	    public void mousePressed(MouseEvent e) {
 		ventana.getPaneles().add(panelPlanificar);
@@ -90,8 +84,8 @@ public class GestionPaneles extends JPanel {
     }
 
     public boolean Autentificacion_Usuario(){
-	String nombreUsuario = pablo.getTexto_user();
-	String passwordUsuario = pablo.getPassword_texto();
+	String nombreUsuario = PanelAutentificacion.getTexto_user();
+	String passwordUsuario = PanelAutentificacion.getPassword_texto();
 	ResultSet resUser= Conexion.ejecutarSQL("Select d.USER From docente d, rol r Where d.ID_Rol = R.ID_ROl and r.id_rol=1");
 	String Usuario = null;
 	try {

@@ -69,7 +69,15 @@ use frontend\models\Carrera;
     <div class = "col-xs-3">&nbsp;&nbsp;
 <?= $form->field($model, 'HORAS_AUDITORIO')->textInput(['type' => 'number','size' => "3", 'maxleng' => '3', 'min' => 0, 'value' => horaModelo($model,'HORAS_AUDITORIO'), 'placeholder' => "Horas"])->label("Auditorio");?>
 </div>
-
+    <div class = "col-xs-3">&nbsp;&nbsp;
+<?= $form->field($model, 'HORAS_LAB_REDES')->textInput(['type' => 'number','size' => "3", 'maxleng' => '3', 'min' => 0, 'value' => horaModelo($model,'HORAS_LAB_REDES'), 'placeholder' => "Horas"])->label("Lab Redes");?>
+</div>
+    <div class = "col-xs-3">&nbsp;&nbsp;
+<?= $form->field($model, 'HORAS_LAB_ELECTRONICA')->textInput(['type' => 'number','size' => "3", 'maxleng' => '3', 'min' => 0, 'value' => horaModelo($model,'HORAS_LAB_ELECTRONICA'), 'placeholder' => "Horas"])->label("Lab electronica");?>
+</div>
+    <div class = "col-xs-3">&nbsp;&nbsp;
+<?= $form->field($model, 'HORAS_LAB_MAQ_ELECTRICAS')->textInput(['type' => 'number','size' => "3", 'maxleng' => '3', 'min' => 0, 'value' => horaModelo($model,'HORAS_LAB_MAQ_ELECTRICAS'), 'placeholder' => "Horas"])->label("Lab maq electricas");?>
+</div>
     <div class="form-group col-xs-12">
         <?= Html::submitButton($model->isNewRecord ? 'Crear' : 'Modificar', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
