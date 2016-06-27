@@ -69,7 +69,7 @@ public class Clase {
 				    for(Bloque b: bloquesDeUnaSalaYDia){
 					if(b.getInicio().equals(ventana.getTiempoInicios().get(posTiempoAnterior+1).getInicio())){
 					    bloqueSiguiente = b;
-					    System.out.println("b: "+b);
+					    //System.out.println("b: "+b);
 					    this.getBloquesAsignados().add(b);
 					    break;
 					}
@@ -111,9 +111,10 @@ public class Clase {
 		    break;
 		}
 	    }
-	    System.out.println(this.getBloquesAsignados().toString());
 	    Clase.getBloques().removeAll(this.getBloquesAsignados());
-	    System.out.println("Asignado clase sobra:" + Clase.getBloques().size());
+	    System.out.println("Asignado clase; sobran: " + Clase.getBloques().size() + " Bloques");
+	    System.out.println("Bloques clase "+ventana.getAsignatura(this.getSeccion().getIdAsignatura()).getNombreAsignatura()+" : "+this.getBloquesAsignados().toString());
+	    
 	}
 
     }
