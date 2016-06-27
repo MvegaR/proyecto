@@ -136,7 +136,7 @@ public class Clase {
     private Boolean noChoque(VentanaPrincipal ventana){
 	/*No puede estar la asignatura de una carrera de un mismo semestre y
 	 año junto con otra en el mismo dia en la misma hora, 
-	 	-> //exepto si existe alguna N-esima seccion de la misma asigantura que no choque.  <- pendiente
+	 exepto si existe alguna N-esima seccion de la misma asigantura que no choque. <-listo
 	 */
 
 	String carrera = ventana.getAsignatura(this.getSeccion().getIdAsignatura()).getIdCarrera();
