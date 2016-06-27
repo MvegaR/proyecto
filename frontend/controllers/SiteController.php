@@ -19,6 +19,8 @@ use frontend\models\Dia;
 use frontend\models\TiempoInicio;
 use frontend\models\Sala;
 use frontend\models\Bloque;
+use frontend\models\Seccion;
+
 
 /**
  * Site controller
@@ -711,6 +713,61 @@ class SiteController extends Controller{
 
 		}
 
+	}
+
+
+	public function actionGenerarSecciones(){ //y asiganarles profes
+
+		$asignaturasSinSecciones = Yii::$app -> db -> createCommand("
+			SELECT A.ID_ASIGNATURA 
+			FROM asignatura A 
+			WHERE A.ID_ASIGNATURA NOT IN (
+				SELECT ID_ASIGNATURA 
+				FROM seccion S 
+				WHERE S.ID_ASIGNATURA = A.ID_ASIGNATURA);
+			") -> queryAll();
+		foreach ($asignaturasSinSecciones as $asignatura) {
+			$cantidadDeSeccionesAGenerar = rand(1,3);
+			$cantidadDeAlumnosPorSeccion = rand(3, 12) * 5; //multiplo de 5.
+			for($i = 0; $i < $cantidadDeSeccionesAGenerar; $i++){
+				$seccion = new Seccion;
+				$seccion -> ID_SECCION = "sec".($i+1).'-'.$asignatura['ID_ASIGNATURA'];
+				$seccion -> CUPO = $cantidadDeAlumnosPorSeccion;
+				$seccion -> ID_ASIGNATURA = $asignatura['ID_ASIGNATURA'];
+				$seccion -> ID_DOCENTE = NULL;
+				$seccion -> save();
+			}
+		}
+		while(count($seccionesSinProfe =  Yii::$app -> db -> createCommand("
+			SELECT S.ID_SECCION FROM seccion S where S.ID_DOCENTE is NULL;
+			") -> queryAll()) != 0){
+			$profesSinSecciones = Yii::$app -> db -> createCommand("
+			SELECT D.ID_DOCENTE 
+			FROM docente D
+			WHERE D.ID_DOCENTE NOT IN 
+				(SELECT ID_DOCENTE 
+				FROM seccion S 
+				WHERE S.ID_DOCENTE = D.ID_DOCENTE) and D.ID_ROL != 1;
+			") -> queryAll();
+			$cantidadDeProfes = count($profesSinSecciones);
+			$arregloDePosicionesDeSeccionesUsadas = [];
+			$cantidadDeSeccionesParaElProfe =  rand(3,5);
+			$elProfe = rand(0, $cantidadDeProfes-1);
+			for($i = 0; $i < $cantidadDeSeccionesParaElProfe ; $i++){
+				while(array_search($seccion = rand(0, count($seccionesSinProfe)-1), $arregloDePosicionesDeSeccionesUsadas)){ //ineficiencia  xD
+					//eso... nada más que que hacer xD
+					//mientras existe en arreglodepos... el numero random que lo guardo en $seccion ... volver volver a preguntar.
+				}
+				array_push($arregloDePosicionesDeSeccionesUsadas, $seccion);
+				$sec = Seccion::find()-> where(['ID_SECCION' => $seccionesSinProfe[$seccion]['ID_SECCION']]) -> one();
+				//echo var_dump($profesSinSecciones[rand(0, $cantidadDeProfes-1)]['ID_DOCENTE']);
+				$sec -> ID_DOCENTE = $profesSinSecciones[$elProfe]['ID_DOCENTE'];
+				$sec -> save();
+				echo "<br>";
+
+			}
+
+		}
 	}
 
 }

@@ -15,6 +15,7 @@ import db.Edificio;
 import db.Facultad;
 import db.Sala;
 import db.Seccion;
+import db.TiempoInicio;
 import de.javasoft.plaf.synthetica.SyntheticaBlueSteelLookAndFeel;
 import java.awt.BorderLayout;
 import java.awt.Toolkit;
@@ -48,6 +49,7 @@ public class VentanaPrincipal extends JFrame {
     private ArrayList<Facultad> facultades = new ArrayList<>();
     private ArrayList<Sala> salas = new ArrayList<>();
     private ArrayList<Seccion> secciones = new ArrayList<>();
+    private ArrayList<TiempoInicio> tiempos = new ArrayList<>();
     //---------------------------------------------------------------------
 
     /**
@@ -145,17 +147,20 @@ public class VentanaPrincipal extends JFrame {
 	
     }
 
-
-
-
     /**
      * @return the asignaturas
      */
     public ArrayList<Asignatura> getAsignaturas() {
 	return asignaturas;
     }
-
-
+    public Asignatura getAsignatura(String id){
+	for(Asignatura as: this.getAsignaturas()){
+	    if(as.getIdAsignatura().equals(id)){
+		return as;
+	    }
+	}
+	return null;
+    }
 
     /**
      * @return the bloques
@@ -163,8 +168,14 @@ public class VentanaPrincipal extends JFrame {
     public ArrayList<Bloque> getBloques() {
 	return bloques;
     }
-
-
+    public Bloque getBloque(String id){
+	for(Bloque bloquito: this.getBloques()){
+	    if(bloquito.getIdBloque().equals(id)){
+		return bloquito;
+	    }
+	}
+	return null;
+    }
 
     /**
      * @return the carreras
@@ -172,7 +183,14 @@ public class VentanaPrincipal extends JFrame {
     public ArrayList<Carrera> getCarreras() {
 	return carreras;
     }
-
+    public Carrera getCarrera(String id){
+	for(Carrera car: this.getCarreras()){
+	    if(car.getIdCarrera().equals(id)){
+		return car;
+	    }
+	}
+	return null;
+    }
 
 
     /**
@@ -181,7 +199,14 @@ public class VentanaPrincipal extends JFrame {
     public ArrayList<Departamento> getDepartamentos() {
 	return departamentos;
     }
-
+    public Departamento getDepartamento(String id){
+	for(Departamento dep: this.getDepartamentos()){
+	    if(dep.getIdDepartamento().equals(id)){
+		return dep;
+	    }
+	}
+	return null;
+    }
 
 
     /**
@@ -190,7 +215,15 @@ public class VentanaPrincipal extends JFrame {
     public ArrayList<Docente> getDocentes() {
 	return docentes;
     }
-
+    
+    public Docente getDocente(String id){
+	for(Docente profe: this.getDocentes()){
+	    if(profe.getIdDocente().equals(id)){
+		return profe;
+	    }
+	}
+	return null;
+    }
 
 
     /**
@@ -199,7 +232,15 @@ public class VentanaPrincipal extends JFrame {
     public ArrayList<Edificio> getEdificios() {
 	return edificios;
     }
-
+    
+    public Edificio getEdificio(String id){
+	for(Edificio edi: this.getEdificios()){
+	    if(edi.getIdEdificio().equals(id)){
+		return edi;
+	    }
+	}
+	return null;
+    }
 
 
     /**
@@ -208,14 +249,29 @@ public class VentanaPrincipal extends JFrame {
     public ArrayList<Facultad> getFacultades() {
 	return facultades;
     }
-
-
+    public Facultad getFacultad(String id){
+	for(Facultad fac: this.getFacultades()){
+	    if(fac.getIdFacultad().equals(id)){
+		return fac;
+	    }
+	}
+	return null;
+    }
 
     /**
      * @return the salas
      */
     public ArrayList<Sala> getSalas() {
 	return salas;
+    }
+    
+    public Sala getSala(String id){
+	for(Sala sal: this.getSalas()){
+	    if(sal.getIdSala().equals(id)){
+		return sal;
+	    }
+	}
+	return null;
     }
 
 
@@ -226,7 +282,19 @@ public class VentanaPrincipal extends JFrame {
     public ArrayList<Seccion> getSecciones() {
 	return secciones;
     }
-
+    
+    public Seccion getSeccion(String id){
+	for(Seccion sec: this.getSecciones()){
+	    if(sec.getIdSeccion().equals(id)){
+		return sec;
+	    }
+	}
+	return null;
+    }
+    
+    public ArrayList<TiempoInicio> getTiempoInicios(){
+	return tiempos;
+    }
 
     private void checkResolucion(){
 

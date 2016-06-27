@@ -11,7 +11,7 @@ public class Asignatura {
     private Integer horaTeo, horaLabCom, horaAyudantia, 
     horaLabFisica, horaLabQuimica, horaLabRobotica, 
     horaLabMecanica, horaTallerArquitectura, horaTallerMadera, horaGYM, horaAuditorio;
-
+    //FALTAN TIPOS DE HORA!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     public Asignatura(String idAsignatura, String idCarrera, String nombreAsignatura,
 	    Integer anio, Integer semestre, Integer horaTeo, Integer horaLabCom, Integer horaAyudantia, 
 	    Integer horaLabFisica, Integer horaLabQuimica, Integer horaLabRobotica, 

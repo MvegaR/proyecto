@@ -80,7 +80,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'HORAS_LAB_REDES',
             'HORAS_LAB_ELECTRONICA',
             'HORAS_LAB_MAQ_ELECTRICAS',
-
         ];
         
         $query = Asignatura::find();

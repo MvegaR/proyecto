@@ -5,6 +5,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreeModel;
 
 import db.Conexion;
+import logica.Planificador;
 
 import javax.swing.BoxLayout;
 import java.awt.BorderLayout;
@@ -37,7 +38,14 @@ public class PanelPlanificar extends JPanel {
 		panelCentro.add(panelAsignaturas);
 		panelNorte.setLayout(new FlowLayout());
 		btnNewButton = new JButton("Ejecutar Planificación");
-		btnNewButton.addActionListener(e -> new BuscarErrores(ventana).ejecutarTodasLasBusquedas());
+		//btnNewButton.addActionListener(e -> new BuscarErrores(ventana).ejecutarTodasLasBusquedas());
+		ArrayList<Integer> dias = new ArrayList<>();
+		dias.add(1); //hacer grafico.... :p
+		dias.add(2);
+		dias.add(3);
+		dias.add(4);
+		dias.add(5);
+		btnNewButton.addActionListener(e -> new Planificador(ventana, dias));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				TreeModel model = panelAsignaturas.getTree().getModel();

@@ -3,7 +3,7 @@ package db;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class Bloque {
+public class Bloque{
     private Integer idBloque;
     private Integer idDia;
     private String idSala;
@@ -138,6 +138,7 @@ public class Bloque {
 	}
 	return true;
     }
+
 
 
 

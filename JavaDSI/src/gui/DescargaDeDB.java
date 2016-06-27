@@ -18,6 +18,8 @@ import db.Edificio;
 import db.Facultad;
 import db.Sala;
 import db.Seccion;
+import db.TiempoInicio;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -550,6 +552,24 @@ public class DescargaDeDB extends JPanel {
 
 	}
 	//fin rellenar Secciones.
+	
+	//inicio rellenar tiempo_inicio:
+
+		tabla = Conexion.ejecutarSQL("Select * from tiempo_inicio");
+		try {
+		    total = Conexion.ejecutarSQL("Select count(*) as total from tiempo_inicio");
+		    total.next();
+		    totalElementos = total.getInt(1);
+		    actual = 0;
+		    while(tabla.next()){
+			getVentana().getTiempoInicios().add(new TiempoInicio(tabla));
+		    }
+		} catch (SQLException e) {
+		    // TODO Auto-generated catch block
+		    e.printStackTrace();
+
+		}
+	//fin rellenar tiempo_inicio.
 	//*
 	System.out.println("Numero de asignaturas agregadas: "+getVentana().getAsignaturas().size());
 	System.out.println("Numero de bloques agregados: "+getVentana().getBloques().size());
