@@ -33,73 +33,79 @@ public class Clase {
 	this.bloquesAsignados = new ArrayList<Bloque>();
     }
 
-    public void obtenerBloques(VentanaPrincipal ventana, ArrayList<Integer> dias){ //para ser llamada desde el planificador
-	//1. Se prefiere que la seccion no deba estar en mismo dia repetido, pero si no queda de otra se hace.
+    private ArrayList<Sala> filtrarSalaPorTipo(ArrayList<Sala> salas){
 	//2. Se prefiere la sala con capacidad con diferencia a cupo igual o mayor a cero y mientras menor mejor.
-	//3. Se prefiere temporano a tarde ... (antes de primeros 15)
 	//4. Si el profesor es del departamento de una facultad se prefiere una sala de un edificio de esa facultad. 
+	ArrayList<Sala> r = new ArrayList<>();
+	if(this.getTipo().equals("Normal")){
+	    for(Sala sala: salas){
+		if(sala.getIdTipoSala().equals(1)){
+		    r.add(sala);
+		}
+	    }
+	}
+	
+	return r;
+    }
 
+    public void obtenerBloques(VentanaPrincipal ventana, ArrayList<Integer> dias){ //para ser llamada desde el planificador
+	//1. Se prefiere que la seccion no deba estar en mismo dia repetido, pero si no queda de otra se hace. <-aun no sé donde ponerlo xD
+	
+	
+
+	
 	// dias en orden aleatorio, cuantos dias?? En ventana debe de ponerse o en planificar
 	Collections.shuffle(dias, new Random()); // que bonito =) 
-	if(this.getTipo().equals("Normal")){ //eligiendo salas normales (no olvidar incluir ayudantias despues...)
+	//if(this.getTipo().equals("Normal")){ //eligiendo salas normales (no olvidar incluir ayudantias despues...)
 
-	    for(Sala sala: ventana.getSalas()){
-		if(sala.getIdTipoSala().equals(1)){
-		    for(Integer dia: dias){
-			ArrayList<Bloque> bloquesDeUnaSalaYDia = bloquesDeUnaSalaYDia(sala, dia, ventana); 
-			for(Bloque bloque: bloquesDeUnaSalaYDia){
-			    this.getBloquesAsignados().add(bloque);
-			   //System.out.println("horas continuadas"+this.getHorasContinuadas());
-			    for(int i = 1; i < this.getHorasContinuadas(); i++){
-				//System.out.println("contador "+i);
-				String tiempoAnterior = this.getBloquesAsignados().get(this.getBloquesAsignados().size()-1).getInicio();
-				int posTiempoAnterior = -1;
-				for(TiempoInicio t: ventana.getTiempoInicios()){
-				    if(tiempoAnterior.equals(t.getInicio())){
-					posTiempoAnterior = ventana.getTiempoInicios().indexOf(t);
-					break;
-				    }
-				}
-				Bloque bloqueSiguiente = null;
-				//System.out.println("posTiempoAnterior" + posTiempoAnterior+ " tamaño lista tiempos "+ ventana.getTiempoInicios().size() );
-				if(posTiempoAnterior < ventana.getTiempoInicios().size()-1){
-				    for(Bloque b: bloquesDeUnaSalaYDia){
-					if(b.getInicio().equals(ventana.getTiempoInicios().get(posTiempoAnterior+1).getInicio())){
-					    bloqueSiguiente = b;
-					    //System.out.println("b: "+b);
-					    this.getBloquesAsignados().add(b);
-					    break;
-					}
-					//System.out.println("Bloques asignados cumpliendo: " + this.getBloquesAsignados().size());
-				    }
-				    if(bloqueSiguiente == null){
-
-					this.getBloquesAsignados().clear();
-					break;
-					
-				    }
-
-				}else {
-				    this.getBloquesAsignados().clear();
-				   // System.out.println("borrar!! no hay tiempo siguientes suficiente");
-				    break;
-				}
-			    }
-			    //System.out.println("Bloques asignados restricciones: " + this.getBloquesAsignados().size());
-			    if(!noChoque(ventana) && !profesorNoParalelo(ventana)){
-				this.getBloquesAsignados().clear();
-				//System.out.println("borrar!! no cumple restriccioes");
-				break;
-			    }
-			   // System.out.println("Bloques asignadosf: " + this.getBloquesAsignados().size());
-			    if(this.getBloquesAsignados().size() == this.getHorasContinuadas()){
+	for(Sala sala: this.filtrarSalaPorTipo(ventana.getSalas())){ 
+	    for(Integer dia: dias){
+		ArrayList<Bloque> bloquesDeUnaSalaYDia = bloquesDeUnaSalaYDia(sala, dia, ventana); 
+		for(Bloque bloque: bloquesDeUnaSalaYDia){
+		    this.getBloquesAsignados().add(bloque);
+		    //System.out.println("horas continuadas"+this.getHorasContinuadas());
+		    for(int i = 1; i < this.getHorasContinuadas(); i++){
+			//System.out.println("contador "+i);
+			String tiempoAnterior = this.getBloquesAsignados().get(this.getBloquesAsignados().size()-1).getInicio();
+			int posTiempoAnterior = -1;
+			for(TiempoInicio t: ventana.getTiempoInicios()){
+			    if(tiempoAnterior.equals(t.getInicio())){
+				posTiempoAnterior = ventana.getTiempoInicios().indexOf(t);
 				break;
 			    }
 			}
-			if(this.getBloquesAsignados().size() == this.getHorasContinuadas()){
+			Bloque bloqueSiguiente = null;
+			//System.out.println("posTiempoAnterior" + posTiempoAnterior+ " tamaño lista tiempos "+ ventana.getTiempoInicios().size() );
+			if(posTiempoAnterior < ventana.getTiempoInicios().size()-1){
+			    for(Bloque b: bloquesDeUnaSalaYDia){
+				if(b.getInicio().equals(ventana.getTiempoInicios().get(posTiempoAnterior+1).getInicio())){
+				    bloqueSiguiente = b;
+				    //System.out.println("b: "+b);
+				    this.getBloquesAsignados().add(b);
+				    break;
+				}
+				//System.out.println("Bloques asignados cumpliendo: " + this.getBloquesAsignados().size());
+			    }
+			    if(bloqueSiguiente == null){
+
+				this.getBloquesAsignados().clear();
+				break;
+
+			    }
+
+			}else {
+			    this.getBloquesAsignados().clear();
+			    // System.out.println("borrar!! no hay tiempo siguientes suficiente");
 			    break;
 			}
 		    }
+		    //System.out.println("Bloques asignados restricciones: " + this.getBloquesAsignados().size());
+		    if(!noChoque(ventana) && !profesorNoParalelo(ventana)){
+			this.getBloquesAsignados().clear();
+			//System.out.println("borrar!! no cumple restriccioes");
+			break;
+		    }
+		    // System.out.println("Bloques asignadosf: " + this.getBloquesAsignados().size());
 		    if(this.getBloquesAsignados().size() == this.getHorasContinuadas()){
 			break;
 		    }
@@ -108,11 +114,24 @@ public class Clase {
 		    break;
 		}
 	    }
-	    Clase.getBloques().removeAll(this.getBloquesAsignados());
-	    System.out.println("Asignado clase; sobran: " + Clase.getBloques().size() + " Bloques");
-	    System.out.println("Bloques clase "+ventana.getAsignatura(this.getSeccion().getIdAsignatura()).getNombreAsignatura()+" : "+this.getBloquesAsignados().toString());
-	    
+	    if(this.getBloquesAsignados().size() == this.getHorasContinuadas()){
+		break;
+	    }
+
+	    if(this.getBloquesAsignados().size() == this.getHorasContinuadas()){
+		break;
+	    }
 	}
+	if(this.getBloquesAsignados().size() != this.getHorasContinuadas()){
+	  //5. si no existen salas que cumplan con las restricciones duras, se debe buscar la alternativa de "intercambio" con alguna ya asignada. 
+	  //(obtener del planificador, todas las clases del mismo tipo, que tengan la misma cantidad de bloques y que se pueda insertar en otro lado
+	  // -> Aquí codígo
+	}
+	Clase.getBloques().removeAll(this.getBloquesAsignados());
+	System.out.println("Asignado clase; sobran: " + Clase.getBloques().size() + " Bloques");
+	System.out.println("Bloques clase "+ventana.getAsignatura(this.getSeccion().getIdAsignatura()).getNombreAsignatura()+" : "+this.getBloquesAsignados().toString());
+
+	//}
 
     }
 

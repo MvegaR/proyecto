@@ -54,11 +54,15 @@ public class Planificador {
 	    }
 	}
 	System.out.println("Cantidad de clases teoricas: "+ clasesEnSalaNormal.size() + " Total de bloques teoricos: "+ totalDeBloques);
+	 
+	//--
+	//poner en otra funcion... llamada "Pedirle a las clases que se busquen un horario" o similar :p...
 	for(Clase c: clasesEnSalaNormal){
 	    c.obtenerBloques(getVentana(), getDias());
 	}
+	//---
     }
-
+  
     private Asignatura getAsignatura(String id){
 	for(Asignatura as: getVentana().getAsignaturas()){
 	    if(as.getIdAsignatura().equals(id)){
