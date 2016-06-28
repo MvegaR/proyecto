@@ -14,9 +14,8 @@ import gui.VentanaPrincipal;
 public class Clase {
 
     //Por ejemplo la asignatura X tiene 5 horas.
-    //Queremos las clases de 2 horas o a lo más 1 de 3 por seccion. 
-    //se pone la clase de 2 en el horario y en algun otro lugar el de 3.
-    //Esto por seccion.
+    //Queremos las clases de 2 horas o a lo más una de 3 por seccion. (caso horas totales impares)
+    //se crea una clase para la de dos y otra para la de 3, cada una se busca su horario.
 
     private static Integer contador = 0;
     private static LinkedList<Bloque> bloques = new LinkedList<>();
