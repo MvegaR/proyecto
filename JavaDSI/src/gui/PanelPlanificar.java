@@ -39,12 +39,14 @@ public class PanelPlanificar extends JPanel {
 		panelNorte.setLayout(new FlowLayout());
 		btnNewButton = new JButton("Ejecutar Planificación");
 		//btnNewButton.addActionListener(e -> new BuscarErrores(ventana).ejecutarTodasLasBusquedas());
+		
 		ArrayList<Integer> dias = new ArrayList<>();
-		dias.add(1); //hacer grafico.... :p
-		dias.add(2);
-		dias.add(3);
-		dias.add(4);
-		dias.add(5);
+		dias.add(1); //Lunes //hacer grafico.... :p
+		dias.add(2); //Martes
+		dias.add(3); //Miercoles
+		dias.add(4); //Jueves
+		dias.add(5); //Viernes
+		
 		btnNewButton.addActionListener(e -> new Planificador(ventana, dias));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
