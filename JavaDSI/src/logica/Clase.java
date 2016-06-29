@@ -35,7 +35,7 @@ public class Clase {
     }
 
     private ArrayList<Sala> filtrarSalaPorTipoFacultadYCapacidad(ArrayList<Sala> salas, VentanaPrincipal ventana){
-
+	//(Considerar agregar) 6. Se prefiere a una sala para una clase de hora impar estar despues de otra clase de hora impar que este despues de una hora par. 
 
 	ArrayList<Sala> r = new ArrayList<>();
 	if(this.getTipo().equals("Normal")){
@@ -141,7 +141,7 @@ public class Clase {
 	}
 	if(this.getBloquesAsignados().size() != this.getHorasContinuadas()){
 	    //5. si no existen salas que cumplan con las restricciones duras, se debe buscar la alternativa de "intercambio" con alguna ya asignada. 
-	    //El más difiicl pendiente... xD
+	    //El más dificil pendiente... xD
 	    //En una funcion -> (obtener del planificador, todas las clases del mismo tipo, que tengan la misma cantidad de bloques y que se pueda insertar en otro lado
 	    
 
@@ -156,25 +156,29 @@ public class Clase {
 	//}
 
     }
-
     
+    public Boolean getAlternativas(){
+	Boolean r = false;
+	for(Clase c: this.getPlanificador().getListaDeClases()){
+	    if(c.getTipo().equals(this.getTipo()) && c.getHorasContinuadas().equals(this.horasContinuadas)){
+		
+	    }
+	}
+	return r;
+    }
+
+
     
     private ArrayList<Bloque> bloquesDeUnaSalaYDia(Sala sala, int dia, VentanaPrincipal ventana){
 	
 	ArrayList<Bloque> lista = new ArrayList<Bloque>();
-
 	for(Bloque bloque: Clase.bloques){
-	    
 	    if(bloque.getIdDia().equals(dia) && bloque.getIdSala().equals(sala.getIdSala()) && Clase.getBloques().contains(bloque)){
-		lista.add(bloque);
+		    lista.add(bloque);
 	    }
 	}
-	//6. Se prefiere a una clase de hora impar estar despues de otra clase de hora impar que este despues de una hora par. <-aun no sé donde ponerlo xD !!!!!!!!!!!
-	if(this.getHorasContinuadas()%2 != 0){
-	   
-	}
+	
 	return lista;
-
     }
 
 
