@@ -25,7 +25,6 @@ public class Clase {
     private String tipo;
     private Planificador planificador;
 
-
     public Clase(Planificador planificador, Integer horasContinuadas, Seccion seccion, String tipo) {
 	this.id = Clase.contador++;
 	this.horasContinuadas = horasContinuadas;
@@ -68,20 +67,17 @@ public class Clase {
 	r.addAll(otraFacultad);
 	return r;
     }
-
-    //6. Se prefiere a una clase de hora impar estar despues de otra clase de hora impar que este despues de una hora par. <-aun no sé donde ponerlo xD !!!!!!!!!!!
-
+       
+    
     public void obtenerBloques(VentanaPrincipal ventana, ArrayList<Integer> dias){ //para ser llamada desde el planificador
-
-
 	// dias en orden aleatorio, cuantos dias?? En ventana debe de ponerse o en planificar
 	Collections.shuffle(dias, new Random());
-	ordenarDiasSegunClase(dias);
+	this.ordenarDiasSegunClase(dias);
 	//if(this.getTipo().equals("Normal")){ //eligiendo salas normales (no olvidar incluir ayudantias despues...)
 
 	for(Sala sala: this.filtrarSalaPorTipoFacultadYCapacidad(ventana.getSalas(), ventana)){ 
 	    for(Integer dia: dias){
-		ArrayList<Bloque> bloquesDeUnaSalaYDia = bloquesDeUnaSalaYDia(sala, dia, ventana); 
+		ArrayList<Bloque> bloquesDeUnaSalaYDia = this.bloquesDeUnaSalaYDia(sala, dia, ventana); 
 		for(Bloque bloque: bloquesDeUnaSalaYDia){
 		    this.getBloquesAsignados().add(bloque);
 		    //System.out.println("horas continuadas"+this.getHorasContinuadas());
@@ -161,15 +157,22 @@ public class Clase {
 
     }
 
+    
+    
     private ArrayList<Bloque> bloquesDeUnaSalaYDia(Sala sala, int dia, VentanaPrincipal ventana){
+	
 	ArrayList<Bloque> lista = new ArrayList<Bloque>();
 
 	for(Bloque bloque: Clase.bloques){
+	    
 	    if(bloque.getIdDia().equals(dia) && bloque.getIdSala().equals(sala.getIdSala()) && Clase.getBloques().contains(bloque)){
 		lista.add(bloque);
 	    }
 	}
-
+	//6. Se prefiere a una clase de hora impar estar despues de otra clase de hora impar que este despues de una hora par. <-aun no sé donde ponerlo xD !!!!!!!!!!!
+	if(this.getHorasContinuadas()%2 != 0){
+	   
+	}
 	return lista;
 
     }
@@ -178,7 +181,7 @@ public class Clase {
     private Boolean noChoque(VentanaPrincipal ventana){
 	/*No puede estar la asignatura de una carrera de un mismo semestre y
 	 año junto con otra en el mismo dia en la misma hora, 
-	 exepto si existe alguna N-esima seccion de la misma asigantura que no choque. <-listo
+	 exepto si existe alguna N-esima (n>=2) seccion de la misma asigantura que no choque. <-listo
 	 */
 
 	String carrera = ventana.getAsignatura(this.getSeccion().getIdAsignatura()).getIdCarrera();
@@ -263,7 +266,7 @@ public class Clase {
 
 
     public void ordenarDiasSegunClase(ArrayList<Integer> dias){
-	//1. Se prefiere que la seccion no deba estar en mismo dia repetido, pero si no queda de otra se hace. 
+	//1. Se prefiere que la seccion no deba estar en mismo dia repetido, pero si no queda de otra se hace. (Listo)
 	LinkedList<Integer> listaDeDias = new LinkedList<Integer>();
 
 	for(Integer dia: dias){
@@ -291,18 +294,11 @@ public class Clase {
 	return clases;
     }
 
-
-    /* (non-Javadoc)
-     * @see java.lang.Object#toString()
-     */
     @Override
     public String toString() {
 	return "Clase [id=" + id + "]";
     }
 
-    /* (non-Javadoc)
-     * @see java.lang.Object#hashCode()
-     */
     @Override
     public int hashCode() {
 	final int prime = 31;
@@ -311,9 +307,6 @@ public class Clase {
 	return result;
     }
 
-    /* (non-Javadoc)
-     * @see java.lang.Object#equals(java.lang.Object)
-     */
     @Override
     public boolean equals(Object obj) {
 	if (this == obj) {
@@ -382,6 +375,9 @@ public class Clase {
     }
     public Planificador getPlanificador() {
 	return planificador;
+    }
+    public static void resetContador(){
+	Clase.contador = 0;
     }
 
 

@@ -22,6 +22,7 @@ public class Planificador {
 	this.ventana = ventana;
 	this.dias = dias;
 	Clase.getBloques().clear();
+	Clase.resetContador();
 	//Cambiar por una funcion que seleccione los bloques de las salas seleccionadas en la gui
 	
 	for (Bloque bloque : ventana.getBloques()) {
