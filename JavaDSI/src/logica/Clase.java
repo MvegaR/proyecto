@@ -36,7 +36,7 @@ public class Clase {
     }
 
     private ArrayList<Sala> filtrarSalaPorTipoFacultadYCapacidad(ArrayList<Sala> salas, VentanaPrincipal ventana){
-	
+
 
 	ArrayList<Sala> r = new ArrayList<>();
 	if(this.getTipo().equals("Normal")){
@@ -47,7 +47,7 @@ public class Clase {
 		}
 	    }
 	}
-	
+
 	//4. Para una carrera se prefiere clases en edificios de su facultad. (Listo)
 	ArrayList<Sala> igualFacultad = new ArrayList<>(); //edificios con facultad determinada
 	ArrayList<Sala> sinFacultad = new ArrayList<>(); //edificios sin facultad determinada
@@ -68,16 +68,16 @@ public class Clase {
 	r.addAll(otraFacultad);
 	return r;
     }
-  //1. Se prefiere que la seccion no deba estar en mismo dia repetido, pero si no queda de otra se hace. <-aun no sé donde ponerlo xD !!!!!!
-  //6. Se prefiere a una clase de hora impar estar despues de otra clase de hora impar. <-aun no sé donde ponerlo xD !!!!!!!!!!!
+
+    //6. Se prefiere a una clase de hora impar estar despues de otra clase de hora impar que este despues de una hora par. <-aun no sé donde ponerlo xD !!!!!!!!!!!
 
     public void obtenerBloques(VentanaPrincipal ventana, ArrayList<Integer> dias){ //para ser llamada desde el planificador
-	
-	
+
+
 	// dias en orden aleatorio, cuantos dias?? En ventana debe de ponerse o en planificar
-	Collections.shuffle(dias, new Random()); // que bonito =) 
+	Collections.shuffle(dias, new Random());
 	//if(this.getTipo().equals("Normal")){ //eligiendo salas normales (no olvidar incluir ayudantias despues...)
-	
+
 	for(Sala sala: this.filtrarSalaPorTipoFacultadYCapacidad(ventana.getSalas(), ventana)){ 
 	    for(Integer dia: dias){
 		ArrayList<Bloque> bloquesDeUnaSalaYDia = bloquesDeUnaSalaYDia(sala, dia, ventana); 
@@ -143,10 +143,10 @@ public class Clase {
 	    }
 	}
 	if(this.getBloquesAsignados().size() != this.getHorasContinuadas()){
-	  //5. si no existen salas que cumplan con las restricciones duras, se debe buscar la alternativa de "intercambio" con alguna ya asignada. 
-	  //(obtener del planificador, todas las clases del mismo tipo, que tengan la misma cantidad de bloques y que se pueda insertar en otro lado
-	    
-	  // -> Aquí codígo !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	    //5. si no existen salas que cumplan con las restricciones duras, se debe buscar la alternativa de "intercambio" con alguna ya asignada. 
+	    //(obtener del planificador, todas las clases del mismo tipo, que tengan la misma cantidad de bloques y que se pueda insertar en otro lado
+
+	    // -> Aquí codígo !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	}
 	Clase.getBloques().removeAll(this.getBloquesAsignados());
 	System.out.println("Asignado clase; sobran: " + Clase.getBloques().size() + " Bloques");
@@ -256,6 +256,35 @@ public class Clase {
 	return true;
     }
 
+
+    public void ordenarDiasSegunClase(ArrayList<Integer> dias){
+	//1. Se prefiere que la seccion no deba estar en mismo dia repetido, pero si no queda de otra se hace. 
+	LinkedList<Integer> listaDeDias = new LinkedList<Integer>();
+
+	for(Integer dia: dias){
+	    for(Clase c: this.getOtrasclasesDeSeccion()){
+		if(c.getBloquesAsignados().size() != 0 && c.getBloquesAsignados().get(0).getIdDia().equals(dia)){
+		    listaDeDias.addLast(dia);
+		    break;
+		}
+	    }
+	    if(!listaDeDias.contains(dia)){
+		listaDeDias.addFirst(dia);
+	    }
+	}
+	dias.clear();
+	dias.addAll(listaDeDias);
+    }
+
+    public ArrayList<Clase> getOtrasclasesDeSeccion(){
+	ArrayList<Clase> clases = new ArrayList<Clase>();
+	for(Clase c: this.getPlanificador().getListaDeClases()){
+	    if(c.getSeccion().equals(this.getSeccion())){
+		clases.add(c);
+	    }
+	}
+	return clases;
+    }
 
 
     /* (non-Javadoc)

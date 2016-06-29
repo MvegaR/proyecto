@@ -23,6 +23,7 @@ public class Planificador {
 	this.dias = dias;
 	Clase.getBloques().clear();
 	//Cambiar por una funcion que seleccione los bloques de las salas seleccionadas en la gui
+	
 	for (Bloque bloque : ventana.getBloques()) {
 	    if(bloque.getIdSeccion() == null){
 		Clase.getBloques().add(bloque);
@@ -36,7 +37,7 @@ public class Planificador {
     }
 
     public ArrayList<Clase> getListaDeClases(){
-	//Modificar para que reciba las Asignaturas seleccionadas por la GUI
+	
 	ArrayList<Clase> lista = new ArrayList<>();
 	lista.addAll(getClasesEnSalaNormal()); //ir agregando listas segun su tipo
 
@@ -46,8 +47,10 @@ public class Planificador {
 
 
     private void generarClasesEnSalaNormal(){
+	
 	clasesEnSalaNormal = new ArrayList<Clase>();
 	Integer totalDeBloques = 0;
+	//Modificar para que reciba las Asignaturas seleccionadas por la GUI (esta con todas las secciones existentes)
 	for(Seccion seccion: ventana.getSecciones()){
 	    Integer horas =  getAsignatura(seccion.getIdAsignatura()).getHoraTeo();
 	    if(horas == 0) continue;
@@ -72,6 +75,10 @@ public class Planificador {
 	}
 	//---
     }
+    
+    
+    
+    
   
     private Asignatura getAsignatura(String id){
 	for(Asignatura as: getVentana().getAsignaturas()){
