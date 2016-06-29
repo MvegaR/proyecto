@@ -10,9 +10,6 @@ import java.awt.Font;
 
 public class PanelCabecera extends JPanel {
 
-    /**
-     * 
-     */
     private static final long serialVersionUID = 1L;
     private Image imagen;
 

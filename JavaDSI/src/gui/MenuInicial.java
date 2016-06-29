@@ -8,15 +8,8 @@ import java.awt.Font;
 
 public class MenuInicial extends JPanel {
 
-    /**
-     * 
-     */
     private static final long serialVersionUID = 1L;
 
-    /**
-     * Create the panel.
-     * PANEL DE MARI
-     */
 
     private JButton btnAdministrar = new JButton("Administrar");
     private JButton btnPlanificar = new JButton("Planificar");

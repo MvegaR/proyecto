@@ -20,9 +20,6 @@ import java.awt.SystemColor;
 
 public class MenuAdmin extends JPanel {
 
-    /**
-     * 
-     */
     private static final long serialVersionUID = 1L;
 
     JPanel panelParaScroll;
