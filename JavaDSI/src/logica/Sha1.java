@@ -5,16 +5,6 @@ public class Sha1 {
 
     public static class HashTextTest {
 
-	/**
-	 * @param args
-	 * @throws NoSuchAlgorithmException 
-	 */
-	
-	/*
-	public static void main(String[] args) throws NoSuchAlgorithmException {
-	        System.out.println(sha1("Admin"));
-	    }*/
-
 	public static String sha1(String input) {
 	    MessageDigest mDigest;
 	    try {

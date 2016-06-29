@@ -24,6 +24,7 @@ public class Clase {
     private String tipo;
     private Planificador planificador;
 
+
     public Clase(Planificador planificador, Integer horasContinuadas, Seccion seccion, String tipo) {
 	this.id = Clase.contador++;
 	this.horasContinuadas = horasContinuadas;
@@ -33,13 +34,14 @@ public class Clase {
 	this.bloquesAsignados = new ArrayList<Bloque>();
     }
 
-    private ArrayList<Sala> filtrarSalaPorTipo(ArrayList<Sala> salas){
+    private ArrayList<Sala> filtrarSalaPorTipoYCapacidad(ArrayList<Sala> salas){
 	//2. Se prefiere la sala con capacidad con diferencia a cupo igual o mayor a cero y mientras menor mejor.
 	//4. Si el profesor es del departamento de una facultad se prefiere una sala de un edificio de esa facultad. 
 	ArrayList<Sala> r = new ArrayList<>();
 	if(this.getTipo().equals("Normal")){
 	    for(Sala sala: salas){
-		if(sala.getIdTipoSala().equals(1)){
+		//2. Se prefiere la sala con capacidad con diferencia a cupo igual o mayor a cero y mientras menor mejor.
+		if(sala.getIdTipoSala().equals(1) && sala.getCapacidadSala().compareTo(this.getSeccion().getCupo()) >= 0){  
 		    r.add(sala);
 		}
 	    }
@@ -51,14 +53,13 @@ public class Clase {
     public void obtenerBloques(VentanaPrincipal ventana, ArrayList<Integer> dias){ //para ser llamada desde el planificador
 	//1. Se prefiere que la seccion no deba estar en mismo dia repetido, pero si no queda de otra se hace. <-aun no sé donde ponerlo xD
 	
-	
 
 	
 	// dias en orden aleatorio, cuantos dias?? En ventana debe de ponerse o en planificar
 	Collections.shuffle(dias, new Random()); // que bonito =) 
 	//if(this.getTipo().equals("Normal")){ //eligiendo salas normales (no olvidar incluir ayudantias despues...)
 
-	for(Sala sala: this.filtrarSalaPorTipo(ventana.getSalas())){ 
+	for(Sala sala: this.filtrarSalaPorTipoYCapacidad(ventana.getSalas())){ 
 	    for(Integer dia: dias){
 		ArrayList<Bloque> bloquesDeUnaSalaYDia = bloquesDeUnaSalaYDia(sala, dia, ventana); 
 		for(Bloque bloque: bloquesDeUnaSalaYDia){
