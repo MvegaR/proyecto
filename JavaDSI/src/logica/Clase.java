@@ -76,6 +76,7 @@ public class Clase {
 
 	// dias en orden aleatorio, cuantos dias?? En ventana debe de ponerse o en planificar
 	Collections.shuffle(dias, new Random());
+	ordenarDiasSegunClase(dias);
 	//if(this.getTipo().equals("Normal")){ //eligiendo salas normales (no olvidar incluir ayudantias despues...)
 
 	for(Sala sala: this.filtrarSalaPorTipoFacultadYCapacidad(ventana.getSalas(), ventana)){ 
@@ -144,9 +145,13 @@ public class Clase {
 	}
 	if(this.getBloquesAsignados().size() != this.getHorasContinuadas()){
 	    //5. si no existen salas que cumplan con las restricciones duras, se debe buscar la alternativa de "intercambio" con alguna ya asignada. 
-	    //(obtener del planificador, todas las clases del mismo tipo, que tengan la misma cantidad de bloques y que se pueda insertar en otro lado
+	    //El más difiicl pendiente... xD
+	    //En una funcion -> (obtener del planificador, todas las clases del mismo tipo, que tengan la misma cantidad de bloques y que se pueda insertar en otro lado
+	    
 
-	    // -> Aquí codígo !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	    // -> Aquí codígo 
+	    
+	    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	}
 	Clase.getBloques().removeAll(this.getBloquesAsignados());
 	System.out.println("Asignado clase; sobran: " + Clase.getBloques().size() + " Bloques");
