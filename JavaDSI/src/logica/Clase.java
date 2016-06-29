@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.Random;
 
 import db.Bloque;
+import db.Facultad;
 import db.Sala;
 import db.Seccion;
 import db.TiempoInicio;
@@ -34,9 +35,9 @@ public class Clase {
 	this.bloquesAsignados = new ArrayList<Bloque>();
     }
 
-    private ArrayList<Sala> filtrarSalaPorTipoYCapacidad(ArrayList<Sala> salas){
-	//2. Se prefiere la sala con capacidad con diferencia a cupo igual o mayor a cero y mientras menor mejor.
-	//4. Si el profesor es del departamento de una facultad se prefiere una sala de un edificio de esa facultad. 
+    private ArrayList<Sala> filtrarSalaPorTipoFacultadYCapacidad(ArrayList<Sala> salas, VentanaPrincipal ventana){
+	
+
 	ArrayList<Sala> r = new ArrayList<>();
 	if(this.getTipo().equals("Normal")){
 	    for(Sala sala: salas){
@@ -47,19 +48,35 @@ public class Clase {
 	    }
 	}
 	
+	//4. Para una carrera se prefiere clases en edificios de su facultad.
+	ArrayList<Sala> igualFacultad = new ArrayList<>(); //edificios con facultad determinada
+	ArrayList<Sala> sinFacultad = new ArrayList<>(); //edificios sin facultad determinada
+	ArrayList<Sala> otraFacultad = new ArrayList<>(); //las demás salas de otras facultades que cumplen con las caracteristicas para la clase
+	Facultad f = ventana.getFacultad( ventana.getCarrera( ventana.getAsignatura(this.getSeccion().getIdAsignatura()  ).getIdCarrera() ).getIdFacultad());
+	for(Sala sala : r){
+	    if( ventana.getEdificio(sala.getIdEdificio()).getIdFacultad().equals(f.getIdFacultad())){
+		igualFacultad.add(sala);
+	    }else if(sala.getIdEdificio() == null){
+		sinFacultad.add(sala);
+	    }else{
+		otraFacultad.add(sala);
+	    }
+	}
+	r = new ArrayList<>();
+	r.addAll(igualFacultad);
+	r.addAll(sinFacultad);
+	r.addAll(otraFacultad);
 	return r;
     }
 
     public void obtenerBloques(VentanaPrincipal ventana, ArrayList<Integer> dias){ //para ser llamada desde el planificador
 	//1. Se prefiere que la seccion no deba estar en mismo dia repetido, pero si no queda de otra se hace. <-aun no sé donde ponerlo xD
 	
-
-	
 	// dias en orden aleatorio, cuantos dias?? En ventana debe de ponerse o en planificar
 	Collections.shuffle(dias, new Random()); // que bonito =) 
 	//if(this.getTipo().equals("Normal")){ //eligiendo salas normales (no olvidar incluir ayudantias despues...)
-
-	for(Sala sala: this.filtrarSalaPorTipoYCapacidad(ventana.getSalas())){ 
+	
+	for(Sala sala: this.filtrarSalaPorTipoFacultadYCapacidad(ventana.getSalas(), ventana)){ 
 	    for(Integer dia: dias){
 		ArrayList<Bloque> bloquesDeUnaSalaYDia = bloquesDeUnaSalaYDia(sala, dia, ventana); 
 		for(Bloque bloque: bloquesDeUnaSalaYDia){

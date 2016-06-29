@@ -249,7 +249,7 @@ public class VentanaPrincipal extends JFrame {
     public ArrayList<Facultad> getFacultades() {
 	return facultades;
     }
-    public Facultad getFacultad(String id){
+    public Facultad getFacultad(Integer id){
 	for(Facultad fac: this.getFacultades()){
 	    if(fac.getIdFacultad().equals(id)){
 		return fac;

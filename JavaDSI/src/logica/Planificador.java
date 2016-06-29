@@ -1,6 +1,9 @@
 package logica;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Random;
 
 import db.Asignatura;
 import db.Bloque;
@@ -17,11 +20,14 @@ public class Planificador {
     public Planificador(VentanaPrincipal ventana, ArrayList<Integer> dias) {
 	this.ventana = ventana;
 	this.dias = dias;
+	Clase.getBloques().clear();
 	for (Bloque bloque : ventana.getBloques()) {
 	    if(bloque.getIdSeccion() == null){
 		Clase.getBloques().add(bloque);
 	    }
 	}
+	//3. Se prefiere temprano a tarde ...
+	Clase.getBloques().sort(new ComparatorBloquePreferenciaTempranito());
 	generarClasesEnSalaNormal();
 
 
@@ -48,6 +54,7 @@ public class Planificador {
 	    for(int i = 0; i<numerosDeClases; i++){
 		clasesEnSalaNormal.add(new Clase(this,2, seccion, "Normal"));
 	    }
+	    Collections.shuffle(clasesEnSalaNormal, new Random());
 	    if(!par){
 		Clase k = clasesEnSalaNormal.get(clasesEnSalaNormal.size()-1);
 		k.setHorasContinuadas(k.getHorasContinuadas()+1);
