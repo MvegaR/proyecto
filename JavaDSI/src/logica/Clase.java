@@ -73,8 +73,6 @@ public class Clase {
 	// dias en orden aleatorio, cuantos dias?? En ventana debe de ponerse o en planificar
 	Collections.shuffle(dias, new Random());
 	this.ordenarDiasSegunClase(dias);
-	//if(this.getTipo().equals("Normal")){ //eligiendo salas normales (no olvidar incluir ayudantias despues...)
-
 	for(Sala sala: this.filtrarSalaPorTipoFacultadYCapacidad(ventana.getSalas(), ventana)){ 
 	    for(Integer dia: dias){
 		ArrayList<Bloque> bloquesDeUnaSalaYDia = this.bloquesDeUnaSalaYDia(sala, dia, ventana); 
@@ -139,35 +137,14 @@ public class Clase {
 		break;
 	    }
 	}
-	if(this.getBloquesAsignados().size() != this.getHorasContinuadas()){
-	    //5. si no existen salas que cumplan con las restricciones duras, se debe buscar la alternativa de "intercambio" con alguna ya asignada. 
-	    //El más dificil pendiente... xD
-	    //En una funcion -> (obtener del planificador, todas las clases del mismo tipo, que tengan la misma cantidad de bloques y que se pueda insertar en otro lado
-	    
-
-	    // -> Aquí codígo 
-	    
-	    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	}
+	
 	Clase.getBloques().removeAll(this.getBloquesAsignados());
 	System.out.println("Asignado clase; sobran: " + Clase.getBloques().size() + " Bloques");
 	System.out.println("Bloques clase "+ventana.getAsignatura(this.getSeccion().getIdAsignatura()).getNombreAsignatura()+" : "+this.getBloquesAsignados().toString());
 
-	//}
 
     }
     
-    public Boolean getAlternativas(){
-	Boolean r = false;
-	for(Clase c: this.getPlanificador().getListaDeClases()){
-	    if(c.getTipo().equals(this.getTipo()) && c.getHorasContinuadas().equals(this.horasContinuadas)){
-		
-	    }
-	}
-	return r;
-    }
-
-
     
     private ArrayList<Bloque> bloquesDeUnaSalaYDia(Sala sala, int dia, VentanaPrincipal ventana){
 	
