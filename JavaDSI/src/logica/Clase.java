@@ -68,9 +68,11 @@ public class Clase {
 	r.addAll(otraFacultad);
 	return r;
     }
+  //1. Se prefiere que la seccion no deba estar en mismo dia repetido, pero si no queda de otra se hace. <-aun no sé donde ponerlo xD
+  //2. Se prefiere a una clase de hora impar estar despues de otra clase de hora impar. <-aun no sé donde ponerlo xD
 
     public void obtenerBloques(VentanaPrincipal ventana, ArrayList<Integer> dias){ //para ser llamada desde el planificador
-	//1. Se prefiere que la seccion no deba estar en mismo dia repetido, pero si no queda de otra se hace. <-aun no sé donde ponerlo xD
+	
 	
 	// dias en orden aleatorio, cuantos dias?? En ventana debe de ponerse o en planificar
 	Collections.shuffle(dias, new Random()); // que bonito =) 
