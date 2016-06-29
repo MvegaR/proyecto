@@ -15,11 +15,14 @@ public class Planificador {
     private ArrayList<Clase> clasesEnSalaNormal;
     private ArrayList<Integer> dias;
     //private ArrayList<Clase> clasesEnLabComputacion;
+    
+    
 
     public Planificador(VentanaPrincipal ventana, ArrayList<Integer> dias) {
 	this.ventana = ventana;
 	this.dias = dias;
 	Clase.getBloques().clear();
+	//Cambiar por una funcion que seleccione los bloques de las salas seleccionadas en la gui
 	for (Bloque bloque : ventana.getBloques()) {
 	    if(bloque.getIdSeccion() == null){
 		Clase.getBloques().add(bloque);
@@ -33,6 +36,7 @@ public class Planificador {
     }
 
     public ArrayList<Clase> getListaDeClases(){
+	//Modificar para que reciba las Asignaturas seleccionadas por la GUI
 	ArrayList<Clase> lista = new ArrayList<>();
 	lista.addAll(getClasesEnSalaNormal()); //ir agregando listas segun su tipo
 

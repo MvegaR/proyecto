@@ -41,14 +41,14 @@ public class Clase {
 	ArrayList<Sala> r = new ArrayList<>();
 	if(this.getTipo().equals("Normal")){
 	    for(Sala sala: salas){
-		//2. Se prefiere la sala con capacidad con diferencia a cupo igual o mayor a cero y mientras menor mejor.
+		//2. Se prefiere la sala con capacidad con diferencia a cupo igual o mayor a cero y mientras menor mejor. (Listo)
 		if(sala.getIdTipoSala().equals(1) && sala.getCapacidadSala().compareTo(this.getSeccion().getCupo()) >= 0){  
 		    r.add(sala);
 		}
 	    }
 	}
 	
-	//4. Para una carrera se prefiere clases en edificios de su facultad.
+	//4. Para una carrera se prefiere clases en edificios de su facultad. (Listo)
 	ArrayList<Sala> igualFacultad = new ArrayList<>(); //edificios con facultad determinada
 	ArrayList<Sala> sinFacultad = new ArrayList<>(); //edificios sin facultad determinada
 	ArrayList<Sala> otraFacultad = new ArrayList<>(); //las demás salas de otras facultades que cumplen con las caracteristicas para la clase
@@ -68,8 +68,8 @@ public class Clase {
 	r.addAll(otraFacultad);
 	return r;
     }
-  //1. Se prefiere que la seccion no deba estar en mismo dia repetido, pero si no queda de otra se hace. <-aun no sé donde ponerlo xD
-  //2. Se prefiere a una clase de hora impar estar despues de otra clase de hora impar. <-aun no sé donde ponerlo xD
+  //1. Se prefiere que la seccion no deba estar en mismo dia repetido, pero si no queda de otra se hace. <-aun no sé donde ponerlo xD !!!!!!
+  //6. Se prefiere a una clase de hora impar estar despues de otra clase de hora impar. <-aun no sé donde ponerlo xD !!!!!!!!!!!
 
     public void obtenerBloques(VentanaPrincipal ventana, ArrayList<Integer> dias){ //para ser llamada desde el planificador
 	
@@ -145,7 +145,8 @@ public class Clase {
 	if(this.getBloquesAsignados().size() != this.getHorasContinuadas()){
 	  //5. si no existen salas que cumplan con las restricciones duras, se debe buscar la alternativa de "intercambio" con alguna ya asignada. 
 	  //(obtener del planificador, todas las clases del mismo tipo, que tengan la misma cantidad de bloques y que se pueda insertar en otro lado
-	  // -> Aquí codígo
+	    
+	  // -> Aquí codígo !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	}
 	Clase.getBloques().removeAll(this.getBloquesAsignados());
 	System.out.println("Asignado clase; sobran: " + Clase.getBloques().size() + " Bloques");
