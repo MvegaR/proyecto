@@ -51,7 +51,10 @@ public class PanelPlanificar extends JPanel {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				TreeModel model = panelAsignaturas.getTree().getModel();
+				TreeModel model2 = panelTreeSalas.getTree().getModel();
 			    DefaultMutableTreeNode root = (DefaultMutableTreeNode) model.getRoot();
+			    DefaultMutableTreeNode root2 = (DefaultMutableTreeNode) model2.getRoot();
+			    ArrayList<String> Salas = new ArrayList<String>();//alamacena las salas
 			    ArrayList<String> Asignaturas = new ArrayList<String>(); //Almacena los codigos de las asignaturas
 			    ArrayList<String> Secciones = new ArrayList<String>(); //Almacena los codigos de las secciones que se incluiran
 			    for(int i=0; i < root.getChildCount(); i++){ // obteniendo las asignatura seleccionadas
@@ -60,7 +63,7 @@ public class PanelPlanificar extends JPanel {
 			    			for(int y=0; y < root.getChildAt(i).getChildAt(j).getChildAt(x).getChildCount(); y++){
 			    				DefaultMutableTreeNode nodo = (DefaultMutableTreeNode) root.getChildAt(i).getChildAt(j).getChildAt(x).getChildAt(y);
 			    				CheckBoxNode checkBox = (CheckBoxNode)nodo.getUserObject();
-			    			    if(checkBox.status == Status.SELECTED){
+			    			    if(checkBox.status.equals(Status.SELECTED)){
 			    			    	String select = "SELECT ID_ASIGNATURA, HORAS_TEO, HORAS_LAB_COM,HORAS_AYUDANTIA,HORAS_LAB_FISICA,HORAS_LAB_QUIMICA, HORAS_LAB_ROBOTICA, HORAS_LAB_MECANICA, HORAS_TALLER_ARQUITECTURA, HORAS_TALLER_MADERA, HORAS_GYM, HORAS_AUDITORIO"
 			    			    			+ " FROM asignatura"
 			    			    			+ " WHERE ID_ASIGNATURA='";
@@ -77,7 +80,7 @@ public class PanelPlanificar extends JPanel {
 			    		}
 			    	}
 			    }
-			    for(int i=0;i<Asignaturas.size();i++){ // obtiene las secciones y su cupo, solo las que tienen profesore asignados
+			   for(int i=0;i<Asignaturas.size();i++){ // obtiene las secciones y su cupo, solo las que tienen profesore asignados
 			    	try {
 			    		String[] partes = Asignaturas.get(i).split(" ");
 			    		//Sin cosiderar seccione sin profesores
@@ -91,12 +94,36 @@ public class PanelPlanificar extends JPanel {
 						//Falta añadir mensaje
 					}
 			    }
-			    /*
-			    System.out.println("SECCIONES A PLANIFICAR");
-			    for(int i=0;i<Secciones.size();i++){
-			    	System.out.println(Secciones.get(i));
+			  for(int i=0; i < root2.getChildCount(); i++){ // obteniendo las salas seleccionadas
+			    	for(int j=0; j < root2.getChildAt(i).getChildCount(); j++){
+			    		for(int x=0; x < root2.getChildAt(i).getChildAt(j).getChildCount(); x++){
+			    			for(int y=0; y < root2.getChildAt(i).getChildAt(j).getChildAt(x).getChildCount(); y++){
+			    				DefaultMutableTreeNode nodo2 = (DefaultMutableTreeNode) root2.getChildAt(i).getChildAt(j).getChildAt(x).getChildAt(y);
+			    				CheckBoxNode checkBox2 = (CheckBoxNode)nodo2.getUserObject();
+			    			    if(checkBox2.status.equals(Status.SELECTED)){
+			    			    	String select = "SELECT ID_SALA"
+			    			    			+ " FROM sala"
+			    			    			+ " WHERE ID_SALA='";
+			    			    	try {
+			    			    		ResultSet rsSala = Conexion.ejecutarSQL(select+checkBox2.label.toString().split("]")[0].substring(1)+"'");
+			    			    		while(rsSala.next())
+			    			    		    Salas.add(rsSala.getString("ID_SALA"));
+									} catch (SQLException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+			    			    }
+			    			}
+			    		}
+			    	}
 			    }
-			    */
+			    
+			    
+			  /*  System.out.println("SECCIONES A PLANIFICAR");
+			    for(int i=0;i<Salas.size();i++){
+			    	System.out.println(Salas.get(i));
+			    }*/
+			    
 			}
 		});
 		panelSur.add(btnNewButton);
