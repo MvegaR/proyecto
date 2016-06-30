@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.Random;
 
 import db.Bloque;
+import db.Conexion;
 import db.Seccion;
 import gui.VentanaPrincipal;
 
@@ -49,7 +50,7 @@ public class Planificador {
 	    }
 	}
 	//3. Se prefiere temprano a tarde ...
-	Clase.getBloques().sort(new ComparatorBloquePreferenciaTempranito());
+	Clase.getBloques().sort(new ComparatorBloquePreferenciaTemprano());
 	this.generarClasesEnSalaComputacion();
 	this.generarClasesEnLabFisica();
 	this.generarClasesEnLabQuimica();
@@ -64,8 +65,17 @@ public class Planificador {
 	this.generarClasesMaqElectronicas();
 	this.generarClasesEnSalaNormal();
 	this.busquedaDeBloquesParaLasClases();
+	this.asignarEnBD();
 
 
+    }
+    
+    public void asignarEnBD(){
+	for(Clase c: this.getListaDeClases()){
+	    for(Bloque b: c.getBloquesAsignados()){
+		Conexion.ejecutarSQL("UPDATE bloque SET ID_SECCION = '" + b.getIdSeccion() + "' WHERE ID_BLOQUE = '" +b.getIdBloque()+"'");
+	    }
+	}
     }
 
     public ArrayList<Clase> getListaDeClases(){

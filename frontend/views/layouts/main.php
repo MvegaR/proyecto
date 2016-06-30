@@ -148,7 +148,7 @@ style="background-color:#0064AC; background-image:url(img/bg.png);color:#fff;  p
       <div class=" text-center" style="background-color:#0064AC; color:#FFFFFF; font-weight: bold; font-size:16px;">Link rápidos</div>
 
       <?php if(!Yii::$app -> user -> isGuest && Yii::$app -> user -> identity -> ID_ROL == 1){?><a href="index.php?r=site/menu-admin" class="list-group-item pulso">Módulos de administración</a><?php } ?>
-      <?php if(!Yii::$app -> user -> isGuest && Yii::$app -> user -> identity -> ID_ROL == 2){?><a href="#" class="list-group-item pulso">Ver Horario</a><?php } ?>
+      <?php if(!Yii::$app -> user -> isGuest && Yii::$app -> user -> identity -> ID_ROL == 2){?><a href="index.php?r=horario-docente" class="list-group-item pulso">Ver Horario</a><?php } ?>
       <?php if(!Yii::$app -> user -> isGuest && Yii::$app -> user -> identity -> ID_ROL == 2){?><a href="index.php?r=solicitud-asignacion/create" class="list-group-item pulso">Formulario de asignación permanente</a><?php } ?>
       <?php if(!Yii::$app -> user -> isGuest && Yii::$app -> user -> identity -> ID_ROL == 2){?><a href="index.php?r=solicitud-asignacion-temporal/create" class="list-group-item pulso">Solicitud asignación temporal</a><?php } ?>
       <?php if(!Yii::$app -> user -> isGuest && Yii::$app -> user -> identity -> ID_ROL == 2){?><a href="index.php?r=solicitud-cancelacion/create" class="list-group-item pulso">Solicitud cancelación</a><?php } ?>

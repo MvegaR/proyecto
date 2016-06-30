@@ -158,7 +158,7 @@ public class Clase {
 	// dias en orden aleatorio, cuantos dias?? En ventana debe de ponerse o en planificar
 	Collections.shuffle(dias, new Random());
 	this.ordenarDiasSegunClase(dias);
-	for(Sala sala: this.filtrarSalaPorTipoFacultadYCapacidad(ventana.getSalas(), ventana)){ 
+	for(Sala sala: this.filtrarSalaPorTipoFacultadYCapacidad(ventana.getSalas(), ventana)){  // No considera la hora temprano... !!!
 	    for(Integer dia: dias){
 		ArrayList<Bloque> bloquesDeUnaSalaYDia = this.bloquesDeUnaSalaYDia(sala, dia, ventana); 
 		for(Bloque bloque: bloquesDeUnaSalaYDia){
