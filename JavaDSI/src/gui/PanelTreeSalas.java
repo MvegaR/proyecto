@@ -48,28 +48,16 @@ public class PanelTreeSalas extends JPanel {
     private static final long serialVersionUID = 1L;
     private JLabel tituloSalas;
     private String titulo;
-<<<<<<< HEAD
     private JTree tree;
-    /**
-     * Create the panel.
-     */
-=======
 
->>>>>>> origin/master
     public PanelTreeSalas() {
 	super(new BorderLayout());
 	titulo = "<html><body><h2><strong><center>SELECCIONE SALAS</center></strong></h2></body></html>";
 	tituloSalas = new JLabel(titulo);
 	tituloSalas.setAlignmentX(Component.CENTER_ALIGNMENT);
-<<<<<<< HEAD
-         tree = new JTree() {
-            /**
-	     * 
-	     */
-=======
-        JTree tree = new JTree() {
 
->>>>>>> origin/master
+         tree = new JTree() {
+    
 	    private static final long serialVersionUID = 1L;
 
 	    @Override public void updateUI() {
