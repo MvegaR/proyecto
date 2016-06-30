@@ -142,7 +142,7 @@ public class Clase {
 	for(Sala sala : r){
 	    if( sala.getIdEdificio() != null &&  ventana.getEdificio(sala.getIdEdificio()).getIdFacultad().equals(f.getIdFacultad())){
 		igualFacultad.add(sala);
-	    }else if(sala.getIdEdificio() == null){
+	    }else if( sala.getIdEdificio() != null && ventana.getEdificio(sala.getIdEdificio()).getIdFacultad() == null){
 		sinFacultad.add(sala);
 	    }else{
 		otraFacultad.add(sala);
@@ -151,7 +151,7 @@ public class Clase {
 	r = new ArrayList<>();
 	r.addAll(igualFacultad);
 	r.addAll(sinFacultad);
-	r.addAll(otraFacultad);
+	r.addAll(otraFacultad); 
 	r.sort(new ComparatorSalaCantidadBloques());
 	return r;
     }
@@ -162,7 +162,7 @@ public class Clase {
 	// dias en orden aleatorio, cuantos dias?? En ventana debe de ponerse o en planificar
 	Collections.shuffle(dias, new Random());
 	this.ordenarDiasSegunClase(dias);
-	for(Sala sala: this.filtrarSalaPorTipoFacultadYCapacidad(ventana.getSalas(), ventana)){  // No considera la hora temprano... !!!
+	for(Sala sala: this.filtrarSalaPorTipoFacultadYCapacidad(ventana.getSalas(), ventana)){ 
 	    for(Integer dia: dias){
 		ArrayList<Bloque> bloquesDeUnaSalaYDia = this.bloquesDeUnaSalaYDia(sala, dia, ventana); 
 		for(Bloque bloque: bloquesDeUnaSalaYDia){

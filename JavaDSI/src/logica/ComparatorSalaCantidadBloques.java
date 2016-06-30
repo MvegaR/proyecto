@@ -11,7 +11,7 @@ public class ComparatorSalaCantidadBloques implements Comparator<Sala>{
     public int compare(Sala o1, Sala o2) {
 	int r = 0;
 	if(r == 0){
-	    r = contadorDeBloques(o1).compareTo(contadorDeBloques(o2));
+	    r = contadorDeBloques(o2).compareTo(contadorDeBloques(o1));
 	    if(r == 0){
 		r = o1.getIdSala().compareTo(o2.getIdSala());
 	    }
