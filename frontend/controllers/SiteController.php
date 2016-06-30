@@ -727,7 +727,7 @@ class SiteController extends Controller{
 				WHERE S.ID_ASIGNATURA = A.ID_ASIGNATURA);
 			") -> queryAll();
 		foreach ($asignaturasSinSecciones as $asignatura) {
-			$cantidadDeSeccionesAGenerar = rand(1,3);
+			$cantidadDeSeccionesAGenerar = rand(1,2);
 			$cantidadDeAlumnosPorSeccion = rand(3, 12) * 5; //multiplo de 5.
 			for($i = 0; $i < $cantidadDeSeccionesAGenerar; $i++){
 				$seccion = new Seccion;
@@ -751,7 +751,7 @@ class SiteController extends Controller{
 			") -> queryAll();
 			$cantidadDeProfes = count($profesSinSecciones);
 			$arregloDePosicionesDeSeccionesUsadas = [];
-			$cantidadDeSeccionesParaElProfe =  rand(3,4);
+			$cantidadDeSeccionesParaElProfe =  rand(2,4);
 			$elProfe = rand(0, $cantidadDeProfes-1);
 			for($i = 0; $i < $cantidadDeSeccionesParaElProfe ; $i++){
 				while(array_search($seccion = rand(0, count($seccionesSinProfe)-1), $arregloDePosicionesDeSeccionesUsadas)){ //ineficiencia  xD

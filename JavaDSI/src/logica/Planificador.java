@@ -520,7 +520,7 @@ public class Planificador {
     
     
   
-    private VentanaPrincipal getVentana() {
+    public VentanaPrincipal getVentana() {
 	return ventana;
     }
 

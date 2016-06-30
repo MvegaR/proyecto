@@ -3,6 +3,9 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\GridView;
+use frontend\models\Facultad;
+use frontend\models\Edificio;
+use frontend\models\Sala;
 
 /* @var $this yii\web\View */
 /* @var $searchModel frontend\models\BloqueSearch */
@@ -11,6 +14,10 @@ use yii\grid\GridView;
 $this->title = 'Salas disponibles';
 $this->params['breadcrumbs'][] = ['label' => 'Horario General', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+
+$facultades = new Facultad; 
+$edificios = new Edificio; 
+$salas = new Sala; 
 ?>
 
 <div class="bloque-index">
@@ -38,27 +45,77 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
     
 <div class="row">
-    <?php foreach($result as $row): ?>
-    <div class="col-md-3 col-sm-4 col-xs-6">
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <div class="btn-group">
-                    <button type="button" class="btn btn-default" title="Click para Solicitar">
-                        <p>Sala <?= $row->ID_SALA ?></p>
-                        <p>Edificio <?= $row->ID_EDIFICIO ?></p>
-                        <p>Capacidad <?= $row->CAPACIDAD_SALA ?></p>
-                    </button>
-                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="caret"></span>
-                        <span class="sr-only">Toggle Dropdown</span>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Solicitar esta sala</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-    <?php endforeach ?>
+
+    <?php
+  
+        foreach($facultades -> find() -> all() as $facultad){
+            echo "<div class='col-xs-12'>";
+            echo "<h2><p> ".$facultad -> NOMBRE_FACULTAD."</p></h2><br>"; 
+            foreach($edificios -> find()-> where(["ID_FACULTAD" => $facultad -> ID_FACULTAD,])-> all() as $edificio){
+                echo "<div class='col-xs-12'>";
+                echo "<h3><p>".$edificio -> NOMBRE_EDIFICIO."</h3></p><br>"; 
+                foreach ($salas -> find()-> where(["ID_EDIFICIO" => $edificio -> ID_EDIFICIO,])-> all() as $sala) { 
+                        //echo "<p> -> ->".$sala -> ID_SALA."</p>"; ?>
+                        <?php foreach($result as $row):
+                        if($row->ID_SALA == $sala -> ID_SALA){ ?>
+                            <div class="col-md-6 col-sm-6 col-xs-6 " >
+                                <div class="panel panel-default col-xs-12" style="background-color:#0064AC">
+                                    <div class="panel-body col-xs-12">
+                                        <div class="btn-group col-xs-12" >
+                                            <button type="button" class="btn btn-default col-xs-12" title="Click para ver horario" onclick="location.href='index.php?r=sala/horario-sala&sala=<?= $row->ID_SALA ?>'">
+                                                <p>Sala <?= $row->ID_SALA ?></p>
+                                                <p>Edificio <?= $row->ID_EDIFICIO ?></p>
+                                                <p>Capacidad <?= $row->CAPACIDAD_SALA ?></p>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        <?php }
+                        endforeach 
+                        ?>
+<?php
+
+                }
+                echo "</div>";
+            }
+            echo "</div>";
+        }
+
+        echo "<div class='col-xs-12'>";
+        echo "<h2><p>Sin facultad</p></h2><br>";
+        foreach($edificios -> find()-> where(["ID_FACULTAD" => null,])-> all() as $edificio){
+            echo "<div class='col-xs-12'>";
+            echo "<h3><p>".$edificio -> NOMBRE_EDIFICIO."</h3></p><br>"; 
+            foreach ($salas -> find()-> where(["ID_EDIFICIO" =>$edificio -> ID_EDIFICIO,])-> all() as $sala) {
+                foreach($result as $row):
+                            if($row->ID_SALA == $sala -> ID_SALA){ ?>
+                                <div class="col-md-6 col-sm-6 col-xs-6 " >
+                                    <div class="panel panel-default col-xs-12" style="background-color:#0064AC">
+                                        <div class="panel-body col-xs-12">
+                                            <div class="btn-group col-xs-12" >
+                                                <button type="button" class="btn btn-default col-xs-12" title="Click para ver horario" onclick="location.href='index.php?r=sala/horario-sala&sala=<?= $row->ID_SALA ?>'">
+                                                    <p>Sala <?= $row->ID_SALA ?></p>
+                                                    <p>Edificio <?= $row->ID_EDIFICIO ?></p>
+                                                    <p>Capacidad <?= $row->CAPACIDAD_SALA ?></p>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php }
+                endforeach;
+             
+             }
+        echo "</div>";
+        }
+     echo "</div>";
+        
+    ?>
+
+
+
+
 </div>
 </div>

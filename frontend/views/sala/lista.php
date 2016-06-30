@@ -13,65 +13,69 @@ $this->title = 'Lista de salas';
 $this->params['breadcrumbs'][] = $this->title; 
 ?>
 <h1>Horario Salas</h1>
-<button class="btn btn-default control1">Ver todas las salas</button>
-<button class="btn btn-default control2">Buscar Sala Especifica</button>
-<div class="jumbotron">
-    <h2>Siga los siguientes pasos:</h2>
-    <h3>Paso 1: </h3>
-        <?= Html::activeDropDownList($facultades, 'ID_FACULTAD', ArrayHelper::map($facultades::find()->all(), 'ID_FACULTAD', 'NOMBRE_FACULTAD'), array('onchange'=>'getData()','class' =>'form-control','id'=>"facultad",'prompt'=>'Seleccione Facultad')) ?>
-</div>
-    <div id="respuesta"></div>
-
-
-
+<div>
+    
     <?php
-        echo '
-            <script>   
-            $(function(){
-            $(document).ready(function(){
-                $("#facultad").change(function(){
-                    var url = "'.Url::toRoute(["sala/edificios"]).'";
-                    $.ajax({
-                       type: "POST",
-                       url: url,
-                       data: { id: $("#facultad :selected").val() },
-                       success: function(data)
-                       {
-                           $("#respuesta").html(data);
-                       }
-                    });
-                });
-                $(".control1").on("click",function(){
-                    $(".control1").hide();
-                    $(".control2").hide();
-                    var url = "'.Url::toRoute(["sala/salas"]).'";
-        $.ajax({
-           type: "POST",
-           url: url,
-           data: { id: "*" },
-           success: function(data)
-           {
-               $("#respuesta").html(data);
-           }
-        });
-                });
-             });
-            });
-            </script>';
-    ?>
+  
+        foreach($facultades -> find() -> all() as $facultad){
+            echo "<div class='col-xs-12'>";
+            echo "<h2><p> ".$facultad -> NOMBRE_FACULTAD."</p></h2><br>"; 
+            foreach($edificios -> find()-> where(["ID_FACULTAD" => $facultad -> ID_FACULTAD,])-> all() as $edificio){
+                echo "<div class='col-xs-12'>";
+                echo "<h3><p>".$edificio -> NOMBRE_EDIFICIO."</h3></p><br>"; 
+                foreach ($salas -> find()-> where(["ID_EDIFICIO" => $edificio -> ID_EDIFICIO,])-> all() as $sala) { 
+                        //echo "<p> -> ->".$sala -> ID_SALA."</p>"; ?>
+                      
+      
+                            <div class="col-md-6 col-sm-6 col-xs-6 " >
+                                <div class="panel panel-default col-xs-12" style="background-color:#0064AC">
+                                    <div class="panel-body col-xs-12">
+                                        <div class="btn-group col-xs-12" >
+                                            <button type="button" class="btn btn-default col-xs-12" title="Click para ver horario" onclick="location.href='index.php?r=sala/horario-sala&sala=<?= $sala->ID_SALA ?>'">
+                                                <p>Sala <?= $sala->ID_SALA ?></p>
+                                                <p>Edificio <?= $edificio->ID_EDIFICIO ?></p>
+                                                <p>Capacidad <?= $sala->CAPACIDAD_SALA ?></p>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-<script type="text/javascript">
-    var abierto=false;
-    $(".jumbotron").hide();
-    $(".control2").on('click',function(){
-        $(".control2").hide();
-        $(".control1").hide();
-        if(abierto){
-            $(".jumbotron").slideUp(1000);
-            abierto=false;
-        }else{
-            $(".jumbotron").slideDown(1000);
-            abierto=true;
+                        <?php 
+                        ?>
+<?php
+
+                }
+                echo "</div>";
+            }
+            echo "</div>";
         }
-    });
-</script>
+
+        echo "<div class='col-xs-12'>";
+        echo "<h2><p>Sin facultad</p></h2><br>";
+        foreach($edificios -> find()-> where(["ID_FACULTAD" => null,])-> all() as $edificio){
+            echo "<div class='col-xs-12'>";
+            echo "<h3><p>".$edificio -> NOMBRE_EDIFICIO."</h3></p><br>"; 
+            foreach ($salas -> find()-> where(["ID_EDIFICIO" =>$edificio -> ID_EDIFICIO,])-> all() as $sala) {
+                           ?>
+                                <div class="col-md-6 col-sm-6 col-xs-6 " >
+                                    <div class="panel panel-default col-xs-12" style="background-color:#0064AC">
+                                        <div class="panel-body col-xs-12">
+                                            <div class="btn-group col-xs-12" >
+                                                <button type="button" class="btn btn-default col-xs-12" title="Click para ver horario" onclick="location.href='index.php?r=sala/horario-sala&sala=<?= $sala->ID_SALA ?>'">
+                                                <p>Sala <?= $sala->ID_SALA ?></p>
+                                                <p>Edificio <?= $edificio->ID_EDIFICIO ?></p>
+                                                <p>Capacidad <?= $sala->CAPACIDAD_SALA ?></p>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php              
+             }
+        echo "</div>";
+        }
+     echo "</div>";
+        
+    ?>
+</div>
