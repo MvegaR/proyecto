@@ -33,6 +33,8 @@ public class Clase {
 	this.planificador = planificador;
 	this.bloquesAsignados = new ArrayList<Bloque>();
     }
+    
+    
 
     private ArrayList<Sala> filtrarSalaPorTipoFacultadYCapacidad(ArrayList<Sala> salas, VentanaPrincipal ventana){
 	//(Considerar agregar) 6. Se prefiere a una sala para una clase de hora impar estar despues de otra clase de hora impar que este despues de una hora par. 
@@ -150,9 +152,11 @@ public class Clase {
 	r.addAll(igualFacultad);
 	r.addAll(sinFacultad);
 	r.addAll(otraFacultad);
+	r.sort(new ComparatorSalaCantidadBloques());
 	return r;
     }
        
+
     
     public void obtenerBloques(VentanaPrincipal ventana, ArrayList<Integer> dias){ //para ser llamada desde el planificador
 	// dias en orden aleatorio, cuantos dias?? En ventana debe de ponerse o en planificar
