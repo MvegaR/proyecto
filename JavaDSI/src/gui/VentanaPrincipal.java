@@ -168,7 +168,7 @@ public class VentanaPrincipal extends JFrame {
     public ArrayList<Bloque> getBloques() {
 	return bloques;
     }
-    public Bloque getBloque(String id){
+    public Bloque getBloque(Integer id){
 	for(Bloque bloquito: this.getBloques()){
 	    if(bloquito.getIdBloque().equals(id)){
 		return bloquito;
@@ -199,7 +199,7 @@ public class VentanaPrincipal extends JFrame {
     public ArrayList<Departamento> getDepartamentos() {
 	return departamentos;
     }
-    public Departamento getDepartamento(String id){
+    public Departamento getDepartamento(Integer id){
 	for(Departamento dep: this.getDepartamentos()){
 	    if(dep.getIdDepartamento().equals(id)){
 		return dep;

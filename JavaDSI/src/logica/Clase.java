@@ -45,7 +45,92 @@ public class Clase {
 		    r.add(sala);
 		}
 	    }
+	}else if(this.getTipo().equals("Computacion")){
+	    for(Sala sala: salas){
+		//2. Se prefiere la sala con capacidad con diferencia a cupo igual o mayor a cero y mientras menor mejor. (Listo)
+		if(sala.getIdTipoSala().equals(2) && sala.getCapacidadSala().compareTo(this.getSeccion().getCupo()) >= 0){  
+		    r.add(sala);
+		}
+	    }
+	}else if(this.getTipo().equals("LabFisica")){
+	    for(Sala sala: salas){
+		//2. Se prefiere la sala con capacidad con diferencia a cupo igual o mayor a cero y mientras menor mejor. (Listo)
+		if(sala.getIdTipoSala().equals(3) && sala.getCapacidadSala().compareTo(this.getSeccion().getCupo()) >= 0){  
+		    r.add(sala);
+		}
+	    }
+	}else if(this.getTipo().equals("LabQuimica")){
+	    for(Sala sala: salas){
+		//2. Se prefiere la sala con capacidad con diferencia a cupo igual o mayor a cero y mientras menor mejor. (Listo)
+		if(sala.getIdTipoSala().equals(4) && sala.getCapacidadSala().compareTo(this.getSeccion().getCupo()) >= 0){  
+		    r.add(sala);
+		}
+	    }
+	}else if(this.getTipo().equals("LabMecanica")){
+	    for(Sala sala: salas){
+		//2. Se prefiere la sala con capacidad con diferencia a cupo igual o mayor a cero y mientras menor mejor. (Listo)
+		if(sala.getIdTipoSala().equals(5) && sala.getCapacidadSala().compareTo(this.getSeccion().getCupo()) >= 0){  
+		    r.add(sala);
+		}
+	    }
+	}else if(this.getTipo().equals("LabRobotica")){
+	    for(Sala sala: salas){
+		//2. Se prefiere la sala con capacidad con diferencia a cupo igual o mayor a cero y mientras menor mejor. (Listo)
+		if(sala.getIdTipoSala().equals(6) && sala.getCapacidadSala().compareTo(this.getSeccion().getCupo()) >= 0){  
+		    r.add(sala);
+		}
+	    }
+	}else if(this.getTipo().equals("TallerArquitectura")){
+	    for(Sala sala: salas){
+		//2. Se prefiere la sala con capacidad con diferencia a cupo igual o mayor a cero y mientras menor mejor. (Listo)
+		if(sala.getIdTipoSala().equals(7) && sala.getCapacidadSala().compareTo(this.getSeccion().getCupo()) >= 0){  
+		    r.add(sala);
+		}
+	    }
+	}else if(this.getTipo().equals("TallerMadera")){
+	    for(Sala sala: salas){
+		//2. Se prefiere la sala con capacidad con diferencia a cupo igual o mayor a cero y mientras menor mejor. (Listo)
+		if(sala.getIdTipoSala().equals(8) && sala.getCapacidadSala().compareTo(this.getSeccion().getCupo()) >= 0){  
+		    r.add(sala);
+		}
+	    }
+	}else if(this.getTipo().equals("GYM")){
+	    for(Sala sala: salas){
+		//2. Se prefiere la sala con capacidad con diferencia a cupo igual o mayor a cero y mientras menor mejor. (Listo)
+		if(sala.getIdTipoSala().equals(9) && sala.getCapacidadSala().compareTo(this.getSeccion().getCupo()) >= 0){  
+		    r.add(sala);
+		}
+	    }
+	}else if(this.getTipo().equals("Auditorio")){
+	    for(Sala sala: salas){
+		//2. Se prefiere la sala con capacidad con diferencia a cupo igual o mayor a cero y mientras menor mejor. (Listo)
+		if(sala.getIdTipoSala().equals(10) && sala.getCapacidadSala().compareTo(this.getSeccion().getCupo()) >= 0){  
+		    r.add(sala);
+		}
+	    }
+	}else if(this.getTipo().equals("LabEspRedes")){
+	    for(Sala sala: salas){
+		//2. Se prefiere la sala con capacidad con diferencia a cupo igual o mayor a cero y mientras menor mejor. (Listo)
+		if(sala.getIdTipoSala().equals(11) && sala.getCapacidadSala().compareTo(this.getSeccion().getCupo()) >= 0){  
+		    r.add(sala);
+		}
+	    }
+	}else if(this.getTipo().equals("LabElectDigital")){
+	    for(Sala sala: salas){
+		//2. Se prefiere la sala con capacidad con diferencia a cupo igual o mayor a cero y mientras menor mejor. (Listo)
+		if(sala.getIdTipoSala().equals(12) && sala.getCapacidadSala().compareTo(this.getSeccion().getCupo()) >= 0){  
+		    r.add(sala);
+		}
+	    }
+	}else if(this.getTipo().equals("LabMaquinasElectricas")){
+	    for(Sala sala: salas){
+		//2. Se prefiere la sala con capacidad con diferencia a cupo igual o mayor a cero y mientras menor mejor. (Listo)
+		if(sala.getIdTipoSala().equals(13) && sala.getCapacidadSala().compareTo(this.getSeccion().getCupo()) >= 0){  
+		    r.add(sala);
+		}
+	    }
 	}
+	
 
 	//4. Para una carrera se prefiere clases en edificios de su facultad. (Listo)
 	ArrayList<Sala> igualFacultad = new ArrayList<>(); //edificios con facultad determinada
@@ -53,7 +138,7 @@ public class Clase {
 	ArrayList<Sala> otraFacultad = new ArrayList<>(); //las demás salas de otras facultades que cumplen con las caracteristicas para la clase
 	Facultad f = ventana.getFacultad( ventana.getCarrera( ventana.getAsignatura(this.getSeccion().getIdAsignatura()  ).getIdCarrera() ).getIdFacultad());
 	for(Sala sala : r){
-	    if( ventana.getEdificio(sala.getIdEdificio()).getIdFacultad().equals(f.getIdFacultad())){
+	    if( sala.getIdEdificio() != null &&  ventana.getEdificio(sala.getIdEdificio()).getIdFacultad().equals(f.getIdFacultad())){
 		igualFacultad.add(sala);
 	    }else if(sala.getIdEdificio() == null){
 		sinFacultad.add(sala);
@@ -122,6 +207,9 @@ public class Clase {
 		    }
 		    // System.out.println("Bloques asignadosf: " + this.getBloquesAsignados().size());
 		    if(this.getBloquesAsignados().size() == this.getHorasContinuadas()){
+			for(Bloque b: this.getBloquesAsignados()){
+			    b.setIdSeccion(this.getSeccion().getIdSeccion());
+			}
 			break;
 		    }
 		}
@@ -139,7 +227,7 @@ public class Clase {
 	}
 	
 	Clase.getBloques().removeAll(this.getBloquesAsignados());
-	System.out.println("Asignado clase; sobran: " + Clase.getBloques().size() + " Bloques");
+	System.out.println("Asignado clase; Asignados: " + (ventana.getBloques().size() - Clase.getBloques().size()) + " Bloques");
 	System.out.println("Bloques clase "+ventana.getAsignatura(this.getSeccion().getIdAsignatura()).getNombreAsignatura()+" : "+this.getBloquesAsignados().toString());
 
 
