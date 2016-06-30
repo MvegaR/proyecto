@@ -220,7 +220,7 @@ use yii\filters\VerbFilter;
             if($contadorbloques > 0){
                 foreach ($bloques as $bloque) {
                     $dia = (Dia::find()-> where(['ID_DIA' => $bloque -> ID_DIA])-> one());
-                    echo "<option value='".$bloque->ID_BLOQUE."'> $dia - De: ".$bloque->INICIO." a ".$bloque->TERMINO."</option>";
+                    echo "<option value='".$bloque->ID_BLOQUE."'> ".$dia -> NOMBRE."- De: ".$bloque->INICIO." a ".$bloque->TERMINO."</option>";
                 }
             }else{
                 echo "<option value=>Sin bloques para la seccion selecionada</option>";
