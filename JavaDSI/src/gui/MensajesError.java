@@ -1,13 +1,6 @@
 package gui;
 import javax.swing.JOptionPane;
 
-/*
-falla inicio de correcta autentificacion.
- */
-/**
- *
- * @author Nannan
- */
 public class MensajesError {
 
     public static void mensajeError1(){

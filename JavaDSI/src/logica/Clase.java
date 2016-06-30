@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.Random;
 
 import db.Bloque;
+import db.Facultad;
 import db.Sala;
 import db.Seccion;
 import db.TiempoInicio;
@@ -32,75 +33,187 @@ public class Clase {
 	this.planificador = planificador;
 	this.bloquesAsignados = new ArrayList<Bloque>();
     }
+    
+    
 
+    private ArrayList<Sala> filtrarSalaPorTipoFacultadYCapacidad(ArrayList<Sala> salas, VentanaPrincipal ventana){
+	//(Considerar agregar) 6. Se prefiere a una sala para una clase de hora impar estar despues de otra clase de hora impar que este despues de una hora par. 
+
+	ArrayList<Sala> r = new ArrayList<>();
+	if(this.getTipo().equals("Normal")){
+	    for(Sala sala: salas){
+		//2. Se prefiere la sala con capacidad con diferencia a cupo igual o mayor a cero y mientras menor mejor. (Listo)
+		if(sala.getIdTipoSala().equals(1) && sala.getCapacidadSala().compareTo(this.getSeccion().getCupo()) >= 0){  
+		    r.add(sala);
+		}
+	    }
+	}else if(this.getTipo().equals("Computacion")){
+	    for(Sala sala: salas){
+		//2. Se prefiere la sala con capacidad con diferencia a cupo igual o mayor a cero y mientras menor mejor. (Listo)
+		if(sala.getIdTipoSala().equals(2) && sala.getCapacidadSala().compareTo(this.getSeccion().getCupo()) >= 0){  
+		    r.add(sala);
+		}
+	    }
+	}else if(this.getTipo().equals("LabFisica")){
+	    for(Sala sala: salas){
+		//2. Se prefiere la sala con capacidad con diferencia a cupo igual o mayor a cero y mientras menor mejor. (Listo)
+		if(sala.getIdTipoSala().equals(3) && sala.getCapacidadSala().compareTo(this.getSeccion().getCupo()) >= 0){  
+		    r.add(sala);
+		}
+	    }
+	}else if(this.getTipo().equals("LabQuimica")){
+	    for(Sala sala: salas){
+		//2. Se prefiere la sala con capacidad con diferencia a cupo igual o mayor a cero y mientras menor mejor. (Listo)
+		if(sala.getIdTipoSala().equals(4) && sala.getCapacidadSala().compareTo(this.getSeccion().getCupo()) >= 0){  
+		    r.add(sala);
+		}
+	    }
+	}else if(this.getTipo().equals("LabMecanica")){
+	    for(Sala sala: salas){
+		//2. Se prefiere la sala con capacidad con diferencia a cupo igual o mayor a cero y mientras menor mejor. (Listo)
+		if(sala.getIdTipoSala().equals(5) && sala.getCapacidadSala().compareTo(this.getSeccion().getCupo()) >= 0){  
+		    r.add(sala);
+		}
+	    }
+	}else if(this.getTipo().equals("LabRobotica")){
+	    for(Sala sala: salas){
+		//2. Se prefiere la sala con capacidad con diferencia a cupo igual o mayor a cero y mientras menor mejor. (Listo)
+		if(sala.getIdTipoSala().equals(6) && sala.getCapacidadSala().compareTo(this.getSeccion().getCupo()) >= 0){  
+		    r.add(sala);
+		}
+	    }
+	}else if(this.getTipo().equals("TallerArquitectura")){
+	    for(Sala sala: salas){
+		//2. Se prefiere la sala con capacidad con diferencia a cupo igual o mayor a cero y mientras menor mejor. (Listo)
+		if(sala.getIdTipoSala().equals(7) && sala.getCapacidadSala().compareTo(this.getSeccion().getCupo()) >= 0){  
+		    r.add(sala);
+		}
+	    }
+	}else if(this.getTipo().equals("TallerMadera")){
+	    for(Sala sala: salas){
+		//2. Se prefiere la sala con capacidad con diferencia a cupo igual o mayor a cero y mientras menor mejor. (Listo)
+		if(sala.getIdTipoSala().equals(8) && sala.getCapacidadSala().compareTo(this.getSeccion().getCupo()) >= 0){  
+		    r.add(sala);
+		}
+	    }
+	}else if(this.getTipo().equals("GYM")){
+	    for(Sala sala: salas){
+		//2. Se prefiere la sala con capacidad con diferencia a cupo igual o mayor a cero y mientras menor mejor. (Listo)
+		if(sala.getIdTipoSala().equals(9) && sala.getCapacidadSala().compareTo(this.getSeccion().getCupo()) >= 0){  
+		    r.add(sala);
+		}
+	    }
+	}else if(this.getTipo().equals("Auditorio")){
+	    for(Sala sala: salas){
+		//2. Se prefiere la sala con capacidad con diferencia a cupo igual o mayor a cero y mientras menor mejor. (Listo)
+		if(sala.getIdTipoSala().equals(10) && sala.getCapacidadSala().compareTo(this.getSeccion().getCupo()) >= 0){  
+		    r.add(sala);
+		}
+	    }
+	}else if(this.getTipo().equals("LabEspRedes")){
+	    for(Sala sala: salas){
+		//2. Se prefiere la sala con capacidad con diferencia a cupo igual o mayor a cero y mientras menor mejor. (Listo)
+		if(sala.getIdTipoSala().equals(11) && sala.getCapacidadSala().compareTo(this.getSeccion().getCupo()) >= 0){  
+		    r.add(sala);
+		}
+	    }
+	}else if(this.getTipo().equals("LabElectDigital")){
+	    for(Sala sala: salas){
+		//2. Se prefiere la sala con capacidad con diferencia a cupo igual o mayor a cero y mientras menor mejor. (Listo)
+		if(sala.getIdTipoSala().equals(12) && sala.getCapacidadSala().compareTo(this.getSeccion().getCupo()) >= 0){  
+		    r.add(sala);
+		}
+	    }
+	}else if(this.getTipo().equals("LabMaquinasElectricas")){
+	    for(Sala sala: salas){
+		//2. Se prefiere la sala con capacidad con diferencia a cupo igual o mayor a cero y mientras menor mejor. (Listo)
+		if(sala.getIdTipoSala().equals(13) && sala.getCapacidadSala().compareTo(this.getSeccion().getCupo()) >= 0){  
+		    r.add(sala);
+		}
+	    }
+	}
+	
+
+	//4. Para una carrera se prefiere clases en edificios de su facultad. (Listo)
+	ArrayList<Sala> igualFacultad = new ArrayList<>(); //edificios con facultad determinada
+	ArrayList<Sala> sinFacultad = new ArrayList<>(); //edificios sin facultad determinada
+	ArrayList<Sala> otraFacultad = new ArrayList<>(); //las demás salas de otras facultades que cumplen con las caracteristicas para la clase
+	Facultad f = ventana.getFacultad( ventana.getCarrera( ventana.getAsignatura(this.getSeccion().getIdAsignatura()  ).getIdCarrera() ).getIdFacultad());
+	for(Sala sala : r){
+	    if( sala.getIdEdificio() != null &&  ventana.getEdificio(sala.getIdEdificio()).getIdFacultad().equals(f.getIdFacultad())){
+		igualFacultad.add(sala);
+	    }else if( sala.getIdEdificio() != null && ventana.getEdificio(sala.getIdEdificio()).getIdFacultad() == null){
+		sinFacultad.add(sala);
+	    }else{
+		otraFacultad.add(sala);
+	    }
+	}
+	r = new ArrayList<>();
+	r.addAll(igualFacultad);
+	r.addAll(sinFacultad);
+	r.addAll(otraFacultad); 
+	r.sort(new ComparatorSalaCantidadBloques());
+	return r;
+    }
+       
+
+    
     public void obtenerBloques(VentanaPrincipal ventana, ArrayList<Integer> dias){ //para ser llamada desde el planificador
-	//1. Se prefiere que la seccion no deba estar en mismo dia repetido, pero si no queda de otra se hace.
-	//2. Se prefiere la sala con capacidad con diferencia a cupo igual o mayor a cero y mientras menor mejor.
-	//3. Se prefiere temporano a tarde ... (antes de primeros 15)
-	//4. Si el profesor es del departamento de una facultad se prefiere una sala de un edificio de esa facultad. 
-
 	// dias en orden aleatorio, cuantos dias?? En ventana debe de ponerse o en planificar
-	Collections.shuffle(dias, new Random()); // que bonito =) 
-	if(this.getTipo().equals("Normal")){ //eligiendo salas normales (no olvidar incluir ayudantias despues...)
-
-	    for(Sala sala: ventana.getSalas()){
-		if(sala.getIdTipoSala().equals(1)){
-		    for(Integer dia: dias){
-			ArrayList<Bloque> bloquesDeUnaSalaYDia = bloquesDeUnaSalaYDia(sala, dia, ventana); 
-			for(Bloque bloque: bloquesDeUnaSalaYDia){
-			    this.getBloquesAsignados().add(bloque);
-			   //System.out.println("horas continuadas"+this.getHorasContinuadas());
-			    for(int i = 1; i < this.getHorasContinuadas(); i++){
-				//System.out.println("contador "+i);
-				String tiempoAnterior = this.getBloquesAsignados().get(this.getBloquesAsignados().size()-1).getInicio();
-				int posTiempoAnterior = -1;
-				for(TiempoInicio t: ventana.getTiempoInicios()){
-				    if(tiempoAnterior.equals(t.getInicio())){
-					posTiempoAnterior = ventana.getTiempoInicios().indexOf(t);
-					break;
-				    }
-				}
-				Bloque bloqueSiguiente = null;
-				//System.out.println("posTiempoAnterior" + posTiempoAnterior+ " tamaño lista tiempos "+ ventana.getTiempoInicios().size() );
-				if(posTiempoAnterior < ventana.getTiempoInicios().size()-1){
-				    for(Bloque b: bloquesDeUnaSalaYDia){
-					if(b.getInicio().equals(ventana.getTiempoInicios().get(posTiempoAnterior+1).getInicio())){
-					    bloqueSiguiente = b;
-					    //System.out.println("b: "+b);
-					    this.getBloquesAsignados().add(b);
-					    break;
-					}
-					//System.out.println("Bloques asignados cumpliendo: " + this.getBloquesAsignados().size());
-				    }
-				    if(bloqueSiguiente == null){
-
-					this.getBloquesAsignados().clear();
-					break;
-					
-				    }
-
-				}else {
-				    this.getBloquesAsignados().clear();
-				   // System.out.println("borrar!! no hay tiempo siguientes suficiente");
-				    break;
-				}
-			    }
-			    //System.out.println("Bloques asignados restricciones: " + this.getBloquesAsignados().size());
-			    if(!noChoque(ventana) && !profesorNoParalelo(ventana)){
-				this.getBloquesAsignados().clear();
-				//System.out.println("borrar!! no cumple restriccioes");
-				break;
-			    }
-			   // System.out.println("Bloques asignadosf: " + this.getBloquesAsignados().size());
-			    if(this.getBloquesAsignados().size() == this.getHorasContinuadas()){
+	Collections.shuffle(dias, new Random());
+	this.ordenarDiasSegunClase(dias);
+	for(Sala sala: this.filtrarSalaPorTipoFacultadYCapacidad(ventana.getSalas(), ventana)){ 
+	    for(Integer dia: dias){
+		ArrayList<Bloque> bloquesDeUnaSalaYDia = this.bloquesDeUnaSalaYDia(sala, dia, ventana); 
+		for(Bloque bloque: bloquesDeUnaSalaYDia){
+		    this.getBloquesAsignados().add(bloque);
+		    //System.out.println("horas continuadas"+this.getHorasContinuadas());
+		    for(int i = 1; i < this.getHorasContinuadas(); i++){
+			//System.out.println("contador "+i);
+			String tiempoAnterior = this.getBloquesAsignados().get(this.getBloquesAsignados().size()-1).getInicio();
+			int posTiempoAnterior = -1;
+			for(TiempoInicio t: ventana.getTiempoInicios()){
+			    if(tiempoAnterior.equals(t.getInicio())){
+				posTiempoAnterior = ventana.getTiempoInicios().indexOf(t);
 				break;
 			    }
 			}
-			if(this.getBloquesAsignados().size() == this.getHorasContinuadas()){
+			Bloque bloqueSiguiente = null;
+			//System.out.println("posTiempoAnterior" + posTiempoAnterior+ " tamaño lista tiempos "+ ventana.getTiempoInicios().size() );
+			if(posTiempoAnterior < ventana.getTiempoInicios().size()-1){
+			    for(Bloque b: bloquesDeUnaSalaYDia){
+				if(b.getInicio().equals(ventana.getTiempoInicios().get(posTiempoAnterior+1).getInicio())){
+				    bloqueSiguiente = b;
+				    //System.out.println("b: "+b);
+				    this.getBloquesAsignados().add(b);
+				    break;
+				}
+				//System.out.println("Bloques asignados cumpliendo: " + this.getBloquesAsignados().size());
+			    }
+			    if(bloqueSiguiente == null){
+
+				this.getBloquesAsignados().clear();
+				break;
+
+			    }
+
+			}else {
+			    this.getBloquesAsignados().clear();
+			    // System.out.println("borrar!! no hay tiempo siguientes suficiente");
 			    break;
 			}
 		    }
+		    //System.out.println("Bloques asignados restricciones: " + this.getBloquesAsignados().size());
+		    if(!noChoque(ventana) && !profesorNoParalelo(ventana)){
+			this.getBloquesAsignados().clear();
+			//System.out.println("borrar!! no cumple restriccioes");
+			break;
+		    }
+		    // System.out.println("Bloques asignadosf: " + this.getBloquesAsignados().size());
 		    if(this.getBloquesAsignados().size() == this.getHorasContinuadas()){
+			for(Bloque b: this.getBloquesAsignados()){
+			    b.setIdSeccion(this.getSeccion().getIdSeccion());
+			}
 			break;
 		    }
 		}
@@ -108,32 +221,40 @@ public class Clase {
 		    break;
 		}
 	    }
-	    Clase.getBloques().removeAll(this.getBloquesAsignados());
-	    System.out.println("Asignado clase; sobran: " + Clase.getBloques().size() + " Bloques");
-	    System.out.println("Bloques clase "+ventana.getAsignatura(this.getSeccion().getIdAsignatura()).getNombreAsignatura()+" : "+this.getBloquesAsignados().toString());
-	    
-	}
+	    if(this.getBloquesAsignados().size() == this.getHorasContinuadas()){
+		break;
+	    }
 
-    }
-
-    private ArrayList<Bloque> bloquesDeUnaSalaYDia(Sala sala, int dia, VentanaPrincipal ventana){
-	ArrayList<Bloque> lista = new ArrayList<Bloque>();
-
-	for(Bloque bloque: Clase.bloques){
-	    if(bloque.getIdDia().equals(dia) && bloque.getIdSala().equals(sala.getIdSala()) && Clase.getBloques().contains(bloque)){
-		lista.add(bloque);
+	    if(this.getBloquesAsignados().size() == this.getHorasContinuadas()){
+		break;
 	    }
 	}
+	
+	Clase.getBloques().removeAll(this.getBloquesAsignados());
+	System.out.println("Asignado clase; Asignados: " + (ventana.getBloques().size() - Clase.getBloques().size()) + " Bloques");
+	System.out.println("Bloques clase "+ventana.getAsignatura(this.getSeccion().getIdAsignatura()).getNombreAsignatura()+" : "+this.getBloquesAsignados().toString());
 
+
+    }
+    
+    
+    private ArrayList<Bloque> bloquesDeUnaSalaYDia(Sala sala, int dia, VentanaPrincipal ventana){
+	
+	ArrayList<Bloque> lista = new ArrayList<Bloque>();
+	for(Bloque bloque: Clase.bloques){
+	    if(bloque.getIdDia().equals(dia) && bloque.getIdSala().equals(sala.getIdSala()) && Clase.getBloques().contains(bloque)){
+		    lista.add(bloque);
+	    }
+	}
+	
 	return lista;
-
     }
 
 
     private Boolean noChoque(VentanaPrincipal ventana){
 	/*No puede estar la asignatura de una carrera de un mismo semestre y
 	 año junto con otra en el mismo dia en la misma hora, 
-	 exepto si existe alguna N-esima seccion de la misma asigantura que no choque. <-listo
+	 exepto si existe alguna N-esima (n>=2) seccion de la misma asigantura que no choque. <-listo
 	 */
 
 	String carrera = ventana.getAsignatura(this.getSeccion().getIdAsignatura()).getIdCarrera();
@@ -217,18 +338,40 @@ public class Clase {
     }
 
 
+    public void ordenarDiasSegunClase(ArrayList<Integer> dias){
+	//1. Se prefiere que la seccion no deba estar en mismo dia repetido, pero si no queda de otra se hace. (Listo)
+	LinkedList<Integer> listaDeDias = new LinkedList<Integer>();
 
-    /* (non-Javadoc)
-     * @see java.lang.Object#toString()
-     */
+	for(Integer dia: dias){
+	    for(Clase c: this.getOtrasclasesDeSeccion()){
+		if(c.getBloquesAsignados().size() != 0 && c.getBloquesAsignados().get(0).getIdDia().equals(dia)){
+		    listaDeDias.addLast(dia);
+		    break;
+		}
+	    }
+	    if(!listaDeDias.contains(dia)){
+		listaDeDias.addFirst(dia);
+	    }
+	}
+	dias.clear();
+	dias.addAll(listaDeDias);
+    }
+
+    public ArrayList<Clase> getOtrasclasesDeSeccion(){
+	ArrayList<Clase> clases = new ArrayList<Clase>();
+	for(Clase c: this.getPlanificador().getListaDeClases()){
+	    if(c.getSeccion().equals(this.getSeccion())){
+		clases.add(c);
+	    }
+	}
+	return clases;
+    }
+
     @Override
     public String toString() {
 	return "Clase [id=" + id + "]";
     }
 
-    /* (non-Javadoc)
-     * @see java.lang.Object#hashCode()
-     */
     @Override
     public int hashCode() {
 	final int prime = 31;
@@ -237,9 +380,6 @@ public class Clase {
 	return result;
     }
 
-    /* (non-Javadoc)
-     * @see java.lang.Object#equals(java.lang.Object)
-     */
     @Override
     public boolean equals(Object obj) {
 	if (this == obj) {
@@ -308,6 +448,9 @@ public class Clase {
     }
     public Planificador getPlanificador() {
 	return planificador;
+    }
+    public static void resetContador(){
+	Clase.contador = 0;
     }
 
 

@@ -10,12 +10,14 @@ public class Asignatura {
     private Integer semestre;
     private Integer horaTeo, horaLabCom, horaAyudantia, 
     horaLabFisica, horaLabQuimica, horaLabRobotica, 
-    horaLabMecanica, horaTallerArquitectura, horaTallerMadera, horaGYM, horaAuditorio;
+    horaLabMecanica, horaTallerArquitectura, horaTallerMadera, 
+    horaGYM, horaAuditorio, horaLabRedes, horaLabElectronica, horaLabMaqElectricas;
     //FALTAN TIPOS DE HORA!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     public Asignatura(String idAsignatura, String idCarrera, String nombreAsignatura,
 	    Integer anio, Integer semestre, Integer horaTeo, Integer horaLabCom, Integer horaAyudantia, 
 	    Integer horaLabFisica, Integer horaLabQuimica, Integer horaLabRobotica, 
-	    Integer horaLabMecanica, Integer horaTallerArquitectura, Integer horaTallerMadera, Integer horaGYM, Integer horaAuditorio) {
+	    Integer horaLabMecanica, Integer horaTallerArquitectura, Integer horaTallerMadera, Integer horaGYM,
+	    Integer horaAuditorio, Integer horaLabRedes, Integer horaLabElectronica, Integer horaLabMaqElectricas) {
 	this.idAsignatura = idAsignatura;
 	this.idCarrera = idCarrera;
 	this.nombreAsignatura = nombreAsignatura;
@@ -32,6 +34,9 @@ public class Asignatura {
 	this.horaTallerMadera = horaTallerMadera;
 	this.horaGYM = horaGYM;
 	this.horaAuditorio = horaAuditorio;
+	this.horaLabRedes = horaLabRedes;
+	this.horaLabElectronica = horaLabElectronica;
+	this.horaLabMaqElectricas = horaLabMaqElectricas;
 
     }
     //Contructor para sql
@@ -53,6 +58,9 @@ public class Asignatura {
 	    this.horaTallerMadera = datos.getInt(14);
 	    this.horaGYM = datos.getInt(15);
 	    this.horaAuditorio = datos.getInt(16);
+	    this.horaLabRedes = datos.getInt(17);
+	    this.horaLabElectronica = datos.getInt(18);
+	    this.horaLabMaqElectricas = datos.getInt(19);
 	} catch (SQLException e) {
 	    e.printStackTrace();
 	}
@@ -168,6 +176,16 @@ public class Asignatura {
      */
     public Integer getHoraAuditorio() {
 	return horaAuditorio;
+    }
+    
+    public Integer getHoraLabElectronica() {
+	return horaLabElectronica;
+    }
+    public Integer getHoraLabMaqElectricas() {
+	return horaLabMaqElectricas;
+    }
+    public Integer getHoraLabRedes() {
+	return horaLabRedes;
     }
 
     /* (non-Javadoc)

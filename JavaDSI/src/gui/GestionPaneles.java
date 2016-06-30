@@ -88,6 +88,11 @@ public class GestionPaneles extends JPanel {
 	String passwordUsuario = PanelAutentificacion.getPassword_texto();
 	ResultSet resUser= Conexion.ejecutarSQL("Select d.USER From docente d, rol r Where d.ID_Rol = R.ID_ROl and r.id_rol=1");
 	String Usuario = null;
+	if(nombreUsuario.contains(" ")==true || nombreUsuario.contains("(")|| nombreUsuario.contains(")")
+	|| nombreUsuario.contains(".") || nombreUsuario.contains(",")|| nombreUsuario.contains("\'")
+	|| nombreUsuario.contains("\"")){
+		return false;
+	} 
 	try {
 	    while(resUser.next()){
 		Usuario = resUser.getString("USER");

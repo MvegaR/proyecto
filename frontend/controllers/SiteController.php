@@ -751,7 +751,7 @@ class SiteController extends Controller{
 			") -> queryAll();
 			$cantidadDeProfes = count($profesSinSecciones);
 			$arregloDePosicionesDeSeccionesUsadas = [];
-			$cantidadDeSeccionesParaElProfe =  rand(3,5);
+			$cantidadDeSeccionesParaElProfe =  rand(3,4);
 			$elProfe = rand(0, $cantidadDeProfes-1);
 			for($i = 0; $i < $cantidadDeSeccionesParaElProfe ; $i++){
 				while(array_search($seccion = rand(0, count($seccionesSinProfe)-1), $arregloDePosicionesDeSeccionesUsadas)){ //ineficiencia  xD
