@@ -211,6 +211,10 @@ public class Clase {
 		    // System.out.println("Bloques asignadosf: " + this.getBloquesAsignados().size());
 		    if(this.getBloquesAsignados().size() == this.getHorasContinuadas()){
 			for(Bloque b: this.getBloquesAsignados()){
+			    if(this.getBloquesAsignados().indexOf(b) != 0){
+				Bloque anterior = this.getBloquesAsignados().get(this.getBloquesAsignados().indexOf(b)-1);
+				anterior.setBloqueSiguiente(b);
+			    }
 			    b.setIdSeccion(this.getSeccion().getIdSeccion());
 			}
 			break;

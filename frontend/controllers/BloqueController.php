@@ -204,9 +204,11 @@ use yii\filters\VerbFilter;
             $bloques = Bloque::find()->where(['ID_SECCION' => $id])->all();
             if($contadorbloques > 0){
                 foreach ($bloques as $bloque) {
-                    $sala = (Sala::find()-> where(['ID_SALA' => $bloque -> ID_SALA])-> one());
-                    $sala = $sala -> ID_SALA;
-                    echo "<option value='".$sala."'>$sala</option>";
+                    if($bloque -> BLOQUE_SIGUIENTE != null){
+                        $sala = (Sala::find()-> where(['ID_SALA' => $bloque -> ID_SALA])-> one());
+                        $sala = $sala -> ID_SALA;
+                        echo "<option value='".$sala."'>$sala</option>";
+                    }
                 }
             }else{
                 echo "<option value=>Sin salas para la seccion selecionada</option>";
