@@ -213,7 +213,7 @@ public class Clase {
 			for(Bloque b: this.getBloquesAsignados()){
 			    if(this.getBloquesAsignados().indexOf(b) != 0){
 				Bloque anterior = this.getBloquesAsignados().get(this.getBloquesAsignados().indexOf(b)-1);
-				anterior.setBloqueSiguiente(b);
+				anterior.setBloqueSiguiente(b.getIdBloque());
 			    }
 			    b.setIdSeccion(this.getSeccion().getIdSeccion());
 			}
