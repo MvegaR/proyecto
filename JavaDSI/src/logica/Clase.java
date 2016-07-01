@@ -132,9 +132,26 @@ public class Clase {
 		}
 	    }
 	}
-	
+	r.sort(new ComparatorSalaCantidadBloques());
+	//4. Para una carrera se prefiere clases en edificios de su facultad. (Listo)
+	ArrayList<Sala> igualFacultad = new ArrayList<>(); //edificios con facultad determinada
+	ArrayList<Sala> sinFacultad = new ArrayList<>(); //edificios sin facultad determinada
+	ArrayList<Sala> otraFacultad = new ArrayList<>(); //las demas salas de otras facultades que cumplen con las caracteristicas para la clase
 	Facultad f = ventana.getFacultad( ventana.getCarrera( ventana.getAsignatura(this.getSeccion().getIdAsignatura()  ).getIdCarrera() ).getIdFacultad());
-	r.sort(new ComparatorSalaCantidadBloques(this.getPlanificador().getVentana(), f.getIdFacultad()));
+	for(Sala sala : r){
+	    if( sala.getIdEdificio() != null &&  ventana.getEdificio(sala.getIdEdificio()).getIdFacultad().equals(f.getIdFacultad())){
+		igualFacultad.add(sala);
+	    }else if( sala.getIdEdificio() != null && ventana.getEdificio(sala.getIdEdificio()).getIdFacultad() == null){
+		sinFacultad.add(sala);
+	    }else{
+		otraFacultad.add(sala);
+	    }
+	}
+	r = new ArrayList<>();
+	r.addAll(igualFacultad);
+	r.addAll(sinFacultad);
+	r.addAll(otraFacultad); 
+	
 	return r;
     }
        
