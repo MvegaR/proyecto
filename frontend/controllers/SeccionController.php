@@ -154,6 +154,6 @@ class SeccionController extends Controller
     }
     //entrega la capacidad de una seccion
     public function actionLists2($id){
-        echo (Seccion::find()->where(["ID_SECCION"=>$id])->one())-> CUPO;
+        echo Seccion::find()->where(["ID_SECCION"=>$id])->one()-> CUPO;
     }
 }
