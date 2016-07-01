@@ -325,11 +325,14 @@ use yii\filters\VerbFilter;
                             return;
                         }else{
                             foreach ($idsBloquesDisponibles as $idbloque) {
-                                $bl = Bloque::find() -> where(["ID_BLOQUE" => $idbloque]) -> one();
-                                $blFin = Bloque::find() -> where(["ID_BLOQUE" => 
-                                    $todoslosIdsBloquesEnOrden[array_search($idbloque, $todoslosIdsBloquesEnOrden)+$cantidad-1]]) -> one();
-                                echo "<option value='".$idbloque."'> $nombreDia - De: ".$bl->INICIO." a ".$blFin->TERMINO."</option>";
-
+                                if(array_search($idbloque, $todoslosIdsBloquesEnOrden)+$cantidad-1 < count($todoslosIdsBloquesEnOrden)){
+                                    $bl = Bloque::find() -> where(["ID_BLOQUE" => $idbloque]) -> one();
+                                    $blFin = Bloque::find() -> where(["ID_BLOQUE" => 
+                                        $todoslosIdsBloquesEnOrden[array_search($idbloque, $todoslosIdsBloquesEnOrden)+$cantidad-1]]) -> one();
+                                    echo "<option value='".$idbloque."'> $nombreDia - De: ".$bl->INICIO." a ".$blFin->TERMINO."</option>";
+                                }else{
+                                    break;
+                                }
                             }
                         }
                     }
@@ -391,10 +394,15 @@ use yii\filters\VerbFilter;
 
                 foreach ($idsBloquesDisponibles as $idasdf) {
                     $bl = Bloque::find() -> where(["ID_BLOQUE" => $idasdf]) -> one();
-                    $blFin = Bloque::find() -> where(["ID_BLOQUE" => 
-                        $todoslosIdsBloquesEnOrden[array_search($idasdf, $todoslosIdsBloquesEnOrden)+$cantidad-1]]) -> one();
-                    $dia = Dia::find() -> where(["ID_DIA" => $bl -> ID_DIA]) -> one() -> NOMBRE;
-                    array_push($option, "<option value='".$idasdf."'> $dia - De: ".$bl->INICIO." a ".$blFin->TERMINO."</option>");
+                    if(array_search($idasdf, $todoslosIdsBloquesEnOrden)+$cantidad-1 < count($todosLosBloquesEnOrden)){
+                            $blFin = Bloque::find() -> where(["ID_BLOQUE" => 
+                            $todoslosIdsBloquesEnOrden[array_search($idasdf, $todoslosIdsBloquesEnOrden)+$cantidad-1]]) -> one();
+                        $dia = Dia::find() -> where(["ID_DIA" => $bl -> ID_DIA]) -> one() -> NOMBRE;
+                        array_push($option, "<option value='".$idasdf."'> $dia - De: ".$bl->INICIO." a ".$blFin->TERMINO."</option>");
+                    }else{
+                        break;
+                    }
+                    
                 }
             }
             
