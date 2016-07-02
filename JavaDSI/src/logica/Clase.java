@@ -2,7 +2,6 @@ package logica;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
-import java.util.Random;
 
 import db.Bloque;
 import db.Facultad;
@@ -33,12 +32,12 @@ public class Clase {
 	this.planificador = planificador;
 	this.bloquesAsignados = new ArrayList<Bloque>();
     }
-    
-    
+
+
 
     private ArrayList<Sala> filtrarSalaPorTipoFacultadYCapacidad(ArrayList<Sala> salas, VentanaPrincipal ventana){
 	//(Considerar agregar) 6. Se prefiere a una sala para una clase de hora impar estar despues de otra clase de hora impar que este despues de una hora par. 
-
+	Integer contador = 0;
 	ArrayList<Sala> r = new ArrayList<>();
 	if(this.getTipo().equals("Normal")){
 	    for(Sala sala: salas){
@@ -46,6 +45,7 @@ public class Clase {
 		if(sala.getIdTipoSala().equals(1) && sala.getCapacidadSala().compareTo(this.getSeccion().getCupo()) >= 0){  
 		    r.add(sala);
 		}
+		contador ++;
 	    }
 	}else if(this.getTipo().equals("Computacion")){
 	    for(Sala sala: salas){
@@ -53,6 +53,7 @@ public class Clase {
 		if(sala.getIdTipoSala().equals(2) && sala.getCapacidadSala().compareTo(this.getSeccion().getCupo()) >= 0){  
 		    r.add(sala);
 		}
+		contador ++;
 	    }
 	}else if(this.getTipo().equals("LabFisica")){
 	    for(Sala sala: salas){
@@ -60,6 +61,7 @@ public class Clase {
 		if(sala.getIdTipoSala().equals(3) && sala.getCapacidadSala().compareTo(this.getSeccion().getCupo()) >= 0){  
 		    r.add(sala);
 		}
+		contador ++;
 	    }
 	}else if(this.getTipo().equals("LabQuimica")){
 	    for(Sala sala: salas){
@@ -67,6 +69,7 @@ public class Clase {
 		if(sala.getIdTipoSala().equals(4) && sala.getCapacidadSala().compareTo(this.getSeccion().getCupo()) >= 0){  
 		    r.add(sala);
 		}
+		contador ++;
 	    }
 	}else if(this.getTipo().equals("LabMecanica")){
 	    for(Sala sala: salas){
@@ -74,6 +77,7 @@ public class Clase {
 		if(sala.getIdTipoSala().equals(5) && sala.getCapacidadSala().compareTo(this.getSeccion().getCupo()) >= 0){  
 		    r.add(sala);
 		}
+		contador ++;
 	    }
 	}else if(this.getTipo().equals("LabRobotica")){
 	    for(Sala sala: salas){
@@ -81,6 +85,7 @@ public class Clase {
 		if(sala.getIdTipoSala().equals(6) && sala.getCapacidadSala().compareTo(this.getSeccion().getCupo()) >= 0){  
 		    r.add(sala);
 		}
+		contador ++;
 	    }
 	}else if(this.getTipo().equals("TallerArquitectura")){
 	    for(Sala sala: salas){
@@ -88,6 +93,7 @@ public class Clase {
 		if(sala.getIdTipoSala().equals(7) && sala.getCapacidadSala().compareTo(this.getSeccion().getCupo()) >= 0){  
 		    r.add(sala);
 		}
+		contador ++;
 	    }
 	}else if(this.getTipo().equals("TallerMadera")){
 	    for(Sala sala: salas){
@@ -95,6 +101,7 @@ public class Clase {
 		if(sala.getIdTipoSala().equals(8) && sala.getCapacidadSala().compareTo(this.getSeccion().getCupo()) >= 0){  
 		    r.add(sala);
 		}
+		contador ++;
 	    }
 	}else if(this.getTipo().equals("GYM")){
 	    for(Sala sala: salas){
@@ -102,6 +109,7 @@ public class Clase {
 		if(sala.getIdTipoSala().equals(9) && sala.getCapacidadSala().compareTo(this.getSeccion().getCupo()) >= 0){  
 		    r.add(sala);
 		}
+		contador ++;
 	    }
 	}else if(this.getTipo().equals("Auditorio")){
 	    for(Sala sala: salas){
@@ -109,6 +117,7 @@ public class Clase {
 		if(sala.getIdTipoSala().equals(10) && sala.getCapacidadSala().compareTo(this.getSeccion().getCupo()) >= 0){  
 		    r.add(sala);
 		}
+		contador ++;
 	    }
 	}else if(this.getTipo().equals("LabEspRedes")){
 	    for(Sala sala: salas){
@@ -116,6 +125,7 @@ public class Clase {
 		if(sala.getIdTipoSala().equals(11) && sala.getCapacidadSala().compareTo(this.getSeccion().getCupo()) >= 0){  
 		    r.add(sala);
 		}
+		contador ++;
 	    }
 	}else if(this.getTipo().equals("LabElectDigital")){
 	    for(Sala sala: salas){
@@ -123,6 +133,7 @@ public class Clase {
 		if(sala.getIdTipoSala().equals(12) && sala.getCapacidadSala().compareTo(this.getSeccion().getCupo()) >= 0){  
 		    r.add(sala);
 		}
+		contador ++;
 	    }
 	}else if(this.getTipo().equals("LabMaquinasElectricas")){
 	    for(Sala sala: salas){
@@ -130,9 +141,11 @@ public class Clase {
 		if(sala.getIdTipoSala().equals(13) && sala.getCapacidadSala().compareTo(this.getSeccion().getCupo()) >= 0){  
 		    r.add(sala);
 		}
+		contador ++;
 	    }
+
 	}
-	r.sort(new ComparatorSalaCantidadBloques());
+	r.sort(new ComparatorSalaCantidadBloquesYCapacidad(this.getSeccion().getCupo()));
 	//4. Para una carrera se prefiere clases en edificios de su facultad. (Listo)
 	ArrayList<Sala> igualFacultad = new ArrayList<>(); //edificios con facultad determinada
 	ArrayList<Sala> sinFacultad = new ArrayList<>(); //edificios sin facultad determinada
@@ -151,20 +164,33 @@ public class Clase {
 	r.addAll(igualFacultad);
 	r.addAll(sinFacultad);
 	r.addAll(otraFacultad); 
-	
-	if(r.isEmpty() && !this.getTipo().equals("Normal")){
-	    //intentar crear nuevas clases, (mantener la capacidad de la sección y no considerar capacidad, intentar hacer diviciones por 2 o 3 o 4
-	    
-	}
-	
-	return r;
-    }
-       
 
-    
+	if(r.isEmpty() && !this.getTipo().equals("Normal") && contador != 0){
+	    //intentar crear nuevas clases, (mantener la capacidad de la sección y no considerar capacidad, intentar hacer diviciones por 2 o 3 o 4
+	    //Como no hay salas en r el "obenerBloques" que esta aplicando this en este momento no tiene asignaciones.
+	    //Esto será algo recursivo, si con dividir en dos no es sifuciente las diviciones seran divididas.
+	    //Dejar en el informe documentado recomendaciones de uso para quien vaya a crear secciones.
+	    Seccion seccionAux;
+	    //probando solo con dividir en dos.
+	    //sección virtual
+	    seccionAux = new Seccion(this.getSeccion().getIdSeccion(), this.getSeccion().getIdDocente(), 
+		    this.getSeccion().getIdAsignatura(), this.getSeccion().getCupo()/2);
+	    // clases virtuales y que se busquen bloques...
+	    new Clase(this.getPlanificador(), this.getHorasContinuadas(), seccionAux, this.getTipo()).obtenerBloques(planificador.getVentana(), planificador.getDias());
+	    new Clase(this.getPlanificador(), this.getHorasContinuadas(), seccionAux, this.getTipo()).obtenerBloques(planificador.getVentana(), planificador.getDias());
+
+	}else if(r.isEmpty()){
+	    System.out.println("No existen salas para este tipo de clases en la base de datos.");
+	}
+
+	return r; // Si esta vacio obtenerBloques de this no hará nada, por lo que esta (this) "clase" (de materia) no tendrá validez y sí sus diviciones que ya ejecutaron su "obterbloques".
+    }
+
+
+
     public void obtenerBloques(VentanaPrincipal ventana, ArrayList<Integer> dias){ //para ser llamada desde el planificador
 	// dias en orden aleatorio, cuantos dias?? En ventana debe de ponerse o en planificar
-	Collections.shuffle(dias, new Random());
+	Collections.shuffle(dias);
 	this.ordenarDiasSegunClase(dias);
 	for(Sala sala: this.filtrarSalaPorTipoFacultadYCapacidad(ventana.getSalas(), ventana)){ 
 	    for(Integer dia: dias){
@@ -230,31 +256,25 @@ public class Clase {
 		}
 	    }
 	    if(this.getBloquesAsignados().size() == this.getHorasContinuadas()){
+		System.out.println("Asignado clase; Asignados: " + (ventana.getBloques().size() - Clase.getBloques().size()) + " Bloques");
+		System.out.println("Bloques clase "+ventana.getAsignatura(this.getSeccion().getIdAsignatura()).getNombreAsignatura()+" : "+this.getBloquesAsignados().toString());
 		break;
-	    }
 
-	    if(this.getBloquesAsignados().size() == this.getHorasContinuadas()){
-		break;
 	    }
 	}
-	
 	Clase.getBloques().removeAll(this.getBloquesAsignados());
-	System.out.println("Asignado clase; Asignados: " + (ventana.getBloques().size() - Clase.getBloques().size()) + " Bloques");
-	System.out.println("Bloques clase "+ventana.getAsignatura(this.getSeccion().getIdAsignatura()).getNombreAsignatura()+" : "+this.getBloquesAsignados().toString());
-
-
     }
-    
-    
+
+
     private ArrayList<Bloque> bloquesDeUnaSalaYDia(Sala sala, int dia, VentanaPrincipal ventana){
-	
+
 	ArrayList<Bloque> lista = new ArrayList<Bloque>();
 	for(Bloque bloque: Clase.bloques){
 	    if(bloque.getIdDia().equals(dia) && bloque.getIdSala().equals(sala.getIdSala()) && Clase.getBloques().contains(bloque)){
-		    lista.add(bloque);
+		lista.add(bloque);
 	    }
 	}
-	
+
 	return lista;
     }
 

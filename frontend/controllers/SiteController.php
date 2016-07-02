@@ -728,7 +728,7 @@ class SiteController extends Controller{
 			") -> queryAll();
 		foreach ($asignaturasSinSecciones as $asignatura) {
 			$cantidadDeSeccionesAGenerar = rand(1,2);
-			$cantidadDeAlumnosPorSeccion = rand(3, 12) * 5; //multiplo de 5.
+			$cantidadDeAlumnosPorSeccion = rand(3, 8) * 5; //multiplo de 5.
 			for($i = 0; $i < $cantidadDeSeccionesAGenerar; $i++){
 				$seccion = new Seccion;
 				$seccion -> ID_SECCION = "sec".($i+1).'-'.$asignatura['ID_ASIGNATURA'];

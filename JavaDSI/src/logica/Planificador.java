@@ -10,7 +10,7 @@ import db.Seccion;
 import gui.VentanaPrincipal;
 
 public class Planificador {
-    private static Planificador actual;
+    private static Planificador actual; //solo puede existir un planificador en el software, si se quiere hilos, aqui dentro.
     private VentanaPrincipal ventana;
     private ArrayList<Integer> dias;
     private ArrayList<Clase> clasesEnSalaNormal;
@@ -26,6 +26,7 @@ public class Planificador {
     private ArrayList<Clase> clasesEnEspRedes;
     private ArrayList<Clase> clasesElecDigital;
     private ArrayList<Clase> clasesEnMaqElectronicas;
+    private ArrayList<Clase> clasesCreadasPorDividirOtras = new ArrayList<>();
     
     
 
@@ -119,6 +120,9 @@ public class Planificador {
 	}
 	if(getClasesEnLabMecanica() != null){
 	    lista.addAll(getClasesElecDigital());
+	}
+	if(getClasesCreadasPorDividirOtras() != null){
+	    lista.addAll(getClasesCreadasPorDividirOtras());
 	}
 	return lista;
     }
@@ -513,6 +517,7 @@ public class Planificador {
 	for(Clase c: this.getClasesEnMaqElectronicas()){
 	    c.obtenerBloques(getVentana(), getDias());
 	}
+
 	//importante al final
 	for(Clase c: this.getClasesEnSalaNormal()){
 	    c.obtenerBloques(getVentana(), getDias());
@@ -619,6 +624,9 @@ public class Planificador {
     
     public ArrayList<Clase> getClasesElecDigital() {
 	return clasesElecDigital;
+    }
+    public ArrayList<Clase> getClasesCreadasPorDividirOtras() {
+	return clasesCreadasPorDividirOtras;
     }
 
 
