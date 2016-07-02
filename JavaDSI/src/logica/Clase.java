@@ -152,6 +152,11 @@ public class Clase {
 	r.addAll(sinFacultad);
 	r.addAll(otraFacultad); 
 	
+	if(r.isEmpty() && !this.getTipo().equals("Normal")){
+	    //intentar crear nuevas clases, (mantener la capacidad de la sección y no considerar capacidad, intentar hacer diviciones por 2 o 3 o 4
+	    
+	}
+	
 	return r;
     }
        

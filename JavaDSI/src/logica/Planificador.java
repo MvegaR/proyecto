@@ -123,32 +123,35 @@ public class Planificador {
 	return lista;
     }
 
-
-
-    public void generarClasesEnSalaNormal(){
-	
-	clasesEnSalaNormal = new ArrayList<Clase>();
+    private Integer generarClases(String tipo, ArrayList<Clase> listaDeClasesVacia){
 	Integer totalDeBloques = 0;
 	//Modificar para que reciba las Asignaturas seleccionadas por la GUI (esta con todas las secciones existentes)
 	for(Seccion seccion: ventana.getSecciones()){
 	    Integer horas =  ventana.getAsignatura(seccion.getIdAsignatura()).getHoraTeo() + ventana.getAsignatura(seccion.getIdAsignatura()).getHoraAyudantia();
 	    if(horas == 0) continue;
 	    Boolean par = horas%2 == 0;
-	    //horas teo + ahoras ayudantia = sala normal
 	    Integer numerosDeClases = horas/2;
 	    totalDeBloques += horas;
 	    for(int i = 0; i<numerosDeClases; i++){
-		clasesEnSalaNormal.add(new Clase(this,2, seccion, "Normal"));
+		listaDeClasesVacia.add(new Clase(this,2, seccion, tipo));
 	    }
 	    if(numerosDeClases == 0){
-	    	clasesEnSalaNormal.add(new Clase(this,1, seccion, "Normal"));	
+		listaDeClasesVacia.add(new Clase(this,1, seccion, tipo));	
 	    }
-	    Collections.shuffle(clasesEnSalaNormal, new Random());
+	    Collections.shuffle(listaDeClasesVacia, new Random());
 	    if(horas != 1 && !par){
-		Clase k = clasesEnSalaNormal.get(clasesEnSalaNormal.size()-1);
+		Clase k = listaDeClasesVacia.get(listaDeClasesVacia.size()-1);
 		k.setHorasContinuadas(k.getHorasContinuadas()+1);
 	    }
 	}
+	return totalDeBloques;
+    }
+
+
+    public void generarClasesEnSalaNormal(){
+	
+	clasesEnSalaNormal = new ArrayList<Clase>();
+	Integer totalDeBloques = generarClases("Normal", clasesEnSalaNormal);
 	System.out.println("Cantidad de clases teoricas: "+ clasesEnSalaNormal.size() + " Total de bloques teoricos: "+ totalDeBloques);
 	 
     }
@@ -156,26 +159,7 @@ public class Planificador {
     public void generarClasesEnSalaComputacion(){
 	
 	clasesEnLabComputacion = new ArrayList<Clase>();
-	Integer totalDeBloques = 0;
-	//Modificar para que reciba las Asignaturas seleccionadas por la GUI (esta con todas las secciones existentes)
-	for(Seccion seccion: ventana.getSecciones()){
-	    Integer horas =  ventana.getAsignatura(seccion.getIdAsignatura()).getHoraLabCom();
-	    if(horas == 0) continue;
-	    Boolean par = horas%2 == 0;
-	    Integer numerosDeClases = horas/2;
-	    totalDeBloques += horas;
-	    for(int i = 0; i<numerosDeClases; i++){
-		clasesEnLabComputacion.add(new Clase(this,2, seccion, "Computacion"));
-	    }
-	    if(numerosDeClases == 0){
-	    	clasesEnLabComputacion.add(new Clase(this,1, seccion, "Computacion"));	
-	    }
-	    Collections.shuffle(clasesEnLabComputacion, new Random());
-	    if(horas != 1 && !par){
-		Clase k = clasesEnLabComputacion.get(clasesEnLabComputacion.size()-1);
-		k.setHorasContinuadas(k.getHorasContinuadas()+1);
-	    }
-	}
+	Integer totalDeBloques = generarClases("Computacion", clasesEnSalaNormal);
 	System.out.println("Cantidad de clases computación: "+ clasesEnLabComputacion.size() + " Total de bloques computación: "+ totalDeBloques);
 	 
     }
@@ -183,26 +167,7 @@ public class Planificador {
     public void generarClasesEnLabFisica(){
 	
 	clasesEnLabFisica = new ArrayList<Clase>();
-	Integer totalDeBloques = 0;
-	//Modificar para que reciba las Asignaturas seleccionadas por la GUI (esta con todas las secciones existentes)
-	for(Seccion seccion: ventana.getSecciones()){
-	    Integer horas =  ventana.getAsignatura(seccion.getIdAsignatura()).getHoraLabFisica();
-	    if(horas == 0) continue;
-	    Boolean par = horas%2 == 0;
-	    Integer numerosDeClases = horas/2;
-	    totalDeBloques += horas;
-	    for(int i = 0; i<numerosDeClases; i++){
-		clasesEnLabFisica.add(new Clase(this,2, seccion, "LabFisica"));
-	    }
-	    if(numerosDeClases == 0){
-	    	clasesEnLabFisica.add(new Clase(this,1, seccion, "LabFisica"));	
-	    }
-	    Collections.shuffle(clasesEnLabFisica, new Random());
-	    if(horas != 1 && !par){
-		Clase k = clasesEnLabFisica.get(clasesEnLabFisica.size()-1);
-		k.setHorasContinuadas(k.getHorasContinuadas()+1);
-	    }
-	}
+	Integer totalDeBloques = generarClases("LabFisica", clasesEnLabFisica);
 	System.out.println("Cantidad de clases lab fisica: "+ clasesEnLabFisica.size() + " Total de bloques lab fisica: "+ totalDeBloques);
 	 
     }
@@ -211,26 +176,7 @@ public class Planificador {
     public void generarClasesEnLabQuimica(){
 	
 	clasesEnLabQuimica = new ArrayList<Clase>();
-	Integer totalDeBloques = 0;
-	//Modificar para que reciba las Asignaturas seleccionadas por la GUI (esta con todas las secciones existentes)
-	for(Seccion seccion: ventana.getSecciones()){
-	    Integer horas =  ventana.getAsignatura(seccion.getIdAsignatura()).getHoraLabQuimica();
-	    if(horas == 0) continue;
-	    Boolean par = horas%2 == 0;
-	    Integer numerosDeClases = horas/2;
-	    totalDeBloques += horas;
-	    for(int i = 0; i<numerosDeClases; i++){
-		clasesEnLabQuimica.add(new Clase(this,2, seccion, "LabQuimica"));
-	    }
-	    if(numerosDeClases == 0){
-	    	clasesEnLabQuimica.add(new Clase(this,1, seccion, "LabQuimica"));	
-	    }
-	    Collections.shuffle(clasesEnLabQuimica, new Random());
-	    if(horas != 1 && !par){
-		Clase k = clasesEnLabQuimica.get(clasesEnLabQuimica.size()-1);
-		k.setHorasContinuadas(k.getHorasContinuadas()+1);
-	    }
-	}
+    	Integer totalDeBloques = generarClases("LabQuimica", clasesEnLabQuimica);
 	System.out.println("Cantidad de clases lab quimica: "+ clasesEnLabQuimica.size() + " Total de bloques lab quimica: "+ totalDeBloques);
 	 
     }
@@ -239,26 +185,7 @@ public class Planificador {
     public void generarClasesEnLabMecanica(){
 	
 	clasesEnLabMecanica = new ArrayList<Clase>();
-	Integer totalDeBloques = 0;
-	//Modificar para que reciba las Asignaturas seleccionadas por la GUI (esta con todas las secciones existentes)
-	for(Seccion seccion: ventana.getSecciones()){
-	    Integer horas =  ventana.getAsignatura(seccion.getIdAsignatura()).getHoraLabMecanica();
-	    if(horas == 0) continue;
-	    Boolean par = horas%2 == 0;
-	    Integer numerosDeClases = horas/2;
-	    totalDeBloques += horas;
-	    for(int i = 0; i<numerosDeClases; i++){
-		clasesEnLabMecanica.add(new Clase(this,2, seccion, "LabMecanica"));
-	    }
-	    if(numerosDeClases == 0){
-	    	clasesEnLabMecanica.add(new Clase(this,1, seccion, "LabMecanica"));	
-	    }
-	    Collections.shuffle(clasesEnLabMecanica, new Random());
-	    if(horas != 1 && !par){
-		Clase k = clasesEnLabMecanica.get(clasesEnLabMecanica.size()-1);
-		k.setHorasContinuadas(k.getHorasContinuadas()+1);
-	    }
-	}
+	Integer totalDeBloques = generarClases("LabMecanica", clasesEnLabMecanica);
 	System.out.println("Cantidad de clases lab mecanica: "+ clasesEnLabMecanica.size() + " Total de bloques lab mecanica: "+ totalDeBloques);
 	 
     }
@@ -266,209 +193,57 @@ public class Planificador {
     public void generarClasesEnLabRobotica(){
 	
 	clasesEnLabRobotica = new ArrayList<Clase>();
-	Integer totalDeBloques = 0;
-	//Modificar para que reciba las Asignaturas seleccionadas por la GUI (esta con todas las secciones existentes)
-	for(Seccion seccion: ventana.getSecciones()){
-	    Integer horas =  ventana.getAsignatura(seccion.getIdAsignatura()).getHoraLabRobotica();
-	    if(horas == 0) continue;
-	    Boolean par = horas%2 == 0;
-	    Integer numerosDeClases = horas/2;
-	    totalDeBloques += horas;
-	    for(int i = 0; i<numerosDeClases; i++){
-		clasesEnLabRobotica.add(new Clase(this,2, seccion, "LabRobotica"));
-	    }
-	    if(numerosDeClases == 0){
-	    	clasesEnLabRobotica.add(new Clase(this,1, seccion, "LabRobotica"));	
-	    }
-	    Collections.shuffle(clasesEnLabRobotica, new Random());
-	    if(horas != 1 && !par){
-		Clase k = clasesEnLabRobotica.get(clasesEnLabRobotica.size()-1);
-		k.setHorasContinuadas(k.getHorasContinuadas()+1);
-	    }
-	}
-	System.out.println("Cantidad de clases lab mecanica: "+ clasesEnLabRobotica.size() + " Total de bloques lab mecanica: "+ totalDeBloques);
+	Integer totalDeBloques = generarClases("LabRobotica", clasesEnLabRobotica);
+	System.out.println("Cantidad de clases lab robotica: "+ clasesEnLabRobotica.size() + " Total de bloques lab robotica: "+ totalDeBloques);
 	 
     }
     
     public void generarClasesTallerArquitectura(){
 	
 	clasesEnTallerArquitectura = new ArrayList<Clase>();
-	Integer totalDeBloques = 0;
-	//Modificar para que reciba las Asignaturas seleccionadas por la GUI (esta con todas las secciones existentes)
-	for(Seccion seccion: ventana.getSecciones()){
-	    Integer horas =  ventana.getAsignatura(seccion.getIdAsignatura()).getHoraTallerArquitectura();
-	    if(horas == 0) continue;
-	    Boolean par = horas%2 == 0;
-	    Integer numerosDeClases = horas/2;
-	    totalDeBloques += horas;
-	    for(int i = 0; i<numerosDeClases; i++){
-		clasesEnTallerArquitectura.add(new Clase(this,2, seccion, "TallerArquitectura"));
-	    }
-	    if(numerosDeClases == 0){
-	    	clasesEnTallerArquitectura.add(new Clase(this,1, seccion, "TallerArquitectura"));	
-	    }
-	    Collections.shuffle(clasesEnTallerArquitectura, new Random());
-	    if(horas != 1 && !par){
-		Clase k = clasesEnTallerArquitectura.get(clasesEnTallerArquitectura.size()-1);
-		k.setHorasContinuadas(k.getHorasContinuadas()+1);
-	    }
-	}
+	Integer totalDeBloques = generarClases("TallerArquitectura", clasesEnTallerArquitectura);
 	System.out.println("Cantidad de clases taller arquitectura: "+ clasesEnTallerArquitectura.size() + " Total de bloques taller arquitectura: "+ totalDeBloques);
     }
     
     public void generarClasesTallerMadera(){
 	
 	clasesEnTallerMadera = new ArrayList<Clase>();
-	Integer totalDeBloques = 0;
-	//Modificar para que reciba las Asignaturas seleccionadas por la GUI (esta con todas las secciones existentes)
-	for(Seccion seccion: ventana.getSecciones()){
-	    Integer horas =  ventana.getAsignatura(seccion.getIdAsignatura()).getHoraTallerMadera();
-	    if(horas == 0) continue;
-	    Boolean par = horas%2 == 0;
-	    Integer numerosDeClases = horas/2;
-	    totalDeBloques += horas;
-	    for(int i = 0; i<numerosDeClases; i++){
-		clasesEnTallerMadera.add(new Clase(this,2, seccion, "TallerMadera"));
-	    }
-	    if(numerosDeClases == 0){
-	    	clasesEnTallerMadera.add(new Clase(this,1, seccion, "TallerMadera"));	
-	    }
-	    Collections.shuffle(clasesEnTallerMadera, new Random());
-	    if(horas != 1 && !par){
-		Clase k = clasesEnTallerMadera.get(clasesEnTallerMadera.size()-1);
-		k.setHorasContinuadas(k.getHorasContinuadas()+1);
-	    }
-	}
+	Integer totalDeBloques = generarClases("TallerMadera", clasesEnTallerMadera);
 	System.out.println("Cantidad de clases taller madera: "+ clasesEnTallerMadera.size() + " Total de bloques taller madera: "+ totalDeBloques);
     }
     
     public void generarClasesGYM(){
 	
 	clasesEnGYM = new ArrayList<Clase>();
-	Integer totalDeBloques = 0;
-	//Modificar para que reciba las Asignaturas seleccionadas por la GUI (esta con todas las secciones existentes)
-	for(Seccion seccion: ventana.getSecciones()){
-	    Integer horas =  ventana.getAsignatura(seccion.getIdAsignatura()).getHoraGYM();
-	    if(horas == 0) continue;
-	    Boolean par = horas%2 == 0;
-	    Integer numerosDeClases = horas/2;
-	    totalDeBloques += horas;
-	    for(int i = 0; i<numerosDeClases; i++){
-		clasesEnGYM.add(new Clase(this,2, seccion, "GYM"));
-	    }
-	    if(numerosDeClases == 0){
-	    	clasesEnGYM.add(new Clase(this,1, seccion, "GYM"));	
-	    }
-	    Collections.shuffle(clasesEnGYM, new Random());
-	    if(horas != 1 && !par){
-		Clase k = clasesEnGYM.get(clasesEnGYM.size()-1);
-		k.setHorasContinuadas(k.getHorasContinuadas()+1);
-	    }
-	}
+	Integer totalDeBloques = generarClases("GYM", clasesEnGYM);
 	System.out.println("Cantidad de clases GYM: "+ clasesEnGYM.size() + " Total de bloques GYM: "+ totalDeBloques);
     }
     
     public void generarClasesAuditorio(){
 	
 	clasesEnAuditorio = new ArrayList<Clase>();
-	Integer totalDeBloques = 0;
-	//Modificar para que reciba las Asignaturas seleccionadas por la GUI (esta con todas las secciones existentes)
-	for(Seccion seccion: ventana.getSecciones()){
-	    Integer horas =  ventana.getAsignatura(seccion.getIdAsignatura()).getHoraAuditorio();
-	    if(horas == 0) continue;
-	    Boolean par = horas%2 == 0;
-	    Integer numerosDeClases = horas/2;
-	    totalDeBloques += horas;
-	    for(int i = 0; i<numerosDeClases; i++){
-		clasesEnAuditorio.add(new Clase(this,2, seccion, "LabEspRedes"));
-	    }
-	    if(numerosDeClases == 0){
-	    	clasesEnAuditorio.add(new Clase(this,1, seccion, "LabEspRedes"));	
-	    }
-	    Collections.shuffle(clasesEnAuditorio, new Random());
-	    if(horas != 1 && !par){
-		Clase k = clasesEnAuditorio.get(clasesEnAuditorio.size()-1);
-		k.setHorasContinuadas(k.getHorasContinuadas()+1);
-	    }
-	}
+	Integer totalDeBloques = generarClases("LabEspRedes", clasesEnAuditorio);
 	System.out.println("Cantidad de clases auditorio: "+ clasesEnAuditorio.size() + " Total de bloques auditorio: "+ totalDeBloques);
     }
     
     public void generarClasesEspRedes(){
 	
 	clasesEnEspRedes = new ArrayList<Clase>();
-	Integer totalDeBloques = 0;
-	//Modificar para que reciba las Asignaturas seleccionadas por la GUI (esta con todas las secciones existentes)
-	for(Seccion seccion: ventana.getSecciones()){
-	    Integer horas =  ventana.getAsignatura(seccion.getIdAsignatura()).getHoraLabRedes();
-	    if(horas == 0) continue;
-	    Boolean par = horas%2 == 0;
-	    Integer numerosDeClases = horas/2;
-	    totalDeBloques += horas;
-	    for(int i = 0; i<numerosDeClases; i++){
-		clasesEnEspRedes.add(new Clase(this,2, seccion, "LabEspRedes"));
-	    }
-	    if(numerosDeClases == 0){
-	    	clasesEnEspRedes.add(new Clase(this,1, seccion, "LabEspRedes"));	
-	    }
-	    Collections.shuffle(clasesEnEspRedes, new Random());
-	    if(horas != 1 && !par){
-		Clase k = clasesEnEspRedes.get(clasesEnEspRedes.size()-1);
-		k.setHorasContinuadas(k.getHorasContinuadas()+1);
-	    }
-	}
+	Integer totalDeBloques = generarClases("LabEspRedes", clasesEnEspRedes);
 	System.out.println("Cantidad de clases lab redes: "+ clasesEnEspRedes.size() + " Total de bloques lab rades: "+ totalDeBloques);
     }
     
     public void generarClasesElecDigital(){
 	
    	clasesElecDigital = new ArrayList<Clase>();
-   	Integer totalDeBloques = 0;
-   	//Modificar para que reciba las Asignaturas seleccionadas por la GUI (esta con todas las secciones existentes)
-   	for(Seccion seccion: ventana.getSecciones()){
-   	    Integer horas =  ventana.getAsignatura(seccion.getIdAsignatura()).getHoraLabElectronica();
-   	    if(horas == 0) continue;
-   	    Boolean par = horas%2 == 0;
-   	    Integer numerosDeClases = horas/2;
-   	    totalDeBloques += horas;
-   	    for(int i = 0; i<numerosDeClases; i++){
-   		clasesElecDigital.add(new Clase(this,2, seccion, "LabElectDigital"));
-   	    }
-   	    if(numerosDeClases == 0){
-   	    	clasesElecDigital.add(new Clase(this,1, seccion, "LabElectDigital"));	
-   	    }
-   	    Collections.shuffle(clasesElecDigital, new Random());
-   	    if(horas != 1 && !par){
-   		Clase k = clasesElecDigital.get(clasesElecDigital.size()-1);
-   		k.setHorasContinuadas(k.getHorasContinuadas()+1);
-   	    }
-   	}
+   	Integer totalDeBloques =generarClases("LabElectDigital", clasesElecDigital);
    	System.out.println("Cantidad de clases lab elect digital: "+ clasesElecDigital.size() + " Total de bloques lab elec digital: "+ totalDeBloques);
        }
     
     public void generarClasesMaqElectronicas(){
 	
    	clasesEnMaqElectronicas = new ArrayList<Clase>();
-   	Integer totalDeBloques = 0;
-   	//Modificar para que reciba las Asignaturas seleccionadas por la GUI (esta con todas las secciones existentes)
-   	for(Seccion seccion: ventana.getSecciones()){
-   	    Integer horas =  ventana.getAsignatura(seccion.getIdAsignatura()).getHoraLabMaqElectricas();
-   	    if(horas == 0) continue;
-   	    Boolean par = horas%2 == 0;
-   	    Integer numerosDeClases = horas/2;
-   	    totalDeBloques += horas;
-   	    for(int i = 0; i<numerosDeClases; i++){
-   		clasesEnMaqElectronicas.add(new Clase(this,2, seccion, "LabMaquinasElectricas"));
-   	    }
-   	    if(numerosDeClases == 0){
-   	    	clasesEnMaqElectronicas.add(new Clase(this,1, seccion, "LabMaquinasElectricas"));	
-   	    }
-   	    Collections.shuffle(clasesEnMaqElectronicas, new Random());
-   	    if(horas != 1 && !par){
-   		Clase k = clasesEnMaqElectronicas.get(clasesEnMaqElectronicas.size()-1);
-   		k.setHorasContinuadas(k.getHorasContinuadas()+1);
-   	    }
-   	}
+   	Integer totalDeBloques = generarClases("LabMaquinasElectricas", clasesEnMaqElectronicas);
    	System.out.println("Cantidad de clases taller maq electronicas: "+ clasesEnMaqElectronicas.size() + " Total de bloques taller maq electronicas: "+ totalDeBloques);
        }
     
