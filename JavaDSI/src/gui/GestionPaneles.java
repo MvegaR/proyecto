@@ -25,7 +25,7 @@ public class GestionPaneles extends JPanel {
     public GestionPaneles(VentanaPrincipal ventana) {
 	//coni = new CheckResolucion();
 	this.ventana = ventana;
-	menuAdmin = new MenuAdmin();
+	menuAdmin = new MenuAdmin(ventana);
 	menuInicial = new MenuInicial();
 	panelAutentificacion = new Autentificacion();
 	layout = new CardLayout();
@@ -55,6 +55,7 @@ public class GestionPaneles extends JPanel {
 	menuInicial.getBtnAdministrar().addMouseListener(new MouseAdapter() {
 	    @Override
 	    public void mousePressed(MouseEvent e) {
+		ventana.getPaneles().add(menuAdmin);
 		mostrarPanel("menuAdmin");
 	    }
 	});
@@ -62,8 +63,9 @@ public class GestionPaneles extends JPanel {
 	    @Override
 	    public void mousePressed(MouseEvent e) {
 		ventana.getPaneles().add(panelPlanificar);
-		VentanaPrincipal.getBtnVolver().setVisible(true);
+		ventana.getBtnVolver().setVisible(true);
 		if(ventana.getBloques().isEmpty()){
+		    ventana.getPaneles().add(panelPlanificar);
 		    mostrarPanel("descargaDB");
 		    ventana.paintComponents(ventana.getGraphics());
 		    descargaDB.rellenarListas();
@@ -78,6 +80,7 @@ public class GestionPaneles extends JPanel {
     }
 
     public void mostrarPanel(String nombrePanel){
+	if("menuInicial".equals(nombrePanel)){ventana.getPaneles().add(menuInicial);}
 	layout.show(this,nombrePanel);
     }
 

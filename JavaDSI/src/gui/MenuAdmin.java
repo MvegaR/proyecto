@@ -8,6 +8,8 @@ import java.awt.Desktop;
 import java.awt.Dimension;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.io.IOException;
 import java.net.URI;
@@ -17,6 +19,8 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.JButton;
 import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class MenuAdmin extends JPanel {
 
@@ -64,14 +68,11 @@ public class MenuAdmin extends JPanel {
     JLabel lblMduloDeTipos;
     JLabel lblMduloDeRespaldos;
     JLabel label;
+    VentanaPrincipal ventana;
     Font fuenteBotones = new Font("Times New Roman", Font.PLAIN, 30);
-
-    /**
-     * Create the panel.
-     * 
-     * PANEL DE MARCOS
-     */
-    public MenuAdmin() {
+    
+    public MenuAdmin(VentanaPrincipal ventana) {
+	this.ventana = ventana;
 	this.setBounds(0, 0, 1230, 600);
 	setLayout(null);
 	panelParaScroll = new JPanel();
@@ -292,11 +293,29 @@ public class MenuAdmin extends JPanel {
 	label.setBounds(470, 11, 306, 30);
 	panelPrincipalVisible.add(label);
 	
-	JButton btnVolver = VentanaPrincipal.getBtnVolver();
+	JButton btnVolver = new JButton("Volver");
 	btnVolver.setFont(new Font("Times New Roman", Font.PLAIN, 25));
 	btnVolver.setBounds(193, 7, 143, 30);
 	panelPrincipalVisible.add(btnVolver);
-
+	btnVolver.addActionListener(new ActionListener() {
+	    public void actionPerformed(ActionEvent arg0) {
+		String[] opciones = {"Si", "No" };
+		int opcion = JOptionPane.showOptionDialog(null,"¿Seguro que desea volver?"
+			,"Informacion",JOptionPane.DEFAULT_OPTION,JOptionPane.INFORMATION_MESSAGE
+			,null,opciones,null);
+		if(opciones[opcion].equals("Si")){
+		    if(!ventana.getPaneles().isEmpty()){
+			ventana.getPaneles().get(ventana.getPaneles().size()-1).setVisible(false);
+			ventana.getPaneles().remove(ventana.getPaneles().size()-1);
+			 if(!ventana.getPaneles().isEmpty()){
+			     ventana.getPaneles().get(ventana.getPaneles().size()-1).setVisible(true);
+			 }
+			// Cuando llega al panel principal
+		    }
+		}
+	    }
+	});
+	
 	scrollPane = new JScrollPane();
 	scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 	scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
@@ -336,4 +355,8 @@ public class MenuAdmin extends JPanel {
 	    System.out.println(e);
 	}
     }
+    public VentanaPrincipal getVentana() {
+	return ventana;
+    }
+    
 }

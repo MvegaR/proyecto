@@ -17,6 +17,8 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import java.awt.SystemColor;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Color;
 import java.awt.Font;
 
@@ -143,9 +145,28 @@ public class PanelPlanificar extends JPanel {
 			}
 		});
 		
-		btnVolver = VentanaPrincipal.getBtnVolver();
+		btnVolver = new JButton("Volver");
 		btnVolver.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		panelSur.add(btnVolver);
+		btnVolver.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent arg0) {
+			String[] opciones = {"Si", "No" };
+			int opcion = JOptionPane.showOptionDialog(null,"¿Seguro que desea volver?"
+				,"Informacion",JOptionPane.DEFAULT_OPTION,JOptionPane.INFORMATION_MESSAGE
+				,null,opciones,null);
+			if(opciones[opcion].equals("Si")){
+			    if(!ventana.getPaneles().isEmpty()){
+				ventana.getPaneles().get(ventana.getPaneles().size()-1).setVisible(false);
+				ventana.getPaneles().remove(ventana.getPaneles().size()-1);
+				 if(!ventana.getPaneles().isEmpty()){
+				     ventana.getPaneles().get(ventana.getPaneles().size()-1).setVisible(true);
+				     ventana.getGestorPaneles().mostrarPanel("menuInicial");
+				 }
+			
+			    }
+			}
+		    }
+		});
 		
 		btnSeleccionarSeccionesCon = new JButton("Seleccionar secciones sin planificaci\u00F3n");
 		btnSeleccionarSeccionesCon.setFont(new Font("Tahoma", Font.PLAIN, 15));

@@ -32,8 +32,8 @@ public class VentanaPrincipal extends JFrame {
     private GestionPaneles gestorPaneles;
     private PanelCabecera cabecera;
     //private JPanel seccionOpciones;
-    private static JButton btnVolver;
-    private static JButton btnSalir;
+    private JButton btnVolver;
+    private JButton btnSalir;
     //private MensajesError error;
     private ArrayList<JPanel> paneles = new ArrayList<>();  
     
@@ -56,15 +56,15 @@ public class VentanaPrincipal extends JFrame {
     /**
      * @return the btnVolver
      */
-    public static JButton getBtnVolver() {
+    public JButton getBtnVolver() {
         return btnVolver;
     }
 
     /**
      * @param btnVolver the btnVolver to set
      */
-    public static void setBtnVolver(JButton btnVolver) {
-        VentanaPrincipal.btnVolver = btnVolver;
+    public void setBtnVolver(JButton btnVolver) {
+        this.btnVolver = btnVolver;
     }
 
     /**
@@ -77,8 +77,8 @@ public class VentanaPrincipal extends JFrame {
     /**
      * @param btnSalir the btnSalir to set
      */
-    public static void setBtnSalir(JButton btnSalir) {
-        VentanaPrincipal.btnSalir = btnSalir;
+    public void setBtnSalir(JButton btnSalir) {
+        this.btnSalir = btnSalir;
     }
 
     /**
@@ -97,6 +97,7 @@ public class VentanaPrincipal extends JFrame {
     public GestionPaneles getGestorPaneles() {
 	return gestorPaneles;
     }
+   
 
     public VentanaPrincipal() {
 	btnVolver = new JButton("Volver");
