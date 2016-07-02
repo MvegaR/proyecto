@@ -176,8 +176,12 @@ public class Clase {
 	    seccionAux = new Seccion(this.getSeccion().getIdSeccion(), this.getSeccion().getIdDocente(), 
 		    this.getSeccion().getIdAsignatura(), this.getSeccion().getCupo()/2);
 	    // clases virtuales y que se busquen bloques...
-	    new Clase(this.getPlanificador(), this.getHorasContinuadas(), seccionAux, this.getTipo()).obtenerBloques(planificador.getVentana(), planificador.getDias());
-	    new Clase(this.getPlanificador(), this.getHorasContinuadas(), seccionAux, this.getTipo()).obtenerBloques(planificador.getVentana(), planificador.getDias());
+	    Clase virtual1 = new Clase(this.getPlanificador(), this.getHorasContinuadas(), seccionAux, this.getTipo());
+	    Clase virtual2 = new Clase(this.getPlanificador(), this.getHorasContinuadas(), seccionAux, this.getTipo());
+	    virtual1.obtenerBloques(planificador.getVentana(), planificador.getDias());
+	    virtual2.obtenerBloques(planificador.getVentana(), planificador.getDias());
+	    planificador.getClasesCreadasPorDividirOtras().add(virtual1);
+	    planificador.getClasesCreadasPorDividirOtras().add(virtual2);
 
 	}else if(r.isEmpty()){
 	    System.out.println("No existen salas para este tipo de clases en la base de datos.");
