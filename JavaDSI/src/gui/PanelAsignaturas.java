@@ -28,7 +28,7 @@ public class PanelAsignaturas extends JPanel {
 	private JTree tree;
 	
     public PanelAsignaturas() {
-    titulo = "<html><body><h2><strong><center>SELECCIONE ASIGNATURAS</center></strong></h2></body></html>";
+    titulo = "<html><body><h2><strong><center>SELECCIONE ASIGNATURAS Y SUS SECCIONES</center></strong></h2></body></html>";
 	tituloAsignaturas = new JLabel(titulo);
 	tituloAsignaturas.setAlignmentX(Component.CENTER_ALIGNMENT);
         tree = new JTree() {

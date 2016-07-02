@@ -291,6 +291,11 @@ public class MenuAdmin extends JPanel {
 	label.setFont(new Font("Times New Roman", Font.BOLD, 30));
 	label.setBounds(470, 11, 306, 30);
 	panelPrincipalVisible.add(label);
+	
+	JButton btnVolver = VentanaPrincipal.getBtnVolver();
+	btnVolver.setFont(new Font("Times New Roman", Font.PLAIN, 25));
+	btnVolver.setBounds(193, 7, 143, 30);
+	panelPrincipalVisible.add(btnVolver);
 
 	scrollPane = new JScrollPane();
 	scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -331,5 +336,4 @@ public class MenuAdmin extends JPanel {
 	    System.out.println(e);
 	}
     }
-
 }

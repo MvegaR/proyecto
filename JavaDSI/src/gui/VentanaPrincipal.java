@@ -31,9 +31,9 @@ public class VentanaPrincipal extends JFrame {
 
     private GestionPaneles gestorPaneles;
     private PanelCabecera cabecera;
-    private JPanel seccionOpciones;
-    private JButton btnVolver;
-    private JButton btnSalir;
+    //private JPanel seccionOpciones;
+    private static JButton btnVolver;
+    private static JButton btnSalir;
     //private MensajesError error;
     private ArrayList<JPanel> paneles = new ArrayList<>();  
     
@@ -56,15 +56,15 @@ public class VentanaPrincipal extends JFrame {
     /**
      * @return the btnVolver
      */
-    public JButton getBtnVolver() {
+    public static JButton getBtnVolver() {
         return btnVolver;
     }
 
     /**
      * @param btnVolver the btnVolver to set
      */
-    public void setBtnVolver(JButton btnVolver) {
-        this.btnVolver = btnVolver;
+    public static void setBtnVolver(JButton btnVolver) {
+        VentanaPrincipal.btnVolver = btnVolver;
     }
 
     /**
@@ -77,8 +77,8 @@ public class VentanaPrincipal extends JFrame {
     /**
      * @param btnSalir the btnSalir to set
      */
-    public void setBtnSalir(JButton btnSalir) {
-        this.btnSalir = btnSalir;
+    public static void setBtnSalir(JButton btnSalir) {
+        VentanaPrincipal.btnSalir = btnSalir;
     }
 
     /**
@@ -99,6 +99,8 @@ public class VentanaPrincipal extends JFrame {
     }
 
     public VentanaPrincipal() {
+	btnVolver = new JButton("Volver");
+	btnSalir = new JButton("Salir");
     	getContentPane().setBackground(SystemColor.inactiveCaption);
 	gestorPaneles = new GestionPaneles(this);
 	this.setResizable(false);
@@ -106,9 +108,7 @@ public class VentanaPrincipal extends JFrame {
 	cabecera = new PanelCabecera();
 	//seccionOpciones = new JPanel();
 	//seccionOpciones.setBackground(SystemColor.inactiveCaption);
-	btnVolver = new JButton("Volver");
 	btnVolver.setVisible(true);
-	btnSalir = new JButton("Salir");
 	btnSalir.setBounds(746, 385, 129, 43);
 	btnVolver.addActionListener(new ActionListener() {
 	    public void actionPerformed(ActionEvent arg0) {
@@ -306,6 +306,8 @@ public class VentanaPrincipal extends JFrame {
 		    + "\npuede tener problemas al visualizar elementos","Fuera de resolución", JOptionPane.ERROR_MESSAGE);
 	}
     }
+    
+    
 
 
     public static void main(String[] args) throws Exception {

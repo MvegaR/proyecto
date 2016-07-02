@@ -14,10 +14,10 @@ import java.awt.CardLayout;
 
 public class GestionPaneles extends JPanel {
     private static final long serialVersionUID = 1L;
-    private MenuAdmin MenuAdmin;
+    private MenuAdmin menuAdmin;
     private MenuInicial menuInicial;
     private PanelPlanificar panelPlanificar;
-    private Autentificacion PanelAutentificacion;
+    private Autentificacion panelAutentificacion;
     private CardLayout layout;
     private PanelTreeSalas salas;
     private DescargaDeDB descargaDB;
@@ -25,22 +25,22 @@ public class GestionPaneles extends JPanel {
     public GestionPaneles(VentanaPrincipal ventana) {
 	//coni = new CheckResolucion();
 	this.ventana = ventana;
-	MenuAdmin = new MenuAdmin();
+	menuAdmin = new MenuAdmin();
 	menuInicial = new MenuInicial();
-	PanelAutentificacion = new Autentificacion();
+	panelAutentificacion = new Autentificacion();
 	layout = new CardLayout();
 	panelPlanificar = new PanelPlanificar(ventana);
 	salas = new PanelTreeSalas();
 	descargaDB = new DescargaDeDB(ventana);
 	this.setLayout(layout);
-	this.add(PanelAutentificacion,"auntentificacion");
+	this.add(panelAutentificacion,"auntentificacion");
 	this.add(menuInicial,"menuInicial");
-	this.add(MenuAdmin,"menuAdmin");
+	this.add(menuAdmin,"menuAdmin");
 	this.add(panelPlanificar,"planificar");
 	this.add(salas, "salas");
 	this.add(descargaDB, "descargaDB");
 	layout.show(this, "auntentificacion");
-	PanelAutentificacion.getBtnEntrar().addMouseListener(new MouseAdapter() {
+	panelAutentificacion.getBtnEntrar().addMouseListener(new MouseAdapter() {
 	    @Override
 	    public void mousePressed(MouseEvent e) {
 		boolean acceso = Autentificacion_Usuario();
@@ -55,8 +55,6 @@ public class GestionPaneles extends JPanel {
 	menuInicial.getBtnAdministrar().addMouseListener(new MouseAdapter() {
 	    @Override
 	    public void mousePressed(MouseEvent e) {
-		ventana.getPaneles().add(MenuAdmin);
-		ventana.getBtnVolver().setVisible(true);
 		mostrarPanel("menuAdmin");
 	    }
 	});
@@ -64,7 +62,7 @@ public class GestionPaneles extends JPanel {
 	    @Override
 	    public void mousePressed(MouseEvent e) {
 		ventana.getPaneles().add(panelPlanificar);
-		ventana.getBtnVolver().setVisible(true);
+		VentanaPrincipal.getBtnVolver().setVisible(true);
 		if(ventana.getBloques().isEmpty()){
 		    mostrarPanel("descargaDB");
 		    ventana.paintComponents(ventana.getGraphics());
@@ -84,8 +82,8 @@ public class GestionPaneles extends JPanel {
     }
 
     public boolean Autentificacion_Usuario(){
-	String nombreUsuario = PanelAutentificacion.getTexto_user();
-	String passwordUsuario = PanelAutentificacion.getPassword_texto();
+	String nombreUsuario = panelAutentificacion.getTexto_user();
+	String passwordUsuario = panelAutentificacion.getPassword_texto();
 	ResultSet resUser= Conexion.ejecutarSQL("Select d.USER From docente d, rol r Where d.ID_Rol = R.ID_ROl and r.id_rol=1");
 	String Usuario = null;
 	if(nombreUsuario.contains(" ")==true || nombreUsuario.contains("(")|| nombreUsuario.contains(")")

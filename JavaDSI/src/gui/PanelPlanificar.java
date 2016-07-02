@@ -8,7 +8,6 @@ import db.Conexion;
 import logica.Planificador;
 
 import javax.swing.BoxLayout;
-import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,6 +15,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JButton;
+import java.awt.SystemColor;
+import javax.swing.JLabel;
+import java.awt.Color;
+import java.awt.Font;
 
 public class PanelPlanificar extends JPanel {
 	
@@ -25,19 +28,32 @@ public class PanelPlanificar extends JPanel {
 	private PanelTreeSalas panelTreeSalas;
 	private PanelAsignaturas panelAsignaturas;
 	private JButton btnNewButton;
+	private JButton btnEjecutarPlanificacinSeleccin;
+	private JLabel lblSeleccioneSalasY;
+	private JButton btnVolver;
+	private JButton btnInvertirSeleccin;
+	private JButton btnSeleccionarSeccionesCon;
 	
 	public PanelPlanificar(VentanaPrincipal ventana){
-		this.setLayout(new BorderLayout(0, 0));
+		setBackground(SystemColor.inactiveCaption);
 		panelNorte  = new JPanel();
+		panelNorte.setBackground(SystemColor.activeCaption);
+		panelNorte.setBounds(10, 11, 1245, 36);
 		panelCentro = new JPanel();
+		panelCentro.setBounds(10, 58, 1245, 498);
 		panelSur    = new JPanel();
+		panelSur.setBackground(SystemColor.activeCaption);
+		panelSur.setBounds(10, 567, 1245, 37);
 		panelCentro.setLayout(new BoxLayout(panelCentro, BoxLayout.X_AXIS));
 		panelTreeSalas = new PanelTreeSalas();
+		panelTreeSalas.setBackground(new Color(0, 100, 172));
 		panelAsignaturas = new PanelAsignaturas();
+		panelAsignaturas.setBackground(new Color(0, 100, 172));
 		panelCentro.add(panelTreeSalas);
 		panelCentro.add(panelAsignaturas);
 		panelNorte.setLayout(new FlowLayout());
-		btnNewButton = new JButton("Ejecutar Planificación");
+		btnNewButton = new JButton("Borrar planificacion de la selecci\u00F3n");
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		//btnNewButton.addActionListener(e -> new BuscarErrores(ventana).ejecutarTodasLasBusquedas());
 		
 		ArrayList<Integer> dias = new ArrayList<>();
@@ -126,9 +142,30 @@ public class PanelPlanificar extends JPanel {
 			    
 			}
 		});
+		
+		btnVolver = VentanaPrincipal.getBtnVolver();
+		btnVolver.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		panelSur.add(btnVolver);
+		
+		btnSeleccionarSeccionesCon = new JButton("Seleccionar secciones sin planificaci\u00F3n");
+		btnSeleccionarSeccionesCon.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		panelSur.add(btnSeleccionarSeccionesCon);
+		
+		btnInvertirSeleccin = new JButton("Invertir selecci\u00F3n");
+		btnInvertirSeleccin.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		panelSur.add(btnInvertirSeleccin);
 		panelSur.add(btnNewButton);
-		this.add(panelNorte, BorderLayout.NORTH);
-		this.add(panelCentro, BorderLayout.CENTER);
-		this.add(panelSur, BorderLayout.SOUTH);
+		setLayout(null);
+		this.add(panelNorte);
+		
+		lblSeleccioneSalasY = new JLabel("Seleccione salas y asignaturas con sus secciones y a continuaci\u00F3n ejecute el planificador.");
+		lblSeleccioneSalasY.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		panelNorte.add(lblSeleccioneSalasY);
+		this.add(panelCentro);
+		this.add(panelSur);
+		
+		btnEjecutarPlanificacinSeleccin = new JButton("Ejecutar Planificaci\u00F3n de la selecci\u00F3n");
+		btnEjecutarPlanificacinSeleccin.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		panelSur.add(btnEjecutarPlanificacinSeleccin);
 	}
 }
