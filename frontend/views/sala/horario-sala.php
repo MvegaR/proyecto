@@ -54,9 +54,9 @@ $this->params['breadcrumbs'][] = $this->title;
             else if($j == 18) echo '<tr><th>21:40 - 22:20</th>';
             else if($j == 19) echo '<tr><th>22:20 - 23:00</th>';
             for($i = 0; $i < 6; $i++){
-                if($datos[$i][$j]->ID_SECCION == null) echo '<td><a href="#" class="list-group-item list-group-item-success" title="Click para solicitar">
+                if($datos[$i][$j]->ID_SECCION == null) echo '<td><a href="#" class="list-group-item list-group-item-success" title="">
                     <span class="glyphicon glyphicon-ok-sign"></spam></a></td>';
-                else echo '<td><a href="#" class="list-group-item list-group-item-danger">'.$datos[$i][$j]->ID_SECCION.'<span class="glyphicon glyphicon-remove-sign"></spam></a></td>';
+                else echo '<td><a href="#" class="list-group-item list-group-item-danger">'.$datos[$i][$j]->ID_SECCION.'</a></td>';
             }
             echo '</tr>';
         }

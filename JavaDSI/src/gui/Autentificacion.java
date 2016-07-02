@@ -6,42 +6,76 @@ import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.SystemColor;
+import java.awt.Color;
+import javax.swing.border.BevelBorder;
+import javax.swing.SwingConstants;
 
 public class Autentificacion extends JPanel {
 
     private static final long serialVersionUID = 1L;
+	private JButton btnEntrar;
 	private JTextField texto_user;
 	private JPasswordField password_texto;
-	private JButton btnEntrar;
 
     public Autentificacion() {
+    	setBackground(SystemColor.inactiveCaption);
     	
-    	JLabel lblUsuario = new JLabel("Usuario");
-    	lblUsuario.setFont(new Font("Tahoma", Font.PLAIN, 32));
-    	lblUsuario.setBounds(262, 120, 115, 32);
-    	
-    	JLabel lblContrasea = new JLabel("Contrase\u00F1a");
-    	lblContrasea.setFont(new Font("Tahoma", Font.PLAIN, 30));
-    	lblContrasea.setBounds(262, 254, 181, 32);
-    	
-    	texto_user = new JTextField();
-    	texto_user.setFont(new Font("Tahoma", Font.PLAIN, 25));
-    	texto_user.setBounds(509, 123, 366, 32);
-    	texto_user.setColumns(10);
-    	
-    	password_texto = new JPasswordField();
-    	password_texto.setFont(new Font("Tahoma", Font.PLAIN, 25));
-    	password_texto.setBounds(509, 254, 366, 32);
-    	
-    	btnEntrar = new JButton("Entrar");
-    	btnEntrar.setBounds(509, 385, 134, 43);
+    	btnEntrar = new JButton("Iniciar Sesi\u00F3n");
+    	btnEntrar.setFont(new Font("Tahoma", Font.PLAIN, 24));
+    	btnEntrar.setBounds(537, 517, 207, 67);
     	
     	setLayout(null);
-    	add(lblUsuario);
-    	add(texto_user);
-    	add(lblContrasea);
-    	add(password_texto);
     	add(btnEntrar);
+    	
+    	JPanel panel = new JPanel();
+    	panel.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+    	panel.setBackground(new Color(0, 100, 172));
+    	panel.setBounds(0, 141, 1280, 85);
+    	add(panel);
+    	panel.setLayout(null);
+    	
+    	JLabel lblNombreDeUsuario = new JLabel("Nombre de Usuario");
+    	lblNombreDeUsuario.setForeground(new Color(255, 255, 255));
+    	lblNombreDeUsuario.setFont(new Font("Tahoma", Font.PLAIN, 32));
+    	lblNombreDeUsuario.setBounds(10, 23, 282, 32);
+    	panel.add(lblNombreDeUsuario);
+    	
+    	texto_user = new JTextField();
+    	texto_user.setHorizontalAlignment(SwingConstants.CENTER);
+    	texto_user.setBackground(Color.WHITE);
+    	texto_user.setToolTipText("Nombre de usuario");
+    	texto_user.setFont(new Font("Tahoma", Font.PLAIN, 30));
+    	texto_user.setColumns(10);
+    	texto_user.setBounds(394, 11, 876, 60);
+    	panel.add(texto_user);
+    	
+    	JPanel panel_1 = new JPanel();
+    	panel_1.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+    	panel_1.setLayout(null);
+    	panel_1.setBackground(new Color(0, 100, 172));
+    	panel_1.setBounds(0, 329, 1280, 85);
+    	add(panel_1);
+    	
+    	JLabel label_1 = new JLabel("Contrase\u00F1a");
+    	label_1.setForeground(Color.WHITE);
+    	label_1.setFont(new Font("Tahoma", Font.PLAIN, 30));
+    	label_1.setBounds(10, 24, 274, 32);
+    	panel_1.add(label_1);
+    	
+    	password_texto = new JPasswordField();
+    	password_texto.setHorizontalAlignment(SwingConstants.CENTER);
+    	password_texto.setBackground(Color.WHITE);
+    	password_texto.setToolTipText("Contrase\u00F1a");
+    	password_texto.setFont(new Font("Tahoma", Font.PLAIN, 30));
+    	password_texto.setBounds(394, 11, 876, 60);
+    	panel_1.add(password_texto);
+    	
+    	JLabel lblAutentificacinAdministrador = new JLabel("Autentificaci\u00F3n del Administrador: Complete el formulario para autentificarse.");
+    	lblAutentificacinAdministrador.setForeground(Color.BLACK);
+    	lblAutentificacinAdministrador.setFont(new Font("Times New Roman", Font.BOLD, 30));
+    	lblAutentificacinAdministrador.setBounds(127, 37, 1026, 47);
+    	add(lblAutentificacinAdministrador);
 
     }
     public String getTexto_user(){
@@ -56,5 +90,4 @@ public class Autentificacion extends JPanel {
     public JButton getBtnEntrar(){
     	return btnEntrar;
     }
-    
 }

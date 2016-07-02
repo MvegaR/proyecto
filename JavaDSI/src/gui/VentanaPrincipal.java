@@ -22,6 +22,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.awt.SystemColor;
 
 public class VentanaPrincipal extends JFrame {
 
@@ -98,13 +99,15 @@ public class VentanaPrincipal extends JFrame {
     }
 
     public VentanaPrincipal() {
+    	getContentPane().setBackground(SystemColor.inactiveCaption);
 	gestorPaneles = new GestionPaneles(this);
 	this.setResizable(false);
 	this.setUndecorated(true);
 	cabecera = new PanelCabecera();
-	seccionOpciones = new JPanel();
+	//seccionOpciones = new JPanel();
+	//seccionOpciones.setBackground(SystemColor.inactiveCaption);
 	btnVolver = new JButton("Volver");
-	btnVolver.setVisible(false);
+	btnVolver.setVisible(true);
 	btnSalir = new JButton("Salir");
 	btnSalir.setBounds(746, 385, 129, 43);
 	btnVolver.addActionListener(new ActionListener() {
@@ -132,12 +135,12 @@ public class VentanaPrincipal extends JFrame {
 		if(opciones[opcion].equals("Si")) System.exit(0);
 	    }
 	});
-	seccionOpciones.add(btnVolver);
-	seccionOpciones.add(btnSalir);
+	//seccionOpciones.add(btnVolver);
+	//seccionOpciones.add(btnSalir);
 
-	this.add(cabecera,BorderLayout.NORTH);
-	this.add(gestorPaneles,BorderLayout.CENTER);
-	this.add(seccionOpciones,BorderLayout.SOUTH);
+	getContentPane().add(cabecera,BorderLayout.NORTH);
+	getContentPane().add(gestorPaneles,BorderLayout.CENTER);
+	//getContentPane().add(seccionOpciones,BorderLayout.SOUTH);
 	this.setSize(1280, 720);
 	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	this.setLocationRelativeTo(null);

@@ -22,6 +22,7 @@ import db.TiempoInicio;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.awt.SystemColor;
 
 public class DescargaDeDB extends JPanel {
 
@@ -45,6 +46,7 @@ public class DescargaDeDB extends JPanel {
      * Create the panel.
      */
     public DescargaDeDB(VentanaPrincipal ventana) {
+    	setBackground(SystemColor.inactiveCaption);
 	setLayout(null);
 	this.ventana = ventana;
 	departamentosBar.setDoubleBuffered(true);
@@ -66,14 +68,14 @@ public class DescargaDeDB extends JPanel {
 
 	JLabel lblNewLabel = new JLabel("Descarga desde base de datos");
 	lblNewLabel.setForeground(Color.WHITE);
-	lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 19));
-	lblNewLabel.setBounds(396, 8, 267, 37);
+	lblNewLabel.setFont(new Font("Times New Roman", Font.PLAIN, 30));
+	lblNewLabel.setBounds(346, 8, 389, 37);
 	panel.add(lblNewLabel);
 
 	JPanel panel_1 = new JPanel();
 	panel_1.setDoubleBuffered(true);
 	panel_1.setBackground(new Color(255, 255, 255));
-	panel_1.setBounds(42, 53, 996, 47);
+	panel_1.setBounds(42, 383, 996, 47);
 	panel.add(panel_1);
 	panel_1.setLayout(null);
 
@@ -92,7 +94,7 @@ public class DescargaDeDB extends JPanel {
 	JPanel panel_2 = new JPanel();
 	panel_2.setLayout(null);
 	panel_2.setBackground(new Color(255, 255, 255));
-	panel_2.setBounds(42, 108, 996, 47);
+	panel_2.setBounds(42, 218, 996, 47);
 	panel_2.setDoubleBuffered(true);
 	panel.add(panel_2);
 
@@ -112,7 +114,7 @@ public class DescargaDeDB extends JPanel {
 	JPanel panel_3 = new JPanel();
 	panel_3.setLayout(null);
 	panel_3.setBackground(new Color(255, 255, 255));
-	panel_3.setBounds(42, 163, 996, 47);
+	panel_3.setBounds(42, 273, 996, 47);
 	panel_3.setDoubleBuffered(true);
 	panel_3.setDoubleBuffered(true);
 	panel.add(panel_3);
@@ -132,7 +134,7 @@ public class DescargaDeDB extends JPanel {
 	JPanel panel_4 = new JPanel();
 	panel_4.setLayout(null);
 	panel_4.setBackground(new Color(255, 255, 255));
-	panel_4.setBounds(42, 218, 996, 47);
+	panel_4.setBounds(42, 328, 996, 47);
 	panel_4.setDoubleBuffered(true);
 	panel.add(panel_4);
 
@@ -151,7 +153,7 @@ public class DescargaDeDB extends JPanel {
 	JPanel panel_5 = new JPanel();
 	panel_5.setLayout(null);
 	panel_5.setBackground(new Color(255, 255, 255));
-	panel_5.setBounds(42, 273, 996, 47);
+	panel_5.setBounds(42, 438, 996, 47);
 	panel_5.setDoubleBuffered(true);
 	panel.add(panel_5);
 
@@ -168,7 +170,7 @@ public class DescargaDeDB extends JPanel {
 	JPanel panel_6 = new JPanel();
 	panel_6.setLayout(null);
 	panel_6.setBackground(new Color(255, 255, 255));
-	panel_6.setBounds(42, 328, 996, 47);
+	panel_6.setBounds(42, 163, 996, 47);
 	panel_6.setDoubleBuffered(true);
 	panel.add(panel_6);
 
@@ -187,7 +189,7 @@ public class DescargaDeDB extends JPanel {
 	JPanel panel_7 = new JPanel();
 	panel_7.setLayout(null);
 	panel_7.setBackground(new Color(255, 255, 255));
-	panel_7.setBounds(42, 438, 996, 47);
+	panel_7.setBounds(42, 493, 996, 47);
 	panel_7.setDoubleBuffered(true);
 	panel.add(panel_7);
 
@@ -206,7 +208,7 @@ public class DescargaDeDB extends JPanel {
 	JPanel panel_8 = new JPanel();
 	panel_8.setLayout(null);
 	panel_8.setBackground(new Color(255, 255, 255));
-	panel_8.setBounds(42, 493, 996, 47);
+	panel_8.setBounds(42, 108, 996, 47);
 	panel_8.setDoubleBuffered(true);
 	panel.add(panel_8);
 
@@ -223,7 +225,7 @@ public class DescargaDeDB extends JPanel {
 	JPanel panel_9 = new JPanel();
 	panel_9.setLayout(null);
 	panel_9.setBackground(new Color(255, 255, 255));
-	panel_9.setBounds(42, 383, 996, 47);
+	panel_9.setBounds(42, 56, 996, 47);
 	panel_9.setDoubleBuffered(true);
 	panel.add(panel_9);
 
