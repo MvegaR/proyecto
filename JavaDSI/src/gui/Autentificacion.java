@@ -4,8 +4,11 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.SystemColor;
 import java.awt.Color;
 import javax.swing.border.BevelBorder;
@@ -28,7 +31,25 @@ public class Autentificacion extends JPanel {
     	setLayout(null);
     	add(btnEntrar);
     	
-    	JPanel panel = new JPanel();
+    	JPanel panel = new JPanel(){
+
+	    private static final long serialVersionUID = 1L;
+
+	    @Override
+	    public void paintComponent(Graphics g) {
+		Image imagen = new ImageIcon(this.getClass().getResource("/fondo.png")).getImage();
+		super.paintComponent(g);
+		int i = imagen.getWidth(this);
+		int j = imagen.getHeight(this);
+		if (i > 0 && j > 0) {
+		    for (int x = 0; x < getWidth(); x += i) {
+			for (int y = 0; y < getHeight(); y += j) {
+			    g.drawImage(imagen, x, y, i, j, this);
+			}
+		    }
+		}
+	    }
+	};
     	panel.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
     	panel.setBackground(new Color(0, 100, 172));
     	panel.setBounds(0, 141, 1280, 85);
@@ -50,7 +71,25 @@ public class Autentificacion extends JPanel {
     	texto_user.setBounds(394, 11, 876, 60);
     	panel.add(texto_user);
     	
-    	JPanel panel_1 = new JPanel();
+    	JPanel panel_1 = new JPanel(){
+
+	    private static final long serialVersionUID = 1L;
+
+	    @Override
+	    public void paintComponent(Graphics g) {
+		Image imagen = new ImageIcon(this.getClass().getResource("/fondo.png")).getImage();
+		super.paintComponent(g);
+		int i = imagen.getWidth(this);
+		int j = imagen.getHeight(this);
+		if (i > 0 && j > 0) {
+		    for (int x = 0; x < getWidth(); x += i) {
+			for (int y = 0; y < getHeight(); y += j) {
+			    g.drawImage(imagen, x, y, i, j, this);
+			}
+		    }
+		}
+	    }
+	};
     	panel_1.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
     	panel_1.setLayout(null);
     	panel_1.setBackground(new Color(0, 100, 172));

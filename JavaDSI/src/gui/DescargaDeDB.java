@@ -2,8 +2,12 @@ package gui;
 
 import javax.swing.JPanel;
 import java.awt.Color;
+
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Rectangle;
 
 import javax.swing.JProgressBar;
@@ -59,7 +63,25 @@ public class DescargaDeDB extends JPanel {
 	asignaturasBar.setDoubleBuffered(true);
 	facultadesBar.setDoubleBuffered(true);
 
-	JPanel panel = new JPanel();
+	JPanel panel = new JPanel(){
+
+	    private static final long serialVersionUID = 1L;
+
+	    @Override
+	    public void paintComponent(Graphics g) {
+		Image imagen = new ImageIcon(this.getClass().getResource("/fondo.png")).getImage();
+		super.paintComponent(g);
+		int i = imagen.getWidth(this);
+		int j = imagen.getHeight(this);
+		if (i > 0 && j > 0) {
+		    for (int x = 0; x < getWidth(); x += i) {
+			for (int y = 0; y < getHeight(); y += j) {
+			    g.drawImage(imagen, x, y, i, j, this);
+			}
+		    }
+		}
+	    }
+	};
 	panel.setBackground(new Color(0, 100, 172));
 	panel.setBounds(88, 29, 1060, 552);
 	panel.setDoubleBuffered(true);

@@ -54,6 +54,7 @@ public class PanelTreeSalas extends JPanel {
 	super(new BorderLayout());
 	titulo = "<html><body><h2><strong><center>SELECCIONE SALAS</center></strong></h2></body></html>";
 	tituloSalas = new JLabel(titulo);
+	tituloSalas.setForeground(new Color(255, 255, 255));
 	tituloSalas.setAlignmentX(Component.CENTER_ALIGNMENT);
 
          tree = new JTree() {

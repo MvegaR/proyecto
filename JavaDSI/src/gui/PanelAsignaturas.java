@@ -10,6 +10,8 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeModel;
 import db.Conexion;
+
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.sql.*;
@@ -30,6 +32,7 @@ public class PanelAsignaturas extends JPanel {
     public PanelAsignaturas() {
 	titulo = "<html><body><h2><strong><center>SELECCIONE ASIGNATURAS Y SUS SECCIONES</center></strong></h2></body></html>";
 	tituloAsignaturas = new JLabel(titulo);
+	tituloAsignaturas.setForeground(new Color(255, 255, 255));
 	tituloAsignaturas.setAlignmentX(Component.CENTER_ALIGNMENT);
 	tree = new JTree() {
 	    private static final long serialVersionUID = 1L;

@@ -8,6 +8,8 @@ import db.Conexion;
 import logica.Planificador;
 
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,6 +23,8 @@ import javax.swing.JOptionPane;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
 
 public class PanelPlanificar extends JPanel {
 	
@@ -47,9 +51,45 @@ public class PanelPlanificar extends JPanel {
 		panelSur.setBackground(SystemColor.activeCaption);
 		panelSur.setBounds(10, 567, 1245, 37);
 		panelCentro.setLayout(new BoxLayout(panelCentro, BoxLayout.X_AXIS));
-		panelTreeSalas = new PanelTreeSalas();
+		panelTreeSalas = new PanelTreeSalas(){
+
+		    private static final long serialVersionUID = 1L;
+
+		    @Override
+		    public void paintComponent(Graphics g) {
+			Image imagen = new ImageIcon(this.getClass().getResource("/fondo.png")).getImage();
+			super.paintComponent(g);
+			int i = imagen.getWidth(this);
+			int j = imagen.getHeight(this);
+			if (i > 0 && j > 0) {
+			    for (int x = 0; x < getWidth(); x += i) {
+				for (int y = 0; y < getHeight(); y += j) {
+				    g.drawImage(imagen, x, y, i, j, this);
+				}
+			    }
+			}
+		    }
+		};
 		panelTreeSalas.setBackground(new Color(0, 100, 172));
-		panelAsignaturas = new PanelAsignaturas();
+		panelAsignaturas = new PanelAsignaturas(){
+
+		    private static final long serialVersionUID = 1L;
+
+		    @Override
+		    public void paintComponent(Graphics g) {
+			Image imagen = new ImageIcon(this.getClass().getResource("/fondo.png")).getImage();
+			super.paintComponent(g);
+			int i = imagen.getWidth(this);
+			int j = imagen.getHeight(this);
+			if (i > 0 && j > 0) {
+			    for (int x = 0; x < getWidth(); x += i) {
+				for (int y = 0; y < getHeight(); y += j) {
+				    g.drawImage(imagen, x, y, i, j, this);
+				}
+			    }
+			}
+		    }
+		};
 		panelAsignaturas.setBackground(new Color(0, 100, 172));
 		panelCentro.add(panelTreeSalas);
 		panelCentro.add(panelAsignaturas);

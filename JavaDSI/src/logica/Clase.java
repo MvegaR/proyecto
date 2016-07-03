@@ -184,7 +184,7 @@ public class Clase {
 	    planificador.getClasesCreadasPorDividirOtras().add(virtual2);
 
 	}else if(r.isEmpty()){
-	    System.out.println("No existen salas para este tipo de clases en la base de datos.");
+	    System.out.println("No existen salas para este tipo de clases en la selección.");
 	}
 
 	return r; // Si esta vacio obtenerBloques de this no hará nada, por lo que esta (this) "clase" (de materia) no tendrá validez y sí sus diviciones que ya ejecutaron su "obterbloques".

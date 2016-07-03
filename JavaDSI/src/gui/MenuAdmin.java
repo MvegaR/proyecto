@@ -11,12 +11,15 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.LineBorder;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
@@ -101,7 +104,25 @@ public class MenuAdmin extends JPanel {
 	panelPrincipalVisible.add(contenedorModulos);
 	contenedorModulos.setLayout(null);
 
-	moduloPlanificacion = new JPanel();
+	moduloPlanificacion = new JPanel(){
+
+	    private static final long serialVersionUID = 1L;
+
+	    @Override
+	    public void paintComponent(Graphics g) {
+		Image imagen = new ImageIcon(this.getClass().getResource("/fondo.png")).getImage();
+		super.paintComponent(g);
+		int i = imagen.getWidth(this);
+		int j = imagen.getHeight(this);
+		if (i > 0 && j > 0) {
+		    for (int x = 0; x < getWidth(); x += i) {
+			for (int y = 0; y < getHeight(); y += j) {
+			    g.drawImage(imagen, x, y, i, j, this);
+			}
+		    }
+		}
+	    }
+	};
 	moduloPlanificacion.setBorder(new LineBorder(new Color(0, 0, 0)));
 	moduloPlanificacion.setBackground(new Color(0, 100, 172));
 	moduloPlanificacion.setBounds(40, 63, 860, 181);
@@ -139,7 +160,25 @@ public class MenuAdmin extends JPanel {
 	lblMduloDePlanificacin.setBounds(40, 21, 476, 30);
 	contenedorModulos.add(lblMduloDePlanificacin);
 
-	panel_3 = new JPanel();
+	panel_3 = new JPanel(){
+
+	    private static final long serialVersionUID = 1L;
+
+	    @Override
+	    public void paintComponent(Graphics g) {
+		Image imagen = new ImageIcon(this.getClass().getResource("/fondo.png")).getImage();
+		super.paintComponent(g);
+		int i = imagen.getWidth(this);
+		int j = imagen.getHeight(this);
+		if (i > 0 && j > 0) {
+		    for (int x = 0; x < getWidth(); x += i) {
+			for (int y = 0; y < getHeight(); y += j) {
+			    g.drawImage(imagen, x, y, i, j, this);
+			}
+		    }
+		}
+	    }
+	};
 	panel_3.setLayout(null);
 	panel_3.setBorder(new LineBorder(new Color(0, 0, 0)));
 	panel_3.setBackground(new Color(0, 100, 172));
@@ -171,7 +210,25 @@ public class MenuAdmin extends JPanel {
 	lblMduloDeRecursos.setBounds(40, 256, 476, 30);
 	contenedorModulos.add(lblMduloDeRecursos);
 
-	panel_5 = new JPanel();
+	panel_5 = new JPanel(){
+
+	    private static final long serialVersionUID = 1L;
+
+	    @Override
+	    public void paintComponent(Graphics g) {
+		Image imagen = new ImageIcon(this.getClass().getResource("/fondo.png")).getImage();
+		super.paintComponent(g);
+		int i = imagen.getWidth(this);
+		int j = imagen.getHeight(this);
+		if (i > 0 && j > 0) {
+		    for (int x = 0; x < getWidth(); x += i) {
+			for (int y = 0; y < getHeight(); y += j) {
+			    g.drawImage(imagen, x, y, i, j, this);
+			}
+		    }
+		}
+	    }
+	};
 	panel_5.setLayout(null);
 	panel_5.setBorder(new LineBorder(new Color(0, 0, 0)));
 	panel_5.setBackground(new Color(0, 100, 172));
@@ -208,7 +265,25 @@ public class MenuAdmin extends JPanel {
 	lblMduloDeSolicitudes.setBounds(40, 444, 476, 30);
 	contenedorModulos.add(lblMduloDeSolicitudes);
 
-	panel_6 = new JPanel();
+	panel_6 = new JPanel(){
+
+	    private static final long serialVersionUID = 1L;
+
+	    @Override
+	    public void paintComponent(Graphics g) {
+		Image imagen = new ImageIcon(this.getClass().getResource("/fondo.png")).getImage();
+		super.paintComponent(g);
+		int i = imagen.getWidth(this);
+		int j = imagen.getHeight(this);
+		if (i > 0 && j > 0) {
+		    for (int x = 0; x < getWidth(); x += i) {
+			for (int y = 0; y < getHeight(); y += j) {
+			    g.drawImage(imagen, x, y, i, j, this);
+			}
+		    }
+		}
+	    }
+	};
 	panel_6.setLayout(null);
 	panel_6.setBorder(new LineBorder(new Color(0, 0, 0)));
 	panel_6.setBackground(new Color(0, 100, 172));
@@ -270,7 +345,25 @@ public class MenuAdmin extends JPanel {
 	lblMduloDeRespaldos.setBounds(40, 1011, 476, 30);
 	contenedorModulos.add(lblMduloDeRespaldos);
 
-	panel_7 = new JPanel();
+	panel_7 = new JPanel(){
+
+	    private static final long serialVersionUID = 1L;
+
+	    @Override
+	    public void paintComponent(Graphics g) {
+		Image imagen = new ImageIcon(this.getClass().getResource("/fondo.png")).getImage();
+		super.paintComponent(g);
+		int i = imagen.getWidth(this);
+		int j = imagen.getHeight(this);
+		if (i > 0 && j > 0) {
+		    for (int x = 0; x < getWidth(); x += i) {
+			for (int y = 0; y < getHeight(); y += j) {
+			    g.drawImage(imagen, x, y, i, j, this);
+			}
+		    }
+		}
+	    }
+	};
 	panel_7.setLayout(null);
 	panel_7.setBorder(new LineBorder(new Color(0, 0, 0)));
 	panel_7.setBackground(new Color(0, 100, 172));
