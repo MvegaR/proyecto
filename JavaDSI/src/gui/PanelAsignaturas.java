@@ -9,12 +9,17 @@ import javax.swing.WindowConstants;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeModel;
-import db.Conexion;
+
+import db.Asignatura;
+import db.Carrera;
+//import db.Conexion;
+import db.Facultad;
+import db.Seccion;
 
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.sql.*;
+//import java.sql.*;
 import java.util.Enumeration;
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
@@ -28,10 +33,12 @@ public class PanelAsignaturas extends JPanel {
     private JLabel tituloAsignaturas;
     private String titulo;
     private JTree tree;
+    private VentanaPrincipal ventana;
 
-    public PanelAsignaturas() {
+    public PanelAsignaturas(VentanaPrincipal ventana) {
 	titulo = "<html><body><h2><strong><center>SELECCIONE ASIGNATURAS Y SUS SECCIONES</center></strong></h2></body></html>";
 	tituloAsignaturas = new JLabel(titulo);
+	this.ventana = ventana;
 	tituloAsignaturas.setForeground(new Color(255, 255, 255));
 	tituloAsignaturas.setAlignmentX(Component.CENTER_ALIGNMENT);
 	tree = new JTree() {
@@ -46,6 +53,68 @@ public class PanelAsignaturas extends JPanel {
 		setCellEditor(new CheckBoxNodeEditor());
 	    }
 	};
+	//ubb -> semestre -> facultad -> carrera -> asignatura -> seccion
+	tree.setModel(new DefaultTreeModel(
+		new DefaultMutableTreeNode("UBB"){
+		    private static final long serialVersionUID = 1L;
+		    {
+			DefaultMutableTreeNode s1 = new DefaultMutableTreeNode("Semestre I");
+			for(Facultad facultad: ventana.getFacultades()){
+			    DefaultMutableTreeNode f = new DefaultMutableTreeNode(facultad.getNombreFacultad());
+			    for(Carrera carrera: ventana.getCarreras()){
+				if(carrera.getIdFacultad().equals(facultad.getIdFacultad())){
+				    DefaultMutableTreeNode c = new DefaultMutableTreeNode("["+carrera.getIdCarrera()+"] - "+carrera.getNombreCarrera());
+				    for(Asignatura asignatura: ventana.getAsignaturas()){
+					if(asignatura.getSemestre().equals(1) && asignatura.getIdCarrera() != null && asignatura.getIdCarrera().equals(carrera.getIdCarrera())){
+					    DefaultMutableTreeNode a = new DefaultMutableTreeNode("["+asignatura.getIdAsignatura()+"] - "+asignatura.getNombreAsignatura());
+					    for(Seccion seccion: ventana.getSecciones()){
+						if(seccion.getIdAsignatura().equals(asignatura.getIdAsignatura())){
+						    DefaultMutableTreeNode s = new DefaultMutableTreeNode(seccion.getIdSeccion());
+						    a.add(s);
+						}
+					    }
+					    c.add(a);
+					}
+				    }
+				    f.add(c);
+				}
+			    }
+			    s1.add(f);
+			}
+			add(s1);
+
+			DefaultMutableTreeNode s2 = new DefaultMutableTreeNode("Semestre II");
+			for(Facultad facultad: ventana.getFacultades()){
+			    DefaultMutableTreeNode f = new DefaultMutableTreeNode(facultad.getNombreFacultad());
+			    for(Carrera carrera: ventana.getCarreras()){
+				if(carrera.getIdFacultad().equals(facultad.getIdFacultad())){
+				    DefaultMutableTreeNode c = new DefaultMutableTreeNode("["+carrera.getIdCarrera()+"] - "+carrera.getNombreCarrera());
+				    for(Asignatura asignatura: ventana.getAsignaturas()){
+					if(asignatura.getSemestre().equals(2) &&  asignatura.getIdCarrera() != null && asignatura.getIdCarrera().equals(carrera.getIdCarrera())){
+					    DefaultMutableTreeNode a = new DefaultMutableTreeNode("["+asignatura.getIdAsignatura()+"] - "+asignatura.getNombreAsignatura());
+					    for(Seccion seccion: ventana.getSecciones()){
+						if(seccion.getIdAsignatura().equals(asignatura.getIdAsignatura())){
+						    DefaultMutableTreeNode s = new DefaultMutableTreeNode(seccion.getIdSeccion());
+						    a.add(s);
+						}
+					    }
+					    c.add(a);
+					}
+				    }
+				    f.add(c);
+				}
+			    }
+			    s2.add(f);
+			}
+			add(s2);
+		    }
+
+
+
+		}
+		));
+
+	/*
 	tree.setModel(new DefaultTreeModel(
 		new DefaultMutableTreeNode("UBB") {
 		    private static final long serialVersionUID = 1L;
@@ -81,6 +150,7 @@ public class PanelAsignaturas extends JPanel {
 		    }
 		}
 		));
+	// */
 	TreeModel model = tree.getModel();
 	DefaultMutableTreeNode root = (DefaultMutableTreeNode) model.getRoot();
 	@SuppressWarnings("rawtypes")
@@ -111,7 +181,7 @@ public class PanelAsignaturas extends JPanel {
 	}
 	JFrame frame = new JFrame("CheckBoxNodeEditor");
 	frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-	frame.getContentPane().add(new PanelTreeSalas());
+	frame.getContentPane().add(new PanelSalasYDias());
 	frame.pack();
 	frame.setLocationRelativeTo(null);
 	frame.setVisible(true);
@@ -121,4 +191,7 @@ public class PanelAsignaturas extends JPanel {
 	return tree;
     }
 
+    public VentanaPrincipal getVentana() {
+	return ventana;
+    }
 }

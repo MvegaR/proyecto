@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'NOMBRE_ASIGNATURA',
             'ANIO',
             'SEMESTRE',            
-            //*
+            /*
             'HORAS_TEO', 
             'HORAS_LAB_COM', 
             'HORAS_AYUDANTIA', 

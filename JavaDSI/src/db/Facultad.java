@@ -6,16 +6,16 @@ import java.sql.SQLException;
 public class Facultad {
     
     private Integer idFacultad;
-    private String nombreDepartamento;
-    public Facultad(Integer idFacultad, Integer idDepartamento, String nombreDepartamento) {
+    private String nombreFacultad;
+    public Facultad(Integer idFacultad, String nombreFacultad) {
 	
 	this.idFacultad = idFacultad;
-	this.nombreDepartamento = nombreDepartamento;
+	this.nombreFacultad = nombreFacultad;
     }
     public Facultad(ResultSet datos) {
 	try {
 	    this.idFacultad = datos.getInt(1);
-	    this.nombreDepartamento = datos.getString(2);
+	    this.nombreFacultad = datos.getString(2);
 	   
 	} catch (SQLException e) {
 	    // TODO Auto-generated catch block
@@ -32,15 +32,15 @@ public class Facultad {
     /**
      * @return the nombreDepartamento
      */
-    public String getNombreDepartamento() {
-        return nombreDepartamento;
+    public String getNombreFacultad() {
+        return nombreFacultad;
     }
     /* (non-Javadoc)
      * @see java.lang.Object#toString()
      */
     @Override
     public String toString() {
-	return "Facultad [idFacultad=" + idFacultad + ", nombreDepartamento=" + nombreDepartamento + "]";
+	return "Facultad [idFacultad=" + idFacultad + ", nombreFacultad=" + nombreFacultad + "]";
     }
     /* (non-Javadoc)
      * @see java.lang.Object#hashCode()
@@ -50,7 +50,7 @@ public class Facultad {
 	final int prime = 31;
 	int result = 1;
 	result = prime * result + ((idFacultad == null) ? 0 : idFacultad.hashCode());
-	result = prime * result + ((nombreDepartamento == null) ? 0 : nombreDepartamento.hashCode());
+	result = prime * result + ((nombreFacultad == null) ? 0 : nombreFacultad.hashCode());
 	return result;
     }
     /* (non-Javadoc)
@@ -75,11 +75,11 @@ public class Facultad {
 	} else if (!idFacultad.equals(other.idFacultad)) {
 	    return false;
 	}
-	if (nombreDepartamento == null) {
-	    if (other.nombreDepartamento != null) {
+	if (nombreFacultad == null) {
+	    if (other.nombreFacultad != null) {
 		return false;
 	    }
-	} else if (!nombreDepartamento.equals(other.nombreDepartamento)) {
+	} else if (!nombreFacultad.equals(other.nombreFacultad)) {
 	    return false;
 	}
 	return true;

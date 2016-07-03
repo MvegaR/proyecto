@@ -182,7 +182,7 @@ public class BuscarErrores {
     
     public void FacultadSinDepartamento(){
     	for(int i=0; i<facultades.size(); i++){
-    		if(facultades.get(i).getNombreDepartamento() == null){
+    		if(facultades.get(i).getNombreFacultad() == null){
     			MensajesError.meEr_FacultadSinDepartamento();
                 break;
     		}

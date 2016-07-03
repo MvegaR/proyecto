@@ -19,7 +19,7 @@ public class GestionPaneles extends JPanel {
     private PanelPlanificar panelPlanificar;
     private Autentificacion panelAutentificacion;
     private CardLayout layout;
-    private PanelTreeSalas salas;
+    private PanelSalasYDias salas;
     private DescargaDeDB descargaDB;
     VentanaPrincipal ventana;
     public GestionPaneles(VentanaPrincipal ventana) {
@@ -29,14 +29,14 @@ public class GestionPaneles extends JPanel {
 	menuInicial = new MenuInicial();
 	panelAutentificacion = new Autentificacion();
 	layout = new CardLayout();
-	panelPlanificar = new PanelPlanificar(ventana);
-	salas = new PanelTreeSalas();
+	//panelPlanificar = new PanelPlanificar(ventana);
+	salas = new PanelSalasYDias();
 	descargaDB = new DescargaDeDB(ventana);
 	this.setLayout(layout);
 	this.add(panelAutentificacion,"auntentificacion");
 	this.add(menuInicial,"menuInicial");
 	this.add(menuAdmin,"menuAdmin");
-	this.add(panelPlanificar,"planificar");
+	//this.add(panelPlanificar,"planificar");
 	this.add(salas, "salas");
 	this.add(descargaDB, "descargaDB");
 	layout.show(this, "auntentificacion");
@@ -62,18 +62,29 @@ public class GestionPaneles extends JPanel {
 	menuInicial.getBtnPlanificar().addMouseListener(new MouseAdapter() {
 	    @Override
 	    public void mousePressed(MouseEvent e) {
-		ventana.getPaneles().add(panelPlanificar);
-		ventana.getBtnVolver().setVisible(true);
+
 		if(ventana.getBloques().isEmpty()){
-		    ventana.getPaneles().add(panelPlanificar);
+
 		    mostrarPanel("descargaDB");
 		    ventana.paintComponents(ventana.getGraphics());
 		    descargaDB.rellenarListas();
+		    if(panelPlanificar == null){
+			panelPlanificar = new PanelPlanificar(ventana);
+			add(panelPlanificar, "planificar");
+			ventana.getPaneles().add(panelPlanificar);
+			mostrarPanel("planificar");
+			ventana.getBtnVolver().setVisible(true);
+		    }
 		}else{
+		    panelPlanificar = new PanelPlanificar(ventana);
+			add(panelPlanificar, "planificar");
+			ventana.getPaneles().add(panelPlanificar);
+			mostrarPanel("planificar");
+			ventana.getBtnVolver().setVisible(true);
 		    mostrarPanel("planificar");
 		}
-		
-		
+
+
 	    }
 	});
 
@@ -90,9 +101,9 @@ public class GestionPaneles extends JPanel {
 	ResultSet resUser= Conexion.ejecutarSQL("Select d.USER From docente d, rol r Where d.ID_Rol = R.ID_ROl and r.id_rol=1");
 	String Usuario = null;
 	if(nombreUsuario.contains(" ")==true || nombreUsuario.contains("(")|| nombreUsuario.contains(")")
-	|| nombreUsuario.contains(".") || nombreUsuario.contains(",")|| nombreUsuario.contains("\'")
-	|| nombreUsuario.contains("\"")){
-		return false;
+		|| nombreUsuario.contains(".") || nombreUsuario.contains(",")|| nombreUsuario.contains("\'")
+		|| nombreUsuario.contains("\"")){
+	    return false;
 	} 
 	try {
 	    while(resUser.next()){
