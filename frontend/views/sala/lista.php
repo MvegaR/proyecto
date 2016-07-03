@@ -28,11 +28,11 @@ $this->params['breadcrumbs'][] = $this->title;
                       
       
                             <div class="col-md-6 col-sm-6 col-xs-6 " >
-                                <div class="panel panel-default col-xs-12" style="background-color:#0064AC">
+                                <div class="fondo panel panel-default col-xs-12" style="background-color:#0064AC;">
                                     <div class="panel-body col-xs-12">
                                         <div class="btn-group col-xs-12" >
                                             <button type="button" class="btn btn-default col-xs-12" title="Click para ver horario" onclick="location.href='index.php?r=sala/horario-sala&sala=<?= $sala->ID_SALA ?>'">
-                                                <p>Sala <?= $sala->ID_SALA ?></p>
+                                                <p><?= $sala->ID_SALA ?></p>
                                                 <p>Edificio <?= $edificio->ID_EDIFICIO ?></p>
                                                 <p>Capacidad <?= $sala->CAPACIDAD_SALA ?></p>
                                             </button>
@@ -58,12 +58,12 @@ $this->params['breadcrumbs'][] = $this->title;
             echo "<h3><p>".$edificio -> NOMBRE_EDIFICIO."</h3></p><br>"; 
             foreach ($salas -> find()-> where(["ID_EDIFICIO" =>$edificio -> ID_EDIFICIO,])-> all() as $sala) {
                            ?>
-                                <div class="col-md-6 col-sm-6 col-xs-6 " >
-                                    <div class="panel panel-default col-xs-12" style="background-color:#0064AC">
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                    <div class="panel panel-default col-xs-12 fondo" style="background-color:#0064AC;">
                                         <div class="panel-body col-xs-12">
                                             <div class="btn-group col-xs-12" >
                                                 <button type="button" class="btn btn-default col-xs-12" title="Click para ver horario" onclick="location.href='index.php?r=sala/horario-sala&sala=<?= $sala->ID_SALA ?>'">
-                                                <p>Sala <?= $sala->ID_SALA ?></p>
+                                                <p><?= $sala->ID_SALA ?></p>
                                                 <p>Edificio <?= $edificio->ID_EDIFICIO ?></p>
                                                 <p>Capacidad <?= $sala->CAPACIDAD_SALA ?></p>
                                                 </button>

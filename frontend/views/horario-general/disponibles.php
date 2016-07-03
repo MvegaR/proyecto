@@ -59,11 +59,11 @@ $salas = new Sala;
                         <?php foreach($result as $row):
                         if($row->ID_SALA == $sala -> ID_SALA){ ?>
                             <div class="col-md-6 col-sm-6 col-xs-6 " >
-                                <div class="panel panel-default col-xs-12" style="background-color:#0064AC">
+                                <div class="panel panel-default col-xs-12 fondo" style="background-color:#0064AC;">
                                     <div class="panel-body col-xs-12">
                                         <div class="btn-group col-xs-12" >
                                             <button type="button" class="btn btn-default col-xs-12" title="Click para ver horario" onclick="location.href='index.php?r=sala/horario-sala&sala=<?= $row->ID_SALA ?>'">
-                                                <p>Sala <?= $row->ID_SALA ?></p>
+                                                <p><?= $row->ID_SALA ?></p>
                                                 <p>Edificio <?= $row->ID_EDIFICIO ?></p>
                                                 <p>Capacidad <?= $row->CAPACIDAD_SALA ?></p>
                                             </button>
@@ -92,11 +92,11 @@ $salas = new Sala;
                 foreach($result as $row):
                             if($row->ID_SALA == $sala -> ID_SALA){ ?>
                                 <div class="col-md-6 col-sm-6 col-xs-6 " >
-                                    <div class="panel panel-default col-xs-12" style="background-color:#0064AC">
+                                    <div class="panel panel-default col-xs-12 fondo" style="background-color:#0064AC;">
                                         <div class="panel-body col-xs-12">
                                             <div class="btn-group col-xs-12" >
                                                 <button type="button" class="btn btn-default col-xs-12" title="Click para ver horario" onclick="location.href='index.php?r=sala/horario-sala&sala=<?= $row->ID_SALA ?>'">
-                                                    <p>Sala <?= $row->ID_SALA ?></p>
+                                                    <p><?= $row->ID_SALA ?></p>
                                                     <p>Edificio <?= $row->ID_EDIFICIO ?></p>
                                                     <p>Capacidad <?= $row->CAPACIDAD_SALA ?></p>
                                                 </button>
