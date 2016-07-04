@@ -16,7 +16,7 @@ public class Carrera {
     public Carrera(ResultSet datos) {
 	try {
 	    this.idCarrera = datos.getString(1);
-	    this.idFacultad = datos.getInt(2);
+	    this.idFacultad = datos.getInt(2) == 0 ? null : datos.getInt(2);
 	    this.nombreCarrera = datos.getString(3);
 	} catch (SQLException e) {
 	    // TODO Auto-generated catch block

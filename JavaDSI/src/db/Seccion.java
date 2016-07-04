@@ -18,8 +18,8 @@ public class Seccion {
     }
     public Seccion(ResultSet datos) {
 	try {
-	    this.idDocente = datos.getString(2);
 	    this.idSeccion = datos.getString(1);
+	    this.idDocente = datos.getString(2);
 	    this.idAsignatura = datos.getString(3);
 	    this.cupo = datos.getInt(4);
 	} catch (SQLException e) {

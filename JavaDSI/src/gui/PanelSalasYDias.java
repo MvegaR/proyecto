@@ -18,7 +18,11 @@ import javax.swing.tree.TreeCellRenderer;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
 
-import db.Conexion;
+import db.Dia;
+import db.Edificio;
+import db.Facultad;
+import db.Sala;
+import db.TipoSala;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -31,7 +35,6 @@ import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
-import java.sql.ResultSet;
 import java.util.Enumeration;
 import java.util.EventObject;
 import java.util.Objects;
@@ -49,9 +52,10 @@ public class PanelSalasYDias extends JPanel {
     private JLabel tituloSalas;
     private String titulo;
     private JTree tree;
-
-    public PanelSalasYDias() {
+    private static VentanaPrincipal ventana;
+    public PanelSalasYDias(VentanaPrincipal ventana) {
 	super(new BorderLayout());
+	PanelSalasYDias.ventana = ventana;
 	titulo = "<html><body><h2><strong><center>SELECCIONE SALAS Y DÍAS</center></strong></h2></body></html>";
 	tituloSalas = new JLabel(titulo);
 	tituloSalas.setForeground(new Color(255, 255, 255));
@@ -70,6 +74,79 @@ public class PanelSalasYDias extends JPanel {
 		setCellEditor(new CheckBoxNodeEditor());
 	    }
 	};
+	//SalasYDias -> 
+	//salas -> facultad/sinFacultad -> edificio -> tipo -> sala
+	//dias -> dia
+	//*
+	tree.setModel(new DefaultTreeModel(new DefaultMutableTreeNode("Salas y Días"){
+	    private static final long serialVersionUID = 1L;
+	    {
+		DefaultMutableTreeNode nodoSalas = new DefaultMutableTreeNode("Salas");
+		for(Facultad facultad: ventana.getFacultades()){
+		    DefaultMutableTreeNode nodoFacultad = new DefaultMutableTreeNode(facultad.getNombreFacultad());
+		    for(Edificio edificio: ventana.getEdificios()){
+			if(edificio.getIdFacultad()!=null && edificio.getIdFacultad().equals(facultad.getIdFacultad())){
+			    DefaultMutableTreeNode nodoEdificio = new DefaultMutableTreeNode(edificio.getNombreEdificio());
+			    for(TipoSala tipoSala: ventana.getTiposSala()){
+				DefaultMutableTreeNode nodoTipoSala = new DefaultMutableTreeNode(tipoSala.getNombreTipoSala());
+				Boolean tiene = false;
+				for(Sala sala: ventana.getSalas()){
+				    if(sala.getIdEdificio().equals(edificio.getIdEdificio()) && sala.getIdTipoSala().equals(tipoSala.getIdTipoSala())){
+					DefaultMutableTreeNode nodoSala = new DefaultMutableTreeNode(sala.getIdSala());
+					tiene = true;
+					nodoTipoSala.add(nodoSala);
+				    }
+				}
+				if(tiene){
+				    nodoEdificio.add(nodoTipoSala);
+				}
+			    }
+			    nodoFacultad.add(nodoEdificio);
+			    
+			}
+
+		    }
+		    nodoSalas.add(nodoFacultad);
+		    
+		}
+		DefaultMutableTreeNode nodoSinFacultad = new DefaultMutableTreeNode("Edificios sin facultad");
+		for(Edificio edificio: ventana.getEdificios()){
+		    if(edificio.getIdFacultad() == null){
+			DefaultMutableTreeNode nodoEdifico = new DefaultMutableTreeNode(edificio.getNombreEdificio());
+			for(TipoSala tipo: ventana.getTiposSala()){
+			    DefaultMutableTreeNode nodoTipo = new DefaultMutableTreeNode(tipo.getNombreTipoSala());
+			    Boolean tiene = false;
+			    for(Sala sala: ventana.getSalas()){
+				if(sala.getIdEdificio().equals(edificio.getIdEdificio()) && sala.getIdTipoSala().equals(tipo.getIdTipoSala())){
+				    DefaultMutableTreeNode nodoSala = new DefaultMutableTreeNode(sala.getIdSala());
+				    tiene = true;
+				    nodoTipo.add(nodoSala);
+				}
+			    }
+			    if(tiene){
+				nodoEdifico.add(nodoTipo);
+			    }
+			}
+			nodoSinFacultad.add(nodoEdifico);
+		    }
+		    
+		}
+		nodoSalas.add(nodoSinFacultad);
+		add(nodoSalas);
+		DefaultMutableTreeNode nodoDias = new DefaultMutableTreeNode("Días");
+		for(Dia dia: ventana.getDias()){
+		    DefaultMutableTreeNode nodoDia = new DefaultMutableTreeNode(dia.getNombreDia());
+		    nodoDias.add(nodoDia);
+		}
+		add(nodoDias);
+		
+
+	    }
+
+	}));
+	//
+
+	/*
 	tree.setModel(new DefaultTreeModel(
 		new DefaultMutableTreeNode("UBB") {
 		    private static final long serialVersionUID = 1L;
@@ -120,7 +197,7 @@ public class PanelSalasYDias extends JPanel {
 			}   	
 		    }
 		}
-		));
+		)); //*/
 	TreeModel model = tree.getModel();
 	DefaultMutableTreeNode root = (DefaultMutableTreeNode) model.getRoot();
 	@SuppressWarnings("rawtypes")
@@ -155,7 +232,7 @@ public class PanelSalasYDias extends JPanel {
 	}
 	JFrame frame = new JFrame("CheckBoxNodeEditor");
 	frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-	frame.getContentPane().add(new PanelSalasYDias());
+	frame.getContentPane().add(new PanelSalasYDias(ventana));
 	frame.pack();
 	frame.setLocationRelativeTo(null);
 	frame.setVisible(true);

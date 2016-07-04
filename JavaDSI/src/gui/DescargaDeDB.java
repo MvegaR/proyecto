@@ -17,12 +17,14 @@ import db.Bloque;
 import db.Carrera;
 import db.Conexion;
 import db.Departamento;
+import db.Dia;
 import db.Docente;
 import db.Edificio;
 import db.Facultad;
 import db.Sala;
 import db.Seccion;
 import db.TiempoInicio;
+import db.TipoSala;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -594,6 +596,41 @@ public class DescargaDeDB extends JPanel {
 
 		}
 	//fin rellenar tiempo_inicio.
+		
+		//inicio rellenar dias:
+
+		tabla = Conexion.ejecutarSQL("Select * from dia");
+		try {
+		    total = Conexion.ejecutarSQL("Select count(*) as total from dia");
+		    total.next();
+		    totalElementos = total.getInt(1);
+		    actual = 0;
+		    while(tabla.next()){
+			getVentana().getDias().add(new Dia(tabla));
+		    }
+		} catch (SQLException e) {
+		    // TODO Auto-generated catch block
+		    e.printStackTrace();
+
+		}
+	//fin rellenar dias.
+	//inicio rellenar tipoSala:
+
+		tabla = Conexion.ejecutarSQL("Select * from tipo_sala");
+		try {
+		    total = Conexion.ejecutarSQL("Select count(*) as total from tipo_sala");
+		    total.next();
+		    totalElementos = total.getInt(1);
+		    actual = 0;
+		    while(tabla.next()){
+			getVentana().getTiposSala().add(new TipoSala(tabla));
+		    }
+		} catch (SQLException e) {
+		    // TODO Auto-generated catch block
+		    e.printStackTrace();
+
+		}
+	//fin rellenar dias.
 	//*
 	System.out.println("Numero de asignaturas agregadas: "+getVentana().getAsignaturas().size());
 	System.out.println("Numero de bloques agregados: "+getVentana().getBloques().size());

@@ -10,12 +10,14 @@ import db.Bloque;
 import db.Carrera;
 import db.Conexion;
 import db.Departamento;
+import db.Dia;
 import db.Docente;
 import db.Edificio;
 import db.Facultad;
 import db.Sala;
 import db.Seccion;
 import db.TiempoInicio;
+import db.TipoSala;
 import de.javasoft.plaf.synthetica.SyntheticaBlueSteelLookAndFeel;
 import java.awt.BorderLayout;
 import java.awt.Toolkit;
@@ -51,6 +53,8 @@ public class VentanaPrincipal extends JFrame {
     private ArrayList<Sala> salas = new ArrayList<>();
     private ArrayList<Seccion> secciones = new ArrayList<>();
     private ArrayList<TiempoInicio> tiempos = new ArrayList<>();
+    private ArrayList<Dia> dias = new ArrayList<>();
+    private ArrayList<TipoSala> tiposSala = new ArrayList<>();
     //---------------------------------------------------------------------
 
     /**
@@ -298,6 +302,14 @@ public class VentanaPrincipal extends JFrame {
     
     public ArrayList<TiempoInicio> getTiempoInicios(){
 	return tiempos;
+    }
+    
+    public ArrayList<Dia> getDias() {
+	return dias;
+    }
+    
+    public ArrayList<TipoSala> getTiposSala() {
+	return tiposSala;
     }
 
     private void checkResolucion(){

@@ -26,12 +26,12 @@ public class Bloque{
 
 	try {
 	    this.idBloque = datos.getInt(1);
-	    this.idDia = datos.getInt(2);
+	    this.idDia = datos.getInt(2) == 0 ? null : datos.getInt(2);
 	    this.idSala = datos.getString(3);
 	    this.idSeccion = datos.getString(4);
 	    this.inicio = datos.getString(5);
 	    this.termino = datos.getString(6);
-	    this.bloqueSiguiente = datos.getInt(7);
+	    this.bloqueSiguiente = datos.getInt(7) == 0 ? null: datos.getInt(7);
 	} catch (SQLException e) {
 	    // TODO Auto-generated catch block
 	    e.printStackTrace();

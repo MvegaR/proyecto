@@ -33,12 +33,12 @@ public class PanelAsignaturas extends JPanel {
     private JLabel tituloAsignaturas;
     private String titulo;
     private JTree tree;
-    private VentanaPrincipal ventana;
+    private static VentanaPrincipal ventana;
 
     public PanelAsignaturas(VentanaPrincipal ventana) {
 	titulo = "<html><body><h2><strong><center>SELECCIONE ASIGNATURAS Y SUS SECCIONES</center></strong></h2></body></html>";
 	tituloAsignaturas = new JLabel(titulo);
-	this.ventana = ventana;
+	PanelAsignaturas.ventana = ventana;
 	tituloAsignaturas.setForeground(new Color(255, 255, 255));
 	tituloAsignaturas.setAlignmentX(Component.CENTER_ALIGNMENT);
 	tree = new JTree() {
@@ -181,7 +181,7 @@ public class PanelAsignaturas extends JPanel {
 	}
 	JFrame frame = new JFrame("CheckBoxNodeEditor");
 	frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-	frame.getContentPane().add(new PanelSalasYDias());
+	frame.getContentPane().add(new PanelSalasYDias(ventana));
 	frame.pack();
 	frame.setLocationRelativeTo(null);
 	frame.setVisible(true);

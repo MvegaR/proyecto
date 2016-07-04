@@ -51,7 +51,7 @@ public class PanelPlanificar extends JPanel {
 	panelSur.setBackground(SystemColor.activeCaption);
 	panelSur.setBounds(10, 567, 1245, 37);
 	panelCentro.setLayout(new BoxLayout(panelCentro, BoxLayout.X_AXIS));
-	panelTreeSalas = new PanelSalasYDias()//*
+	panelTreeSalas = new PanelSalasYDias(ventana)//*
 	{
 	    private static final long serialVersionUID = 1L;
 

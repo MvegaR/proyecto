@@ -27,8 +27,8 @@ public class Docente {
     public Docente(ResultSet datos) {
 	try {
 	    this.idDocente = datos.getString(1);
-	    this.idRol = datos.getInt(2);
-	    this.idDepartamento = datos.getInt(3);
+	    this.idRol = datos.getInt(2) == 0 ? null : datos.getInt(2);;
+	    this.idDepartamento = datos.getInt(3) == 0 ? null : datos.getInt(3);;
 	    this.nombreDocente = datos.getString(4);
 	    this.email = datos.getString(5);
 	    this.user = datos.getString(6);

@@ -18,7 +18,7 @@ public class Sala {
     public Sala(ResultSet datos) {
 	try {
 	    this.idSala = datos.getString(1);
-	    this.idTipoSala = datos.getInt(2);
+	    this.idTipoSala = datos.getInt(2) == 0 ? null: datos.getInt(2);
 	    this.idEdificio = datos.getString(3);
 	    this.capacidadSala = datos.getInt(4);
 	} catch (SQLException e) {

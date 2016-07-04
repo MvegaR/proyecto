@@ -30,7 +30,7 @@ public class GestionPaneles extends JPanel {
 	panelAutentificacion = new Autentificacion();
 	layout = new CardLayout();
 	//panelPlanificar = new PanelPlanificar(ventana);
-	salas = new PanelSalasYDias();
+	salas = new PanelSalasYDias(ventana);
 	descargaDB = new DescargaDeDB(ventana);
 	this.setLayout(layout);
 	this.add(panelAutentificacion,"auntentificacion");
