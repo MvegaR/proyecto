@@ -2,6 +2,7 @@ package logica;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
+import java.util.Random;
 
 import db.Bloque;
 import db.Facultad;
@@ -145,6 +146,7 @@ public class Clase {
 	    }
 
 	}
+	System.out.println("CondadorSalas="+contador);
 	r.sort(new ComparatorSalaCantidadBloquesYCapacidad(this.getSeccion().getCupo()));
 	//4. Para una carrera se prefiere clases en edificios de su facultad. (Listo)
 	ArrayList<Sala> igualFacultad = new ArrayList<>(); //edificios con facultad determinada
@@ -152,7 +154,7 @@ public class Clase {
 	ArrayList<Sala> otraFacultad = new ArrayList<>(); //las demas salas de otras facultades que cumplen con las caracteristicas para la clase
 	Facultad f = ventana.getFacultad( ventana.getCarrera( ventana.getAsignatura(this.getSeccion().getIdAsignatura()  ).getIdCarrera() ).getIdFacultad());
 	for(Sala sala : r){
-	    if( sala.getIdEdificio() != null &&  ventana.getEdificio(sala.getIdEdificio()).getIdFacultad().equals(f.getIdFacultad())){
+	    if( sala.getIdEdificio() != null && ventana.getEdificio(sala.getIdEdificio()).getIdFacultad() != null && ventana.getEdificio(sala.getIdEdificio()).getIdFacultad().equals(f.getIdFacultad())){
 		igualFacultad.add(sala);
 	    }else if( sala.getIdEdificio() != null && ventana.getEdificio(sala.getIdEdificio()).getIdFacultad() == null){
 		sinFacultad.add(sala);
@@ -194,16 +196,18 @@ public class Clase {
 
     public void obtenerBloques(VentanaPrincipal ventana, ArrayList<Integer> dias){ //para ser llamada desde el planificador
 	// dias en orden aleatorio, cuantos dias?? En ventana debe de ponerse o en planificar
-	Collections.shuffle(dias);
+
+	Collections.shuffle(dias, new Random());
+	
 	this.ordenarDiasSegunClase(dias);
 	for(Sala sala: this.filtrarSalaPorTipoFacultadYCapacidad(ventana.getSalas(), ventana)){ 
 	    for(Integer dia: dias){
 		ArrayList<Bloque> bloquesDeUnaSalaYDia = this.bloquesDeUnaSalaYDia(sala, dia, ventana); 
 		for(Bloque bloque: bloquesDeUnaSalaYDia){
 		    this.getBloquesAsignados().add(bloque);
-		    //System.out.println("horas continuadas"+this.getHorasContinuadas());
+		    System.out.println("horas continuadas"+this.getHorasContinuadas());
 		    for(int i = 1; i < this.getHorasContinuadas(); i++){
-			//System.out.println("contador "+i);
+			System.out.println("contador "+i);
 			String tiempoAnterior = this.getBloquesAsignados().get(this.getBloquesAsignados().size()-1).getInicio();
 			int posTiempoAnterior = -1;
 			for(TiempoInicio t: ventana.getTiempoInicios()){
@@ -213,7 +217,7 @@ public class Clase {
 			    }
 			}
 			Bloque bloqueSiguiente = null;
-			//System.out.println("posTiempoAnterior" + posTiempoAnterior+ " tamaño lista tiempos "+ ventana.getTiempoInicios().size() );
+			System.out.println("posTiempoAnterior" + posTiempoAnterior+ " tamaño lista tiempos "+ ventana.getTiempoInicios().size() );
 			if(posTiempoAnterior < ventana.getTiempoInicios().size()-1){
 			    for(Bloque b: bloquesDeUnaSalaYDia){
 				if(b.getInicio().equals(ventana.getTiempoInicios().get(posTiempoAnterior+1).getInicio())){
@@ -233,14 +237,14 @@ public class Clase {
 
 			}else {
 			    this.getBloquesAsignados().clear();
-			    // System.out.println("borrar!! no hay tiempo siguientes suficiente");
+			     System.out.println("borrar!! no hay tiempo siguientes suficiente");
 			    break;
 			}
 		    }
 		    //System.out.println("Bloques asignados restricciones: " + this.getBloquesAsignados().size());
 		    if(!noChoque(ventana) && !profesorNoParalelo(ventana)){
 			this.getBloquesAsignados().clear();
-			//System.out.println("borrar!! no cumple restriccioes");
+			System.out.println("borrar!! no cumple restriccioes");
 			break;
 		    }
 		    // System.out.println("Bloques asignadosf: " + this.getBloquesAsignados().size());
@@ -260,12 +264,12 @@ public class Clase {
 		}
 	    }
 	    if(this.getBloquesAsignados().size() == this.getHorasContinuadas()){
-		System.out.println("Asignado clase; Asignados: " + (ventana.getBloques().size() - Clase.getBloques().size()) + " Bloques");
-		System.out.println("Bloques clase "+ventana.getAsignatura(this.getSeccion().getIdAsignatura()).getNombreAsignatura()+" : "+this.getBloquesAsignados().toString());
 		break;
 
 	    }
 	}
+	System.out.println("Asignado clase; Asignados: " + (ventana.getBloques().size() - Clase.getBloques().size()) + " Bloques");
+	System.out.println("Bloques clase "+ventana.getAsignatura(this.getSeccion().getIdAsignatura()).getNombreAsignatura()+" : "+this.getBloquesAsignados().toString());
 	Clase.getBloques().removeAll(this.getBloquesAsignados());
     }
 

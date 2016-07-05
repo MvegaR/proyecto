@@ -30,6 +30,7 @@ public class Conexion {
 	    return stmt.getResultSet();
 	} catch (Exception e) {
 		MensajesError.meEr_FallaConexion();
+		e.printStackTrace();
 		System.exit(0);
 	}
 	    return null;

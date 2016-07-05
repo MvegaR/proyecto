@@ -384,7 +384,7 @@ use yii\filters\VerbFilter;
                 foreach ($todosLosBloquesEnOrden as $bloque) {
                     array_push($todoslosIdsBloquesEnOrden, $bloque -> ID_BLOQUE);
                 }
-                unset($todosLosBloquesEnOrden); //ahorrar
+              
                 foreach ($idsBloquesDisponibles2 as $idbloque){
                     if(!$this -> equalsDosArray((array_slice($idsBloquesDisponibles2, array_search($idbloque, $idsBloquesDisponibles2), $cantidad)), (array_slice($todoslosIdsBloquesEnOrden, array_search($idbloque, $todoslosIdsBloquesEnOrden), $cantidad)))){
 

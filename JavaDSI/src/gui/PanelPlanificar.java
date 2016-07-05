@@ -230,6 +230,13 @@ public class PanelPlanificar extends JPanel {
 
 	btnEjecutarPlanificacinSeleccin = new JButton("Ejecutar Planificaci\u00F3n de la selecci\u00F3n");
 	btnEjecutarPlanificacinSeleccin.setFont(new Font("Tahoma", Font.PLAIN, 15));
+	ArrayList<Integer> d = new ArrayList<>();
+	d.add(1); //Lunes //hacer grafico.... :p
+	d.add(2); //Martes
+	d.add(3); //Miercoles
+	d.add(4); //Jueves
+	d.add(5); //Viernes
+	btnEjecutarPlanificacinSeleccin.addActionListener(e -> new Planificador(ventana, d));
 	panelSur.add(btnEjecutarPlanificacinSeleccin);
     }
 }

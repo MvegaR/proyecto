@@ -51,7 +51,7 @@ $this->params['breadcrumbs'][] = $this->title;
                        
                          if($array[$j+(20*$i)] != null){
                             $row=$array[$j+(20*$i)];
-                            echo '<td class="success">'.$row[0]['nombre_asignatura'].'<br>'. $row[0]['ID_SECCION'].'</td>';
+                            echo '<td class="success">'.$row[0]['nombre_asignatura'].'<br>'. $row[0]['ID_SECCION'].'<br> Sala: '.$row[0]['ID_SALA'].'</td>';
                            }else{
                             $row = [['nombre_asignatura'=>NULL]];
                             echo '<td>'.$row[0]['nombre_asignatura'].'</td>';

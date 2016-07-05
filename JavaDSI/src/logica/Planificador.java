@@ -74,7 +74,9 @@ public class Planificador {
     public void asignarEnBD(){
 	for(Clase c: this.getListaDeClases()){
 	    for(Bloque b: c.getBloquesAsignados()){
-		Conexion.ejecutarSQL("UPDATE bloque SET ID_SECCION = '" + b.getIdSeccion() + "', BLOQUE_SIGUIENTE = '"+b.getBloqueSiguiente()+"' WHERE ID_BLOQUE = '" +b.getIdBloque()+"'");
+		
+		Conexion.ejecutarSQL("UPDATE bloque SET ID_SECCION = '" + b.getIdSeccion() + "', BLOQUE_SIGUIENTE = "+b.getBloqueSiguiente()+" WHERE ID_BLOQUE = '" +b.getIdBloque()+"'");
+		
 	    }
 	}
     }

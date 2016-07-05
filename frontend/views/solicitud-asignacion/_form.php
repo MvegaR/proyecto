@@ -33,9 +33,12 @@ use himiklab\yii2\recaptcha\ReCaptcha;
     <?php
         $asignaturasDelUsuario = "Select A.* 
         from asignatura A, seccion S
-        where S.ID_DOCENTE = $idDocente and A.ID_ASIGNATURA = S.ID_ASIGNATURA";
+        where S.ID_DOCENTE = '$idDocente' and A.ID_ASIGNATURA = S.ID_ASIGNATURA";
         $tablaDeAsignaturas = new Asignatura;
+      
         $tablaDeAsignaturas = $tablaDeAsignaturas -> findBySql($asignaturasDelUsuario) -> all();
+            
+      
     ?>
     <?= $form->field($model, 'ASIGNATURA_ASIGNACION')->dropDownList(
         ArrayHelper::map($tablaDeAsignaturas,'ID_ASIGNATURA','NOMBRE_ASIGNATURA'),
@@ -48,9 +51,11 @@ use himiklab\yii2\recaptcha\ReCaptcha;
         [],
         ['prompt'=>'Seleccione seccion', 'onchange' => '$.post("index.php?r=seccion/lists2&id='.'"+$(this).val(), function(data){
                              document.getElementById("solicitudasignacion-capacidad_asignacion").value = data;
+                             document.getElementById("solicitudasignacion-capacidad_asignacion").max = data;
+
                         });',] )->label('Primero seleccione asignatura') ?> 
 
-    <?= $form->field($model, 'CAPACIDAD_ASIGNACION')->textInput(['type' => 'number', 'min' => 1, 'readonly'=>'readonly',]) ?>
+    <?= $form->field($model, 'CAPACIDAD_ASIGNACION')->textInput(['type' => 'number', 'min' => 1, 'max'=> 1,]) // nececita un onChange ?> 
 
      <?= $form->field($model, 'TIPO_SALA_ASIGNACION')->dropDownList(
         ArrayHelper::map(TipoSala::find()->all(),'ID_TIPO_SALA','NOMBRE_TIPO'),

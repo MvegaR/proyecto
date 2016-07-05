@@ -13,7 +13,7 @@ public class Dia {
     
     public Dia(ResultSet datos) {
 	try {
-	    this.idDia = datos.getInt(1) == 0 ? null: datos.getInt(1);;
+	    this.idDia = datos.getInt(1) == 0 ? null: datos.getInt(1);
 	    this.nombreDia = datos.getString(2);
 	} catch (SQLException e) {
 	    // TODO Auto-generated catch block
