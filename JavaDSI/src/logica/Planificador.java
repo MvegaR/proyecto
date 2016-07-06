@@ -176,6 +176,7 @@ public class Planificador {
 	clasesEnLabComputacion = new ArrayList<Clase>();
 	Integer totalDeBloques = 0;
 	//Modificar para que reciba las Asignaturas seleccionadas por la GUI (esta con todas las secciones existentes)
+	System.out.println(secciones);
 	for(Seccion seccion: secciones){
 	    Integer horas =  ventana.getAsignatura(seccion.getIdAsignatura()).getHoraLabCom();
 	    if(horas == 0) continue;

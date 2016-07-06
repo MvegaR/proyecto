@@ -212,15 +212,9 @@ public class PanelPlanificar extends JPanel {
 
 	btnEjecutarPlanificacinSeleccin = new JButton("Ejecutar Planificaci\u00F3n de la selecci\u00F3n");
 	btnEjecutarPlanificacinSeleccin.setFont(new Font("Tahoma", Font.PLAIN, 15));
-	ArrayList<Integer> d = new ArrayList<>();
-	d.add(1); //Lunes //hacer grafico.... :p
-	d.add(2); //Martes
-	d.add(3); //Miercoles
-	d.add(4); //Jueves
-	d.add(5); //Viernes
 	btnEjecutarPlanificacinSeleccin.addActionListener(e -> {
 	    try {
-		new Planificador(ventana, this.panelTreeSalas.getSalasSeleccionadas(), this.panelAsignaturas.getSeccionesSeleccionadas(), d);
+		new Planificador(ventana, this.panelTreeSalas.getSalasSeleccionadas(), this.panelAsignaturas.getSeccionesSeleccionadas(), this.panelTreeSalas.getDiasSeleccionados());
 	    } catch (Exception e1) {
 		// TODO Auto-generated catch block
 		e1.printStackTrace();

@@ -35,7 +35,7 @@ public class PanelAsignaturas extends JPanel {
     private String titulo;
     private JTree tree;
     private static VentanaPrincipal ventana;
-    
+
 
     public PanelAsignaturas(VentanaPrincipal ventana) {
 	titulo = "<html><body><h2><strong><center>SELECCIONE ASIGNATURAS Y SUS SECCIONES</center></strong></h2></body></html>";
@@ -200,16 +200,17 @@ public class PanelAsignaturas extends JPanel {
 		    DefaultMutableTreeNode nodoCarrera = (DefaultMutableTreeNode) nodoFacultad.getChildAt(k);
 		    for(int l = 0; l < nodoCarrera.getChildCount(); l++){
 			DefaultMutableTreeNode nodoAsignatura = (DefaultMutableTreeNode) nodoCarrera.getChildAt(l);
-			for(int s = 0; s < nodoAsignatura.getChildCount(); s++){
-			    if( ((CheckBoxNode)((DefaultMutableTreeNode)(nodoAsignatura.getUserObject())).getUserObject()).status.equals(Status.SELECTED) ){
-				seccionesSeleccionadas.add(ventana.getSeccion(((CheckBoxNode)((DefaultMutableTreeNode)(nodoAsignatura.getUserObject())).getUserObject()).label));
+			for(int a = 0; a < nodoAsignatura.getChildCount(); a++){
+			    DefaultMutableTreeNode nodoSeccion = (DefaultMutableTreeNode) nodoAsignatura.getChildAt(a);
+			    if( ((CheckBoxNode) nodoSeccion.getUserObject()).status.equals(Status.SELECTED) ){
+				seccionesSeleccionadas.add(ventana.getSeccion(nodoSeccion.toString()));
 			    }
 			}
 		    }
 		}
 	    }
 	}
-	
+
 	return seccionesSeleccionadas;
     }
 

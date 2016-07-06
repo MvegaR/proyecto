@@ -199,10 +199,12 @@ public class PanelSalasYDias extends JPanel {
 		DefaultMutableTreeNode nodoDeEdificios = (DefaultMutableTreeNode) nodoDeFacultades.getChildAt(j);
 		for(int k = 0; k < nodoDeEdificios.getChildCount(); k++){
 		    DefaultMutableTreeNode nodoDeTipos = (DefaultMutableTreeNode) nodoDeEdificios.getChildAt(k);
-		    for(int l = 0; l < nodoDeEdificios.getChildCount(); l++){
+		    for(int l = 0; l < nodoDeTipos.getChildCount(); l++){
 			DefaultMutableTreeNode nodoDeSala = (DefaultMutableTreeNode) nodoDeTipos.getChildAt(l);
-			if( ((CheckBoxNode)((DefaultMutableTreeNode)nodoDeSala.getUserObject()).getUserObject()).status.equals(Status.SELECTED) ){
-			    salas.add(ventana.getSala(((CheckBoxNode)((DefaultMutableTreeNode)nodoDeSala.getUserObject()).getUserObject()).label));
+			System.out.println(nodoDeSala);
+			System.out.println(((CheckBoxNode)nodoDeSala.getUserObject()).status);
+			if( ((CheckBoxNode)nodoDeSala.getUserObject()).status.equals(Status.SELECTED) ){
+			    salas.add(ventana.getSala(nodoDeSala.toString()));
 			}
 		    }
 		}
