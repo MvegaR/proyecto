@@ -218,7 +218,14 @@ public class PanelPlanificar extends JPanel {
 	d.add(3); //Miercoles
 	d.add(4); //Jueves
 	d.add(5); //Viernes
-	btnEjecutarPlanificacinSeleccin.addActionListener(e -> new Planificador(ventana, this.panelTreeSalas.getSalasSeleccionadas(), this.panelAsignaturas.getSeccionesSeleccionadas(), d));
+	btnEjecutarPlanificacinSeleccin.addActionListener(e -> {
+	    try {
+		new Planificador(ventana, this.panelTreeSalas.getSalasSeleccionadas(), this.panelAsignaturas.getSeccionesSeleccionadas(), d);
+	    } catch (Exception e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	    }
+	});
 	panelSur.add(btnEjecutarPlanificacinSeleccin);
     }
 }
