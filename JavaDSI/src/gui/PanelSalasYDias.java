@@ -35,6 +35,7 @@ import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.EventObject;
 import java.util.Objects;
@@ -53,6 +54,7 @@ public class PanelSalasYDias extends JPanel {
     private String titulo;
     private JTree tree;
     private static VentanaPrincipal ventana;
+    
     public PanelSalasYDias(VentanaPrincipal ventana) {
 	super(new BorderLayout());
 	PanelSalasYDias.ventana = ventana;
@@ -144,60 +146,6 @@ public class PanelSalasYDias extends JPanel {
 	    }
 
 	}));
-	//
-
-	/*
-	tree.setModel(new DefaultTreeModel(
-		new DefaultMutableTreeNode("UBB") {
-		    private static final long serialVersionUID = 1L;
-		    {
-			try{
-			    for(int i = 1; i <=2; i++){
-				DefaultMutableTreeNode node_0;
-				if(i==1){ 
-				    node_0 = new DefaultMutableTreeNode("Con Facultad");
-				    ResultSet rsFacultad = Conexion.ejecutarSQL("select * from facultad");    					
-				    while(rsFacultad.next()){
-					DefaultMutableTreeNode node_1;
-					node_1 = new DefaultMutableTreeNode("["+rsFacultad.getString("ID_FACULTAD")+"] - "+rsFacultad.getString("NOMBRE_FACULTAD"));
-					ResultSet rsEdificio = Conexion.ejecutarSQL("select ID_EDIFICIO, NOMBRE_EDIFICIO from edificio where ID_FACULTAD="+rsFacultad.getString("ID_FACULTAD"));
-					while(rsEdificio.next()){
-					    DefaultMutableTreeNode node_2;
-					    node_2 = new DefaultMutableTreeNode("["+rsEdificio.getString("ID_EDIFICIO")+"] - "+rsEdificio.getString("NOMBRE_EDIFICIO"));
-					    ResultSet rsSala = Conexion.ejecutarSQL("select * from sala where ID_EDIFICIO='"+rsEdificio.getString("ID_EDIFICIO")+"'");  	
-					    while(rsSala.next()){
-						node_2.add(new DefaultMutableTreeNode("["+rsSala.getString("ID_SALA")+"]"));					    					    	 
-					    }
-					    node_1.add(node_2);
-					}
-					node_0.add(node_1);
-				    }
-				    add(node_0);					 		    						
-				}
-				else{ 
-				    node_0 = new DefaultMutableTreeNode("Sin Facultad");
-				    ResultSet rsEdificio = Conexion.ejecutarSQL("select ID_EDIFICIO, NOMBRE_EDIFICIO from edificio where ID_FACULTAD IS NULL");
-				    while(rsEdificio.next()){
-					DefaultMutableTreeNode node_1;
-					node_1 = new DefaultMutableTreeNode("["+rsEdificio.getString("ID_EDIFICIO")+"] - "+rsEdificio.getString("NOMBRE_EDIFICIO"));
-					ResultSet rsSala = Conexion.ejecutarSQL("select * from sala where ID_EDIFICIO='"+rsEdificio.getString("ID_EDIFICIO")+"'");  	
-					while(rsSala.next()){
-					    node_1.add(new DefaultMutableTreeNode("["+rsSala.getString("ID_SALA")+"]"));					    					    	 
-					}
-					node_0.add(node_1);
-				    }
-				    add(node_0);
-				}
-
-			    }
-
-			}
-			catch (Exception e) {
-
-			}   	
-		    }
-		}
-		)); //*/
 	TreeModel model = tree.getModel();
 	DefaultMutableTreeNode root = (DefaultMutableTreeNode) model.getRoot();
 	@SuppressWarnings("rawtypes")
@@ -240,6 +188,47 @@ public class PanelSalasYDias extends JPanel {
     public JTree getTree(){
 	return tree;
     }
+    
+    public ArrayList<Sala> getSalasSeleccionadas(){
+	ArrayList<Sala> salas = new ArrayList<Sala>();
+	DefaultMutableTreeNode root = (DefaultMutableTreeNode) this.getTree().getModel().getRoot();
+	DefaultMutableTreeNode nodoDeSalas = (DefaultMutableTreeNode) root.getChildAt(0);
+	for(int i = 0; i < nodoDeSalas.getChildCount(); i++){ //Facultades,existe virtualmente facultad "edificios sin facultad"
+	    DefaultMutableTreeNode nodoDeFacultades = (DefaultMutableTreeNode) nodoDeSalas.getChildAt(i);
+	    for(int j = 0; j < nodoDeFacultades.getChildCount(); j++){
+		DefaultMutableTreeNode nodoDeEdificios = (DefaultMutableTreeNode) nodoDeFacultades.getChildAt(j);
+		for(int k = 0; k < nodoDeEdificios.getChildCount(); k++){
+		    DefaultMutableTreeNode nodoDeTipos = (DefaultMutableTreeNode) nodoDeEdificios.getChildAt(k);
+		    for(int l = 0; l < nodoDeEdificios.getChildCount(); l++){
+			DefaultMutableTreeNode nodoDeSala = (DefaultMutableTreeNode) nodoDeTipos.getChildAt(l);
+			if( ((CheckBoxNode)((DefaultMutableTreeNode)nodoDeSala.getUserObject()).getUserObject()).status.equals(Status.SELECTED) ){
+			    salas.add(ventana.getSala(((CheckBoxNode)((DefaultMutableTreeNode)nodoDeSala.getUserObject()).getUserObject()).label));
+			}
+		    }
+		}
+	    }
+	    
+	}
+	
+	return salas;
+    }
+    //System.out.println( ((CheckBoxNode)((DefaultMutableTreeNode)nodoDia.getUserObject()).getUserObject()).status.toString());
+    public ArrayList<Integer> getDiasSeleccionados(){
+	ArrayList<Integer> dias = new ArrayList<Integer>();
+	DefaultMutableTreeNode root = (DefaultMutableTreeNode) this.getTree().getModel().getRoot();
+	DefaultMutableTreeNode nodoDeDias = (DefaultMutableTreeNode) root.getChildAt(1);
+	for(int i = 0; i < nodoDeDias.getChildCount(); i++){
+	    DefaultMutableTreeNode nodoDia = new DefaultMutableTreeNode(nodoDeDias.getChildAt(i));
+	    if(((CheckBoxNode)((DefaultMutableTreeNode)nodoDia.getUserObject()).getUserObject()).status.equals(Status.SELECTED)){
+		dias.add(i+1);
+	    }
+	}
+	return dias;
+    }
+
+
+    
+    
 }
 
 class TriStateCheckBox extends JCheckBox {
@@ -289,7 +278,7 @@ enum Status { SELECTED, DESELECTED, INDETERMINATE }
 
 class CheckBoxNode {
     public final String label;
-    public final Status status;
+    public Status status;
     public CheckBoxNode(String label) {
 	this.label = label;
 	status = Status.INDETERMINATE;
@@ -305,6 +294,7 @@ class CheckBoxNode {
 
 class CheckBoxStatusUpdateListener implements TreeModelListener {
     private boolean adjusting;
+    
     @Override public void treeNodesChanged(TreeModelEvent e) {
 	if (adjusting) {
 	    return;

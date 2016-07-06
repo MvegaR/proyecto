@@ -53,8 +53,8 @@ public class DescargaDeDB extends JPanel {
      */
     public DescargaDeDB(VentanaPrincipal ventana) {
     	setBackground(SystemColor.inactiveCaption);
-	setLayout(null);
 	this.ventana = ventana;
+	setLayout(null);
 	departamentosBar.setDoubleBuffered(true);
 	docentesBar.setDoubleBuffered(true);
 	edificiosBar.setDoubleBuffered(true);
@@ -84,8 +84,8 @@ public class DescargaDeDB extends JPanel {
 		}
 	    }
 	};
+	panel.setBounds(87, 18, 1060, 574);
 	panel.setBackground(new Color(0, 100, 172));
-	panel.setBounds(88, 29, 1060, 552);
 	panel.setDoubleBuffered(true);
 	add(panel);
 	panel.setLayout(null);

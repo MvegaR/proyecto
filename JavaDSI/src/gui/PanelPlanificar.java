@@ -37,8 +37,6 @@ public class PanelPlanificar extends JPanel {
     private JButton btnEjecutarPlanificacinSeleccin;
     private JLabel lblSeleccioneSalasY;
     private JButton btnVolver;
-    private JButton btnInvertirSeleccin;
-    private JButton btnSeleccionarSeccionesCon;
 
     public PanelPlanificar(VentanaPrincipal ventana){
 	setBackground(SystemColor.inactiveCaption);
@@ -99,16 +97,8 @@ public class PanelPlanificar extends JPanel {
 	panelNorte.setLayout(new FlowLayout());
 	btnNewButton = new JButton("Borrar planificacion de la selecci\u00F3n");
 	btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
-	//btnNewButton.addActionListener(e -> new BuscarErrores(ventana).ejecutarTodasLasBusquedas());
+	//btnNewButton.addActionListener(e -> new BuscarErrores(ventana).ejecutarTodasLasBusquedas()); //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-	ArrayList<Integer> dias = new ArrayList<>();
-	dias.add(1); //Lunes //hacer grafico.... :p
-	dias.add(2); //Martes
-	dias.add(3); //Miercoles
-	dias.add(4); //Jueves
-	dias.add(5); //Viernes
-
-	btnNewButton.addActionListener(e -> new Planificador(ventana, dias));
 	btnNewButton.addActionListener(new ActionListener() {
 	    public void actionPerformed(ActionEvent arg0) {
 		TreeModel model = panelAsignaturas.getTree().getModel();
@@ -210,14 +200,6 @@ public class PanelPlanificar extends JPanel {
 		}
 	    }
 	});
-
-	btnSeleccionarSeccionesCon = new JButton("Seleccionar secciones sin planificaci\u00F3n");
-	btnSeleccionarSeccionesCon.setFont(new Font("Tahoma", Font.PLAIN, 15));
-	panelSur.add(btnSeleccionarSeccionesCon);
-
-	btnInvertirSeleccin = new JButton("Invertir selecci\u00F3n");
-	btnInvertirSeleccin.setFont(new Font("Tahoma", Font.PLAIN, 15));
-	panelSur.add(btnInvertirSeleccin);
 	panelSur.add(btnNewButton);
 	setLayout(null);
 	this.add(panelNorte);
@@ -236,7 +218,7 @@ public class PanelPlanificar extends JPanel {
 	d.add(3); //Miercoles
 	d.add(4); //Jueves
 	d.add(5); //Viernes
-	btnEjecutarPlanificacinSeleccin.addActionListener(e -> new Planificador(ventana, d));
+	btnEjecutarPlanificacinSeleccin.addActionListener(e -> new Planificador(ventana, this.panelTreeSalas.getSalasSeleccionadas(), this.panelAsignaturas.getSeccionesSeleccionadas(), d));
 	panelSur.add(btnEjecutarPlanificacinSeleccin);
     }
 }

@@ -180,8 +180,8 @@ public class Clase {
 	    // clases virtuales y que se busquen bloques...
 	    Clase virtual1 = new Clase(this.getPlanificador(), this.getHorasContinuadas(), seccionAux, this.getTipo());
 	    Clase virtual2 = new Clase(this.getPlanificador(), this.getHorasContinuadas(), seccionAux, this.getTipo());
-	    virtual1.obtenerBloques(planificador.getVentana(), planificador.getDias());
-	    virtual2.obtenerBloques(planificador.getVentana(), planificador.getDias());
+	    virtual1.obtenerBloques(planificador.getVentana(), salas, planificador.getDias());
+	    virtual2.obtenerBloques(planificador.getVentana(), salas, planificador.getDias());
 	    planificador.getClasesCreadasPorDividirOtras().add(virtual1);
 	    planificador.getClasesCreadasPorDividirOtras().add(virtual2);
 
@@ -194,13 +194,13 @@ public class Clase {
 
 
 
-    public void obtenerBloques(VentanaPrincipal ventana, ArrayList<Integer> dias){ //para ser llamada desde el planificador
+    public void obtenerBloques(VentanaPrincipal ventana, ArrayList<Sala> salas,  ArrayList<Integer> dias){ //para ser llamada desde el planificador
 	// dias en orden aleatorio, cuantos dias?? En ventana debe de ponerse o en planificar
 
 	Collections.shuffle(dias, new Random());
 	
 	this.ordenarDiasSegunClase(dias);
-	for(Sala sala: this.filtrarSalaPorTipoFacultadYCapacidad(ventana.getSalas(), ventana)){ 
+	for(Sala sala: this.filtrarSalaPorTipoFacultadYCapacidad(salas, ventana)){ 
 	    for(Integer dia: dias){
 		ArrayList<Bloque> bloquesDeUnaSalaYDia = this.bloquesDeUnaSalaYDia(sala, dia, ventana); 
 		for(Bloque bloque: bloquesDeUnaSalaYDia){

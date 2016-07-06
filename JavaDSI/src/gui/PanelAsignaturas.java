@@ -19,6 +19,7 @@ import db.Seccion;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.util.ArrayList;
 //import java.sql.*;
 import java.util.Enumeration;
 import javax.swing.BorderFactory;
@@ -34,6 +35,7 @@ public class PanelAsignaturas extends JPanel {
     private String titulo;
     private JTree tree;
     private static VentanaPrincipal ventana;
+    
 
     public PanelAsignaturas(VentanaPrincipal ventana) {
 	titulo = "<html><body><h2><strong><center>SELECCIONE ASIGNATURAS Y SUS SECCIONES</center></strong></h2></body></html>";
@@ -162,7 +164,7 @@ public class PanelAsignaturas extends JPanel {
 		node.setUserObject(new CheckBoxNode((String) o, Status.DESELECTED));
 	    }
 	}
-	model.addTreeModelListener(new CheckBoxStatusUpdateListener());
+	model.addTreeModelListener( new CheckBoxStatusUpdateListener());
 	tree.setEditable(true);
 	tree.setBorder(BorderFactory.createEmptyBorder(4, 4, 4, 4));
 	tree.expandRow(0);
@@ -185,6 +187,30 @@ public class PanelAsignaturas extends JPanel {
 	frame.pack();
 	frame.setLocationRelativeTo(null);
 	frame.setVisible(true);
+    }
+    //ubb -> semestre -> facultad -> carrera -> asignatura -> seccion
+    public ArrayList<Seccion> getSeccionesSeleccionadas(){
+	ArrayList<Seccion> seccionesSeleccionadas = new ArrayList<Seccion>();
+	DefaultMutableTreeNode nodoUBB = (DefaultMutableTreeNode) this.getTree().getModel().getRoot();
+	for(int i = 0; i<nodoUBB.getChildCount(); i++){
+	    DefaultMutableTreeNode nodoSemestre =  (DefaultMutableTreeNode) nodoUBB.getChildAt(i);
+	    for(int j = 0; j<nodoSemestre.getChildCount(); j++){
+		DefaultMutableTreeNode nodoFacultad = (DefaultMutableTreeNode) nodoSemestre.getChildAt(j);
+		for(int k = 0; k < nodoFacultad.getChildCount(); k++){
+		    DefaultMutableTreeNode nodoCarrera = (DefaultMutableTreeNode) nodoFacultad.getChildAt(k);
+		    for(int l = 0; l < nodoCarrera.getChildCount(); l++){
+			DefaultMutableTreeNode nodoAsignatura = (DefaultMutableTreeNode) nodoCarrera.getChildAt(l);
+			for(int s = 0; s < nodoAsignatura.getChildCount(); s++){
+			    if( ((CheckBoxNode)((DefaultMutableTreeNode)(nodoAsignatura.getUserObject())).getUserObject()).status.equals(Status.SELECTED) ){
+				seccionesSeleccionadas.add(ventana.getSeccion(((CheckBoxNode)((DefaultMutableTreeNode)(nodoAsignatura.getUserObject())).getUserObject()).label));
+			    }
+			}
+		    }
+		}
+	    }
+	}
+	
+	return seccionesSeleccionadas;
     }
 
     public JTree getTree(){
