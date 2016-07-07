@@ -130,10 +130,17 @@ public class PanelPlanificar extends JPanel {
 	btnEjecutarPlanificacinSeleccin.setFont(new Font("Tahoma", Font.PLAIN, 15));
 	btnEjecutarPlanificacinSeleccin.addActionListener(e -> {
 
-	    ProgresoAsignacion progreso = new ProgresoAsignacion(ventana, this.panelTreeSalas.getSalasSeleccionadas(), this.panelAsignaturas.getSeccionesSeleccionadas(), this.panelTreeSalas.getDiasSeleccionados());
-	    ventana.getPaneles().add(progreso);
-	    ventana.getGestorPaneles().add(progreso, "progreso");
-	    ventana.getGestorPaneles().mostrarPanel("progreso");
+	    ProgresoAsignacion progreso;
+	    try {
+		progreso = new ProgresoAsignacion(ventana, this.panelTreeSalas.getSalasSeleccionadas(), this.panelAsignaturas.getSeccionesSeleccionadas(), this.panelTreeSalas.getDiasSeleccionados());
+		    ventana.getPaneles().add(progreso);
+		    ventana.getGestorPaneles().add(progreso, "progreso");
+		    ventana.getGestorPaneles().mostrarPanel("progreso");
+	    } catch (Exception e1) {
+		ventana.getGestorPaneles().mostrarPanel("planificar");
+		e1.printStackTrace();
+	    }
+
 
 	});
 	panelSur.add(btnEjecutarPlanificacinSeleccin);

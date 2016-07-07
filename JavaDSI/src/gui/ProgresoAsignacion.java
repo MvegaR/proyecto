@@ -39,7 +39,7 @@ public class ProgresoAsignacion extends JPanel {
     private JProgressBar totalBar;
     private JPanel panel_3;
 
-    public ProgresoAsignacion(VentanaPrincipal ventana, ArrayList<Sala> salas, ArrayList<Seccion> secciones, ArrayList<Integer> dias) {
+    public ProgresoAsignacion(VentanaPrincipal ventana, ArrayList<Sala> salas, ArrayList<Seccion> secciones, ArrayList<Integer> dias) throws Exception {
 	setBackground(SystemColor.inactiveCaption);
 	setLayout(null);
 
@@ -143,98 +143,83 @@ public class ProgresoAsignacion extends JPanel {
     }
 
 
-    private void ejecutarPlanificador(VentanaPrincipal ventana, ArrayList<Sala> salas, ArrayList<Seccion> secciones, ArrayList<Integer> dias, ProgresoAsignacion esto){
-	try {
-	    //ejecutar hilo para el planificador.
-	    Planificador planificador;
-	    planificador = new Planificador(ventana, salas, secciones, dias);
-	    //ejecutar hilo para la barra.
-	    TimerTask TareaDeActualizarBarra = new TimerTask() {
+    private void ejecutarPlanificador(VentanaPrincipal ventana, ArrayList<Sala> salas, ArrayList<Seccion> secciones, ArrayList<Integer> dias, ProgresoAsignacion esto) throws Exception{
 
-		@Override
-		public void run() {
-		    totalBar.setValue(planificador.getPorcentajeProgreso());
-		    totalBar.paintImmediately(new Rectangle(0, 0, totalBar.getWidth(), totalBar.getHeight()));
+	//ejecutar hilo para el planificador.
+	Planificador planificador;
+	planificador = new Planificador(ventana, salas, secciones, dias);
+	//ejecutar hilo para la barra.
+	TimerTask TareaDeActualizarBarra = new TimerTask() {
 
-		}
-	    };
-	    Timer periodo = new Timer();
-	    periodo.schedule(TareaDeActualizarBarra, 0, 1000);
+	    @Override
+	    public void run() {
+		totalBar.setValue(planificador.getPorcentajeProgreso());
+		totalBar.paintImmediately(new Rectangle(0, 0, totalBar.getWidth(), totalBar.getHeight()));
 
-	    planificador.start();
+	    }
+	};
+	Timer periodo = new Timer();
+	periodo.schedule(TareaDeActualizarBarra, 0, 1000);
 
-	    //ejecutar hilo para el tiempo.
-	    Timer segundero = new Timer();
-	    Reloj reloj = new Reloj();
-	    TimerTask aumentarSegundo = new TimerTask() {
-		@Override
-		public void run() {
-		    reloj.aumenta();
-		    lblTiempo.setText(reloj.toString());
-		    panel_3.paintImmediately(new Rectangle(panel_3.getX(), panel_3.getY(), panel_3.getWidth(), panel_3.getHeight()));
-		}
-	    };
-	    segundero.schedule(aumentarSegundo,0, 1000);
+	planificador.start();
 
-	    btnDetener.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent e) {
-		    planificador.setDetener(true);
-		    segundero.cancel();
-		    periodo.cancel();
-		    btnDetener.setVisible(false);
-		    btnVolver.setVisible(true);
+	//ejecutar hilo para el tiempo.
+	Timer segundero = new Timer();
+	Reloj reloj = new Reloj();
+	TimerTask aumentarSegundo = new TimerTask() {
+	    @Override
+	    public void run() {
+		reloj.aumenta();
+		lblTiempo.setText(reloj.toString());
+		panel_3.paintImmediately(new Rectangle(panel_3.getX(), panel_3.getY(), panel_3.getWidth(), panel_3.getHeight()));
+	    }
+	};
+	segundero.schedule(aumentarSegundo,0, 1000);
 
-		    /* ventana.getPaneles().remove(esto);
+	btnDetener.addActionListener(new ActionListener() {
+	    public void actionPerformed(ActionEvent e) {
+		planificador.setDetener(true);
+		segundero.cancel();
+		periodo.cancel();
+		btnDetener.setVisible(false);
+		btnVolver.setVisible(true);
+
+		/* ventana.getPaneles().remove(esto);
 		    ventana.getGestorPaneles().remove(esto);
 		    ventana.getGestorPaneles().mostrarPanel("planificar");*/
 
-		}
-	    });
+	    }
+	});
 
-	    btnVolver.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent e) {
-		    ventana.getPaneles().remove(esto);
-		    ventana.getGestorPaneles().remove(esto);
-
-
-		    ventana.getGestorPaneles().remove(ventana.getGestorPaneles().getDescargaDB());
-		    ventana.getPaneles().remove(ventana.getGestorPaneles().getDescargaDB());
+	btnVolver.addActionListener(new ActionListener() {
+	    public void actionPerformed(ActionEvent e) {
+		ventana.getPaneles().remove(esto);
+		ventana.getGestorPaneles().remove(esto);
 
 
-		    ventana.getGestorPaneles().setDescargaDB(new DescargaDeDB(ventana));
-		    ventana.getGestorPaneles().add(ventana.getGestorPaneles().getDescargaDB(), "descargaDB");
-		    ventana.getPaneles().add(ventana.getGestorPaneles().getDescargaDB());
-		    ventana.getGestorPaneles().mostrarPanel("descargaDB");
-		    ventana.getGestorPaneles().getDescargaDB().rellenarListas();
-
-		    ventana.getPaneles().remove(ventana.getGestorPaneles().getPanelPlanificar());
-		    ventana.getGestorPaneles().remove(ventana.getGestorPaneles().getPanelPlanificar());
-		    ventana.getGestorPaneles().setPanelPlanificar(new PanelPlanificar(ventana));
-		    ventana.getPaneles().add(ventana.getGestorPaneles().getPanelPlanificar());
-		    ventana.getGestorPaneles().add(ventana.getGestorPaneles().getPanelPlanificar(), "planificar");
-		    ventana.getGestorPaneles().mostrarPanel("planificar");
+		ventana.getGestorPaneles().remove(ventana.getGestorPaneles().getDescargaDB());
+		ventana.getPaneles().remove(ventana.getGestorPaneles().getDescargaDB());
 
 
+		ventana.getGestorPaneles().setDescargaDB(new DescargaDeDB(ventana));
+		ventana.getGestorPaneles().add(ventana.getGestorPaneles().getDescargaDB(), "descargaDB");
+		ventana.getPaneles().add(ventana.getGestorPaneles().getDescargaDB());
+		ventana.getGestorPaneles().mostrarPanel("descargaDB");
+		ventana.getGestorPaneles().getDescargaDB().rellenarListas();
 
-		}
-	    });
+		ventana.getPaneles().remove(ventana.getGestorPaneles().getPanelPlanificar());
+		ventana.getGestorPaneles().remove(ventana.getGestorPaneles().getPanelPlanificar());
+		ventana.getGestorPaneles().setPanelPlanificar(new PanelPlanificar(ventana));
+		ventana.getPaneles().add(ventana.getGestorPaneles().getPanelPlanificar());
+		ventana.getGestorPaneles().add(ventana.getGestorPaneles().getPanelPlanificar(), "planificar");
+		ventana.getGestorPaneles().mostrarPanel("planificar");
 
-	} catch (Exception e) {
-	    // TODO Auto-generated catch block
-	    ventana.getPaneles().remove(esto);
-	    ventana.getGestorPaneles().remove(esto);
 
 
-	    ventana.getGestorPaneles().remove(ventana.getGestorPaneles().getDescargaDB());
-	    ventana.getPaneles().remove(ventana.getGestorPaneles().getDescargaDB());
-	    ventana.getGestorPaneles().setDescargaDB(null);
-	
-	    ventana.getGestorPaneles().mostrarPanel("descargaDB");
+	    }
+	});
 
-	    ventana.getGestorPaneles().mostrarPanel("planificar");
 
-	
-	}
 
 
 
