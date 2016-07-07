@@ -65,8 +65,7 @@ class SolicitudAsignacionTemporalController extends Controller
     {
         $model = new SolicitudAsignacionTemporal();
         
-        if ($model->load(Yii::$app->request->post())) {
-
+        if ($model->load(Yii::$app->request->post()) ) {
 
             $fechadividida = explode("-", $model -> FECHA_ASIGNACION_TEMPORAL);
             $nombreDia = date("l",mktime(0,0,0,intval($fechadividida[1]), intval($fechadividida[2]), intval($fechadividida[0]))); 
@@ -85,18 +84,22 @@ class SolicitudAsignacionTemporalController extends Controller
             }else if($nombreDia == "Sunday"){
                 $nombreDia = "Domingo";
             }
-            $idDia = Dia::find(["NOMBRE" => $nombreDia]) -> one() -> ID_DIA;
+            $idDia = Dia::find() -> where(["NOMBRE" => $nombreDia]) -> one() -> ID_DIA;
+          
             $var = true;
             $bloques = Bloque::find() -> where(["ID_SALA" => $model -> SALA_ASIGNACION_TEMPORAL, "ID_DIA" => $idDia]) 
             -> orderBy("INICIO") -> all();
+
             $comenzar = false;
             $i = 0;
             $idPadre = null;
             foreach ($bloques as $bloque) {
-                if($bloque -> ID_BLOQUE == $model -> INICIO_BLOQUE_ASIGNACION_TEMPORAL){
+               if($bloque -> ID_BLOQUE == $model -> INICIO_BLOQUE_ASIGNACION_TEMPORAL){
                    $comenzar = true;
                }
-                if($comenzar && $i < $model -> CANTIDAD_BLOQUES_ASIGNACION_TEMPORAL  && $var && ($var = $model -> save())){
+              
+                if($comenzar && $i < $model -> CANTIDAD_BLOQUES_ASIGNACION_TEMPORAL  && $var && ($var = $model -> save()) ){
+                   
                     if($idPadre == null){
                         $idPadre = Yii::$app->db->getLastInsertID();
                         $model = $this -> findModel($idPadre);
@@ -106,18 +109,22 @@ class SolicitudAsignacionTemporalController extends Controller
                             var_dump($model);
                             return;
                         }
+
                     }
                     $model = new SolicitudAsignacionTemporal();
                     $model->load(Yii::$app->request->post());
                     $model -> INICIO_BLOQUE_ASIGNACION_TEMPORAL = $bloque -> ID_BLOQUE;
                     $model -> SOLICITUD_TEMPORAL_PADRE = $idPadre;
-                    $i++;
+                     $i++;
+                
+                   
                 }
+                
 
            }
 
            if($var){
-            return $this->redirect(['view', 'id' => $idPadre]);
+             return $this->redirect(['view', 'id' => $idPadre]);
             }
             else{
                 echo "No se guardo algo... D:<br>";
@@ -125,6 +132,7 @@ class SolicitudAsignacionTemporalController extends Controller
                 echo var_dump($model);
                 echo "<hr>";
                 echo var_dump(Yii::$app->request->post());
+                die;
               }
     } else {
         return $this->render('create', [

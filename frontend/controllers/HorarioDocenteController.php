@@ -46,8 +46,8 @@ class HorarioDocenteController extends Controller
                              $var16,$var17,$var18,$var19,$var20
                     );
         }
-
-        $solicitudes = SolicitudAsignacionTemporal::find() -> where(["DOCENTE_ASIGNACION_TEMPORAL" => $id]) -> all();
+        $sql = "Select * from solicitud_asignacion_temporal where DOCENTE_ASIGNACION_TEMPORAL='$id' and ID_ASIGNACION_TEMPORAL = SOLICITUD_TEMPORAL_PADRE";
+        $solicitudes = SolicitudAsignacionTemporal::findBySql($sql) -> all();
        
         return $this->render('index', [
             'array' => $array,'solicitudes' => $solicitudes

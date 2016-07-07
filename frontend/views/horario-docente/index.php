@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\helpers\Url;
+use frontend\models\Bloque;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
@@ -69,7 +70,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <h3>Solicitudes temporales docente:
         </h3><br>
         <?php foreach ($solicitudes as $solicitud) {
-            echo "Fecha: ".$solicitudes -> FECHA_ASIGNACION_TEMPORAL." Sala: ".$solicitudes -> SALA_ASIGNACION_TEMPORAL."Hora inicio: ". Bloque::find()->where(["ID_BLOQUE" => $solicitudes -> INICIO_BLOQUE_ASIGNACION_TEMPORAL]) -> one() -> INICIO;
+            echo "<li>"."Fecha: ".$solicitud -> FECHA_ASIGNACION_TEMPORAL." Sala: ".$solicitud -> SALA_ASIGNACION_TEMPORAL." Hora inicio: ". Bloque::find()->where(["ID_BLOQUE" => $solicitud -> INICIO_BLOQUE_ASIGNACION_TEMPORAL]) -> one() -> INICIO." Cantidad de periodos: ". $solicitud -> CANTIDAD_BLOQUES_ASIGNACION_TEMPORAL;
         }
 
         ?>
