@@ -203,10 +203,10 @@ public class Planificador extends Thread{
 	    Integer numerosDeClases = horas/2;
 	    totalDeBloques += horas;
 	    for(int i = 0; i<numerosDeClases; i++){
-		clasesEnSalaNormal.add(new Clase(this,2, seccion, "Normal"));
+		clasesEnSalaNormal.add(new Clase(this,2, seccion, 1));
 	    }
 	    if(numerosDeClases == 0){
-		clasesEnSalaNormal.add(new Clase(this,1, seccion, "Normal"));	
+		clasesEnSalaNormal.add(new Clase(this,1, seccion, 1));	
 	    }
 	    Collections.shuffle(clasesEnSalaNormal, new Random());
 	    if(horas != 1 && !par){
@@ -233,10 +233,10 @@ public class Planificador extends Thread{
 	    Integer numerosDeClases = horas/2;
 	    totalDeBloques += horas;
 	    for(int i = 0; i<numerosDeClases; i++){
-		clasesEnLabComputacion.add(new Clase(this,2, seccion, "Computacion"));
+		clasesEnLabComputacion.add(new Clase(this,2, seccion, 2));
 	    }
 	    if(numerosDeClases == 0){
-		clasesEnLabComputacion.add(new Clase(this,1, seccion, "Computacion"));	
+		clasesEnLabComputacion.add(new Clase(this,1, seccion, 2));	
 	    }
 	    Collections.shuffle(clasesEnLabComputacion, new Random());
 	    if(horas != 1 && !par){
@@ -260,10 +260,10 @@ public class Planificador extends Thread{
 	    Integer numerosDeClases = horas/2;
 	    totalDeBloques += horas;
 	    for(int i = 0; i<numerosDeClases; i++){
-		clasesEnLabFisica.add(new Clase(this,2, seccion, "LabFisica"));
+		clasesEnLabFisica.add(new Clase(this,2, seccion, 3));
 	    }
 	    if(numerosDeClases == 0){
-		clasesEnLabFisica.add(new Clase(this,1, seccion, "LabFisica"));	
+		clasesEnLabFisica.add(new Clase(this,1, seccion, 3));	
 	    }
 	    Collections.shuffle(clasesEnLabFisica, new Random());
 	    if(horas != 1 && !par){
@@ -288,10 +288,10 @@ public class Planificador extends Thread{
 	    Integer numerosDeClases = horas/2;
 	    totalDeBloques += horas;
 	    for(int i = 0; i<numerosDeClases; i++){
-		clasesEnLabQuimica.add(new Clase(this,2, seccion, "LabQuimica"));
+		clasesEnLabQuimica.add(new Clase(this,2, seccion, 4));
 	    }
 	    if(numerosDeClases == 0){
-		clasesEnLabQuimica.add(new Clase(this,1, seccion, "LabQuimica"));	
+		clasesEnLabQuimica.add(new Clase(this,1, seccion, 4));	
 	    }
 	    Collections.shuffle(clasesEnLabQuimica, new Random());
 	    if(horas != 1 && !par){
@@ -316,10 +316,10 @@ public class Planificador extends Thread{
 	    Integer numerosDeClases = horas/2;
 	    totalDeBloques += horas;
 	    for(int i = 0; i<numerosDeClases; i++){
-		clasesEnLabMecanica.add(new Clase(this,2, seccion, "LabMecanica"));
+		clasesEnLabMecanica.add(new Clase(this,2, seccion, 5));
 	    }
 	    if(numerosDeClases == 0){
-		clasesEnLabMecanica.add(new Clase(this,1, seccion, "LabMecanica"));	
+		clasesEnLabMecanica.add(new Clase(this,1, seccion, 5));	
 	    }
 	    Collections.shuffle(clasesEnLabMecanica, new Random());
 	    if(horas != 1 && !par){
@@ -343,10 +343,10 @@ public class Planificador extends Thread{
 	    Integer numerosDeClases = horas/2;
 	    totalDeBloques += horas;
 	    for(int i = 0; i<numerosDeClases; i++){
-		clasesEnLabRobotica.add(new Clase(this,2, seccion, "LabRobotica"));
+		clasesEnLabRobotica.add(new Clase(this,2, seccion, 6));
 	    }
 	    if(numerosDeClases == 0){
-		clasesEnLabRobotica.add(new Clase(this,1, seccion, "LabRobotica"));	
+		clasesEnLabRobotica.add(new Clase(this,1, seccion, 6));	
 	    }
 	    Collections.shuffle(clasesEnLabRobotica, new Random());
 	    if(horas != 1 && !par){
@@ -370,10 +370,10 @@ public class Planificador extends Thread{
 	    Integer numerosDeClases = horas/2;
 	    totalDeBloques += horas;
 	    for(int i = 0; i<numerosDeClases; i++){
-		clasesEnTallerArquitectura.add(new Clase(this,2, seccion, "TallerArquitectura"));
+		clasesEnTallerArquitectura.add(new Clase(this,2, seccion, 7));
 	    }
 	    if(numerosDeClases == 0){
-		clasesEnTallerArquitectura.add(new Clase(this,1, seccion, "TallerArquitectura"));	
+		clasesEnTallerArquitectura.add(new Clase(this,1, seccion, 7));	
 	    }
 	    Collections.shuffle(clasesEnTallerArquitectura, new Random());
 	    if(horas != 1 && !par){
@@ -396,10 +396,10 @@ public class Planificador extends Thread{
 	    Integer numerosDeClases = horas/2;
 	    totalDeBloques += horas;
 	    for(int i = 0; i<numerosDeClases; i++){
-		clasesEnTallerMadera.add(new Clase(this,2, seccion, "TallerMadera"));
+		clasesEnTallerMadera.add(new Clase(this,2, seccion, 8));
 	    }
 	    if(numerosDeClases == 0){
-		clasesEnTallerMadera.add(new Clase(this,1, seccion, "TallerMadera"));	
+		clasesEnTallerMadera.add(new Clase(this,1, seccion, 8));	
 	    }
 	    Collections.shuffle(clasesEnTallerMadera, new Random());
 	    if(horas != 1 && !par){
@@ -422,10 +422,10 @@ public class Planificador extends Thread{
 	    Integer numerosDeClases = horas/2;
 	    totalDeBloques += horas;
 	    for(int i = 0; i<numerosDeClases; i++){
-		clasesEnGYM.add(new Clase(this,2, seccion, "GYM"));
+		clasesEnGYM.add(new Clase(this,2, seccion, 9));
 	    }
 	    if(numerosDeClases == 0){
-		clasesEnGYM.add(new Clase(this,1, seccion, "GYM"));	
+		clasesEnGYM.add(new Clase(this,1, seccion, 9));	
 	    }
 	    Collections.shuffle(clasesEnGYM, new Random());
 	    if(horas != 1 && !par){
@@ -448,10 +448,10 @@ public class Planificador extends Thread{
 	    Integer numerosDeClases = horas/2;
 	    totalDeBloques += horas;
 	    for(int i = 0; i<numerosDeClases; i++){
-		clasesEnAuditorio.add(new Clase(this,2, seccion, "LabEspRedes"));
+		clasesEnAuditorio.add(new Clase(this,2, seccion, 10));
 	    }
 	    if(numerosDeClases == 0){
-		clasesEnAuditorio.add(new Clase(this,1, seccion, "LabEspRedes"));	
+		clasesEnAuditorio.add(new Clase(this,1, seccion, 10));	
 	    }
 	    Collections.shuffle(clasesEnAuditorio, new Random());
 	    if(horas != 1 && !par){
@@ -474,10 +474,10 @@ public class Planificador extends Thread{
 	    Integer numerosDeClases = horas/2;
 	    totalDeBloques += horas;
 	    for(int i = 0; i<numerosDeClases; i++){
-		clasesEnEspRedes.add(new Clase(this,2, seccion, "LabEspRedes"));
+		clasesEnEspRedes.add(new Clase(this,2, seccion, 11));
 	    }
 	    if(numerosDeClases == 0){
-		clasesEnEspRedes.add(new Clase(this,1, seccion, "LabEspRedes"));	
+		clasesEnEspRedes.add(new Clase(this,1, seccion, 11));	
 	    }
 	    Collections.shuffle(clasesEnEspRedes, new Random());
 	    if(horas != 1 && !par){
@@ -500,10 +500,10 @@ public class Planificador extends Thread{
 	    Integer numerosDeClases = horas/2;
 	    totalDeBloques += horas;
 	    for(int i = 0; i<numerosDeClases; i++){
-		clasesElecDigital.add(new Clase(this,2, seccion, "LabElectDigital"));
+		clasesElecDigital.add(new Clase(this,2, seccion, 12));
 	    }
 	    if(numerosDeClases == 0){
-		clasesElecDigital.add(new Clase(this,1, seccion, "LabElectDigital"));	
+		clasesElecDigital.add(new Clase(this,1, seccion, 12));	
 	    }
 	    Collections.shuffle(clasesElecDigital, new Random());
 	    if(horas != 1 && !par){
@@ -526,10 +526,10 @@ public class Planificador extends Thread{
 	    Integer numerosDeClases = horas/2;
 	    totalDeBloques += horas;
 	    for(int i = 0; i<numerosDeClases; i++){
-		clasesEnMaqElectronicas.add(new Clase(this,2, seccion, "LabMaquinasElectricas"));
+		clasesEnMaqElectronicas.add(new Clase(this,2, seccion, 13));
 	    }
 	    if(numerosDeClases == 0){
-		clasesEnMaqElectronicas.add(new Clase(this,1, seccion, "LabMaquinasElectricas"));	
+		clasesEnMaqElectronicas.add(new Clase(this,1, seccion, 13));	
 	    }
 	    Collections.shuffle(clasesEnMaqElectronicas, new Random());
 	    if(horas != 1 && !par){
