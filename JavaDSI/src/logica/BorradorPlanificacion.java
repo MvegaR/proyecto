@@ -29,7 +29,7 @@ public class BorradorPlanificacion {
 		    }
 		}
 		for(Bloque b: bloquesABorrar){
-		    b.setIdSala(null);
+		    b.setIdSeccion(null);
 		    b.setBloqueSiguiente(null);
 		    Conexion.ejecutarSQL("UPDATE bloque SET ID_SECCION = NULL, BLOQUE_SIGUIENTE = NULL WHERE ID_BLOQUE = '" +b.getIdBloque()+"'");
 		}

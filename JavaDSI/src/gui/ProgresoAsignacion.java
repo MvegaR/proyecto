@@ -167,7 +167,7 @@ public class ProgresoAsignacion extends JPanel {
 	//ejecutar hilo para el tiempo.
 	Timer segundero = new Timer();
 	Reloj reloj = new Reloj();
-	TimerTask aumentarSegundo = new TimerTask() {
+	aumentarSegundo = new TimerTask() {
 	    @Override
 	    public void run() {
 		reloj.aumenta();

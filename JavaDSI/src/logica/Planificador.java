@@ -90,6 +90,7 @@ public class Planificador extends Thread{
 		Clase.getBloques().add(bloque);
 	    }
 	}
+	System.out.println("Bloques para asignar "+Clase.getBloques().size());
 	//3. Se prefiere temprano a tarde ...
 	Clase.getBloques().sort(new ComparatorBloquePreferenciaTemprano());
 	
