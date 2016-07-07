@@ -22,6 +22,7 @@ public class GestionPaneles extends JPanel {
     private PanelSalasYDias salas;
     private DescargaDeDB descargaDB;
     VentanaPrincipal ventana;
+    
     public GestionPaneles(VentanaPrincipal ventana) {
 	//coni = new CheckResolucion();
 	this.ventana = ventana;
@@ -40,6 +41,8 @@ public class GestionPaneles extends JPanel {
 	this.add(salas, "salas");
 	this.add(descargaDB, "descargaDB");
 	layout.show(this, "auntentificacion");
+
+	
 	panelAutentificacion.getBtnEntrar().addMouseListener(new MouseAdapter() {
 	    @Override
 	    public void mousePressed(MouseEvent e) {
@@ -52,6 +55,7 @@ public class GestionPaneles extends JPanel {
 		}
 	    }
 	});
+
 	menuInicial.getBtnAdministrar().addMouseListener(new MouseAdapter() {
 	    @Override
 	    public void mousePressed(MouseEvent e) {
@@ -59,40 +63,58 @@ public class GestionPaneles extends JPanel {
 		mostrarPanel("menuAdmin");
 	    }
 	});
+	
 	menuInicial.getBtnPlanificar().addMouseListener(new MouseAdapter() {
 	    @Override
 	    public void mousePressed(MouseEvent e) {
 
-		if(ventana.getBloques().isEmpty()){
+		if(getDescargaDB()!= null && ventana.getPaneles().contains(getDescargaDB())){
 
-		    mostrarPanel("descargaDB");
-		    ventana.paintComponents(ventana.getGraphics());
-		    descargaDB.rellenarListas();
-		    if(panelPlanificar == null){
-			panelPlanificar = new PanelPlanificar(ventana);
-			add(panelPlanificar, "planificar");
-			ventana.getPaneles().add(panelPlanificar);
-			mostrarPanel("planificar");
-			ventana.getBtnVolver().setVisible(true);
-		    }
-		}else{
-		    panelPlanificar = new PanelPlanificar(ventana);
-			add(panelPlanificar, "planificar");
-			ventana.getPaneles().add(panelPlanificar);
-			mostrarPanel("planificar");
-			ventana.getBtnVolver().setVisible(true);
-		    mostrarPanel("planificar");
+		    ventana.getPaneles().remove(getDescargaDB());
+		    ventana.getGestorPaneles().remove(getDescargaDB());
 		}
+		setDescargaDB(new DescargaDeDB(ventana));
+		ventana.getPaneles().add(getDescargaDB());
+		add(getDescargaDB(), "descargaDB");
+		mostrarPanel("descargaDB");
+		getDescargaDB().rellenarListas();
 
+		if(getPanelPlanificar() != null && ventana.getPaneles().contains(getPanelPlanificar())){
+		    ventana.getPaneles().remove(getPanelPlanificar());
+		    remove(getPanelPlanificar());
+		}
+		setPanelPlanificar(new PanelPlanificar(ventana));
+		ventana.getPaneles().add(getPanelPlanificar());
+		add(getPanelPlanificar(), "planificar");
+		mostrarPanel("planificar");
+		
 
 	    }
+
 	});
 
     }
+    
+    public DescargaDeDB getDescargaDB() {
+	return descargaDB;
+    }
+    
+    public void setDescargaDB(DescargaDeDB descargaDB) {
+	this.descargaDB = descargaDB;
+    }
+    
+    public PanelPlanificar getPanelPlanificar() {
+	return panelPlanificar;
+    }
+    public void setPanelPlanificar(PanelPlanificar panelPlanificar) {
+	this.panelPlanificar = panelPlanificar;
+    }
+    
 
     public void mostrarPanel(String nombrePanel){
 	if("menuInicial".equals(nombrePanel)){ventana.getPaneles().add(menuInicial);}
 	layout.show(this,nombrePanel);
+	ventana.paintComponents(ventana.getGraphics());
     }
 
     public boolean Autentificacion_Usuario(){
@@ -128,8 +150,12 @@ public class GestionPaneles extends JPanel {
 	}
 	return false;
     }
+    
+    
+    
+    
+    
+    
 
-    public DescargaDeDB getDescargaDB() {
-	return descargaDB;
-    }
+
 }

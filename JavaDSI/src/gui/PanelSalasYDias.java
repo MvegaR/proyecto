@@ -201,8 +201,6 @@ public class PanelSalasYDias extends JPanel {
 		    DefaultMutableTreeNode nodoDeTipos = (DefaultMutableTreeNode) nodoDeEdificios.getChildAt(k);
 		    for(int l = 0; l < nodoDeTipos.getChildCount(); l++){
 			DefaultMutableTreeNode nodoDeSala = (DefaultMutableTreeNode) nodoDeTipos.getChildAt(l);
-			System.out.println(nodoDeSala);
-			System.out.println(((CheckBoxNode)nodoDeSala.getUserObject()).status);
 			if( ((CheckBoxNode)nodoDeSala.getUserObject()).status.equals(Status.SELECTED) ){
 			    salas.add(ventana.getSala(nodoDeSala.toString()));
 			}

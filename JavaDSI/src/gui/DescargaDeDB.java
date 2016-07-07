@@ -264,6 +264,8 @@ public class DescargaDeDB extends JPanel {
 	panel_9.add(asignaturasBar);
 
     }
+
+    
     
 	/**
      * @return the facultadesBar
@@ -399,7 +401,17 @@ public class DescargaDeDB extends JPanel {
     }
     
     public void rellenarListas(){
-	//inicio rellenar asignaturas:
+	getVentana().getAsignaturas().clear();
+	getVentana().getBloques().clear();
+	getVentana().getCarreras().clear();
+	getVentana().getDepartamentos().clear();
+	getVentana().getDias().clear();
+	getVentana().getDocentes().clear();
+	getVentana().getEdificios().clear();
+	getVentana().getFacultades().clear();
+	getVentana().getSalas().clear();
+	getVentana().getTiempoInicios().clear();
+	getVentana().getTiposSala().clear();
 	Integer totalElementos, actual;
 	ResultSet total;
 	ResultSet tabla = Conexion.ejecutarSQL("Select * from asignatura");
@@ -648,7 +660,7 @@ public class DescargaDeDB extends JPanel {
 	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	}
-	ventana.getGestorPaneles().mostrarPanel("planificar");
+	//ventana.getGestorPaneles().mostrarPanel("planificar");
     }
     
     public VentanaPrincipal getVentana() {

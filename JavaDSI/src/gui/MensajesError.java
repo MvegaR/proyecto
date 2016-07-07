@@ -47,6 +47,19 @@ public class MensajesError {
     			"Alerta Error", JOptionPane.WARNING_MESSAGE);
     	    }
     
+    public static void meEr_ListaDeSalaSeleccionadasVacia(){
+    	JOptionPane.showMessageDialog(null, "No ha seleccionado salas", 
+    			"Alerta Error", JOptionPane.WARNING_MESSAGE);
+    	    }
+    public static void meEr_ListaDeSeccionesSeleccionadasVacia(){
+    	JOptionPane.showMessageDialog(null, "No ha seleccionado secciones", 
+    			"Alerta Error", JOptionPane.WARNING_MESSAGE);
+    	    }
+    public static void meEr_ListaDeDiasSeleccionadasVacia(){
+    	JOptionPane.showMessageDialog(null, "No ha seleccionado días", 
+    			"Alerta Error", JOptionPane.WARNING_MESSAGE);
+    	    }
+    
     public static void meEr_FacultadSinDepartamento(){
     	JOptionPane.showMessageDialog(null, "Se ha detectado que existen facultades sin departamento", 
     			"Alerta Error", JOptionPane.WARNING_MESSAGE);
