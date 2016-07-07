@@ -64,4 +64,6 @@ class Carrera extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Facultad::className(), ['ID_FACULTAD' => 'ID_FACULTAD']);
     }
+
+   
 }

@@ -4,6 +4,7 @@ namespace frontend\controllers;
 
 use Yii;
 use frontend\models\SolicitudCancelacion;
+use frontend\models\Bloque;
 use frontend\models\SolicitudCancelacionSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -63,6 +64,19 @@ class SolicitudCancelacionController extends Controller
         $model = new SolicitudCancelacion();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $bloqueDado = Bloque::find()->where(["ID_BLOQUE" => $model -> BLOQUE_CANCELACION]) ->one();
+            while($bloqueDado != null){
+                $bloqueDado -> ID_SECCION = null;
+                if($bloqueDado -> BLOQUE_SIGUIENTE != null){
+                     $aux = $bloqueDado -> BLOQUE_SIGUIENTE;
+                     $bloqueDado -> BLOQUE_SIGUIENTE = null;
+                     $bloqueDado -> save();
+                     $bloqueDado = Bloque::find()->where(["ID_BLOQUE" => $aux]) ->one();
+                 }else{
+                    $bloqueDado -> save();
+                    $bloqueDado = null;
+                 }
+            }
             return $this->redirect(['view', 'id' => $model->ID_CANCELACION]);
         } else {
             return $this->render('create', [
@@ -82,7 +96,7 @@ class SolicitudCancelacionController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->ID_CANCELACION]);
+                        return $this->redirect(['view', 'id' => $model->ID_CANCELACION]);
         } else {
             return $this->render('update', [
                 'model' => $model,

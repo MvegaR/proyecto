@@ -253,7 +253,7 @@ public class Clase {
 			}
 		    }
 		    //System.out.println("Bloques asignados restricciones: " + this.getBloquesAsignados().size());
-		    if(!noChoque(ventana) && !profesorNoParalelo(ventana)){
+		    if(!noChoque(ventana) || !profesorNoParalelo(ventana)){
 			this.getBloquesAsignados().clear();
 			//System.out.println("borrar!! no cumple restriccioes");
 			break;
@@ -322,7 +322,10 @@ public class Clase {
 			){
 		    //Inicio de buscar la seccion distinta a la que esta en this y que sea de la misma asignatura y tenga otro horario distinto al que se intenta elejir...
 		    //para tener las clases nececitamos al planificador...
-		    for(Seccion seccionLegendaria: ventana.getSecciones()){
+		    
+		    //No funciona.... :o
+		    //*
+		     for(Seccion seccionLegendaria: ventana.getSecciones()){
 			if(!this.getSeccion().equals(seccionLegendaria) //no es legendaria =(
 				&& this.getSeccion().getIdAsignatura().equals(seccionLegendaria.getIdAsignatura())){
 			    //inicio de ver si tiene distinto horario.
@@ -355,6 +358,7 @@ public class Clase {
 			    return true;
 			}
 		    } 
+		     //*/
 
 		    return false;
 

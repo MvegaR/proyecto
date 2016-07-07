@@ -95,7 +95,6 @@ AppAsset::register($this);
       <div class="collapse navbar-collapse" id="inverseNavbar1">
         <ul class="nav navbar-nav navbar-right">
           <li><a href=<?php echo "'".Url::to(['site/index'])."'";?>>Portada</a></li>
-          <li><a href=<?php echo "'".Url::to(['site/entrega2'])."'";?>>Cosas faltantes  </a></li>
           <?php
           if (Yii::$app->user->isGuest) {
             echo "<li>  <a href='".Url::to(['site/login'])."'> <span class='glyphicon glyphicon-lock'> </span> Iniciar sesión </a></li>";

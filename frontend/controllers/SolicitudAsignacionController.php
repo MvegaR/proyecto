@@ -4,6 +4,7 @@ namespace frontend\controllers;
 
 use Yii;
 use frontend\models\SolicitudAsignacion;
+use frontend\models\Bloque;
 use frontend\models\SolicitudAsignacionSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -63,6 +64,16 @@ class SolicitudAsignacionController extends Controller
         $model = new SolicitudAsignacion();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+           $bloqueInicial =  Bloque::find()->where(["ID_BLOQUE" => $model -> INICIO_BLOQUE_ASIGNACION]) -> one();
+            $bloquesDisponibles = Bloque::find()->where(["ID_SALA" => $model->SALA_ASIGNACION, "ID_DIA" => $bloqueInicial-> ID_DIA, "ID_SECCION" => null]) -> orderBy("INICIO")->all();
+            $pos = array_search($bloqueInicial, $bloquesDisponibles);
+            for($i = 0; $i < $model->CANTIDAD_BLOQUES_ASIGNACION; $i++){
+                $bloquesDisponibles[$pos + $i] -> ID_SECCION = $model -> SECCION_ASIGNACION;
+                if($i < $model->CANTIDAD_BLOQUES_ASIGNACION - 1){
+                    $bloquesDisponibles[$pos + $i] -> BLOQUE_SIGUIENTE = $bloquesDisponibles[$pos + 1 + $i] -> ID_BLOQUE;
+                }
+                $bloquesDisponibles[$pos + $i] -> save();
+            }
             return $this->redirect(['view', 'id' => $model->ID_ASIGNACION]);
         } else {
             return $this->render('create', [

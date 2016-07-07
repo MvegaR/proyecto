@@ -222,13 +222,72 @@ class SalaController extends Controller
              echo "<option value=>Sin salas con la capacidad ingresada disponible</option>";
         }else if($contadorSalas > 0){
             foreach ($salas as $sala) {
-                echo "<option value='".$sala->ID_SALA."'> ".$sala->ID_SALA."</option>";
+                echo "<option value='".$sala->ID_SALA."'> ".$sala->ID_SALA." Tipo mueble: ".$sala->MUEBLE."</option>";
             }
         }else{
          echo "<option value=>Sin salas con la capacidad mínima ingresada y tipo, disponibles</option>";
         }
     }
 
+
+    public function compararBloques($bloquesConocidos, $bloquesDesconocidos){
+      $respuestas = [];
+      foreach ($bloquesConocidos as $bloqueC) {
+        $esta = false;
+        foreach ($bloquesDesconocidos as $bloqueD) {
+          if($bloqueD -> INICIO == $bloqueC -> INICIO && $bloqueD -> ID_DIA == $bloqueC -> ID_DIA && $bloqueD->ID_SECCION = null){
+            $esta = true;
+          }
+        }
+        if($esta){
+          array_push($respuestas, true);
+        }else{
+          array_push($respuestas, false);
+        }
+      }
+      foreach ($respuestas as $valor) {
+        if(!$valor){
+          return false;
+        }
+      }
+      return true;
+    }
+
+
+     public function actionListscaptipo2($tipo, $cap, $sala, $sec){
+        if($tipo == null) $tipo = 0;
+        if($cap == null) $cap = 0;
+        $contadorSalasTipo = Sala::find()->where(['ID_TIPO_SALA' => $tipo])->count();
+        $sqlCap = "Select S.* from sala S where CAPACIDAD_SALA >= $cap";
+        $contadorSalasCap = Sala::findBySql($sqlCap)->count();
+        $sql = "Select S.* from sala S where CAPACIDAD_SALA >= $cap AND ID_TIPO_SALA = $tipo";
+        $contadorSalas = Sala::findBySql($sql)->count();
+        $salas = Sala::findBySql($sql)->all();
+        $sql = "Select B.* from bloque B where ID_SALA = '$sala' and ID_SECCION = '$sec'";
+        $contadorBloques = Bloque::findBySql($sql) -> count();
+        $bloquesOrigen = Bloque::findBySql($sql) -> all();
+        if($contadorSalasTipo == 0){
+              echo "<option value=>Sin salas del tipo ingresado disponibles</option>";
+        }
+
+        else if($contadorSalasCap == 0){
+             echo "<option value=>Sin salas con la capacidad ingresada disponible</option>";
+        }else if($contadorSalas > 0){
+          $contadorSalasFinales = 0;
+            foreach ($salas as $sala) {
+                $r = $this -> compararBloques($bloquesOrigen, (Bloque::find()->where(["ID_SALA" => $sala->ID_SALA]) -> all()) );
+                if($r) {
+                  echo "<option value='".$sala->ID_SALA."'> ".$sala->ID_SALA." Tipo mueble: ".$sala->MUEBLE."</option>";
+                  $contadorSalasFinales++;
+                }
+            }
+            if($contadorSalasFinales == 0){
+              echo "<option value=>Sin salas de cambio disponible con todos los bloques del origen</option>";
+            }
+        }else{
+         echo "<option value=>Sin salas con la capacidad mínima ingresada y tipo, disponibles</option>";
+        }
+    }
 
   public function actionHorario(){
       $todosLosDias = Dia::find()-> all();

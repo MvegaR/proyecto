@@ -5,6 +5,7 @@ namespace frontend\controllers;
 use Yii;
 use frontend\models\Seccion;
 use frontend\models\Asignatura;
+use frontend\models\SolicitudAsignacionTemporal;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -45,9 +46,11 @@ class HorarioDocenteController extends Controller
                              $var16,$var17,$var18,$var19,$var20
                     );
         }
+
+        $solicitudes = SolicitudAsignacionTemporal::find() -> where(["DOCENTE_ASIGNACION_TEMPORAL" => $id]) -> all();
        
         return $this->render('index', [
-            'array' => $array,
+            'array' => $array,'solicitudes' => $solicitudes
         ]);
     }
 

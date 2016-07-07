@@ -67,6 +67,7 @@ class SolicitudAsignacionTemporalController extends Controller
         
         if ($model->load(Yii::$app->request->post())) {
 
+
             $fechadividida = explode("-", $model -> FECHA_ASIGNACION_TEMPORAL);
             $nombreDia = date("l",mktime(0,0,0,intval($fechadividida[1]), intval($fechadividida[2]), intval($fechadividida[0]))); 
             if($nombreDia == "Monday"){

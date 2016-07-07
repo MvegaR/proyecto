@@ -219,10 +219,16 @@ use yii\filters\VerbFilter;
         public function actionLists3($id){
             $contadorbloques = Bloque::find()->where(['ID_SECCION' => $id])->count();
             $bloques = Bloque::find()->where(['ID_SECCION' => $id])->all();
+            $siguiente = null;
             if($contadorbloques > 0){
                 foreach ($bloques as $bloque) {
                     $dia = (Dia::find()-> where(['ID_DIA' => $bloque -> ID_DIA])-> one());
-                    echo "<option value='".$bloque->ID_BLOQUE."'> ".$dia -> NOMBRE."- De: ".$bloque->INICIO." a ".$bloque->TERMINO."</option>";
+                    if($bloque != $siguiente){
+                        echo "<option value='".$bloque->ID_BLOQUE."'> ".$dia -> NOMBRE."- De: ".$bloque->INICIO." a ".$bloque->TERMINO."</option>";
+                    }
+                    if($bloque -> BLOQUE_SIGUIENTE != null){
+                        $siguiente = Bloque::find()->where(['ID_BLOQUE' => $bloque -> BLOQUE_SIGUIENTE]) -> one();
+                    }
                 }
             }else{
                 echo "<option value=>Sin bloques para la seccion selecionada</option>";

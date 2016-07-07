@@ -29,6 +29,8 @@ use frontend\models\Edificio;
 
     <?= $form->field($model, 'CAPACIDAD_SALA')->textInput(['type' => 'number', 'min' => 1,'placeholder' => "Ingrese capacidad de personas en sala"]) ;?>
 
+     <?= $form->field($model, 'MUEBLE')->textInput(['maxlength' => true])->label('Tipo de mueble')->input('Tipo de mueble', ['placeholder' => "Ingrese Tipo de mueble"]) ?>
+
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Crear' : 'Modificar', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>

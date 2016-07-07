@@ -7,6 +7,7 @@ use yii\helpers\ArrayHelper;
 use frontend\models\EstadoSolicitudCambio;
 use frontend\models\Asignatura;
 use frontend\models\Seccion;
+use frontend\models\TipoSala;
 
 /* @var $this yii\web\View */
 /* @var $model frontend\models\SolicitudCambio */
@@ -55,12 +56,26 @@ use frontend\models\Seccion;
         [],
         ['prompt'=>'Seleccione seccion', 'onchange' => '$.post("index.php?r=bloque/lists2&id='.'"+$(this).val(), function(data){
            $("select#solicitudcambio-sala_cambio").html(data);
+
        });'] )->label('Seccion') 
     ?> 
 
-   <?= $form->field($model, 'SALA_CAMBIO')->dropDownList([], ['prompt' => 'Seleccione sala'])->label("Sala") ?>
+   <?= $form->field($model, 'SALA_CAMBIO')->dropDownList([], ['prompt' => 'Seleccione sala'])->label("Sala origen") ?>
 
-   <?= $form->field($model, 'CAPACIDAD_CAMBIO')->textInput(['type' => 'number', 'min', 'min' => 0, 'value' => 0, 'placeholder' => "Alumnos de la sección"]) ?>
+
+
+   <?= $form->field($model, 'CAPACIDAD_CAMBIO')->textInput(['type' => 'number', 'min', 'min' => 0, 'value' => 0, 'placeholder' => "Alumnos de la sección"   ]) ?>
+
+           <?= $form->field($model, 'TIPO_CAMBIO')->dropDownList(
+        ArrayHelper::map(TipoSala::find()->all(),'ID_TIPO_SALA','NOMBRE_TIPO'),
+        ['prompt'=>'Seleccione tipo sala',
+        'onchange' => '$.post(
+        "index.php?r=sala/listscaptipo2&tipo='.'"+$(this).val()+"&cap='.'"+$("input#solicitudcambio-capacidad_cambio").val()+"&sala='.'"+$("input#solicitudcambio-sala-cambio").var()+"&sec='.'"+$("input#solicitudcambio-seccion-cambio").var()
+        ,function(data){
+            $("select#solicitudasignaciontemporal-inicio_bloque_asignacion_temporal").html(data);
+        });' ] )->label('Tipo sala') ?>
+
+   <?= $form->field($model, 'SALA_CAMBIO2')->dropDownList([], ['prompt' => 'Seleccione sala'])->label("Sala destino") ?>
 
    <?= $form->field($model, 'reCaptcha')->widget(ReCaptcha::className()) ?>
 

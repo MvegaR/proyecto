@@ -90,4 +90,18 @@ class Asignatura extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Seccion::className(), ['ID_ASIGNATURA' => 'ID_ASIGNATURA']);
     }
+
+         public function getHORARIOALUMNO($dia, $hora, $carrera, $anio, $semestre)
+    {
+        $sql = "Select a.NOMBRE_ASIGNATURA, c.ID_CARRERA, b.ID_SALA, b.ID_SECCION   
+                from asignatura a, carrera c, bloque b, seccion s
+                where b.ID_DIA = $dia and b.INICIO = '$hora' and c.ID_CARRERA = '$carrera' and a.ANIO = $anio and a.SEMESTRE = $semestre and a.ID_CARRERA = '$carrera' and s.ID_SECCION = b.ID_SECCION and s.ID_ASIGNATURA = a.ID_ASIGNATURA and a.ID_CARRERA = c.ID_CARRERA 
+
+                        ";
+
+           // echo "<br><br><br><br><br>$sql<br><br><br>";
+            $command = Yii::$app -> db -> createCommand($sql);
+            $dataReader = $command->queryAll();
+            return $dataReader;
+    }
 }

@@ -8,7 +8,7 @@ use yii\grid\GridView;
 /* @var $searchModel frontend\models\BloqueSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Horario Profesor';
+$this->title = 'Horario alumno';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="Seccion-index">
@@ -48,13 +48,24 @@ $this->params['breadcrumbs'][] = $this->title;
             else if($j == 18) echo '<tr><th>21:40 - 22:20</th>';
             else if($j == 19) echo '<tr><th>22:20 - 23:00</th>';
             for($i = 0; $i < 6; $i++){
-                       
+                       //    // a.NOMBRE_ASIGNATURA, c.ID_CARRERA, b.ID_SALA, b.ID_SECCION   
                          if($array[$j+(20*$i)] != null){
                             $row=$array[$j+(20*$i)];
-                            echo '<td class="success">'.$row[0]['nombre_asignatura'].'<br>'. $row[0]['ID_SECCION'].'<br> Sala: '.$row[0]['ID_SALA'].'</td>';
+                            echo '<td class="success">';
+                            $contador = 0;
+                            foreach ($row as $col) {
+                                if($contador != 0) echo '<br>_____<br>';
+                                    echo $col['NOMBRE_ASIGNATURA']. 
+                                //'<br>'.$row[0]['ID_CARRERA'].
+                                '<br> Sala: '.$col['ID_SALA'].
+                                '<br> Seccion: '.$col['ID_SECCION'];
+                                $contador+=1;
+                                
+                            }
+                            echo '</td>';
+                           
                            }else{
-                            $row = [['nombre_asignatura'=>NULL]];
-                            echo '<td>'.$row[0]['nombre_asignatura'].'</td>';
+                            echo  '<td> </td>';
                            }
                          
             }
@@ -63,18 +74,5 @@ $this->params['breadcrumbs'][] = $this->title;
         }
     ?>
     </table>
-
-    <div>
-        
-        <h3>Solicitudes temporales docente:
-        </h3><br>
-        <?php foreach ($solicitudes as $solicitud) {
-            echo "Fecha: ".$solicitudes -> FECHA_ASIGNACION_TEMPORAL." Sala: ".$solicitudes -> SALA_ASIGNACION_TEMPORAL."Hora inicio: ". Bloque::find()->where(["ID_BLOQUE" => $solicitudes -> INICIO_BLOQUE_ASIGNACION_TEMPORAL]) -> one() -> INICIO;
-        }
-
-        ?>
-
-
-    </div>
 </div>
 </div>
