@@ -93,7 +93,7 @@ public class PanelSalasYDias extends JPanel {
 				DefaultMutableTreeNode nodoTipoSala = new DefaultMutableTreeNode(tipoSala.getNombreTipoSala());
 				Boolean tiene = false;
 				for(Sala sala: ventana.getSalas()){
-				    if(sala.getIdEdificio().equals(edificio.getIdEdificio()) && sala.getIdTipoSala().equals(tipoSala.getIdTipoSala())){
+				    if(sala.getIdEdificio() != null && sala.getIdEdificio().equals(edificio.getIdEdificio()) && sala.getIdTipoSala().equals(tipoSala.getIdTipoSala())){
 					DefaultMutableTreeNode nodoSala = new DefaultMutableTreeNode(sala.getIdSala());
 					tiene = true;
 					nodoTipoSala.add(nodoSala);

@@ -2,7 +2,6 @@ package logica;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
-import java.util.Random;
 
 import db.Bloque;
 import db.Facultad;
@@ -22,10 +21,11 @@ public class Clase {
     private Integer horasContinuadas;
     private ArrayList<Bloque> bloquesAsignados;
     private Seccion seccion;
-    private String tipo;
+    private Integer tipo;
     private Planificador planificador;
+    //private Integer idTipo;
 
-    public Clase(Planificador planificador, Integer horasContinuadas, Seccion seccion, String tipo) {
+    public Clase(Planificador planificador, Integer horasContinuadas, Seccion seccion, Integer tipo) {
 	this.id = Clase.contador++;
 	this.horasContinuadas = horasContinuadas;
 	this.seccion = seccion;
@@ -40,7 +40,7 @@ public class Clase {
 	//(Considerar agregar) 6. Se prefiere a una sala para una clase de hora impar estar despues de otra clase de hora impar que este despues de una hora par. 
 	Integer contador = 0;
 	ArrayList<Sala> r = new ArrayList<>();
-	if(this.getTipo().equals("Normal")){
+	if(this.getTipo().equals(1)){
 	    for(Sala sala: salas){
 		//2. Se prefiere la sala con capacidad con diferencia a cupo igual o mayor a cero y mientras menor mejor. (Listo)
 		if(sala.getIdTipoSala().equals(1) && sala.getCapacidadSala().compareTo(this.getSeccion().getCupo()) >= 0){  
@@ -48,7 +48,7 @@ public class Clase {
 		}
 		contador ++;
 	    }
-	}else if(this.getTipo().equals("Computacion")){
+	}else if(this.getTipo().equals(2)){
 	    for(Sala sala: salas){
 		//2. Se prefiere la sala con capacidad con diferencia a cupo igual o mayor a cero y mientras menor mejor. (Listo)
 		if(sala.getIdTipoSala().equals(2) && sala.getCapacidadSala().compareTo(this.getSeccion().getCupo()) >= 0){  
@@ -56,7 +56,7 @@ public class Clase {
 		}
 		contador ++;
 	    }
-	}else if(this.getTipo().equals("LabFisica")){
+	}else if(this.getTipo().equals(3)){
 	    for(Sala sala: salas){
 		//2. Se prefiere la sala con capacidad con diferencia a cupo igual o mayor a cero y mientras menor mejor. (Listo)
 		if(sala.getIdTipoSala().equals(3) && sala.getCapacidadSala().compareTo(this.getSeccion().getCupo()) >= 0){  
@@ -64,7 +64,7 @@ public class Clase {
 		}
 		contador ++;
 	    }
-	}else if(this.getTipo().equals("LabQuimica")){
+	}else if(this.getTipo().equals(4)){
 	    for(Sala sala: salas){
 		//2. Se prefiere la sala con capacidad con diferencia a cupo igual o mayor a cero y mientras menor mejor. (Listo)
 		if(sala.getIdTipoSala().equals(4) && sala.getCapacidadSala().compareTo(this.getSeccion().getCupo()) >= 0){  
@@ -72,7 +72,7 @@ public class Clase {
 		}
 		contador ++;
 	    }
-	}else if(this.getTipo().equals("LabMecanica")){
+	}else if(this.getTipo().equals(5)){
 	    for(Sala sala: salas){
 		//2. Se prefiere la sala con capacidad con diferencia a cupo igual o mayor a cero y mientras menor mejor. (Listo)
 		if(sala.getIdTipoSala().equals(5) && sala.getCapacidadSala().compareTo(this.getSeccion().getCupo()) >= 0){  
@@ -80,7 +80,7 @@ public class Clase {
 		}
 		contador ++;
 	    }
-	}else if(this.getTipo().equals("LabRobotica")){
+	}else if(this.getTipo().equals(6)){
 	    for(Sala sala: salas){
 		//2. Se prefiere la sala con capacidad con diferencia a cupo igual o mayor a cero y mientras menor mejor. (Listo)
 		if(sala.getIdTipoSala().equals(6) && sala.getCapacidadSala().compareTo(this.getSeccion().getCupo()) >= 0){  
@@ -88,7 +88,7 @@ public class Clase {
 		}
 		contador ++;
 	    }
-	}else if(this.getTipo().equals("TallerArquitectura")){
+	}else if(this.getTipo().equals(7)){
 	    for(Sala sala: salas){
 		//2. Se prefiere la sala con capacidad con diferencia a cupo igual o mayor a cero y mientras menor mejor. (Listo)
 		if(sala.getIdTipoSala().equals(7) && sala.getCapacidadSala().compareTo(this.getSeccion().getCupo()) >= 0){  
@@ -96,7 +96,7 @@ public class Clase {
 		}
 		contador ++;
 	    }
-	}else if(this.getTipo().equals("TallerMadera")){
+	}else if(this.getTipo().equals(8)){
 	    for(Sala sala: salas){
 		//2. Se prefiere la sala con capacidad con diferencia a cupo igual o mayor a cero y mientras menor mejor. (Listo)
 		if(sala.getIdTipoSala().equals(8) && sala.getCapacidadSala().compareTo(this.getSeccion().getCupo()) >= 0){  
@@ -104,7 +104,7 @@ public class Clase {
 		}
 		contador ++;
 	    }
-	}else if(this.getTipo().equals("GYM")){
+	}else if(this.getTipo().equals(9)){
 	    for(Sala sala: salas){
 		//2. Se prefiere la sala con capacidad con diferencia a cupo igual o mayor a cero y mientras menor mejor. (Listo)
 		if(sala.getIdTipoSala().equals(9) && sala.getCapacidadSala().compareTo(this.getSeccion().getCupo()) >= 0){  
@@ -112,7 +112,7 @@ public class Clase {
 		}
 		contador ++;
 	    }
-	}else if(this.getTipo().equals("Auditorio")){
+	}else if(this.getTipo().equals(10)){
 	    for(Sala sala: salas){
 		//2. Se prefiere la sala con capacidad con diferencia a cupo igual o mayor a cero y mientras menor mejor. (Listo)
 		if(sala.getIdTipoSala().equals(10) && sala.getCapacidadSala().compareTo(this.getSeccion().getCupo()) >= 0){  
@@ -120,7 +120,7 @@ public class Clase {
 		}
 		contador ++;
 	    }
-	}else if(this.getTipo().equals("LabEspRedes")){
+	}else if(this.getTipo().equals(11)){
 	    for(Sala sala: salas){
 		//2. Se prefiere la sala con capacidad con diferencia a cupo igual o mayor a cero y mientras menor mejor. (Listo)
 		if(sala.getIdTipoSala().equals(11) && sala.getCapacidadSala().compareTo(this.getSeccion().getCupo()) >= 0){  
@@ -128,7 +128,7 @@ public class Clase {
 		}
 		contador ++;
 	    }
-	}else if(this.getTipo().equals("LabElectDigital")){
+	}else if(this.getTipo().equals(12)){
 	    for(Sala sala: salas){
 		//2. Se prefiere la sala con capacidad con diferencia a cupo igual o mayor a cero y mientras menor mejor. (Listo)
 		if(sala.getIdTipoSala().equals(12) && sala.getCapacidadSala().compareTo(this.getSeccion().getCupo()) >= 0){  
@@ -136,7 +136,7 @@ public class Clase {
 		}
 		contador ++;
 	    }
-	}else if(this.getTipo().equals("LabMaquinasElectricas")){
+	}else if(this.getTipo().equals(13)){
 	    for(Sala sala: salas){
 		//2. Se prefiere la sala con capacidad con diferencia a cupo igual o mayor a cero y mientras menor mejor. (Listo)
 		if(sala.getIdTipoSala().equals(13) && sala.getCapacidadSala().compareTo(this.getSeccion().getCupo()) >= 0){  
@@ -167,7 +167,7 @@ public class Clase {
 	r.addAll(sinFacultad);
 	r.addAll(otraFacultad); 
 
-	if(r.isEmpty() && !this.getTipo().equals("Normal") && contador != 0){
+	if(r.isEmpty() && existeSalaTipo(this.getTipo(), ventana.getSalas()) && !this.getTipo().equals(1) && contador != 0){ //2
 	    //intentar crear nuevas clases, (mantener la capacidad de la sección y no considerar capacidad, intentar hacer diviciones por 2 o 3 o 4
 	    //Como no hay salas en r el "obenerBloques" que esta aplicando this en este momento no tiene asignaciones.
 	    //Esto será algo recursivo, si con dividir en dos no es sifuciente las diviciones seran divididas.
@@ -185,11 +185,22 @@ public class Clase {
 	    planificador.getClasesCreadasPorDividirOtras().add(virtual1);
 	    planificador.getClasesCreadasPorDividirOtras().add(virtual2);
 
-	}else if(r.isEmpty()){
-	    System.out.println("No existen salas para este tipo de clases en la selección.");
+	}else if(!existeSalaTipo(this.getTipo(), ventana.getSalas())){
+	    System.out.println();
+	    System.out.println("No existen salas para este tipo de clases en la selección idTipo: "+this.getTipo());
+	    System.out.println();
 	}
 
 	return r; // Si esta vacio obtenerBloques de this no hará nada, por lo que esta (this) "clase" (de materia) no tendrá validez y sí sus diviciones que ya ejecutaron su "obterbloques".
+    }
+    
+    private Boolean existeSalaTipo(Integer tipo, ArrayList<Sala> salas){
+	for(Sala s: salas){
+	    if(s.getIdTipoSala().equals(tipo)){
+		return true;
+	    }
+	}
+	    return false;
     }
 
 
@@ -197,7 +208,7 @@ public class Clase {
     public void obtenerBloques(VentanaPrincipal ventana, ArrayList<Sala> salas,  ArrayList<Integer> dias){ //para ser llamada desde el planificador
 	// dias en orden aleatorio, cuantos dias?? En ventana debe de ponerse o en planificar
 
-	Collections.shuffle(dias, new Random());
+	Collections.shuffle(dias);
 	
 	this.ordenarDiasSegunClase(dias);
 	for(Sala sala: this.filtrarSalaPorTipoFacultadYCapacidad(salas, ventana)){ 
@@ -479,7 +490,7 @@ public class Clase {
     public void setHorasContinuadas(Integer horasContinuadas) {
 	this.horasContinuadas = horasContinuadas;
     }
-    public String getTipo() {
+    public Integer getTipo() {
 	return tipo;
     }
     public Planificador getPlanificador() {
