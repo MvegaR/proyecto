@@ -410,6 +410,7 @@ public class DescargaDeDB extends JPanel {
 	getVentana().getEdificios().clear();
 	getVentana().getFacultades().clear();
 	getVentana().getSalas().clear();
+	getVentana().getSecciones().clear();
 	getVentana().getTiempoInicios().clear();
 	getVentana().getTiposSala().clear();
 	Integer totalElementos, actual;

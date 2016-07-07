@@ -75,7 +75,6 @@ public class Planificador extends Thread{
 	this.secciones = secciones;
 	this.totalDeClases = 0;
 	this.totalDeClasesConAsignaciones = 0;
-	
 	//Bloques sin secciones
 	for (Bloque bloque : ventana.getBloques()) {
 	    if(bloque.getIdSeccion() == null){

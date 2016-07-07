@@ -210,7 +210,7 @@ public class PanelAsignaturas extends JPanel {
 		}
 	    }
 	}
-
+	//System.out.println(seccionesSeleccionadas.size());
 	return seccionesSeleccionadas;
     }
 
