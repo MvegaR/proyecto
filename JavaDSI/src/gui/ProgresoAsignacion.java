@@ -38,6 +38,7 @@ public class ProgresoAsignacion extends JPanel {
     private JLabel lblTiempo;
     private JProgressBar totalBar;
     private JPanel panel_3;
+    private TimerTask aumentarSegundo;
 
     public ProgresoAsignacion(VentanaPrincipal ventana, ArrayList<Sala> salas, ArrayList<Seccion> secciones, ArrayList<Integer> dias) throws Exception {
 	setBackground(SystemColor.inactiveCaption);
@@ -147,7 +148,7 @@ public class ProgresoAsignacion extends JPanel {
 
 	//ejecutar hilo para el planificador.
 	Planificador planificador;
-	planificador = new Planificador(ventana, salas, secciones, dias);
+	planificador = new Planificador(ventana, salas, secciones, dias, this);
 	//ejecutar hilo para la barra.
 	TimerTask TareaDeActualizarBarra = new TimerTask() {
 
@@ -223,6 +224,16 @@ public class ProgresoAsignacion extends JPanel {
 
 
 
+    }
+    
+    public JButton getBtnDetener() {
+	return btnDetener;
+    }
+    public JButton getBtnVolver() {
+	return btnVolver;
+    }
+    public TimerTask getAumentarSegundo() {
+	return aumentarSegundo;
     }
 
 }

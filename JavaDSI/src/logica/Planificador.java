@@ -8,6 +8,7 @@ import db.Conexion;
 import db.Sala;
 import db.Seccion;
 import gui.MensajesError;
+import gui.ProgresoAsignacion;
 import gui.VentanaPrincipal;
 
 public class Planificador extends Thread{
@@ -33,16 +34,21 @@ public class Planificador extends Thread{
     private ArrayList<Clase> clasesEnMaqElectronicas;
     private ArrayList<Clase> clasesCreadasPorDividirOtras = new ArrayList<>();
     private Boolean detener;
+    private ProgresoAsignacion pro;
     
     @Override
     public void run() {
 	super.run();
 	this.generarClases();
 	this.busquedaDeBloquesParaLasClases();
+	pro.getBtnDetener().setEnabled(false);
 	if(!detener)this.asignarEnBD();
+	pro.getBtnDetener().setVisible(false);
+	pro.getBtnVolver().setVisible(true);
+	pro.getAumentarSegundo().cancel();
     }
 
-    public Planificador(VentanaPrincipal ventana, ArrayList<Sala> salas, ArrayList<Seccion> secciones, ArrayList<Integer> dias) throws Exception {
+    public Planificador(VentanaPrincipal ventana, ArrayList<Sala> salas, ArrayList<Seccion> secciones, ArrayList<Integer> dias, ProgresoAsignacion pro) throws Exception {
 
 	if(salas.isEmpty()){
 	    MensajesError.meEr_ListaDeSalaSeleccionadasVacia();
@@ -64,9 +70,12 @@ public class Planificador extends Thread{
 		    b.setIdSeccion(null);
 		}
 	    }
-	    Clase.getBloques().clear();
-	    Clase.resetContador();
+	    
+
 	}
+	Clase.getBloques().clear();
+	Clase.resetContador();
+	this.pro = pro;
 	Planificador.actual = this;
 	this.detener = false;
 	this.ventana = ventana;
@@ -127,6 +136,7 @@ public class Planificador extends Thread{
 
 	    }
 	}
+	System.out.println("Finalizado.");
     }
 
     public ArrayList<Clase> getListaDeClases(){
