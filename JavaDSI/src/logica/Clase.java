@@ -24,6 +24,7 @@ public class Clase {
     private Integer tipo;
     private Planificador planificador;
     //private Integer idTipo;
+    private Boolean dividida = false;
 
     public Clase(Planificador planificador, Integer horasContinuadas, Seccion seccion, Integer tipo) {
 	this.id = Clase.contador++;
@@ -184,6 +185,7 @@ public class Clase {
 	    virtual2.obtenerBloques(planificador.getVentana(), salas, planificador.getDias());
 	    planificador.getClasesCreadasPorDividirOtras().add(virtual1);
 	    planificador.getClasesCreadasPorDividirOtras().add(virtual2);
+	    this.dividida = true;
 
 	}else if(!existeSalaTipo(this.getTipo(), ventana.getSalas())){
 	    System.out.println();
@@ -279,8 +281,10 @@ public class Clase {
 
 	    }
 	}
-	System.out.println("Clase asignada clase; Bloques total con asignaciones: " + (ventana.getBloques().size() - Clase.getBloques().size()) + " Bloques");
-	System.out.println("Bloques clase "+ventana.getAsignatura(this.getSeccion().getIdAsignatura()).getNombreAsignatura()+" : "+this.getBloquesAsignados().toString());
+	if(!dividida){
+        	System.out.println("Clase asignada clase; Bloques total con asignaciones: " + (ventana.getBloques().size() - Clase.getBloques().size()) + " Bloques");
+        	System.out.println("Bloques clase "+ventana.getAsignatura(this.getSeccion().getIdAsignatura()).getNombreAsignatura()+" : "+this.getBloquesAsignados().toString());
+	}
 	Clase.getBloques().removeAll(this.getBloquesAsignados());
     }
 
