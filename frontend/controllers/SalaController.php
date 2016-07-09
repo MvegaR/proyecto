@@ -232,21 +232,29 @@ class SalaController extends Controller
 
     public function compararBloques($bloquesConocidos, $bloquesDesconocidos){
       $respuestas = [];
+
       foreach ($bloquesConocidos as $bloqueC) {
-        $esta = false;
+        $bloqueComparable = false;
+        $sirve = false;
         foreach ($bloquesDesconocidos as $bloqueD) {
-          if($bloqueD -> INICIO == $bloqueC -> INICIO && $bloqueD -> ID_DIA == $bloqueC -> ID_DIA && $bloqueD->ID_SECCION = null){
-            $esta = true;
+          if($bloqueD -> INICIO == $bloqueC -> INICIO && $bloqueD -> ID_DIA == $bloqueC -> ID_DIA ){
+            $bloqueComparable = true;
+            if($bloqueD->ID_SECCION == null){
+              $sirve = true;
+            }
+            break;
           }
         }
-        if($esta){
-          array_push($respuestas, true);
-        }else{
-          array_push($respuestas, false);
+        if($bloqueComparable == true && $sirve == true){
+          array_push($respuestas, "true");
+        }else if($bloqueComparable == true && $sirve == false){
+          array_push($respuestas, "false");
         }
       }
+    //  echo var_dump($respuestas);
+
       foreach ($respuestas as $valor) {
-        if(!$valor){
+        if($valor === "false"){
           return false;
         }
       }
@@ -264,7 +272,9 @@ class SalaController extends Controller
         $contadorSalas = Sala::findBySql($sql)->count();
         $salas = Sala::findBySql($sql)->all();
         $sql = "Select B.* from bloque B where ID_SALA = '$sala' and ID_SECCION = '$sec'";
+
         $contadorBloques = Bloque::findBySql($sql) -> count();
+
         $bloquesOrigen = Bloque::findBySql($sql) -> all();
         if($contadorSalasTipo == 0){
               echo "<option value=>Sin salas del tipo ingresado disponibles</option>";
@@ -276,7 +286,7 @@ class SalaController extends Controller
           $contadorSalasFinales = 0;
             foreach ($salas as $sala) {
                 $r = $this -> compararBloques($bloquesOrigen, (Bloque::find()->where(["ID_SALA" => $sala->ID_SALA]) -> all()) );
-                if($r) {
+                if($r === true) {
                   echo "<option value='".$sala->ID_SALA."'> ".$sala->ID_SALA." Tipo mueble: ".$sala->MUEBLE."</option>";
                   $contadorSalasFinales++;
                 }

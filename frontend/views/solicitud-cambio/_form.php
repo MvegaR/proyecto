@@ -72,7 +72,7 @@ use frontend\models\TipoSala;
         'onchange' => '$.post("index.php?r=sala/listscaptipo2&tipo='.
         '"+$(this).val()+"&cap='.'"+$("input#solicitudcambio-capacidad_cambio").val()+"&sala='
         .'"+$("select#solicitudcambio-sala_cambio").val()+"&sec='
-        .'"+$("input#solicitudcambio-seccion_cambio").val(),function(data){ $("select#solicitudcambio-sala_cambio2").html(data); 
+        .'"+$("select#solicitudcambio-seccion_cambio").val(),function(data){ $("select#solicitudcambio-sala_cambio2").html(data); 
       });' ] )->label('Tipo sala');
       ?>
 
