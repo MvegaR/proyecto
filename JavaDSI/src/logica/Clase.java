@@ -150,7 +150,7 @@ public class Clase {
 //	System.out.println("CondadorSalas="+contador);
 	r.sort(new ComparatorSalaCantidadBloquesYCapacidad(this.getSeccion().getCupo()));
 	/*
-	//4. Para una carrera se prefiere clases en edificios de su facultad. (Listo) (Eliminado) (Conisderar)
+	//4. Para una carrera se prefiere clases en edificios de su facultad. (Listo) (Eliminado) (Evaluar)
 	ArrayList<Sala> igualFacultad = new ArrayList<>(); //edificios con facultad determinada
 	ArrayList<Sala> sinFacultad = new ArrayList<>(); //edificios sin facultad determinada
 	ArrayList<Sala> otraFacultad = new ArrayList<>(); //las demas salas de otras facultades que cumplen con las caracteristicas para la clase
