@@ -8,6 +8,7 @@ use frontend\models\SolicitudCambioSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use frontend\models\Bloque;
 
 /**
  * SolicitudCambioController implements the CRUD actions for SolicitudCambio model.
@@ -63,7 +64,19 @@ class SolicitudCambioController extends Controller
         $model = new SolicitudCambio();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            
+            $sql = "Select * from bloque where ID_SALA = '".$model -> SALA_CAMBIO."' and ID_SECCION = '".$model -> SECCION_CAMBIO."'";
+            $bloquesOrigen = Bloque::findBySql($sql) -> all();
+            foreach($bloquesOrigen as $bloqueO){
+                $sql = "Select * from bloque where ID_SALA = '".$model -> SALA_CAMBIO2."' and ID_DIA = ".$bloqueO -> ID_DIA." and INICIO = '".$bloqueO -> INICIO."'";
+
+                $bloqueD = Bloque::findBySql($sql) -> one();
+                $bloqueD -> ID_SECCION = $bloqueO -> ID_SECCION;
+                $bloqueD -> BLOQUE_SIGUIENTE = $bloqueO -> BLOQUE_SIGUIENTE;
+                $bloqueO -> ID_SECCION = null;
+                $bloqueO -> BLOQUE_SIGUIENTE = null;
+                $bloqueD -> save();
+                $bloqueO -> save();
+            }
             return $this->redirect(['view', 'id' => $model->ID_CAMBIO]);
         } else {
             return $this->render('create', [
