@@ -54,7 +54,7 @@ use frontend\models\TipoSala;
 
     <?= $form->field($model, 'SECCION_CAMBIO')->dropDownList(
         [],
-        ['prompt'=>'Seleccione seccion', 'onchange' => '$.post("index.php?r=bloque/lists2&id='.'"+$(this).val(), function(data){
+        ['prompt'=>'Seleccione seccion', 'onchange' => '$.post("index.php?r=bloque/lists2&id="+$(this).val(), function(data){
            $("select#solicitudcambio-sala_cambio").html(data);
 
        });'] )->label('Seccion') 
@@ -64,16 +64,17 @@ use frontend\models\TipoSala;
 
 
 
-   <?= $form->field($model, 'CAPACIDAD_CAMBIO')->textInput(['type' => 'number', 'min', 'min' => 0, 'value' => 0, 'placeholder' => "Alumnos de la sección"   ]) ?>
+   <?= $form->field($model, 'CAPACIDAD_CAMBIO')->textInput(['type' => 'number', 'min', 'min' => 0, 'value' => 0, 'placeholder' => "Alumnos de la sección",]) ?>
 
-           <?= $form->field($model, 'TIPO_CAMBIO')->dropDownList(
+  <?= $form->field($model, 'TIPO_CAMBIO')->dropDownList(
         ArrayHelper::map(TipoSala::find()->all(),'ID_TIPO_SALA','NOMBRE_TIPO'),
         ['prompt'=>'Seleccione tipo sala',
-        'onchange' => '$.post(
-        "index.php?r=sala/listscaptipo2&tipo='.'"+$(this).val()+"&cap='.'"+$("input#solicitudcambio-capacidad_cambio").val()+"&sala='.'"+$("input#solicitudcambio-sala-cambio").var()+"&sec='.'"+$("input#solicitudcambio-seccion-cambio").var()
-        ,function(data){
-            $("select#solicitudasignaciontemporal-inicio_bloque_asignacion_temporal").html(data);
-        });' ] )->label('Tipo sala') ?>
+        'onchange' => '$.post("index.php?r=sala/listscaptipo2&tipo='.
+        '"+$(this).val()+"&cap='.'"+$("input#solicitudcambio-capacidad_cambio").val()+"&sala='
+        .'"+$("select#solicitudcambio-sala_cambio").val()+"&sec='
+        .'"+$("input#solicitudcambio-seccion_cambio").val(),function(data){ $("select#solicitudcambio-sala_cambio2").html(data); 
+      });' ] )->label('Tipo sala');
+      ?>
 
    <?= $form->field($model, 'SALA_CAMBIO2')->dropDownList([], ['prompt' => 'Seleccione sala'])->label("Sala destino") ?>
 

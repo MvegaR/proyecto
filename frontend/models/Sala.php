@@ -34,7 +34,8 @@ class Sala extends \yii\db\ActiveRecord
         return [
             [['ID_SALA', 'CAPACIDAD_SALA'], 'required'],
             [['ID_TIPO_SALA', 'CAPACIDAD_SALA'], 'integer'],
-            [['ID_SALA', 'ID_EDIFICIO'], 'string', 'max' => 255],
+            [['ID_SALA', 'ID_EDIFICIO', "MUEBLE"], 'string', 'max' => 255],
+
             [['ID_SALA'],'unique']
         ];
     }

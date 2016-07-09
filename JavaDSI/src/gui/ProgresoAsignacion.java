@@ -105,9 +105,10 @@ public class ProgresoAsignacion extends JPanel {
 	panel_2.add(scrollPane, "name_1816028391590492");
 
 	JTextArea txtrTextoDePrueba = new JTextArea();
+	txtrTextoDePrueba.setBackground(SystemColor.inactiveCaption);
 	txtrTextoDePrueba.setEditable(false);
 	txtrTextoDePrueba.setLineWrap(true);
-	txtrTextoDePrueba.setFont(new Font("Monospaced", Font.PLAIN, 15));
+	txtrTextoDePrueba.setFont(new Font("Consolas", Font.PLAIN, 15));
 	txtrTextoDePrueba.setBounds(new Rectangle(32, 0, 1221, 403));
 	scrollPane.setViewportView(txtrTextoDePrueba);
 	System.setOut(new PrintStream(new MyOut(txtrTextoDePrueba))); //Cambiando salida de consola JText.
