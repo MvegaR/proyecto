@@ -63,6 +63,7 @@ class SolicitudCambioController extends Controller
         $model = new SolicitudCambio();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            
             return $this->redirect(['view', 'id' => $model->ID_CAMBIO]);
         } else {
             return $this->render('create', [

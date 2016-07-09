@@ -56,15 +56,21 @@ use frontend\models\TipoSala;
         [],
         ['prompt'=>'Seleccione seccion', 'onchange' => '$.post("index.php?r=bloque/lists2&id="+$(this).val(), function(data){
            $("select#solicitudcambio-sala_cambio").html(data);
+           document.getElementById("solicitudcambio-tipo_cambio").onchange();
+        
 
        });'] )->label('Seccion') 
     ?> 
 
-   <?= $form->field($model, 'SALA_CAMBIO')->dropDownList([], ['prompt' => 'Seleccione sala'])->label("Sala origen") ?>
+   <?= $form->field($model, 'SALA_CAMBIO')->dropDownList([], ['prompt' => 'Seleccione sala', 'onchange' => '
+    document.getElementById("solicitudcambio-tipo_cambio").onchange();
+    ',])->label("Sala origen") ?>
 
 
 
-   <?= $form->field($model, 'CAPACIDAD_CAMBIO')->textInput(['type' => 'number', 'min', 'min' => 0, 'value' => 0, 'placeholder' => "Alumnos de la sección",]) ?>
+   <?= $form->field($model, 'CAPACIDAD_CAMBIO')->textInput(['type' => 'number', 'min', 'min' => 0, 'value' => 0, 'placeholder' => "Alumnos de la sección", 'onchange' => '
+    document.getElementById("solicitudcambio-tipo_cambio").onchange();
+    ',]) ?>
 
   <?= $form->field($model, 'TIPO_CAMBIO')->dropDownList(
         ArrayHelper::map(TipoSala::find()->all(),'ID_TIPO_SALA','NOMBRE_TIPO'),
