@@ -149,7 +149,8 @@ public class Clase {
 	}
 //	System.out.println("CondadorSalas="+contador);
 	r.sort(new ComparatorSalaCantidadBloquesYCapacidad(this.getSeccion().getCupo()));
-	//4. Para una carrera se prefiere clases en edificios de su facultad. (Listo)
+	/*
+	//4. Para una carrera se prefiere clases en edificios de su facultad. (Listo) (Eliminado) (Conisderar)
 	ArrayList<Sala> igualFacultad = new ArrayList<>(); //edificios con facultad determinada
 	ArrayList<Sala> sinFacultad = new ArrayList<>(); //edificios sin facultad determinada
 	ArrayList<Sala> otraFacultad = new ArrayList<>(); //las demas salas de otras facultades que cumplen con las caracteristicas para la clase
@@ -166,7 +167,7 @@ public class Clase {
 	r = new ArrayList<>();
 	r.addAll(igualFacultad);
 	r.addAll(sinFacultad);
-	r.addAll(otraFacultad); 
+	r.addAll(otraFacultad); */
 
 	if(r.isEmpty() && existeSalaTipo(this.getTipo(), ventana.getSalas()) && !this.getTipo().equals(1) && contador != 0){ //2
 	    //intentar crear nuevas clases, (mantener la capacidad de la sección y no considerar capacidad, intentar hacer diviciones por 2 o 3 o 4

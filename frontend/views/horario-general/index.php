@@ -19,8 +19,9 @@ $media = Sala:: find() -> count()/2;
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
     <ul class="list-group">
-  <li class="list-group-item list-group-item-success">Si hay salas disponibles</li>
-  <li class="list-group-item list-group-item-danger">No hay salas disponibles</li>
+  <li class="list-group-item list-group-item-success">Bastantes salas disponibles</li>
+  <li class="list-group-item list-group-item-warning">Cantidad cercana a la media (+-20%) del total de salas, disponibles</li>
+  <li class="list-group-item list-group-item-danger">Pocas salas disponibles</li>
 </ul>
 <div class= "table-responsive text-center">
     <table class="table table-bordered table-hover table-condensed text-center">
