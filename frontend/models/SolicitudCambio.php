@@ -34,7 +34,7 @@ class SolicitudCambio extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['ID_ESTADO_CAMBIO', 'CAPACIDAD_CAMBIO'], 'integer'],
+            [['ID_ESTADO_CAMBIO', 'CAPACIDAD_CAMBIO','TIPO_CAMBIO'], 'integer'],
             [['ASIGNATURA_CAMBIO', 'SECCION_CAMBIO', 'DOCENTE_CAMBIO', 'CAPACIDAD_CAMBIO', 'SALA_CAMBIO', 'SALA_CAMBIO2'], 'required'],
             [['ASIGNATURA_CAMBIO', 'SECCION_CAMBIO', 'DOCENTE_CAMBIO', 'SALA_CAMBIO2'], 'string', 'max' => 255],
 			[['reCaptcha'], ReCaptchaValidator::className(), 'secret' => '6LfD6hITAAAAAEdV6MQ8zDX3emwQY4bVYyw-L3nz' ],

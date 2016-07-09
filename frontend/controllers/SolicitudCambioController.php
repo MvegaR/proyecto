@@ -67,7 +67,7 @@ class SolicitudCambioController extends Controller
             $sql = "Select * from bloque where ID_SALA = '".$model -> SALA_CAMBIO."' and ID_SECCION = '".$model -> SECCION_CAMBIO."'";
             $bloquesOrigen = Bloque::findBySql($sql) -> all();
             foreach($bloquesOrigen as $bloqueO){
-                $sql = "Select * from bloque where ID_SALA = '".$model -> SALA_CAMBIO2."' and ID_SECCION = NULL and ID_DIA = ".$bloqueO -> ID_DIA." and INICIO = '".$bloqueO -> INICIO."'";
+                $sql = "Select * from bloque where ID_SALA = '".$model -> SALA_CAMBIO2."' and ID_SECCION is NULL and ID_DIA = ".$bloqueO -> ID_DIA." and INICIO = '".$bloqueO -> INICIO."'";
                 $bloqueD = Bloque::findBySql($sql) -> one();
                 $bloqueD -> ID_SECCION = $bloqueO -> ID_SECCION;
                 $bloqueD -> BLOQUE_SIGUIENTE = $bloqueO -> BLOQUE_SIGUIENTE;
