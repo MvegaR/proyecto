@@ -354,7 +354,7 @@ public class Clase {
 				    && this.getSeccion().getIdAsignatura().equals(seccionLegendaria.getIdAsignatura())){
 				//inicio de ver si tiene distinto horario.
 				//hay que tener todas las clases de la seccion de this y la que estamos comparando para ...
-				LinkedList<Clase> clasesDeLaSeccionDeThis = new LinkedList<Clase>(); //WTF?? Con la seccion del elBLoque que esta chocando..
+				LinkedList<Clase> clasesDeLaSeccionDeThis = new LinkedList<Clase>(); // Con la seccion del elBLoque que esta chocando..
 				for(Clase c: this.getPlanificador().getListaDeClases()){
 				    if(c.getSeccion().equals(this.getSeccion())){
 					clasesDeLaSeccionDeThis.add(c);
@@ -392,6 +392,7 @@ public class Clase {
 			    //Fin de ver si tienen distinto horario. si llego aqui tiene otro horario o aun no tiene bloques asignados.
 			    //return true;
 			}
+			return true;
 		    } 
 		    //*/
 

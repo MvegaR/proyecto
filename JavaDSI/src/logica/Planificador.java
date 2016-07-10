@@ -129,7 +129,7 @@ public class Planificador extends Thread{
     }
 
     public void asignarEnBD(){
-
+	System.out.println("Insertando en base de datos; Ahora no se puede detener el proceso.");
 	for(Clase c: this.getListaDeClases()){
 	    for(Bloque b: c.getBloquesAsignados()){
 		String sql = "UPDATE bloque SET ID_SECCION = '" + b.getIdSeccion() + "', BLOQUE_SIGUIENTE = "+b.getBloqueSiguiente()+" WHERE ID_BLOQUE = '" +b.getIdBloque()+"'";
