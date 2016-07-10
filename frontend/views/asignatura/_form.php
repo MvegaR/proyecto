@@ -61,7 +61,7 @@ use frontend\models\Carrera;
     <?= $form->field($model, 'HORAS_TALLER_ARQUITECTURA')->textInput(['type' => 'number','size' => "3", 'maxleng' => '3', 'min' => 0, 'value' => horaModelo($model,'HORAS_TALLER_ARQUITECTURA'), 'placeholder' => "Horas"])->label("Taller Arquitectura");?>
     </div>
     <div class = "col-xs-3">&nbsp;&nbsp;
-    <?= $form->field($model, 'HORAS_TALLER_MADERA')->textInput(['type' => 'number','size' => "3", 'maxleng' => '3', 'min' => 0, 'value' => horaModelo($model,'HORAS_TEO'), 'placeholder' => "Horas"])->label("Taller Maderas");?>
+    <?= $form->field($model, 'HORAS_TALLER_MADERA')->textInput(['type' => 'number','size' => "3", 'maxleng' => '3', 'min' => 0, 'value' => horaModelo($model,'HORAS_TALLER_MADERA'), 'placeholder' => "Horas"])->label("Taller Maderas");?>
     </div>
     <div class = "col-xs-3">&nbsp;&nbsp;
     <?= $form->field($model, 'HORAS_GYM')->textInput(['type' => 'number','size' => "3", 'maxleng' => '3', 'min' => 0, 'value' => horaModelo($model,'HORAS_GYM'), 'placeholder' => "Horas"])->label("Gimnasio");?>
