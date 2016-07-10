@@ -36,6 +36,7 @@ class TiempoInicioController extends Controller
      */
     public function actionIndex()
     {
+        PermisosController::permisoAdministrador();
         $searchModel = new TiempoInicioSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -52,6 +53,7 @@ class TiempoInicioController extends Controller
      */
     public function actionView($id)
     {
+        PermisosController::permisoAdministrador();
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -64,6 +66,7 @@ class TiempoInicioController extends Controller
      */
     public function actionCreate()
     {
+        PermisosController::permisoAdministrador();
         $model = new TiempoInicio();
 
         if ($model->load(Yii::$app->request->post())) {
@@ -101,6 +104,7 @@ class TiempoInicioController extends Controller
      */
     public function actionUpdate($id)
     {
+        PermisosController::permisoAdministrador();
         $model = $this->findModel($id);
 
         $bloques = Bloque::find()-> where(['INICIO' => $model -> TIEMPO]) -> all();
@@ -127,6 +131,7 @@ class TiempoInicioController extends Controller
      */
     public function actionDelete($id)
     {
+        PermisosController::permisoAdministrador();
         $bloques = Bloque::find()-> where(['INICIO' => $this->findModel($id) -> TIEMPO]) -> all();
         $this->findModel($id)->delete();
         foreach ($bloques as $bloque) {

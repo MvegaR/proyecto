@@ -32,6 +32,7 @@ class AsignaturaController extends Controller
      */
     public function actionIndex()
     {
+        PermisosController::permisoAdministrador();
         $searchModel = new AsignaturaSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -48,6 +49,8 @@ class AsignaturaController extends Controller
      */
     public function actionView($id)
     {
+
+        PermisosController::permisoAdministrador();
         return $this->render('view', [
             'model' => $this->findModel($id),
             ]);
@@ -60,6 +63,7 @@ class AsignaturaController extends Controller
      */
     public function actionCreate()
     {
+        PermisosController::permisoAdministrador();
         $model = new Asignatura();
         
         if($model->load(Yii::$app->request->post())){
@@ -84,6 +88,7 @@ class AsignaturaController extends Controller
      */
     public function actionUpdate($id)
     {
+        PermisosController::permisoAdministrador();
         $model = $this->findModel($id);
 
         if($model->load(Yii::$app->request->post())){
@@ -109,6 +114,7 @@ class AsignaturaController extends Controller
      */
     public function actionDelete($id)
     {
+        PermisosController::permisoAdministrador();
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);

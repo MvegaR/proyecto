@@ -71,6 +71,7 @@ use yii\filters\VerbFilter;
         */
         public function actionIndex()
         {
+            PermisosController::permisoAdministrador();
             $searchModel = new BloqueSearch();
             $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -87,6 +88,7 @@ use yii\filters\VerbFilter;
         */
         public function actionView($id)
         {
+            PermisosController::permisoAdministrador();
             return $this->render('view', [
                 'model' => $this->findModel($id),
                 ]);
@@ -99,6 +101,7 @@ use yii\filters\VerbFilter;
         */
         public function actionCreate()
         {
+            PermisosController::permisoAdministrador();
             $model = new Bloque();
 
             if ($model->load(Yii::$app->request->post())) {
@@ -132,6 +135,7 @@ use yii\filters\VerbFilter;
         */
         public function actionUpdate($id)
         {
+            PermisosController::permisoAdministrador();
             $model = $this->findModel($id);
 
             if ($model->load(Yii::$app->request->post())) {
@@ -164,6 +168,7 @@ use yii\filters\VerbFilter;
         * @return mixed
         */
         public function actionDelete($id){
+            PermisosController::permisoAdministrador();
             $this->findModel($id)->delete();
 
             return $this->redirect(['index']);

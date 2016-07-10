@@ -32,6 +32,7 @@ class DocenteController extends Controller
      */
     public function actionIndex()
     {
+        PermisosController::permisoAdministrador();
         $searchModel = new DocenteSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -48,6 +49,7 @@ class DocenteController extends Controller
      */
     public function actionView($id)
     {
+        PermisosController::permisoAdministrador();
         return $this->render('view', [
             'model' => $this->findModel($id),
             ]);
@@ -60,6 +62,7 @@ class DocenteController extends Controller
      */
     public function actionCreate()
     {
+        PermisosController::permisoAdministrador();
         $model = new Docente();
         if($model->load(Yii::$app->request->post()) ){
             if($model -> PASSWORD != null || $model -> PASSWORD != '') {$model -> PASSWORD = sha1($model -> PASSWORD);  $model -> PASSWORD_REPEAT = sha1($model -> PASSWORD);}
@@ -91,6 +94,7 @@ class DocenteController extends Controller
      */
     public function actionUpdate($id)
     {
+        PermisosController::permisoAdministrador();
         $model = $this->findModel($id);
         if($model->load(Yii::$app->request->post()) ){
             if($model -> PASSWORD != null || $model -> PASSWORD != '') {
@@ -129,6 +133,7 @@ class DocenteController extends Controller
      */
     public function actionDelete($id)
     {
+        PermisosController::permisoAdministrador();
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);

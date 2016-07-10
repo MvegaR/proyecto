@@ -32,6 +32,7 @@ class EdificioController extends Controller
      */
     public function actionIndex()
     {
+        PermisosController::permisoAdministrador();
         $searchModel = new EdificioSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -48,6 +49,7 @@ class EdificioController extends Controller
      */
     public function actionView($id)
     {
+        PermisosController::permisoAdministrador();
         return $this->render('view', [
             'model' => $this->findModel($id),
             ]);
@@ -60,6 +62,7 @@ class EdificioController extends Controller
      */
     public function actionCreate()
     {
+        PermisosController::permisoAdministrador();
         $model = new Edificio();
 
         if ($model->load(Yii::$app->request->post())) {
@@ -84,6 +87,7 @@ class EdificioController extends Controller
      */
     public function actionUpdate($id)
     {
+        PermisosController::permisoAdministrador();
         $model = $this->findModel($id);
 
         
@@ -109,6 +113,7 @@ class EdificioController extends Controller
      */
     public function actionDelete($id)
     {
+        PermisosController::permisoAdministrador();
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);

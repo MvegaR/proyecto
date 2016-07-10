@@ -32,6 +32,7 @@ class TipoDenunciaController extends Controller
      */
     public function actionIndex()
     {
+        PermisosController::permisoAdministrador();
         $searchModel = new TipoDenunciaSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -60,6 +61,7 @@ class TipoDenunciaController extends Controller
      */
     public function actionCreate()
     {
+        PermisosController::permisoAdministrador();
         $model = new TipoDenuncia();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -79,6 +81,7 @@ class TipoDenunciaController extends Controller
      */
     public function actionUpdate($id)
     {
+        PermisosController::permisoAdministrador();
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -98,6 +101,7 @@ class TipoDenunciaController extends Controller
      */
     public function actionDelete($id)
     {
+        PermisosController::permisoAdministrador();
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);

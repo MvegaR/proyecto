@@ -36,6 +36,7 @@ class DiaController extends Controller
      */
     public function actionIndex()
     {
+        PermisosController::permisoAdministrador();
         $searchModel = new DiaSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -52,6 +53,7 @@ class DiaController extends Controller
      */
     public function actionView($id)
     {
+        PermisosController::permisoAdministrador();
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -64,6 +66,7 @@ class DiaController extends Controller
      */
     public function actionCreate()
     {
+        PermisosController::permisoAdministrador();
         $model = new Dia();
 
         if ($model->load(Yii::$app->request->post())) {
@@ -99,6 +102,7 @@ class DiaController extends Controller
      */
     public function actionUpdate($id)
     {
+        PermisosController::permisoAdministrador();
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -118,6 +122,7 @@ class DiaController extends Controller
      */
     public function actionDelete($id)
     {
+        PermisosController::permisoAdministrador();
         $bloques = Bloque::find()-> where(['ID_DIA' => $id]) -> all();
         foreach ($bloques as $bloque) {
             $bloque -> delete();

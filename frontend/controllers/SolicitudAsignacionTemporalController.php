@@ -35,6 +35,7 @@ class SolicitudAsignacionTemporalController extends Controller
      */
     public function actionIndex()
     {
+        PermisosController::permisoAdministrador();
         $searchModel = new SolicitudAsignacionTemporalSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -51,6 +52,7 @@ class SolicitudAsignacionTemporalController extends Controller
      */
     public function actionView($id)
     {
+         PermisosController::permisoAdminDocente();
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -63,6 +65,7 @@ class SolicitudAsignacionTemporalController extends Controller
      */
     public function actionCreate()
     {
+         PermisosController::permisoAdminDocente();
         $model = new SolicitudAsignacionTemporal();
         
         if ($model->load(Yii::$app->request->post()) ) {
@@ -149,6 +152,7 @@ class SolicitudAsignacionTemporalController extends Controller
      */
     public function actionUpdate($id)
     {
+        PermisosController::permisoAdministrador();
         $model1 = $this->findModel($id);
         $model = $this -> findModel($model1->SOLICITUD_TEMPORAL_PADRE);
 
@@ -170,6 +174,7 @@ class SolicitudAsignacionTemporalController extends Controller
      */
     public function actionDelete($id, $r = true)
     {
+        PermisosController::permisoAdministrador();
         $model1 = $this->findModel($id);
         $model = $this -> findModel($model1->SOLICITUD_TEMPORAL_PADRE);
         $model = SolicitudAsignacionTemporal::find() -> where(["SOLICITUD_TEMPORAL_PADRE" => $model1->SOLICITUD_TEMPORAL_PADRE]) -> all();

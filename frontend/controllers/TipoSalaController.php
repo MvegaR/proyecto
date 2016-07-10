@@ -32,6 +32,7 @@ class TipoSalaController extends Controller
      */
     public function actionIndex()
     {
+        PermisosController::permisoAdministrador();
         $searchModel = new TipoSalaSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -48,6 +49,7 @@ class TipoSalaController extends Controller
      */
     public function actionView($id)
     {
+        PermisosController::permisoAdministrador();
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -79,6 +81,7 @@ class TipoSalaController extends Controller
      */
     public function actionUpdate($id)
     {
+        PermisosController::permisoAdministrador();
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -98,6 +101,7 @@ class TipoSalaController extends Controller
      */
     public function actionDelete($id)
     {
+        PermisosController::permisoAdministrador();
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);

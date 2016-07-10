@@ -71,6 +71,7 @@ class SalaController extends Controller
      */
     public function actionIndex()
     {
+      PermisosController::permisoAdministrador();
         $searchModel = new PostSalafrontend();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -87,6 +88,7 @@ class SalaController extends Controller
      */
     public function actionView($id)
     {
+      PermisosController::permisoAdministrador();
         return $this->render('view', [
             'model' => $this->findModel($id),
             ]);
@@ -99,6 +101,7 @@ class SalaController extends Controller
      */
     public function actionCreate()
     {
+      PermisosController::permisoAdministrador();
         $model = new Sala();
         if($model->load(Yii::$app->request->post())){
             if($model -> ID_TIPO_SALA == ''){
@@ -140,6 +143,7 @@ class SalaController extends Controller
      */
     public function actionUpdate($id)
     {
+      PermisosController::permisoAdministrador();
         $model = $this->findModel($id);
 
         if($model->load(Yii::$app->request->post())){
@@ -168,6 +172,7 @@ class SalaController extends Controller
      */
     public function actionDelete($id)
     {
+      PermisosController::permisoAdministrador();
         $bloques = new bloque;
         foreach($bloques -> find() -> where(["ID_SALA" => $id]) -> all() as $bloque){
             $bloque -> delete();

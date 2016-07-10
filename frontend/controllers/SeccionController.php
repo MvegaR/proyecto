@@ -33,6 +33,7 @@ class SeccionController extends Controller
      */
     public function actionIndex()
     {
+        PermisosController::permisoAdministrador();
         $searchModel = new SeccionSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -49,6 +50,7 @@ class SeccionController extends Controller
      */
     public function actionView($id)
     {
+        PermisosController::permisoAdministrador();
         return $this->render('view', [
             'model' => $this->findModel($id),
             ]);
@@ -61,6 +63,7 @@ class SeccionController extends Controller
      */
     public function actionCreate()
     {
+        PermisosController::permisoAdministrador();
         $model = new Seccion();
 
         if ($model->load(Yii::$app->request->post())) {
@@ -88,6 +91,7 @@ class SeccionController extends Controller
      */
     public function actionUpdate($id)
     {
+        PermisosController::permisoAdministrador();
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post())) {
@@ -115,6 +119,7 @@ class SeccionController extends Controller
      */
     public function actionDelete($id)
     {
+        PermisosController::permisoAdministrador();
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);

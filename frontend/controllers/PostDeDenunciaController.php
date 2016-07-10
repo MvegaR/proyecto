@@ -32,6 +32,7 @@ class PostDeDenunciaController extends Controller
      */
     public function actionIndex()
     {
+        PermisosController::permisoAdministrador();
         $searchModel = new PostDeDenunciaSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -48,6 +49,7 @@ class PostDeDenunciaController extends Controller
      */
     public function actionView($id)
     {
+
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -60,6 +62,7 @@ class PostDeDenunciaController extends Controller
      */
     public function actionCreate()
     {
+        
         $model = new PostDeDenuncia;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -79,6 +82,7 @@ class PostDeDenunciaController extends Controller
      */
     public function actionUpdate($id)
     {
+        PermisosController::permisoAdministrador();
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -98,6 +102,7 @@ class PostDeDenunciaController extends Controller
      */
     public function actionDelete($id)
     {
+        PermisosController::permisoAdministrador();
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);

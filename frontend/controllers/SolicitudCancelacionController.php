@@ -33,6 +33,7 @@ class SolicitudCancelacionController extends Controller
      */
     public function actionIndex()
     {
+        PermisosController::permisoAdministrador();
         $searchModel = new SolicitudCancelacionSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -49,6 +50,7 @@ class SolicitudCancelacionController extends Controller
      */
     public function actionView($id)
     {
+         PermisosController::permisoAdminDocente();
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -61,6 +63,7 @@ class SolicitudCancelacionController extends Controller
      */
     public function actionCreate()
     {
+         PermisosController::permisoAdminDocente();
         $model = new SolicitudCancelacion();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -93,6 +96,7 @@ class SolicitudCancelacionController extends Controller
      */
     public function actionUpdate($id)
     {
+        PermisosController::permisoAdministrador();
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -112,6 +116,7 @@ class SolicitudCancelacionController extends Controller
      */
     public function actionDelete($id)
     {
+        PermisosController::permisoAdministrador();
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
