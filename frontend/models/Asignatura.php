@@ -100,6 +100,7 @@ class Asignatura extends \yii\db\ActiveRecord
                         ";
 
            // echo "<br><br><br><br><br>$sql<br><br><br>";
+                    
             $command = Yii::$app -> db -> createCommand($sql);
             $dataReader = $command->queryAll();
             return $dataReader;

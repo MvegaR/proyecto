@@ -148,8 +148,8 @@ public class Clase {
 
 	}
 //	System.out.println("CondadorSalas="+contador);
-	r.sort(new ComparatorSalaCantidadBloquesYCapacidad(this.getSeccion().getCupo()));
-	/*
+	//r.sort(new ComparatorSalaCantidadBloquesYCapacidad(this.getSeccion().getCupo()));
+	//*
 	//4. Para una carrera se prefiere clases en edificios de su facultad. (Listo) (Eliminado) (Evaluar)
 	ArrayList<Sala> igualFacultad = new ArrayList<>(); //edificios con facultad determinada
 	ArrayList<Sala> sinFacultad = new ArrayList<>(); //edificios sin facultad determinada
@@ -165,9 +165,13 @@ public class Clase {
 	    }
 	}
 	r = new ArrayList<>();
+	
+	igualFacultad.sort(new ComparatorSalaCantidadBloquesYCapacidad(this.getSeccion().getCupo()));
+	sinFacultad.sort(new ComparatorSalaCantidadBloquesYCapacidad(this.getSeccion().getCupo()));
+	otraFacultad.sort(new ComparatorSalaCantidadBloquesYCapacidad(this.getSeccion().getCupo()));
 	r.addAll(igualFacultad);
 	r.addAll(sinFacultad);
-	r.addAll(otraFacultad); */
+	r.addAll(otraFacultad); // */
 
 	if(r.isEmpty() && existeSalaTipo(this.getTipo(), ventana.getSalas()) && !this.getTipo().equals(1) && contador != 0){ //2
 	    //intentar crear nuevas clases, (mantener la capacidad de la sección y no considerar capacidad, intentar hacer diviciones por 2 o 3 o 4

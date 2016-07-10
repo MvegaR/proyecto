@@ -17,12 +17,13 @@ public class ComparatorSalaCantidadBloquesYCapacidad implements Comparator<Sala>
     public int compare(Sala o1, Sala o2) {
 	int r = 0;
 	if(r == 0){
-	    //que se prefiera diferencia menor
-	    Integer diferencia1 = o1.getCapacidadSala() - capacidadIdeal;
-	    Integer diferencia2 = o2.getCapacidadSala() - capacidadIdeal;
-	    r = diferencia1.compareTo(diferencia2);
+	    r = contadorDeBloques(o2).compareTo(contadorDeBloques(o1));
 	    if(r == 0){
-		r = contadorDeBloques(o2).compareTo(contadorDeBloques(o1));
+		//que se prefiera diferencia menor
+		Integer diferencia1 = o1.getCapacidadSala() - capacidadIdeal;
+		Integer diferencia2 = o2.getCapacidadSala() - capacidadIdeal;
+		r = diferencia1.compareTo(diferencia2);
+
 		if(r == 0){
 		    r = o1.getIdSala().compareTo(o2.getIdSala());
 		}

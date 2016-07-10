@@ -1,4 +1,5 @@
 package db;
+import java.io.UnsupportedEncodingException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 public class Asignatura {
@@ -44,7 +45,12 @@ public class Asignatura {
 	try {
 	    this.idAsignatura = datos.getString(1);
 	    this.idCarrera = datos.getString(2);
-	    this.nombreAsignatura = datos.getString(3);
+	    try {
+		this.nombreAsignatura = new String(datos.getString(3).getBytes(), "UTF-8");
+	    } catch (UnsupportedEncodingException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	    }
 	    this.anio = datos.getInt(4);
 	    this.semestre = datos.getInt(5);
 	    this.horaTeo = datos.getInt(6);

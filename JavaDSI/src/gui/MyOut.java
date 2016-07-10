@@ -15,7 +15,8 @@ public class MyOut extends OutputStream{
     }
 
     public void write(int b) throws IOException {
-	texto.append(String.valueOf((char)b)); 
+	String ch = new String( String.valueOf((char)b).getBytes(),"UTF-8");
+	texto.append(ch); 
 	texto.setCaretPosition(texto.getDocument().getLength());
     }
 

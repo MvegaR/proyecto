@@ -108,7 +108,7 @@ public class ProgresoAsignacion extends JPanel {
 	txtrTextoDePrueba.setBackground(SystemColor.inactiveCaption);
 	txtrTextoDePrueba.setEditable(false);
 	txtrTextoDePrueba.setLineWrap(true);
-	txtrTextoDePrueba.setFont(new Font("Consolas", Font.PLAIN, 15));
+	txtrTextoDePrueba.setFont(new Font("Arial Unicode MS", Font.PLAIN, 16));
 	txtrTextoDePrueba.setBounds(new Rectangle(32, 0, 1221, 403));
 	scrollPane.setViewportView(txtrTextoDePrueba);
 	System.setOut(new PrintStream(new MyOut(txtrTextoDePrueba))); //Cambiando salida de consola JText.
