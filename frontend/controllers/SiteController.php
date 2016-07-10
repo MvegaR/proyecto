@@ -728,10 +728,10 @@ class SiteController extends Controller{
 			") -> queryAll();
 		foreach ($asignaturasSinSecciones as $asignatura) {
 			if($asignatura['HORAS_TEO'] > 12 || $asignatura['HORAS_TEO']  == 0 || $asignatura['HORAS_TEO']  == null){
-				$cantidadDeSeccionesAGenerar = 3;
+				$cantidadDeSeccionesAGenerar = 2;
 				$cantidadDeAlumnosPorSeccion = rand(2, 4) * 4; //multiplo de 4.
 			}else{
-				$cantidadDeSeccionesAGenerar = rand(1,3);
+				$cantidadDeSeccionesAGenerar = rand(1,2);
 				$cantidadDeAlumnosPorSeccion = rand(3, 8) * 5; //multiplo de 5.
 			}
 			for($i = 0; $i < $cantidadDeSeccionesAGenerar; $i++){

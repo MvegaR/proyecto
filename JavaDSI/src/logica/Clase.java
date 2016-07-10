@@ -256,7 +256,7 @@ public class Clase {
 
 			}else {
 			    this.getBloquesAsignados().clear();
-			   // System.out.println("borrar!! no hay tiempo siguientes suficiente");
+			    // System.out.println("borrar!! no hay tiempo siguientes suficiente");
 			    break;
 			}
 		    }
@@ -333,7 +333,7 @@ public class Clase {
 		    //Inicio de buscar la seccion distinta a la que esta en this y que sea de la misma asignatura y tenga otro horario distinto al que se intenta elejir...
 		    //para tener las clases nececitamos al planificador...
 
-		    /* Boolean sePuedeBuscarAlternativa = false;
+		    Boolean sePuedeBuscarAlternativa = false;
 		    for(Seccion s: this.getPlanificador().getSecciones()){
 			if(!s.equals(this.getSeccion()) && s.getIdAsignatura().equals(this.getSeccion().getIdAsignatura())){
 			    sePuedeBuscarAlternativa = true;
@@ -347,50 +347,50 @@ public class Clase {
 			    break;
 			}
 		    }
-		    if(sePuedeBuscarAlternativa && sePuedeBuscarAlternativa2){ */
+		    if(sePuedeBuscarAlternativa && sePuedeBuscarAlternativa2){ 
 
-		    for(Seccion seccionLegendaria: ventana.getSecciones()){
-			if(!this.getSeccion().equals(seccionLegendaria) //no es legendaria =(
-				&& this.getSeccion().getIdAsignatura().equals(seccionLegendaria.getIdAsignatura())){
-			    //inicio de ver si tiene distinto horario.
-			    //hay que tener todas las clases de la seccion de this y la que estamos comparando para ...
-			    LinkedList<Clase> clasesDeLaSeccionDeThis = new LinkedList<Clase>(); //WTF?? Con la seccion del elBLoque que esta chocando..
-			    for(Clase c: this.getPlanificador().getListaDeClases()){
-				if(c.getSeccion().equals(this.getSeccion())){
-				    clasesDeLaSeccionDeThis.add(c);
+			for(Seccion seccionLegendaria: ventana.getSecciones()){
+			    if(!this.getSeccion().equals(seccionLegendaria) //no es legendaria =(
+				    && this.getSeccion().getIdAsignatura().equals(seccionLegendaria.getIdAsignatura())){
+				//inicio de ver si tiene distinto horario.
+				//hay que tener todas las clases de la seccion de this y la que estamos comparando para ...
+				LinkedList<Clase> clasesDeLaSeccionDeThis = new LinkedList<Clase>(); //WTF?? Con la seccion del elBLoque que esta chocando..
+				for(Clase c: this.getPlanificador().getListaDeClases()){
+				    if(c.getSeccion().equals(this.getSeccion())){
+					clasesDeLaSeccionDeThis.add(c);
+				    }
 				}
-			    }
 
-			    LinkedList<Clase> clasesDeLaSeccionTopon = new LinkedList<Clase>();
-			    for(Clase c: this.getPlanificador().getListaDeClases()){
-				if(c.getSeccion().getIdSeccion().equals(elBloque.getIdSeccion())){
-				    clasesDeLaSeccionTopon.add(c);
+				LinkedList<Clase> clasesDeLaSeccionTopon = new LinkedList<Clase>();
+				for(Clase c: this.getPlanificador().getListaDeClases()){
+				    if(c.getSeccion().getIdSeccion().equals(elBloque.getIdSeccion())){
+					clasesDeLaSeccionTopon.add(c);
+				    }
 				}
-			    }
 
 
-			    LinkedList<Clase> clasesDeLaOtraSeccion = new LinkedList<Clase>();
-			    for(Clase c: this.getPlanificador().getListaDeClases()){
-				if(c.getSeccion().equals(seccionLegendaria)){
-				    clasesDeLaOtraSeccion.add(c);
+				LinkedList<Clase> clasesDeLaOtraSeccion = new LinkedList<Clase>();
+				for(Clase c: this.getPlanificador().getListaDeClases()){
+				    if(c.getSeccion().equals(seccionLegendaria)){
+					clasesDeLaOtraSeccion.add(c);
+				    }
 				}
-			    }
-			    //... comparalas con tadas las clases de la seccion. 
-			    for(Clase a: clasesDeLaSeccionTopon){
-				for(Clase b: clasesDeLaOtraSeccion){
-				    for(Bloque aa: a.getBloquesAsignados()){
-					for(Bloque bb: b.getBloquesAsignados()){
-					    if(aa.getInicio().equals( bb.getInicio() )&& aa.getIdDia().equals(bb.getIdDia())){
-						return false;
+				//... comparalas con tadas las clases de la seccion. 
+				for(Clase a: clasesDeLaSeccionTopon){
+				    for(Clase b: clasesDeLaOtraSeccion){
+					for(Bloque aa: a.getBloquesAsignados()){
+					    for(Bloque bb: b.getBloquesAsignados()){
+						if(aa.getInicio().equals( bb.getInicio() )&& aa.getIdDia().equals(bb.getIdDia())){
+						    return false;
+						}
 					    }
 					}
 				    }
 				}
 			    }
 
-
 			    //Fin de ver si tienen distinto horario. si llego aqui tiene otro horario o aun no tiene bloques asignados.
-			   //return true;
+			    //return true;
 			}
 		    } 
 		    //*/
