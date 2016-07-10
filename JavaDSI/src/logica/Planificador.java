@@ -124,17 +124,17 @@ public class Planificador extends Thread{
 	this.totalDeClases = this.getListaDeClases().size();
     }
     
-    private ArrayList<Seccion> getSecciones() {
+    public ArrayList<Seccion> getSecciones() {
 	return secciones;
     }
 
     public void asignarEnBD(){
-	System.out.println("Insertando en base de datos; Ahora no se puede detener el proceso.");
+
 	for(Clase c: this.getListaDeClases()){
+	    System.out.println(c);
 	    for(Bloque b: c.getBloquesAsignados()){
-
-		Conexion.ejecutarSQL("UPDATE bloque SET ID_SECCION = '" + b.getIdSeccion() + "', BLOQUE_SIGUIENTE = "+b.getBloqueSiguiente()+" WHERE ID_BLOQUE = '" +b.getIdBloque()+"'");
-
+		String sql = "UPDATE bloque SET ID_SECCION = '" + b.getIdSeccion() + "', BLOQUE_SIGUIENTE = "+b.getBloqueSiguiente()+" WHERE ID_BLOQUE = '" +b.getIdBloque()+"'";
+		Conexion.ejecutarSQL(sql);
 	    }
 	}
 	System.out.println("Finalizado.");
@@ -147,40 +147,40 @@ public class Planificador extends Thread{
 	    lista.addAll(getClasesEnSalaNormal()); //ir agregando listas segun su tipo
 	}
 	if(getClasesEnLabComputacion() != null){
-	    lista.addAll(getClasesElecDigital());
+	    lista.addAll(getClasesEnLabComputacion());
 	}
 	if(getClasesEnLabFisica() != null){
-	    lista.addAll(getClasesElecDigital());
+	    lista.addAll(getClasesEnLabFisica());
 	}
 	if(getClasesEnLabQuimica() != null){
-	    lista.addAll(getClasesElecDigital());
+	    lista.addAll(getClasesEnLabQuimica());
 	}
 	if(getClasesEnLabMecanica() != null){
-	    lista.addAll(getClasesElecDigital());
+	    lista.addAll(getClasesEnLabMecanica());
 	}
 	if(getClasesEnLabRobotica() != null){
-	    lista.addAll(getClasesElecDigital());
+	    lista.addAll(getClasesEnLabRobotica());
 	}
 	if(getClasesEnTallerArquitectura() != null){
-	    lista.addAll(getClasesElecDigital());
+	    lista.addAll(getClasesEnTallerArquitectura());
 	}
 	if(getClasesEnTallerMadera() != null){
-	    lista.addAll(getClasesElecDigital());
+	    lista.addAll(getClasesEnTallerMadera());
 	}
 	if(getClasesEnGYM() != null){
-	    lista.addAll(getClasesElecDigital());
+	    lista.addAll(getClasesEnGYM());
 	}
 	if(getClasesEnAuditorio() != null){
-	    lista.addAll(getClasesElecDigital());
+	    lista.addAll(getClasesEnAuditorio());
 	}
 	if(getClasesEnEspRedes() != null){
-	    lista.addAll(getClasesElecDigital());
+	    lista.addAll(getClasesEnEspRedes());
 	}
 	if(getClasesElecDigital() != null){
 	    lista.addAll(getClasesElecDigital());
 	}
 	if(getClasesEnLabMecanica() != null){
-	    lista.addAll(getClasesElecDigital());
+	    lista.addAll(getClasesEnLabMecanica());
 	}
 	if(getClasesCreadasPorDividirOtras() != null){
 	    lista.addAll(getClasesCreadasPorDividirOtras());
@@ -720,6 +720,8 @@ public class Planificador extends Thread{
     public Integer getPorcentajeProgreso(){
 	return (int) (( (this.totalDeClasesConAsignaciones * 1.0) / (this.totalDeClases * 1.0 ) ) * 100) ;
     }
+    
+    
 
 
 

@@ -717,9 +717,9 @@ class SiteController extends Controller{
 
 
 	public function actionGenerarSecciones(){ //y asiganarles profes
-
+		//if horas teo == 0 || horas teo > 12; cupo de 10 a 20 y 4 seccioens, 
 		$asignaturasSinSecciones = Yii::$app -> db -> createCommand("
-			SELECT A.ID_ASIGNATURA 
+			SELECT A.ID_ASIGNATURA , A.HORAS_TEO
 			FROM asignatura A 
 			WHERE A.ID_ASIGNATURA NOT IN (
 				SELECT ID_ASIGNATURA 
@@ -727,8 +727,13 @@ class SiteController extends Controller{
 				WHERE S.ID_ASIGNATURA = A.ID_ASIGNATURA);
 			") -> queryAll();
 		foreach ($asignaturasSinSecciones as $asignatura) {
-			$cantidadDeSeccionesAGenerar = rand(1,2);
-			$cantidadDeAlumnosPorSeccion = rand(3, 8) * 5; //multiplo de 5.
+			if($asignatura['HORAS_TEO'] > 12 || $asignatura['HORAS_TEO']  == 0 || $asignatura['HORAS_TEO']  == null){
+				$cantidadDeSeccionesAGenerar = 4;
+				$cantidadDeAlumnosPorSeccion = rand(3, 4) * 4; //multiplo de 4.
+			}else{
+				$cantidadDeSeccionesAGenerar = rand(1,2);
+				$cantidadDeAlumnosPorSeccion = rand(3, 8) * 5; //multiplo de 5.
+			}
 			for($i = 0; $i < $cantidadDeSeccionesAGenerar; $i++){
 				$seccion = new Seccion;
 				$seccion -> ID_SECCION = "sec".($i+1).'-'.$asignatura['ID_ASIGNATURA'];
@@ -751,7 +756,7 @@ class SiteController extends Controller{
 			") -> queryAll();
 			$cantidadDeProfes = count($profesSinSecciones);
 			$arregloDePosicionesDeSeccionesUsadas = [];
-			$cantidadDeSeccionesParaElProfe =  rand(2,4);
+			$cantidadDeSeccionesParaElProfe =  rand(2,5);
 			$elProfe = rand(0, $cantidadDeProfes-1);
 			for($i = 0; $i < $cantidadDeSeccionesParaElProfe ; $i++){
 				while(array_search($seccion = rand(0, count($seccionesSinProfe)-1), $arregloDePosicionesDeSeccionesUsadas)){ //ineficiencia  xD

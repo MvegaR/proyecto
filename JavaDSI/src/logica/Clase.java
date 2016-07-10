@@ -147,7 +147,7 @@ public class Clase {
 	    }
 
 	}
-//	System.out.println("CondadorSalas="+contador);
+	//	System.out.println("CondadorSalas="+contador);
 	//r.sort(new ComparatorSalaCantidadBloquesYCapacidad(this.getSeccion().getCupo()));
 	//*
 	//4. Para una carrera se prefiere clases en edificios de su facultad. (Listo) (Eliminado) (Evaluar)
@@ -165,7 +165,7 @@ public class Clase {
 	    }
 	}
 	r = new ArrayList<>();
-	
+
 	igualFacultad.sort(new ComparatorSalaCantidadBloquesYCapacidad(this.getSeccion().getCupo()));
 	sinFacultad.sort(new ComparatorSalaCantidadBloquesYCapacidad(this.getSeccion().getCupo()));
 	otraFacultad.sort(new ComparatorSalaCantidadBloquesYCapacidad(this.getSeccion().getCupo()));
@@ -200,14 +200,14 @@ public class Clase {
 
 	return r; // Si esta vacio obtenerBloques de this no hará nada, por lo que esta (this) "clase" (de materia) no tendrá validez y sí sus diviciones que ya ejecutaron su "obterbloques".
     }
-    
+
     private Boolean existeSalaTipo(Integer tipo, ArrayList<Sala> salas){
 	for(Sala s: salas){
 	    if(s.getIdTipoSala().equals(tipo)){
 		return true;
 	    }
 	}
-	    return false;
+	return false;
     }
 
 
@@ -216,7 +216,7 @@ public class Clase {
 	// dias en orden aleatorio, cuantos dias?? En ventana debe de ponerse o en planificar
 
 	Collections.shuffle(dias);
-	
+
 	this.ordenarDiasSegunClase(dias);
 	for(Sala sala: this.filtrarSalaPorTipoFacultadYCapacidad(salas, ventana)){ 
 	    for(Integer dia: dias){
@@ -249,13 +249,14 @@ public class Clase {
 			    if(bloqueSiguiente == null){
 
 				this.getBloquesAsignados().clear();
+				//System.out.println("Borrado por no tener siguiente suficiente");
 				break;
 
 			    }
 
 			}else {
 			    this.getBloquesAsignados().clear();
-			     //System.out.println("borrar!! no hay tiempo siguientes suficiente");
+			   // System.out.println("borrar!! no hay tiempo siguientes suficiente");
 			    break;
 			}
 		    }
@@ -263,7 +264,7 @@ public class Clase {
 		    if(!noChoque(ventana) || !profesorNoParalelo(ventana)){
 			this.getBloquesAsignados().clear();
 			//System.out.println("borrar!! no cumple restriccioes");
-			break;
+			//break;
 		    }
 		    // System.out.println("Bloques asignadosf: " + this.getBloquesAsignados().size());
 		    if(this.getBloquesAsignados().size() == this.getHorasContinuadas()){
@@ -287,10 +288,10 @@ public class Clase {
 	    }
 	}
 	if(!dividida){
-        	System.out.println("Clase asignada clase; Bloques total con asignaciones: " + (ventana.getBloques().size() - Clase.getBloques().size()) + " Bloques");
-        	System.out.println("Bloques clase "+ventana.getAsignatura(this.getSeccion().getIdAsignatura()).getNombreAsignatura()+" : "+this.getBloquesAsignados().toString());
+	    System.out.println("Clase asignada clase; Bloques total con asignaciones: " + (ventana.getBloques().size() - Clase.getBloques().size()) + " Bloques");
+	    System.out.println("Bloques clase "+ventana.getAsignatura(this.getSeccion().getIdAsignatura()).getNombreAsignatura()+" : "+this.getBloquesAsignados().toString());
+	    Clase.getBloques().removeAll(this.getBloquesAsignados());
 	}
-	Clase.getBloques().removeAll(this.getBloquesAsignados());
     }
 
 
@@ -331,28 +332,51 @@ public class Clase {
 			){
 		    //Inicio de buscar la seccion distinta a la que esta en this y que sea de la misma asignatura y tenga otro horario distinto al que se intenta elejir...
 		    //para tener las clases nececitamos al planificador...
-		    
-		    //No funciona.... :o
-		    //*
-		     for(Seccion seccionLegendaria: ventana.getSecciones()){
+
+		    /* Boolean sePuedeBuscarAlternativa = false;
+		    for(Seccion s: this.getPlanificador().getSecciones()){
+			if(!s.equals(this.getSeccion()) && s.getIdAsignatura().equals(this.getSeccion().getIdAsignatura())){
+			    sePuedeBuscarAlternativa = true;
+			    break;
+			}
+		    }
+		    Boolean sePuedeBuscarAlternativa2 = false;
+		    for(Seccion s: this.getPlanificador().getSecciones()){
+			if(!s.getIdSeccion().equals(elBloque.getIdSeccion()) && s.getIdAsignatura().equals( ventana.getSeccion(elBloque.getIdSeccion()).getIdAsignatura() )){
+			    sePuedeBuscarAlternativa2 = true;
+			    break;
+			}
+		    }
+		    if(sePuedeBuscarAlternativa && sePuedeBuscarAlternativa2){ */
+
+		    for(Seccion seccionLegendaria: ventana.getSecciones()){
 			if(!this.getSeccion().equals(seccionLegendaria) //no es legendaria =(
 				&& this.getSeccion().getIdAsignatura().equals(seccionLegendaria.getIdAsignatura())){
 			    //inicio de ver si tiene distinto horario.
 			    //hay que tener todas las clases de la seccion de this y la que estamos comparando para ...
-			    LinkedList<Clase> clasesDeLaSeccionDeThis = new LinkedList<Clase>();
+			    LinkedList<Clase> clasesDeLaSeccionDeThis = new LinkedList<Clase>(); //WTF?? Con la seccion del elBLoque que esta chocando..
 			    for(Clase c: this.getPlanificador().getListaDeClases()){
 				if(c.getSeccion().equals(this.getSeccion())){
 				    clasesDeLaSeccionDeThis.add(c);
 				}
 			    }
+
+			    LinkedList<Clase> clasesDeLaSeccionTopon = new LinkedList<Clase>();
+			    for(Clase c: this.getPlanificador().getListaDeClases()){
+				if(c.getSeccion().getIdSeccion().equals(elBloque.getIdSeccion())){
+				    clasesDeLaSeccionTopon.add(c);
+				}
+			    }
+
+
 			    LinkedList<Clase> clasesDeLaOtraSeccion = new LinkedList<Clase>();
 			    for(Clase c: this.getPlanificador().getListaDeClases()){
 				if(c.getSeccion().equals(seccionLegendaria)){
-				    clasesDeLaSeccionDeThis.add(c);
+				    clasesDeLaOtraSeccion.add(c);
 				}
 			    }
-			    //... comparalas con tadas las clases de la seccion.
-			    for(Clase a: clasesDeLaSeccionDeThis){
+			    //... comparalas con tadas las clases de la seccion. 
+			    for(Clase a: clasesDeLaSeccionTopon){
 				for(Clase b: clasesDeLaOtraSeccion){
 				    for(Bloque aa: a.getBloquesAsignados()){
 					for(Bloque bb: b.getBloquesAsignados()){
@@ -363,14 +387,17 @@ public class Clase {
 				    }
 				}
 			    }
+
+
 			    //Fin de ver si tienen distinto horario. si llego aqui tiene otro horario o aun no tiene bloques asignados.
-			    return true;
+			   // return true; //por si hay más alternativas
 			}
 		    } 
-		     //*/
+		    //*/
 
 		    return false;
 
+		    // }
 		}
 	    }
 
