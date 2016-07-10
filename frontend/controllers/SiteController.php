@@ -728,10 +728,10 @@ class SiteController extends Controller{
 			") -> queryAll();
 		foreach ($asignaturasSinSecciones as $asignatura) {
 			if($asignatura['HORAS_TEO'] > 12 || $asignatura['HORAS_TEO']  == 0 || $asignatura['HORAS_TEO']  == null){
-				$cantidadDeSeccionesAGenerar = 4;
-				$cantidadDeAlumnosPorSeccion = rand(3, 4) * 4; //multiplo de 4.
+				$cantidadDeSeccionesAGenerar = 3;
+				$cantidadDeAlumnosPorSeccion = rand(2, 4) * 4; //multiplo de 4.
 			}else{
-				$cantidadDeSeccionesAGenerar = rand(1,2);
+				$cantidadDeSeccionesAGenerar = rand(1,3);
 				$cantidadDeAlumnosPorSeccion = rand(3, 8) * 5; //multiplo de 5.
 			}
 			for($i = 0; $i < $cantidadDeSeccionesAGenerar; $i++){
@@ -756,7 +756,7 @@ class SiteController extends Controller{
 			") -> queryAll();
 			$cantidadDeProfes = count($profesSinSecciones);
 			$arregloDePosicionesDeSeccionesUsadas = [];
-			$cantidadDeSeccionesParaElProfe =  rand(2,5);
+			$cantidadDeSeccionesParaElProfe =  rand(3,4);
 			$elProfe = rand(0, $cantidadDeProfes-1);
 			for($i = 0; $i < $cantidadDeSeccionesParaElProfe ; $i++){
 				while(array_search($seccion = rand(0, count($seccionesSinProfe)-1), $arregloDePosicionesDeSeccionesUsadas)){ //ineficiencia  xD

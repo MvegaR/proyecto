@@ -390,7 +390,7 @@ public class Clase {
 
 
 			    //Fin de ver si tienen distinto horario. si llego aqui tiene otro horario o aun no tiene bloques asignados.
-			   // return true; //por si hay más alternativas
+			   //return true;
 			}
 		    } 
 		    //*/

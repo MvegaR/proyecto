@@ -20,7 +20,7 @@ $media = Sala:: find() -> count()/2;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
     <ul class="list-group">
   <li class="list-group-item list-group-item-success">Bastantes salas disponibles</li>
-  <li class="list-group-item list-group-item-warning">Cantidad cercana a la media (+-20%) del total de salas, disponibles</li>
+  <li class="list-group-item list-group-item-warning">Cantidad cercana a la media del total de salas, disponibles</li>
   <li class="list-group-item list-group-item-danger">Pocas salas disponibles</li>
 </ul>
 <div class= "table-responsive text-center">
@@ -57,8 +57,8 @@ $media = Sala:: find() -> count()/2;
             else if($j == 18) echo '<tr><th>I: 21:40 <br><br> F:22:20</th>';
             else if($j == 19) echo '<tr><th>I: 22:20 <br><br> F:23:00</th>';
             for($i = 0; $i < 6; $i++){
-                if($array[$j+(20*$i)] > $media - ($media * 0.2)){
-                 if($array[$j+(20*$i)]  < ($media + ($media * 0.2))){
+                if($array[$j+(20*$i)] > $media - ($media * 0.1)){
+                 if($array[$j+(20*$i)]  < ($media + ($media * 0.1))){
                     echo '<td><a href="'.Url::toRoute(["horario-general/disponibles", "dia" => $i+1,"inicio" => $j]).'" class="list-group-item list-group-item-warning" title="Click para ver salas disponibles"><span class="glyphicon glyphicon-ok-sign">'.$array[$j+(20*$i)].' Disponibles</spam></a></td>';
                 }else {
                      echo '<td><a href="'.Url::toRoute(["horario-general/disponibles", "dia" => $i+1,"inicio" => $j]).'" class="list-group-item list-group-item-success" title="Click para ver salas disponibles"><span class="glyphicon glyphicon-ok-sign">'.$array[$j+(20*$i)].' Disponibles</spam></a></td>';

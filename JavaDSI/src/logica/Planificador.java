@@ -131,7 +131,6 @@ public class Planificador extends Thread{
     public void asignarEnBD(){
 
 	for(Clase c: this.getListaDeClases()){
-	    System.out.println(c);
 	    for(Bloque b: c.getBloquesAsignados()){
 		String sql = "UPDATE bloque SET ID_SECCION = '" + b.getIdSeccion() + "', BLOQUE_SIGUIENTE = "+b.getBloqueSiguiente()+" WHERE ID_BLOQUE = '" +b.getIdBloque()+"'";
 		Conexion.ejecutarSQL(sql);
