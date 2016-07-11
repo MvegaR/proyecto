@@ -2,7 +2,10 @@ package logica;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Random;
+import java.util.Set;
+
 import db.Bloque;
 import db.Conexion;
 import db.Sala;
@@ -35,7 +38,7 @@ public class Planificador extends Thread{
     private ArrayList<Clase> clasesCreadasPorDividirOtras = new ArrayList<>();
     private Boolean detener;
     private ProgresoAsignacion pro;
-    
+
     @Override
     public void run() {
 	super.run();
@@ -70,7 +73,7 @@ public class Planificador extends Thread{
 		    b.setIdSeccion(null);
 		}
 	    }
-	    
+
 
 	}
 	Clase.getBloques().clear();
@@ -93,20 +96,20 @@ public class Planificador extends Thread{
 	System.out.println("Bloques para asignar "+Clase.getBloques().size());
 	//3. Se prefiere temprano a tarde ...
 	Clase.getBloques().sort(new ComparatorBloquePreferenciaTemprano());
-	
-	
+
+
 
 
 
     }
-    
+
     public Boolean getDetener() {
 	return detener;
     }
     public void setDetener(Boolean detener) {
 	this.detener = detener;
     }
-    
+
     public void generarClases(){
 	this.generarClasesEnSalaComputacion(getSecciones());
 	this.generarClasesEnLabFisica(getSecciones());
@@ -123,7 +126,7 @@ public class Planificador extends Thread{
 	this.generarClasesEnSalaNormal(getSecciones());
 	this.totalDeClases = this.getListaDeClases().size();
     }
-    
+
     public ArrayList<Seccion> getSecciones() {
 	return secciones;
     }
@@ -224,7 +227,7 @@ public class Planificador extends Thread{
 	clasesEnLabComputacion = new ArrayList<Clase>();
 	Integer totalDeBloques = 0;
 	//Modificar para que reciba las Asignaturas seleccionadas por la GUI (esta con todas las secciones existentes)
-//	System.out.println(secciones);
+	//	System.out.println(secciones);
 	for(Seccion seccion: secciones){
 	    Integer horas =  ventana.getAsignatura(seccion.getIdAsignatura()).getHoraLabCom();
 	    if(horas == 0) continue;
@@ -271,7 +274,7 @@ public class Planificador extends Thread{
 	    }
 	}
 	System.out.println("Cantidad de clases lab fisica: "+ clasesEnLabFisica.size() + " Total de bloques lab fisica: "+ totalDeBloques);
-	
+
     }
 
 
@@ -541,76 +544,79 @@ public class Planificador extends Thread{
 
     public void busquedaDeBloquesParaLasClases(){
 
-
+	HashSet<Clase> claseIniciales = new HashSet();;
+	HashSet<Clase> ClasesFinales  = new HashSet();;
+	
 	for(Clase c: this.getClasesEnLabComputacion()){
-	    if(detener){break;}
 	    c.obtenerBloques(getVentana(), getSalas(), getDias());
-	    this.totalDeClasesConAsignaciones += 1;
+	    this.totalDeClasesConAsignaciones++;
+	    if(detener){break;}
 	}
 	for(Clase c: this.getClasesEnLabFisica()){
-	    if(detener){break;}
 	    c.obtenerBloques(getVentana(), getSalas(), getDias());
-	    this.totalDeClasesConAsignaciones += 1;
+	    this.totalDeClasesConAsignaciones++;
+	    if(detener){break;}
 	}
 	for(Clase c: this.getClasesEnLabQuimica()){
-	    if(detener){break;}
 	    c.obtenerBloques(getVentana(), getSalas(), getDias());
-	    this.totalDeClasesConAsignaciones += 1;
+	    this.totalDeClasesConAsignaciones++;
+	    if(detener){break;}
 	}
 	for(Clase c: this.getClasesEnLabMecanica()){
-	    if(detener){break;}
 	    c.obtenerBloques(getVentana(), getSalas(), getDias());
-	    this.totalDeClasesConAsignaciones += 1;
+	    this.totalDeClasesConAsignaciones++;
+	    if(detener){break;}
 	}
 	for(Clase c: this.getClasesEnLabRobotica()){
-	    if(detener){break;}
 	    c.obtenerBloques(getVentana(), getSalas(), getDias());
-	    this.totalDeClasesConAsignaciones += 1;
+	    this.totalDeClasesConAsignaciones++;
+	    if(detener){break;}
 	}
 	for(Clase c: this.getClasesEnTallerArquitectura()){
-	    if(detener){break;}
 	    c.obtenerBloques(getVentana(), getSalas(), getDias());
-	    this.totalDeClasesConAsignaciones += 1;
+	    this.totalDeClasesConAsignaciones++;
+	    if(detener){break;}
 	}
 	for(Clase c: this.getClasesEnTallerMadera()){
-	    if(detener){break;}
 	    c.obtenerBloques(getVentana(), getSalas(), getDias());
-	    this.totalDeClasesConAsignaciones += 1;
+	    this.totalDeClasesConAsignaciones++;
+	    if(detener){break;}
 	}
 	for(Clase c: this.getClasesEnGYM()){
-	    if(detener){break;}
 	    c.obtenerBloques(getVentana(), getSalas(), getDias());
-	    this.totalDeClasesConAsignaciones += 1;
+	    this.totalDeClasesConAsignaciones++;
+	    if(detener){break;}
 	}
 	for(Clase c: this.getClasesEnAuditorio()){
-	    if(detener){break;}
 	    c.obtenerBloques(getVentana(), getSalas(), getDias());
-	    this.totalDeClasesConAsignaciones += 1;
+	    this.totalDeClasesConAsignaciones++;
+	    if(detener){break;}
 	}
 	for(Clase c: this.getClasesEnEspRedes()){
-	    if(detener){break;}
 	    c.obtenerBloques(getVentana(), getSalas(), getDias());
-	    this.totalDeClasesConAsignaciones += 1;
+	    this.totalDeClasesConAsignaciones++;
+	    if(detener){break;}
 	}
 	for(Clase c: this.getClasesElecDigital()){
-	    if(detener){break;}
+	    
 	    c.obtenerBloques(getVentana(), getSalas(), getDias());
-	    this.totalDeClasesConAsignaciones += 1;
+	    this.totalDeClasesConAsignaciones++;
+	    if(detener){break;}
 	}
 	for(Clase c: this.getClasesEnMaqElectronicas()){
-	    if(detener){break;}
+	
 	    c.obtenerBloques(getVentana(), getSalas(), getDias());
-	    this.totalDeClasesConAsignaciones += 1;
+	    this.totalDeClasesConAsignaciones++;
+	    if(detener){break;}
 	}
-
 	//importante al final si se quiere dar preferencia a laboratorios y no queden dispersos en caso de sub-diviciones de secciones...
 	for(Clase c: this.getClasesEnSalaNormal()){
-	    if(detener){break;}
 	    c.obtenerBloques(getVentana(), getSalas(), getDias());
-	    this.totalDeClasesConAsignaciones += 1;
+	    this.totalDeClasesConAsignaciones++;
+	    if(detener){break;}
 	}
     }
-    
+
     private ArrayList<Sala> getSalas() {
 	return salas;
     }
@@ -717,10 +723,14 @@ public class Planificador extends Thread{
 	return clasesCreadasPorDividirOtras;
     }
     public Integer getPorcentajeProgreso(){
-	return (int) (( (this.totalDeClasesConAsignaciones * 1.0) / (this.totalDeClases * 1.0 ) ) * 100) ;
+		System.err.println(totalDeClasesConAsignaciones);
+		System.err.println(totalDeClases);
+		System.err.println((int) (( (this.totalDeClasesConAsignaciones * 1.0) / (this.totalDeClases * 1.0 ) ) * 100));
+	    return (int) (( (this.totalDeClasesConAsignaciones * 1.0) / (this.totalDeClases * 1.0 ) ) * 100) ;
+	
     }
-    
-    
+
+
 
 
 
