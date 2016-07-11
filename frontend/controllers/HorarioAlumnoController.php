@@ -16,7 +16,7 @@ class HorarioAlumnoController extends Controller
     public function actionIndex($carrera, $anio, $semestre){
 
         $array = array();
-        $id = Yii::$app -> user -> identity -> ID_DOCENTE;
+       // $id = Yii::$app -> user -> identity -> ID_DOCENTE;
         for($i = 1, $j = 1; $i < 7; $i++, $j++){
             $var1 = Asignatura::getHORARIOALUMNO($i,'08:10:00', $carrera, $anio, $semestre);
             $var2 = Asignatura::getHORARIOALUMNO($i,'08:50:00', $carrera, $anio, $semestre);
