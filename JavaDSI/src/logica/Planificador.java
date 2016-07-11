@@ -180,7 +180,7 @@ public class Planificador extends Thread{
 	    lista.addAll(getClasesElecDigital());
 	}
 	if(getClasesEnMaqElectronicas() != null){
-	    lista.addAll(getClasesEnLabMecanica());
+	    lista.addAll(getClasesEnMaqElectronicas());
 	}
 	if(getClasesCreadasPorDividirOtras() != null){
 	    lista.addAll(getClasesCreadasPorDividirOtras());
