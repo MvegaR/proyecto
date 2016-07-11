@@ -5,6 +5,8 @@ use yii\widgets\ActiveForm;
 use frontend\models\Docente;
 use frontend\models\Asignatura;
 use yii\helpers\Arrayhelper;
+use frontend\models\Carrera;
+
 
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Seccion */
@@ -20,6 +22,20 @@ use yii\helpers\Arrayhelper;
 <?= $form->field($model, 'ID_DOCENTE')->dropDownList(
    ArrayHelper::map(Docente::find()->all(),'ID_DOCENTE','NOMBRE_DOCENTE'),
         ['prompt'=>'Seleccione docente'] )->label('Docente') ?>
+
+</div>
+<div class="form-group field-carrera">
+<label class="control-label" for="seccion-carrera">Carrera</label>
+<?= Html::DropDownList('Carrera', null,ArrayHelper::map(Carrera::find()->all(),'ID_CARRERA','NOMBRE_CARRERA'),['class'=>  'form-control', 'onclick' => 
+'
+$.post(
+        "index.php?r=asignatura/lists&carrera='.'"+$(this).val()
+    , function(data){
+             $("select#seccion-id_asignatura").html(data);
+        });
+'
+]) ; ?>
+</div>
 
      <?= $form->field($model, 'ID_ASIGNATURA')->dropDownList(
         ArrayHelper::map(Asignatura::find()->all(),'ID_ASIGNATURA','NOMBRE_ASIGNATURA'),

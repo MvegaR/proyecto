@@ -136,6 +136,15 @@ class AsignaturaController extends Controller
         }
     }
 
+    public static function actionLists($carrera){
+
+      foreach (Asignatura::find() -> all() as $asignatura) {
+          if($asignatura -> ID_CARRERA == $carrera){
+            echo "<option value= '". $asignatura -> ID_ASIGNATURA."'>". $asignatura -> NOMBRE_ASIGNATURA."</option>";
+          }
+      }
+    }
+
 
 
 
