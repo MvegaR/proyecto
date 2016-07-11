@@ -56,9 +56,9 @@ $this->params['breadcrumbs'][] = $this->title;
                             foreach ($row as $col) {
                                 if($contador != 0) echo '<br>_____<br>';
                                     echo '<b>'.
-                            $row[0]['NOMBRE_ASIGNATURA'].
-                            '</b><br>'. $row[0]['ID_SECCION'].' <br><b>Cupo:</b> '.$row[0]['CUPO'].
-                            '<br> <b>Sala:</b> '.$row[0]['ID_SALA'].' <br><b>Max: </b>'.$row[0]['CAPACIDAD_SALA'].'</td>';
+                            $col['NOMBRE_ASIGNATURA'].
+                            '</b><br>'. $col['ID_SECCION'].' <br><b>Cupo:</b> '.$col['CUPO'].
+                            '<br> <b>Sala:</b> '.$col['ID_SALA'].' <br><b>Max: </b>'.$col['CAPACIDAD_SALA'];
                                 $contador+=1;
                                 
                             }
