@@ -93,9 +93,13 @@ class Asignatura extends \yii\db\ActiveRecord
 
          public function getHORARIOALUMNO($dia, $hora, $carrera, $anio, $semestre)
     {
-        $sql = "Select a.NOMBRE_ASIGNATURA, c.ID_CARRERA, b.ID_SALA, b.ID_SECCION   
-                from asignatura a, carrera c, bloque b, seccion s
-                where b.ID_DIA = $dia and b.INICIO = '$hora' and c.ID_CARRERA = '$carrera' and a.ANIO = $anio and a.SEMESTRE = $semestre and a.ID_CARRERA = '$carrera' and s.ID_SECCION = b.ID_SECCION and s.ID_ASIGNATURA = a.ID_ASIGNATURA and a.ID_CARRERA = c.ID_CARRERA 
+
+
+
+
+        $sql = "Select a.NOMBRE_ASIGNATURA, c.ID_CARRERA, b.ID_SALA, b.ID_SECCION, s.CUPO, sa.CAPACIDAD_SALA
+                from asignatura a, carrera c, bloque b, seccion s, sala sa
+                where b.ID_DIA = $dia and b.INICIO = '$hora' and c.ID_CARRERA = '$carrera' and a.ANIO = $anio and a.SEMESTRE = $semestre and a.ID_CARRERA = '$carrera' and s.ID_SECCION = b.ID_SECCION and s.ID_ASIGNATURA = a.ID_ASIGNATURA and a.ID_CARRERA = c.ID_CARRERA and sa.ID_SALA = b.ID_SALA
 
                         ";
 

@@ -77,7 +77,7 @@ class Seccion extends \yii\db\ActiveRecord
 
     public function getHORARIOSPORPROFESOR($dia, $hora, $id)
     {
-        $sql = 'SELECT a.nombre_asignatura, s.ID_SECCION, i.ID_SALA, s.CUPO, sa.CAPACIDAD_SALA
+        $sql = 'SELECT a.NOMBRE_ASIGNATURA, s.ID_SECCION, i.ID_SALA, s.CUPO, sa.CAPACIDAD_SALA
                 FROM bloque i, docente d, seccion s , asignatura a, sala sa
                 WHERE a.ID_ASIGNATURA=s.ID_ASIGNATURA AND d.ID_DOCENTE='.$id.' AND d.ID_DOCENTE= s.ID_DOCENTE AND s.ID_SECCION= i.ID_SECCION AND 
                 i.INICIO = "'.$hora.'" AND i.ID_DIA = '.$dia.' and sa.ID_SALA = i.ID_SALA
