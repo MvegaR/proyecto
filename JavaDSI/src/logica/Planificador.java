@@ -2,9 +2,7 @@ package logica;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.Random;
-import java.util.Set;
 
 import db.Bloque;
 import db.Conexion;
@@ -181,7 +179,7 @@ public class Planificador extends Thread{
 	if(getClasesElecDigital() != null){
 	    lista.addAll(getClasesElecDigital());
 	}
-	if(getClasesEnLabMecanica() != null){
+	if(getClasesEnMaqElectronicas() != null){
 	    lista.addAll(getClasesEnLabMecanica());
 	}
 	if(getClasesCreadasPorDividirOtras() != null){
@@ -356,7 +354,7 @@ public class Planificador extends Thread{
 		k.setHorasContinuadas(k.getHorasContinuadas()+1);
 	    }
 	}
-	System.out.println("Cantidad de clases lab mecanica: "+ clasesEnLabRobotica.size() + " Total de bloques lab mecanica: "+ totalDeBloques);
+	System.out.println("Cantidad de clases lab robotica: "+ clasesEnLabRobotica.size() + " Total de bloques lab robotica: "+ totalDeBloques);
 
     }
 
@@ -543,9 +541,6 @@ public class Planificador extends Thread{
     }
 
     public void busquedaDeBloquesParaLasClases(){
-
-	HashSet<Clase> claseIniciales = new HashSet();;
-	HashSet<Clase> ClasesFinales  = new HashSet();;
 	
 	for(Clase c: this.getClasesEnLabComputacion()){
 	    c.obtenerBloques(getVentana(), getSalas(), getDias());
@@ -723,9 +718,6 @@ public class Planificador extends Thread{
 	return clasesCreadasPorDividirOtras;
     }
     public Integer getPorcentajeProgreso(){
-		System.err.println(totalDeClasesConAsignaciones);
-		System.err.println(totalDeClases);
-		System.err.println((int) (( (this.totalDeClasesConAsignaciones * 1.0) / (this.totalDeClases * 1.0 ) ) * 100));
 	    return (int) (( (this.totalDeClasesConAsignaciones * 1.0) / (this.totalDeClases * 1.0 ) ) * 100) ;
 	
     }
