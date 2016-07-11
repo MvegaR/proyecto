@@ -155,6 +155,8 @@ style="background-color:#0064AC; background-image:url(img/bg.png);color:#fff;  p
       <a href="index.php?r=post-de-denuncia/create" class="list-group-item pulso">Reportar sala</a>
       <a href="index.php?r=sala/lista" class="list-group-item pulso">Horarios de salas</a>
       <a href="index.php?r=horario-general" class="list-group-item pulso">Horario general</a>
+            <?php if(!Yii::$app -> user -> isGuest && Yii::$app -> user -> identity -> ID_ROL == 1){?><a href="index.php?r=horario-alumno/alumno
+" class="list-group-item pulso">Horario Carreras</a><?php } ?>
       <?php if(!Yii::$app -> user -> isGuest){?><a href="index.php?r=cambios/update" class="list-group-item pulso">Cambiar usuario o contraseña</a><?php } ?>
       </div>
     </div>
@@ -170,7 +172,6 @@ style="background-color:#0064AC; background-image:url(img/bg.png);color:#fff;  p
 </footer>
 
  <?php  $this->endBody() ?>
-
 
 
 </body>

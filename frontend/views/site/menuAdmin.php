@@ -50,7 +50,7 @@ $this->params['breadcrumbs'][] = $this->title;
 				<p><a class="btn btn-lg btn-default col-xs-6" href="index.php?r=estado-asignacion-temporal/index">Estados asignaciones temporales</a></p>
 				<p><a class="btn btn-lg btn-default col-xs-6" href="index.php?r=estado-solicitud-cambio/index">Estados cambios</a></p>
 				<p><a class="btn btn-lg btn-default col-xs-6" href="index.php?r=estado-solicitud-cancelacion/index">Estado cancelación</a></p>
-				<p><a class="btn btn-lg btn-default col-xs-6" href="index.php?r=tipo-denuncia/index">Tipos de denuncia</a></p>
+				<p><a class="btn btn-lg btn-default col-xs-6" href="index.php?r=tipo-denuncia/index">Tipos de reporte</a></p>
 				<p><a class="btn btn-lg btn-default col-xs-6" href="index.php?r=tipo-sala/index">Tipos de sala</a></p>
 				<p><a class="btn btn-lg btn-default col-xs-6" href="index.php?r=dia/index">Días hábiles</a></p>
 				<p><a class="btn btn-lg btn-default col-xs-6" href="index.php?r=tiempo-inicio/index">Inicios de hora de clase</a></p>

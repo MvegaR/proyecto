@@ -151,6 +151,7 @@ public class ProgresoAsignacion extends JPanel {
 	Planificador planificador;
 	planificador = new Planificador(ventana, salas, secciones, dias, this);
 	//ejecutar hilo para la barra.
+	
 	TimerTask TareaDeActualizarBarra = new TimerTask() {
 
 	    @Override

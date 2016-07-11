@@ -12,6 +12,10 @@ use yii\filters\VerbFilter;
 class HorarioAlumnoController extends Controller
 {
 
+
+    public function actionAlumno(){
+        return $this->render('alumno');
+    }
     
     public function actionIndex($carrera, $anio, $semestre){
 
