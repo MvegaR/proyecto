@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="solicitud-asignacion-temporal-view">
 
-    <h1>Solicitud temporal registrada exitosamente</h1>
+    <h2>Asignación temporal registrada y procesada exitosamente</h2>
 
 
     <?= DetailView::widget([

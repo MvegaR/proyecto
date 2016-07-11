@@ -203,7 +203,7 @@ class SalaController extends Controller
 
         if($contadorSalas > 0){
             foreach ($salas as $sala) {
-                echo "<option value='".$sala->ID_SALA."'> ".$sala->ID_SALA."</option>";
+                echo "<option value='".$sala->ID_SALA."'> ".$sala->ID_SALA." Tipo mueble: ".$sala->MUEBLE." Capacidad: ".$sala->CAPACIDAD_SALA."</option>";
             }
         }else{
          echo "<option value=>Sin salas</option>";
@@ -227,7 +227,7 @@ class SalaController extends Controller
              echo "<option value=>Sin salas con la capacidad ingresada disponible</option>";
         }else if($contadorSalas > 0){
             foreach ($salas as $sala) {
-                echo "<option value='".$sala->ID_SALA."'> ".$sala->ID_SALA." Tipo mueble: ".$sala->MUEBLE."</option>";
+                echo "<option value='".$sala->ID_SALA."'> ".$sala->ID_SALA." Tipo mueble: ".$sala->MUEBLE." Capacidad: ".$sala->CAPACIDAD_SALA."</option>";
             }
         }else{
          echo "<option value=>Sin salas con la capacidad mínima ingresada y tipo, disponibles</option>";
@@ -292,7 +292,7 @@ class SalaController extends Controller
             foreach ($salas as $sala) {
                 $r = $this -> compararBloques($bloquesOrigen, (Bloque::find()->where(["ID_SALA" => $sala->ID_SALA]) -> all()) );
                 if($r === true) {
-                  echo "<option value='".$sala->ID_SALA."'> ".$sala->ID_SALA." Tipo mueble: ".$sala->MUEBLE."</option>";
+                  echo "<option value='".$sala->ID_SALA."'> ".$sala->ID_SALA." Tipo mueble: ".$sala->MUEBLE." Capacidad: ".$sala->CAPACIDAD_SALA."</option>";
                   $contadorSalasFinales++;
                 }
             }

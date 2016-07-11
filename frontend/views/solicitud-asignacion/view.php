@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="solicitud-asignacion-view">
 
-    <h1> Solicitud de asignación registrada correctamente en el sistema. </h1>
+    <h2> Solicitud de asignación registrada y procesada exitosamente. </h2>
 
     <?= DetailView::widget([
         'model' => $model,
