@@ -16,7 +16,7 @@ use yii\helpers\ArrayHelper;
     <?php $form = ActiveForm::begin(); ?>
 
     <?php 
-    if($model->isNewRecord ) echo $form->field($model, 'ID_ESTADO_ASIGNACION_TEMPORAL')->hiddenInput(['value' => 3])->label(false);
+    if($model->isNewRecord ) echo $form->field($model, 'ID_ESTADO_ASIGNACION_TEMPORAL')->hiddenInput(['value' => 1])->label(false);
     else echo $form->field($model, 'ID_ESTADO_ASIGNACION_TEMPORAL')->dropDownList(
             ArrayHelper::map(EstadoAsignacionTemporal::find()->all(),'ID_ESTADO_ASIGNACION_TEMPORAL','NOMBRE_ESTADO_ASIGNACION_TEMPORAL'),
             ['prompt'=>'Seleccione estado de asignación'] )->label('Estado de asignación');

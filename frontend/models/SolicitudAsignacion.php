@@ -48,16 +48,16 @@ class SolicitudAsignacion extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'ID_ASIGNACION' => 'Id Asignacion',
-            'ID_ESTADO_SOLICITUD' => 'Id Estado Solicitud',
-            'DOCENTE_ASIGNACION' => 'Docente Asignacion',
-            'ASIGNATURA_ASIGNACION' => 'Asignatura Asignacion',
-            'SECCION_ASIGNACION' => 'Seccion Asignacion',
-            'CAPACIDAD_ASIGNACION' => 'Capacidad Asignacion',
-            'TIPO_SALA_ASIGNACION' => 'Tipo Sala Asignacion',
-            'SALA_ASIGNACION' => 'Sala Asignacion',
-            'CANTIDAD_BLOQUES_ASIGNACION' => 'Cantidad de bloques asignacion', 
-            'INICIO_BLOQUE_ASIGNACION' => "Inicio bloque asignacion",
+            'ID_ASIGNACION' => 'Id Asignación',
+            'ID_ESTADO_SOLICITUD' => 'Estado Solicitud',
+            'DOCENTE_ASIGNACION' => 'Docente Asignación',
+            'ASIGNATURA_ASIGNACION' => 'Asignatura Asignación',
+            'SECCION_ASIGNACION' => 'Seccion Asignación',
+            'CAPACIDAD_ASIGNACION' => 'Capacidad Asignación',
+            'TIPO_SALA_ASIGNACION' => 'Tipo Sala Asignación',
+            'SALA_ASIGNACION' => 'Sala Asignación',
+            'CANTIDAD_BLOQUES_ASIGNACION' => 'Cantidad de bloques asignación', 
+            'INICIO_BLOQUE_ASIGNACION' => "Inicio bloque asignación",
         ];
     }
 

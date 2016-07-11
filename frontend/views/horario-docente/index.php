@@ -70,14 +70,15 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div>
         
-        <h3>Solicitudes temporales docente:
-        </h3><br>
+        <h3>Solicitudes temporales registradas:
+        </h3>
         <?php foreach ($solicitudes as $solicitud) {
             echo "<li>"."Fecha: ".$solicitud -> FECHA_ASIGNACION_TEMPORAL." Sala: ".$solicitud -> SALA_ASIGNACION_TEMPORAL." Hora inicio: ". Bloque::find()->where(["ID_BLOQUE" => $solicitud -> INICIO_BLOQUE_ASIGNACION_TEMPORAL]) -> one() -> INICIO." Cantidad de periodos: ". $solicitud -> CANTIDAD_BLOQUES_ASIGNACION_TEMPORAL;
         }
 
         ?>
-
+        <br>
+        <br>
 
     </div>
 </div>

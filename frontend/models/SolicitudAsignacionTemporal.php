@@ -48,7 +48,7 @@ class SolicitudAsignacionTemporal extends \yii\db\ActiveRecord
     {
         return [
             'ID_ASIGNACION_TEMPORAL' => 'Id  Asignacion  Temporal',
-            'ID_ESTADO_ASIGNACION_TEMPORAL' => 'Id  Estado  Asignacion  Temporal',
+            'ID_ESTADO_ASIGNACION_TEMPORAL' => 'Estado  Asignacion  Temporal',
             'DOCENTE_ASIGNACION_TEMPORAL' => 'Docente  Asignacion  Temporal',
             'CAPACIDAD_ASIGNACION_TEMPORAL' => 'Capacidad  Asignacion  Temporal',
             'SALA_ASIGNACION_TEMPORAL' => 'Sala  Asignacion  Temporal',

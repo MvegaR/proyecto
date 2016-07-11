@@ -29,7 +29,12 @@ use himiklab\yii2\recaptcha\ReCaptcha;
     if(!Yii::$app -> user -> isGuest){
         $idDocente = Yii::$app -> user -> identity -> ID_DOCENTE;
     }
-    echo Html::activeHiddenInput($model, 'DOCENTE_ASIGNACION', ['value' => $idDocente ]); ?>
+    echo Html::activeHiddenInput($model, 'DOCENTE_ASIGNACION', ['value' => $idDocente ]); 
+
+    echo Html::activeHiddenInput($model, 'ID_ESTADO_SOLICITUD', ['value' => 1 ]); 
+
+    ?>
+
     <?php
         $asignaturasDelUsuario = "Select A.* 
         from asignatura A, seccion S

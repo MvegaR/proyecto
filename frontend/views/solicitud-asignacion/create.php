@@ -1,13 +1,16 @@
 <?php
 
 use yii\helpers\Html;
-
+use frontend\models\Rol;
 
 /* @var $this yii\web\View */
 /* @var $model frontend\models\SolicitudAsignacion */
 
 $this->title = 'Solicitar asignación de sala';
-$this->params['breadcrumbs'][] = ['label' => 'Solicitud Asignacions', 'url' => ['index']];
+if(!Yii::$app->user->isGuest 
+	&& !(Rol::findOne(Yii::$app -> user -> identity -> ID_ROL) -> NOMBRE_ROL) == "Docente"
+	)
+		$this->params['breadcrumbs'][] = ['label' => 'Solicitudes de Asignaciones', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="solicitud-asignacion-create">

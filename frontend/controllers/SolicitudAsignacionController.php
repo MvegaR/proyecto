@@ -67,7 +67,7 @@ class SolicitudAsignacionController extends Controller
          PermisosController::permisoAdminDocente();
         $model = new SolicitudAsignacion();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) &&  $model->save()) {
            $bloqueInicial =  Bloque::find()->where(["ID_BLOQUE" => $model -> INICIO_BLOQUE_ASIGNACION]) -> one();
             $bloquesDisponibles = Bloque::find()->where(["ID_SALA" => $model->SALA_ASIGNACION, "ID_DIA" => $bloqueInicial-> ID_DIA, "ID_SECCION" => null]) -> orderBy("INICIO")->all();
             $pos = array_search($bloqueInicial, $bloquesDisponibles);

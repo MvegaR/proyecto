@@ -25,7 +25,7 @@ use frontend\models\TipoSala;
             ArrayHelper::map(EstadoSolicitudCambio::find()->all(),'ID_ESTADO_CAMBIO','NOMBRE_ESTADO_CAMBIO'),
             ['prompt'=>'Seleccione estado de cambio'] )->label('Estado de cambio');
     }else{
-       echo $form->field($model, 'ID_ESTADO_CAMBIO')->hiddenInput(['value' => 3])->label(false);
+       echo $form->field($model, 'ID_ESTADO_CAMBIO')->hiddenInput(['value' => 1])->label(false);
    }
    ?>
 
