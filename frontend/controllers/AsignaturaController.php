@@ -137,11 +137,15 @@ class AsignaturaController extends Controller
     }
 
     public static function actionLists($carrera){
-
+        $contador = 0;
       foreach (Asignatura::find() -> all() as $asignatura) {
           if($asignatura -> ID_CARRERA == $carrera){
             echo "<option value= '". $asignatura -> ID_ASIGNATURA."'>". $asignatura -> NOMBRE_ASIGNATURA."</option>";
+            $contador++;
           }
+      }
+      if($contador == 0){
+         echo "<option value= ''>Carrera sin asignaturas ingresadas</option>";
       }
     }
 
