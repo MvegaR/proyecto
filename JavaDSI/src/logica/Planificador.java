@@ -15,7 +15,7 @@ import gui.VentanaPrincipal;
 public class Planificador extends Thread{
     private static Planificador actual; //solo puede existir un planificador en el software, si se quiere con hilos, aqui dentro.
     private Integer totalDeClases;
-    private Integer totalDeClasesConAsignaciones;
+    public Integer totalDeClasesConAsignaciones;
     private VentanaPrincipal ventana;
     private ArrayList<Integer> dias;
     private ArrayList<Seccion> secciones;
@@ -67,8 +67,10 @@ public class Planificador extends Thread{
 	}
 	if(Planificador.actual != null){
 	    for(Clase c: Planificador.actual.getListaDeClases()){
+		System.out.println("Borrando planificación secciones seleccionadas de forma local");
 		for(Bloque b: c.getBloquesAsignados()){
 		    b.setIdSeccion(null);
+		    b.setBloqueSiguiente(null);
 		}
 	    }
 
@@ -717,10 +719,17 @@ public class Planificador extends Thread{
     public ArrayList<Clase> getClasesCreadasPorDividirOtras() {
 	return clasesCreadasPorDividirOtras;
     }
+    
+    public void incTotalDeClasesConAsignaciones() {
+	this.totalDeClasesConAsignaciones++;
+    }
+    
+    
     public Integer getPorcentajeProgreso(){
 	    return (int) (( (this.totalDeClasesConAsignaciones * 1.0) / (this.totalDeClases * 1.0 ) ) * 100) ;
 	
     }
+
 
 
 

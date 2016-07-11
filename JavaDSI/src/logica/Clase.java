@@ -185,11 +185,15 @@ public class Clase {
 		    this.getSeccion().getIdAsignatura(), this.getSeccion().getCupo()/2);
 	    // clases virtuales y que se busquen bloques...
 	    Clase virtual1 = new Clase(this.getPlanificador(), this.getHorasContinuadas(), seccionAux, this.getTipo());
+	    
 	    Clase virtual2 = new Clase(this.getPlanificador(), this.getHorasContinuadas(), seccionAux, this.getTipo());
+	   
 	    virtual1.obtenerBloques(planificador.getVentana(), salas, planificador.getDias());
 	    virtual2.obtenerBloques(planificador.getVentana(), salas, planificador.getDias());
 	    planificador.getClasesCreadasPorDividirOtras().add(virtual1);
+	    planificador.incTotalDeClasesConAsignaciones();
 	    planificador.getClasesCreadasPorDividirOtras().add(virtual2);
+	    planificador.incTotalDeClasesConAsignaciones();
 	    this.dividida = true;
 
 	}else if(!existeSalaTipo(this.getTipo(), ventana.getSalas())){
