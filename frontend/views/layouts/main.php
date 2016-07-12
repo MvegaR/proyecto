@@ -144,7 +144,7 @@ style="background-color:#0064AC; background-image:url(img/bg.png);color:#fff;  p
   <br>
   <div class="col-lg-3 col-md-3 col-xs-12 pull-right" style="position:relative; top:0 px; margin: 0px; padding: 0px 0px 0px 10px;" >
     <div class="list-group">
-      <div class=" text-center" style="background-color:#0064AC; color:#FFFFFF; font-weight: bold; font-size:16px;">Link rápidos</div>
+      <div class=" text-center" style="background-color:#0064AC; color:#FFFFFF; font-weight: bold; font-size:16px;">Menú principal</div>
 
       <?php if(!Yii::$app -> user -> isGuest && Yii::$app -> user -> identity -> ID_ROL == 1){?><a href="index.php?r=site/menu-admin" class="list-group-item pulso">Módulos de administración</a><?php } ?>
       <?php if(!Yii::$app -> user -> isGuest && Yii::$app -> user -> identity -> ID_ROL == 2){?><a href="index.php?r=horario-docente" class="list-group-item pulso">Ver Horario</a><?php } ?>
