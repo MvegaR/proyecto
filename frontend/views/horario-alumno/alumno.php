@@ -22,7 +22,15 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="form-group field-carrera">
 <label class="control-label" for="seccion-carrera">Carrera</label>
-<?= Html::DropDownList('carrera', null,ArrayHelper::map(Carrera::find()->all(),'ID_CARRERA','NOMBRE_CARRERA'),['class'=>  'form-control','id' => 'carrera']) ; ?>
+<?php
+$a = ArrayHelper::map(Carrera::find()->all(),'ID_CARRERA','ID_CARRERA');
+
+foreach ($a as $carrera) {
+	$b = Carrera::find()->where(['ID_CARRERA' => $carrera]) -> one();
+	$a[$carrera] .= " ".$b-> NOMBRE_CARRERA;
+}
+ ?>
+<?= Html::DropDownList('carrera', null,$a,['class'=>  'form-control','id' => 'carrera']) ; ?>
 </div>
 
 
